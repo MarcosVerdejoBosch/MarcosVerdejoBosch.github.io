@@ -1,12 +1,12 @@
 /* --------------------------------------------------------------
    Nord theme (dark)
    Focus: high legibility, calm blue/gray look
-   Font: Ubuntu Mono
+   Font: Source Code Pro
    Palette: https://www.nordtheme.com
 -------------------------------------------------------------- */
 
 :root {
-  /* Font token: keep typography centralized */
+  /* Typography */
   --font-mono: "Source Code Pro",
                ui-monospace,
                SFMono-Regular,
@@ -17,7 +17,7 @@
                "Courier New",
                monospace;
 
-  /* Existing palette tokens... */
+  /* Colors */
   --bg: #2e3440;
   --bg-alt: #3b4252;
   --fg: #eceff4;
@@ -26,10 +26,13 @@
 
   /* Accents */
   --accent: #88c0d0;      /* Nord blue */
-  --accent-alt: #88c0d0;  /* use same blue, no green */
+  --accent-alt: #88c0d0;  /* same blue, no green */
 }
 
-/* Base layout */
+/* --------------------------------------------------------------
+   Base layout
+-------------------------------------------------------------- */
+
 html,
 body {
   margin: 0;
@@ -37,7 +40,7 @@ body {
   background: var(--bg);
   color: var(--fg);
 
-  /* Apply the global font */
+  /* Apply global font */
   font-family: var(--font-mono);
 
   line-height: 1.6;
@@ -54,29 +57,32 @@ main {
   padding: 0 1.25rem;
 }
 
-/* Links */
+/* --------------------------------------------------------------
+   Links
+-------------------------------------------------------------- */
 
 a {
-  color: var(--accent);          
+  color: var(--accent);
   text-decoration: none;
   border-bottom: 1px dotted transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 a:hover {
-  color: var(--fg);               
-  border-bottom-color: var(--accent); 
+  color: var(--fg);
+  border-bottom-color: var(--accent);
 }
 
-
-/* Headings */
+/* --------------------------------------------------------------
+   Headings
+-------------------------------------------------------------- */
 
 h1,
 h2,
 h3 {
   margin-top: 2rem;
   margin-bottom: 0.75rem;
-  color: var(--fg);                             /* same as main text */
+  color: var(--fg);
 }
 
 h1 {
@@ -90,13 +96,13 @@ h3 {
   padding-bottom: 0;
 }
 
-/* Paragraph spacing */
+/* --------------------------------------------------------------
+   Text elements
+-------------------------------------------------------------- */
 
 p {
   margin: 0.6rem 0;
 }
-
-/* Lists */
 
 ul {
   padding-left: 1.1rem;
@@ -106,7 +112,9 @@ li {
   margin: 0.3rem 0;
 }
 
-/* Navbar */
+/* --------------------------------------------------------------
+   Navbar
+-------------------------------------------------------------- */
 
 .navbar {
   background: var(--bg-alt);
@@ -126,7 +134,7 @@ li {
 
 .nav-title {
   font-weight: 700;
-  color: var(--fg);                             /* mismo color que el texto principal */
+  color: var(--fg);
   text-decoration: none;
 }
 
@@ -140,16 +148,16 @@ li {
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: var(--accent);          
+  color: var(--accent);
 }
 
-/* Home page: center main title */
+/* --------------------------------------------------------------
+   Home page
+-------------------------------------------------------------- */
 
 .home-page h1 {
   text-align: center;
 }
-
-/* Home hero subtitle */
 
 .home-subtitle {
   text-align: center;
@@ -158,7 +166,63 @@ li {
   color: var(--fg);
 }
 
-/* Footer */
+/* --------------------------------------------------------------
+   Projects page – "Project cards" styling
+   Uses semantic markdown (no extra HTML required)
+-------------------------------------------------------------- */
+
+/* Separator between cards */
+.content hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+
+/* Card header (project title) */
+.content h2 {
+  margin-top: 2.5rem;
+  padding: 1rem 1.1rem 0.6rem 1.1rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+}
+
+/* Card body (all elements after h2 until next hr) */
+.content h2 ~ p,
+.content h2 ~ ul,
+.content h2 ~ ol,
+.content h2 ~ img {
+  background: var(--bg-alt);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
+}
+
+/* Close the card visually before the separator */
+.content h2 ~ p:last-of-type {
+  padding-bottom: 1rem;
+}
+
+/* Project images */
+.content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.9rem auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+/* Emphasize labels like "Stack:", "Highlights:", "Links:" */
+.content p strong {
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------
+   Footer
+-------------------------------------------------------------- */
 
 .footer {
   text-align: center;
@@ -167,7 +231,9 @@ li {
   margin: 2.5rem 0;
 }
 
-/* Responsive */
+/* --------------------------------------------------------------
+   Responsive
+-------------------------------------------------------------- */
 
 @media (max-width: 600px) {
   .nav-container {
