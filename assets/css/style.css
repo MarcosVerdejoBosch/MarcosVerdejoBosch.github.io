@@ -6,6 +6,18 @@
 -------------------------------------------------------------- */
 
 :root {
+  /* Font token: keep typography centralized */
+  --font-mono: "Source Code Pro",
+               ui-monospace,
+               SFMono-Regular,
+               Menlo,
+               Monaco,
+               Consolas,
+               "Liberation Mono",
+               "Courier New",
+               monospace;
+
+  /* Existing palette tokens... */
   --bg: #2e3440;
   --bg-alt: #3b4252;
   --fg: #eceff4;
@@ -17,16 +29,17 @@
   --accent-alt: #88c0d0;  /* use same blue, no green */
 }
 
-
 /* Base layout */
-
 html,
 body {
   margin: 0;
   padding: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: "Ubuntu Mono", monospace;
+
+  /* Apply the global font */
+  font-family: var(--font-mono);
+
   line-height: 1.6;
 }
 
