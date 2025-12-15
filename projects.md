@@ -11,12 +11,17 @@ Notes:
 - Each project follows the same structure for consistency
 - Ready to be converted into "project cards" via CSS
 -->
-
 # Projects
 
 Selected engineering projects focused on **PCB design, hardware, and embedded systems**.
 
+## Tech I work with
+- **Hardware/PCB:** KiCad (schematic + layout), analog/power design, lab bring-up and measurements.
+- **Firmware:** Embedded C/C++, ESP32 and ARM-class MCUs, debugging and instrumentation.
+- **IoT/Systems:** GCP + Kubernetes observability (logs/metrics), service monitoring, automation tooling.
+
 ---
+
 
 ## Discrete Linear Voltage Regulator (5V / 3.3V)
 Low-noise linear regulator designed entirely with discrete components.
