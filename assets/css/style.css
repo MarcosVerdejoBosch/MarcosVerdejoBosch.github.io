@@ -188,7 +188,10 @@ li {
   border-radius: 14px 14px 0 0;
 }
 
-/* Card body (all elements after h2 until next hr) */
+/*
+  Card body: apply the same background/borders to all blocks,
+  AND remove default margins so the background looks continuous.
+*/
 .content h2 ~ p,
 .content h2 ~ ul,
 .content h2 ~ ol,
@@ -198,10 +201,23 @@ li {
   border-right: 1px solid var(--line);
   padding-left: 1.1rem;
   padding-right: 1.1rem;
+
+  /* Remove default spacing that creates "gaps" */
+  margin: 0;
 }
 
-/* Close the card visually before the separator */
-.content h2 ~ p:last-of-type {
+/* Give the first paragraph after the header some top breathing room */
+.content h2 + p {
+  padding-top: 0.6rem;
+}
+
+/* Close the card visually with a bottom border + radius */
+.content h2 ~ p:last-of-type,
+.content h2 ~ ul:last-of-type,
+.content h2 ~ ol:last-of-type,
+.content h2 ~ img:last-of-type {
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 14px 14px;
   padding-bottom: 1rem;
 }
 
@@ -218,38 +234,4 @@ li {
 /* Emphasize labels like "Stack:", "Highlights:", "Links:" */
 .content p strong {
   color: var(--muted);
-}
-
-/* --------------------------------------------------------------
-   Footer
--------------------------------------------------------------- */
-
-.footer {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 2.5rem 0;
-}
-
-/* --------------------------------------------------------------
-   Responsive
--------------------------------------------------------------- */
-
-@media (max-width: 600px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4rem;
-  }
-
-  .nav-links a {
-    margin-left: 0.7rem;
-  }
-
-  .content,
-  .container,
-  .post,
-  main {
-    margin: 2rem auto;
-  }
 }
