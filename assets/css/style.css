@@ -235,3 +235,29 @@ li {
 .content p strong {
   color: var(--muted);
 }
+
+/* --------------------------------------------------------------
+   Projects page: "Tech I work with" as a standalone card
+   Notes:
+   - Targets only the first H2 section on the Projects page
+   - Keeps other project cards unchanged
+-------------------------------------------------------------- */
+
+/* Make the first H2 ("Tech I work with") look like a compact card */
+.content h2:first-of-type {
+  border-bottom: 1px solid var(--line);
+  border-radius: 14px;
+  padding-bottom: 0.8rem;
+}
+
+/* Put the list under the same card */
+.content h2:first-of-type + ul {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+
+  /* Remove gaps and align with header padding */
+  margin: 0;
+  padding: 0.8rem 1.1rem 1rem 2.2rem;
+}
