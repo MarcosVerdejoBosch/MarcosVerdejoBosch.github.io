@@ -24,8 +24,8 @@
   --muted: #d8dee9;
   --line: #4c566a;
 
-  /* Accents */
-  --accent: #88c0d0; /* Nord blue */
+  /* Accent */
+  --accent: #88c0d0;
 }
 
 /* --------------------------------------------------------------
@@ -40,7 +40,6 @@ body {
   color: var(--fg);
   font-family: var(--font-mono);
 
-  /* Slightly more breathing room for blog readability */
   line-height: 1.75;
   font-size: 16px;
 }
@@ -50,12 +49,22 @@ body {
 .container,
 .post,
 main {
-  max-width: 760px;          /* narrower = easier to read */
+  max-width: 760px;
   margin: 2.5rem auto;
-  padding: 1.75rem 1.5rem;   /* inner padding for "article" feel */
+  padding: 1.75rem 1.5rem;
   background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: 16px;
+}
+
+/* --------------------------------------------------------------
+   Global text alignment (JUSTIFIED)
+-------------------------------------------------------------- */
+
+p,
+li {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* --------------------------------------------------------------
@@ -75,31 +84,35 @@ a:hover {
 }
 
 /* --------------------------------------------------------------
-   Headings (more "blog" hierarchy)
+   Headings (clear hierarchy, section separation)
 -------------------------------------------------------------- */
 
 h1,
 h2,
 h3 {
-  margin: 1.6rem 0 0.75rem 0;
   color: var(--fg);
   letter-spacing: 0.2px;
+  text-align: left; /* headings stay left-aligned */
 }
 
 h1 {
   font-size: 1.8rem;
+  margin: 0 0 1.5rem 0;
   border-bottom: 1px solid var(--line);
-  padding-bottom: 0.5rem;
-  margin-top: 0;
+  padding-bottom: 0.6rem;
 }
 
 h2 {
-  font-size: 1.25rem;
-  margin-top: 2rem;
+  font-size: 1.3rem;
+  margin-top: 3.2rem;      /* KEY: section separation */
+  margin-bottom: 1rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--accent);
 }
 
 h3 {
   font-size: 1.05rem;
+  margin-top: 2rem;
 }
 
 /* --------------------------------------------------------------
@@ -108,20 +121,19 @@ h3 {
 
 p {
   margin: 0.9rem 0;
-  color: var(--fg);
 }
 
 ul,
 ol {
-  margin: 0.7rem 0 1rem 0;
-  padding-left: 1.25rem;
+  margin: 0.9rem 0 1.2rem 0;
+  padding-left: 1.4rem;
 }
 
 li {
-  margin: 0.35rem 0;
+  margin: 0.4rem 0;
 }
 
-/* Inline code (useful for stack tags, commands, etc.) */
+/* Inline code */
 code {
   background: rgba(0, 0, 0, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -140,21 +152,19 @@ code {
 }
 
 .nav-container {
-  max-width: 760px; /* match content width */
+  max-width: 760px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
 
-/* Site title */
 .nav-title {
   font-weight: 700;
   color: var(--fg);
   text-decoration: none;
 }
 
-/* Nav links */
 .nav-links a {
   margin-left: 1rem;
   color: var(--muted);
@@ -171,13 +181,14 @@ code {
 -------------------------------------------------------------- */
 
 .home-page h1 {
-  text-align: left; /* blog feel */
+  text-align: left;
 }
 
 .home-subtitle {
   margin-top: 0.25rem;
   margin-bottom: 1.75rem;
   color: var(--muted);
+  text-align: justify;
 }
 
 /* --------------------------------------------------------------
@@ -188,31 +199,19 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 1rem 0;
+  margin: 1.4rem auto;
   border: 1px solid var(--line);
   border-radius: 14px;
 }
 
 /* --------------------------------------------------------------
-   Projects page: simplify (remove heavy "card" look)
-   Rule: each project section is separated by <hr>
+   Section separators (between major blocks)
 -------------------------------------------------------------- */
 
 hr {
   border: 0;
   border-top: 1px solid var(--line);
-  margin: 2rem 0;
-}
-
-/* Make project headers easier to scan */
-.content h2 {
-  padding-left: 0.75rem;
-  border-left: 3px solid var(--accent);
-}
-
-/* "Tech I work with" section should not look like a special card */
-.content h2:first-of-type {
-  border-left: 3px solid var(--accent);
+  margin: 3.2rem 0; /* more air between sections */
 }
 
 /* --------------------------------------------------------------
