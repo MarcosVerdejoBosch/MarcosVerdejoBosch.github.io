@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------
-   Nord theme (dark)
-   Focus: high legibility, calm blue/gray look
+   Nord theme (dark) — Blog/simple edition
+   Goal: calm, readable, easy to scan
    Font: Source Code Pro
    Palette: https://www.nordtheme.com
 -------------------------------------------------------------- */
@@ -25,8 +25,7 @@
   --line: #4c566a;
 
   /* Accents */
-  --accent: #88c0d0;      /* Nord blue */
-  --accent-alt: #88c0d0;  /* same blue, no green */
+  --accent: #88c0d0; /* Nord blue */
 }
 
 /* --------------------------------------------------------------
@@ -39,22 +38,24 @@ body {
   padding: 0;
   background: var(--bg);
   color: var(--fg);
-
-  /* Apply global font */
   font-family: var(--font-mono);
 
-  line-height: 1.6;
+  /* Slightly more breathing room for blog readability */
+  line-height: 1.75;
+  font-size: 16px;
 }
 
-/* Main content area */
-
+/* Main content area (blog-like container) */
 .content,
 .container,
 .post,
 main {
-  max-width: 900px;
-  margin: 3rem auto;
-  padding: 0 1.25rem;
+  max-width: 760px;          /* narrower = easier to read */
+  margin: 2.5rem auto;
+  padding: 1.75rem 1.5rem;   /* inner padding for "article" feel */
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 16px;
 }
 
 /* --------------------------------------------------------------
@@ -74,26 +75,31 @@ a:hover {
 }
 
 /* --------------------------------------------------------------
-   Headings
+   Headings (more "blog" hierarchy)
 -------------------------------------------------------------- */
 
 h1,
 h2,
 h3 {
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
+  margin: 1.6rem 0 0.75rem 0;
   color: var(--fg);
+  letter-spacing: 0.2px;
 }
 
 h1 {
+  font-size: 1.8rem;
   border-bottom: 1px solid var(--line);
-  padding-bottom: 0.4rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0;
 }
 
-h2,
+h2 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
 h3 {
-  border-bottom: none;
-  padding-bottom: 0;
+  font-size: 1.05rem;
 }
 
 /* --------------------------------------------------------------
@@ -101,37 +107,47 @@ h3 {
 -------------------------------------------------------------- */
 
 p {
-  margin: 0.6rem 0;
+  margin: 0.9rem 0;
+  color: var(--fg);
 }
 
-ul {
-  padding-left: 1.1rem;
+ul,
+ol {
+  margin: 0.7rem 0 1rem 0;
+  padding-left: 1.25rem;
 }
 
 li {
-  margin: 0.3rem 0;
+  margin: 0.35rem 0;
+}
+
+/* Inline code (useful for stack tags, commands, etc.) */
+code {
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.08rem 0.35rem;
+  border-radius: 8px;
 }
 
 /* --------------------------------------------------------------
-   Navbar
+   Navbar (simple, blog-like)
 -------------------------------------------------------------- */
 
 .navbar {
-  background: var(--bg-alt);
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
-  padding: 0.7rem 1.2rem;
+  padding: 0.9rem 1.2rem;
 }
 
 .nav-container {
-  max-width: 900px;
+  max-width: 760px; /* match content width */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 }
 
-/* Top-left title */
-
+/* Site title */
 .nav-title {
   font-weight: 700;
   color: var(--fg);
@@ -139,10 +155,9 @@ li {
 }
 
 /* Nav links */
-
 .nav-links a {
   margin-left: 1rem;
-  color: var(--fg);
+  color: var(--muted);
   border-bottom: none;
 }
 
@@ -156,108 +171,71 @@ li {
 -------------------------------------------------------------- */
 
 .home-page h1 {
-  text-align: center;
+  text-align: left; /* blog feel */
 }
 
 .home-subtitle {
-  text-align: center;
-  margin-top: 0.5rem;
-  margin-bottom: 2.5rem;
-  color: var(--fg);
-}
-
-/* --------------------------------------------------------------
-   Projects page – "Project cards" styling
-   Uses semantic markdown (no extra HTML required)
--------------------------------------------------------------- */
-
-/* Separator between cards */
-.content hr {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: 2.5rem 0;
-}
-
-/* Card header (project title) */
-.content h2 {
-  margin-top: 2.5rem;
-  padding: 1rem 1.1rem 0.6rem 1.1rem;
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-bottom: none;
-  border-radius: 14px 14px 0 0;
-}
-
-/*
-  Card body: apply the same background/borders to all blocks,
-  AND remove default margins so the background looks continuous.
-*/
-.content h2 ~ p,
-.content h2 ~ ul,
-.content h2 ~ ol,
-.content h2 ~ img {
-  background: var(--bg-alt);
-  border-left: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  padding-left: 1.1rem;
-  padding-right: 1.1rem;
-
-  /* Remove default spacing that creates "gaps" */
-  margin: 0;
-}
-
-/* Give the first paragraph after the header some top breathing room */
-.content h2 + p {
-  padding-top: 0.6rem;
-}
-
-/* Close the card visually with a bottom border + radius */
-.content h2 ~ p:last-of-type,
-.content h2 ~ ul:last-of-type,
-.content h2 ~ ol:last-of-type,
-.content h2 ~ img:last-of-type {
-  border-bottom: 1px solid var(--line);
-  border-radius: 0 0 14px 14px;
-  padding-bottom: 1rem;
-}
-
-/* Project images */
-.content img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0.9rem auto;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-}
-
-/* Emphasize labels like "Stack:", "Highlights:", "Links:" */
-.content p strong {
+  margin-top: 0.25rem;
+  margin-bottom: 1.75rem;
   color: var(--muted);
 }
 
 /* --------------------------------------------------------------
-   Projects page: "Tech I work with" as a standalone card
-   Notes:
-   - Targets only the first H2 section on the Projects page
-   - Keeps other project cards unchanged
+   Images (clean, blog-like)
 -------------------------------------------------------------- */
 
-/* Make the first H2 ("Tech I work with") look like a compact card */
-.content h2:first-of-type {
-  border-bottom: 1px solid var(--line);
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+  border: 1px solid var(--line);
   border-radius: 14px;
-  padding-bottom: 0.8rem;
 }
 
-/* Put the list under the same card */
-.content h2:first-of-type + ul {
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-top: none;
-  border-radius: 0 0 14px 14px;
+/* --------------------------------------------------------------
+   Projects page: simplify (remove heavy "card" look)
+   Rule: each project section is separated by <hr>
+-------------------------------------------------------------- */
 
-  /* Remove gaps and align with header padding */
-  margin: 0;
-  padding: 0.8rem 1.1rem 1rem 2.2rem;
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2rem 0;
+}
+
+/* Make project headers easier to scan */
+.content h2 {
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--accent);
+}
+
+/* "Tech I work with" section should not look like a special card */
+.content h2:first-of-type {
+  border-left: 3px solid var(--accent);
+}
+
+/* --------------------------------------------------------------
+   Responsive
+-------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .nav-links a {
+    margin-left: 0.8rem;
+  }
+
+  .content,
+  .container,
+  .post,
+  main {
+    margin: 1.5rem auto;
+    padding: 1.25rem 1rem;
+    border-radius: 14px;
+  }
 }
