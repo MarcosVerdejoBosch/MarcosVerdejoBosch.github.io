@@ -8,9 +8,10 @@ File: projects.md
 Purpose: Professional portfolio of hardware, PCB, and IoT projects.
 Author: Marcos Verdejo Bosch
 Notes:
-- Each project follows the same structure for consistency
-- Ready to be converted into "project cards" via CSS
+- Blog-style, easy to read
+- Each project follows the same structure
 -->
+
 # Projects
 
 Selected engineering projects focused on **PCB design, hardware, and embedded systems**.
@@ -22,18 +23,23 @@ Selected engineering projects focused on **PCB design, hardware, and embedded sy
 
 ---
 
-
 ## Discrete Linear Voltage Regulator (5V / 3.3V)
-Low-noise linear regulator designed entirely with discrete components.
+
+Low-noise linear voltage regulator designed entirely with discrete components, focused on analog performance and thermal stability.
+
+<!-- Project image: KiCad 3D render -->
+<img
+  src="{{ '/assets/img/projects/linear-regulator/Regulador-3d.png' | relative_url }}"
+  alt="Discrete linear voltage regulator PCB – KiCad 3D view"
+/>
 
 **Stack:** `Analog Design` · `KiCad` · `LTspice` · `Power Electronics`
 
-<img src="/assets/img/linear-regulator.png" width="600" alt="Discrete linear voltage regulator PCB"/>
-
 **Highlights:**
-- Ultra-low noise regulation using discrete BJT topology
+- Discrete BJT-based topology for low-noise regulation
 - Full schematic, simulation, and PCB layout
-- Thermal behavior optimized at layout level
+- Layout optimized for current paths and thermal behavior
+- Test points added for lab validation and measurements
 
 **Links:**  
 [GitHub repository (coming soon)](#)
@@ -41,18 +47,20 @@ Low-noise linear regulator designed entirely with discrete components.
 ---
 
 ## IoT Sensor Node
-Low-power sensor node based on ESP32, focused on power efficiency.
+
+Low-power sensor node based on ESP32, designed for battery operation and remote monitoring.
 
 **Stack:** `ESP32` · `Embedded C` · `IoT` · `Low Power Design`
 
 **Highlights:**
-- Custom PCB for battery-powered operation
-- Firmware written in C with sleep-cycle optimization
-- Designed for remote environmental monitoring
+- Custom PCB for low-power operation
+- Firmware optimized for sleep cycles
+- Designed for environmental sensing use cases
 
 ---
 
 ## Embedded Controller
+
 ARM-based embedded controller with deterministic real-time logic.
 
 **Stack:** `ARM` · `Embedded Systems` · `RTOS`
@@ -60,15 +68,16 @@ ARM-based embedded controller with deterministic real-time logic.
 **Highlights:**
 - Real-time task scheduling
 - Peripheral integration (GPIO, timers, UART)
-- Designed for industrial-style control logic
+- Industrial-style control logic
 
 ---
 
 ## Lab Utilities
+
 Small tools developed to support hardware testing and validation.
 
 **Stack:** `Python` · `C` · `Instrumentation`
 
 **Highlights:**
-- Scripts for measurements and data logging
-- Lightweight utilities to speed up lab work
+- Measurement and data-logging scripts
+- Utilities to speed up lab workflows
