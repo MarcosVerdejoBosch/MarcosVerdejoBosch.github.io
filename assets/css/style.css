@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------
-   Nord theme (dark) — Separated sections
-   Goal: readable + each section visually separated
+   Nord theme (dark) — Separated sections (unified card body)
+   Goal: readable + each section visually separated + unified body
    Font: Source Code Pro
 -------------------------------------------------------------- */
 
@@ -26,13 +26,11 @@
   /* Link / text accent (Nord blue) */
   --accent: #88c0d0;
 
-  /* Border accent (ONLY for the top-left corner) */
-  --border-accent: #8fbcbb;
+  /* Corner accent */
+  --corner-accent: #8fbcbb;
 
-  /* Card radius + corner accent size */
+  /* Card radius */
   --card-radius: 16px;
-  --corner-size: 18px;
-  --corner-w: 6px;
 }
 
 /* --------------------------------------------------------------
@@ -50,7 +48,6 @@ body {
   font-size: 16px;
 }
 
-/* Keep page container light; sections are the blocks */
 .content,
 .container,
 .post,
@@ -60,7 +57,6 @@ main {
   padding: 0 1.5rem;
   background: transparent;
   border: none;
-  border-radius: 0;
 }
 
 /* --------------------------------------------------------------
@@ -74,7 +70,7 @@ li {
 }
 
 /* --------------------------------------------------------------
-   Links (Nord blue)
+   Links
 -------------------------------------------------------------- */
 
 a {
@@ -119,22 +115,22 @@ h2 {
   border-bottom: none;
   border-radius: var(--card-radius) var(--card-radius) 0 0;
 
-  /* Corner accent only */
+  /* Simple accent: a small rounded block in the top-left */
   position: relative;
 }
 
-/* Top-left corner accent (small, not full-height) */
 h2::before {
   content: "";
   position: absolute;
-  left: 0.55rem;
-  top: 0.75rem;
-  width: var(--corner-w);
-  height: var(--corner-size);
+  left: 0.9rem;
+  top: 0.95rem;
 
-  border-radius: 999px;
-  background: var(--border-accent);
-  box-shadow: 0 0 0 1px rgba(143, 188, 187, 0.25);
+  width: 10px;
+  height: 10px;
+
+  border-radius: 3px;
+  background: var(--corner-accent);
+  opacity: 0.9;
 }
 
 h3 {
@@ -204,9 +200,12 @@ code {
 }
 
 /* --------------------------------------------------------------
-   Section body = everything after H2 until HR
+   Unified section body (fix: no split blocks)
+   - Every element after H2 is one continuous card body.
+   - Borders are applied ONLY on the outside edges.
 -------------------------------------------------------------- */
 
+/* Base body blocks: only side borders, no top/bottom borders */
 h2 ~ p,
 h2 ~ ul,
 h2 ~ ol,
@@ -216,6 +215,9 @@ h2 ~ img {
   border-right: 1px solid var(--line);
   padding: 0.2rem 1.2rem;
   margin: 0;
+
+  /* IMPORTANT: prevent inner rounding/splitting */
+  border-radius: 0;
 }
 
 /* First paragraph breathing room */
@@ -241,7 +243,7 @@ img {
   border-radius: 14px;
 }
 
-/* Card footer (HR closes the section) */
+/* Section footer (HR closes the card) */
 hr {
   display: block;
   height: 14px;
@@ -255,10 +257,7 @@ hr {
   border-radius: 0 0 var(--card-radius) var(--card-radius);
 }
 
-/*
-  IMPORTANT: last section has no trailing HR,
-  so we close the final card by rounding the bottom of the last list/paragraph/image.
-*/
+/* If the last section has no trailing HR, close it anyway */
 h2:last-of-type ~ p:last-of-type,
 h2:last-of-type ~ ul:last-of-type,
 h2:last-of-type ~ ol:last-of-type,
@@ -317,13 +316,6 @@ p code {
   h2 {
     padding: 1rem 1rem 0.8rem 1rem;
     border-radius: 14px 14px 0 0;
-  }
-
-  h2::before {
-    left: 0.45rem;
-    top: 0.7rem;
-    height: 16px;
-    width: 6px;
   }
 
   hr {
