@@ -24,8 +24,8 @@
   --muted: #d8dee9;
   --line: #4c566a;
 
-  /* Accent */
-  --accent: #88c0d0;
+  /* Accent (slightly brighter than base Nord blue for better emphasis) */
+  --accent: #8fbcbb;
 }
 
 /* --------------------------------------------------------------
@@ -56,7 +56,7 @@ main {
   max-width: 760px;
   margin: 2.5rem auto;
   padding: 0 1.5rem;       /* page padding only */
-  background: transparent; /* IMPORTANT: remove big continuous block */
+  background: transparent; /* avoid big continuous rectangle */
   border: none;
   border-radius: 0;
 }
@@ -96,7 +96,7 @@ h2,
 h3 {
   color: var(--fg);
   letter-spacing: 0.2px;
-  text-align: left; /* headings stay left-aligned */
+  text-align: left;
 }
 
 h1 {
@@ -108,7 +108,7 @@ h1 {
 
 /*
   Section headers are "card headers".
-  They start a separated block.
+  Accent is now a subtle gradient pill (better than a flat line).
 */
 h2 {
   font-size: 1.3rem;
@@ -120,8 +120,23 @@ h2 {
   border-bottom: none;
   border-radius: 16px 16px 0 0;
 
-  /* Small visual anchor */
-  border-left: 4px solid var(--accent);
+  /* Accent: left border + inner glow for a more premium look */
+  border-left: 0;
+  position: relative;
+}
+
+/* Accent bar: rounded + gradient + subtle glow */
+h2::before {
+  content: "";
+  position: absolute;
+  left: 0.55rem;
+  top: 0.85rem;
+  bottom: 0.85rem;
+  width: 6px;
+
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), rgba(143, 188, 187, 0.35));
+  box-shadow: 0 0 0 1px rgba(143, 188, 187, 0.25);
 }
 
 h3 {
@@ -147,7 +162,7 @@ li {
   margin: 0.4rem 0;
 }
 
-/* Inline code (default) */
+/* Inline code */
 code {
   background: rgba(0, 0, 0, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -202,8 +217,8 @@ h2 ~ img {
   background: var(--bg-alt);
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
-  padding: 0.2rem 1.2rem;  /* consistent inner spacing */
-  margin: 0;              /* remove gaps inside the block */
+  padding: 0.2rem 1.2rem;
+  margin: 0;
 }
 
 /* Give the first paragraph a bit of top air */
@@ -216,10 +231,10 @@ h2 ~ ul,
 h2 ~ ol {
   padding-top: 0.6rem;
   padding-bottom: 0.9rem;
-  padding-left: 2.2rem; /* list indent inside the block */
+  padding-left: 2.2rem;
 }
 
-/* Images: keep them responsive and clean */
+/* Images */
 img {
   max-width: 100%;
   height: auto;
@@ -231,18 +246,19 @@ img {
 
 /*
   Use the Markdown '---' (HR) as the "card footer" to close the section.
-  This avoids the page looking like one continuous rectangle.
+  IMPORTANT: keep bottom corners rounded (fillet) like the top.
 */
 hr {
   display: block;
   height: 0;
-  margin: 0 0 2.5rem 0;     /* space between sections */
+  margin: 0 0 2.5rem 0;
   border: none;
 
-  /* Close the card visually */
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+
+  /* Bottom fillet matches top radius */
   border-radius: 0 0 16px 16px;
 
   background: var(--bg-alt);
@@ -250,17 +266,13 @@ hr {
 
 /* --------------------------------------------------------------
    Stack chips (readable tags)
-   Targets: the line "Stack:" where tags are written as `code`
 -------------------------------------------------------------- */
 
 p strong {
-  /* Keep labels ("Stack:", "Highlights:", "Links:") slightly muted */
   color: var(--muted);
 }
 
-/* Render stack tags as "chips" */
 p strong + code {
-  /* First chip after label gets a tiny left spacing */
   margin-left: 0.35rem;
 }
 
@@ -269,11 +281,8 @@ p code {
   padding: 0.18rem 0.55rem;
   margin: 0.15rem 0.25rem 0.15rem 0;
   border-radius: 999px;
-
-  /* Chip look: subtle, clean */
   background: rgba(0, 0, 0, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.08);
-
   font-size: 0.92em;
   line-height: 1.2;
 }
@@ -304,6 +313,13 @@ p code {
   h2 {
     padding: 1rem 1rem 0.8rem 1rem;
     border-radius: 14px 14px 0 0;
+  }
+
+  h2::before {
+    left: 0.45rem;
+    top: 0.75rem;
+    bottom: 0.75rem;
+    width: 6px;
   }
 
   h2 ~ p,
