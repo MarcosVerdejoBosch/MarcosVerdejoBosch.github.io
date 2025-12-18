@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------
-   Nord theme (dark) — Blog/simple edition
-   Goal: calm, readable, easy to scan
+   Nord theme (dark) — Blog/simple edition (separated sections)
+   Goal: readable + each section visually separated
    Font: Source Code Pro
    Palette: https://www.nordtheme.com
 -------------------------------------------------------------- */
@@ -44,17 +44,21 @@ body {
   font-size: 16px;
 }
 
-/* Main content area (blog-like container) */
+/*
+  Main content area:
+  - Keep it "light" so the page doesn't look like one big block.
+  - Sections themselves will be the separated blocks.
+*/
 .content,
 .container,
 .post,
 main {
   max-width: 760px;
   margin: 2.5rem auto;
-  padding: 1.75rem 1.5rem;
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  padding: 0 1.5rem;       /* page padding only */
+  background: transparent; /* IMPORTANT: remove big continuous block */
+  border: none;
+  border-radius: 0;
 }
 
 /* --------------------------------------------------------------
@@ -84,7 +88,7 @@ a:hover {
 }
 
 /* --------------------------------------------------------------
-   Headings (clear hierarchy, section separation)
+   Headings (blog hierarchy)
 -------------------------------------------------------------- */
 
 h1,
@@ -102,12 +106,22 @@ h1 {
   padding-bottom: 0.6rem;
 }
 
+/*
+  Section headers are "card headers".
+  They start a separated block.
+*/
 h2 {
   font-size: 1.3rem;
-  margin-top: 3.2rem;      /* KEY: section separation */
-  margin-bottom: 1rem;
-  padding-left: 0.75rem;
-  border-left: 3px solid var(--accent);
+  margin: 2.5rem 0 0 0;
+  padding: 1.1rem 1.2rem 0.9rem 1.2rem;
+
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 16px 16px 0 0;
+
+  /* Small visual anchor */
+  border-left: 4px solid var(--accent);
 }
 
 h3 {
@@ -142,7 +156,7 @@ code {
 }
 
 /* --------------------------------------------------------------
-   Navbar (simple, blog-like)
+   Navbar (simple)
 -------------------------------------------------------------- */
 
 .navbar {
@@ -177,41 +191,61 @@ code {
 }
 
 /* --------------------------------------------------------------
-   Home page
+   Section body styling (everything after an H2 until the HR)
+   This creates a clean "card" per section.
 -------------------------------------------------------------- */
 
-.home-page h1 {
-  text-align: left;
+h2 ~ p,
+h2 ~ ul,
+h2 ~ ol,
+h2 ~ img {
+  background: var(--bg-alt);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  padding: 0.2rem 1.2rem;  /* consistent inner spacing */
+  margin: 0;              /* remove gaps inside the block */
 }
 
-.home-subtitle {
-  margin-top: 0.25rem;
-  margin-bottom: 1.75rem;
-  color: var(--muted);
-  text-align: justify;
+/* Give the first paragraph a bit of top air */
+h2 + p {
+  padding-top: 0.9rem;
 }
 
-/* --------------------------------------------------------------
-   Images (clean, blog-like)
--------------------------------------------------------------- */
+/* Lists need a bit more padding and nicer alignment */
+h2 ~ ul,
+h2 ~ ol {
+  padding-top: 0.6rem;
+  padding-bottom: 0.9rem;
+  padding-left: 2.2rem; /* list indent inside the block */
+}
 
+/* Images: keep them responsive and clean */
 img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 1.4rem auto;
+  margin: 0.9rem auto;
   border: 1px solid var(--line);
   border-radius: 14px;
 }
 
-/* --------------------------------------------------------------
-   Section separators (between major blocks)
--------------------------------------------------------------- */
-
+/*
+  Use the Markdown '---' (HR) as the "card footer" to close the section.
+  This avoids the page looking like one continuous rectangle.
+*/
 hr {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: 3.2rem 0; /* more air between sections */
+  display: block;
+  height: 0;
+  margin: 0 0 2.5rem 0;     /* space between sections */
+  border: none;
+
+  /* Close the card visually */
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 16px 16px;
+
+  background: var(--bg-alt);
 }
 
 /* --------------------------------------------------------------
@@ -234,7 +268,24 @@ hr {
   .post,
   main {
     margin: 1.5rem auto;
-    padding: 1.25rem 1rem;
-    border-radius: 14px;
+    padding: 0 1rem;
+  }
+
+  h2 {
+    padding: 1rem 1rem 0.8rem 1rem;
+    border-radius: 14px 14px 0 0;
+  }
+
+  h2 ~ p,
+  h2 ~ ul,
+  h2 ~ ol,
+  h2 ~ img {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  hr {
+    border-radius: 0 0 14px 14px;
+    margin-bottom: 2rem;
   }
 }
