@@ -1,8 +1,7 @@
 /* --------------------------------------------------------------
-   Nord theme (dark) — Blog/simple edition (separated sections)
+   Nord theme (dark) — Separated sections
    Goal: readable + each section visually separated
    Font: Source Code Pro
-   Palette: https://www.nordtheme.com
 -------------------------------------------------------------- */
 
 :root {
@@ -24,8 +23,12 @@
   --muted: #d8dee9;
   --line: #4c566a;
 
-  /* Accent (slightly brighter than base Nord blue for better emphasis) */
+  /* Accent */
   --accent: #8fbcbb;
+
+  /* Card radius + accent width */
+  --card-radius: 16px;
+  --accent-w: 6px;
 }
 
 /* --------------------------------------------------------------
@@ -39,30 +42,25 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-mono);
-
   line-height: 1.75;
   font-size: 16px;
 }
 
-/*
-  Main content area:
-  - Keep it "light" so the page doesn't look like one big block.
-  - Sections themselves will be the separated blocks.
-*/
+/* Keep page container light; sections are the blocks */
 .content,
 .container,
 .post,
 main {
   max-width: 760px;
   margin: 2.5rem auto;
-  padding: 0 1.5rem;       /* page padding only */
-  background: transparent; /* avoid big continuous rectangle */
+  padding: 0 1.5rem;
+  background: transparent;
   border: none;
   border-radius: 0;
 }
 
 /* --------------------------------------------------------------
-   Global text alignment (JUSTIFIED)
+   Text alignment
 -------------------------------------------------------------- */
 
 p,
@@ -88,7 +86,7 @@ a:hover {
 }
 
 /* --------------------------------------------------------------
-   Headings (blog hierarchy)
+   Headings
 -------------------------------------------------------------- */
 
 h1,
@@ -106,10 +104,7 @@ h1 {
   padding-bottom: 0.6rem;
 }
 
-/*
-  Section headers are "card headers".
-  Accent is now a subtle gradient pill (better than a flat line).
-*/
+/* Section header = card header */
 h2 {
   font-size: 1.3rem;
   margin: 2.5rem 0 0 0;
@@ -118,25 +113,10 @@ h2 {
   background: var(--bg-alt);
   border: 1px solid var(--line);
   border-bottom: none;
-  border-radius: 16px 16px 0 0;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
 
-  /* Accent: left border + inner glow for a more premium look */
-  border-left: 0;
-  position: relative;
-}
-
-/* Accent bar: rounded + gradient + subtle glow */
-h2::before {
-  content: "";
-  position: absolute;
-  left: 0.55rem;
-  top: 0.85rem;
-  bottom: 0.85rem;
-  width: 6px;
-
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--accent), rgba(143, 188, 187, 0.35));
-  box-shadow: 0 0 0 1px rgba(143, 188, 187, 0.25);
+  /* Accent that "follows the border" (respects radius) */
+  box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.65);
 }
 
 h3 {
@@ -171,7 +151,7 @@ code {
 }
 
 /* --------------------------------------------------------------
-   Navbar (simple)
+   Navbar
 -------------------------------------------------------------- */
 
 .navbar {
@@ -206,8 +186,7 @@ code {
 }
 
 /* --------------------------------------------------------------
-   Section body styling (everything after an H2 until the HR)
-   This creates a clean "card" per section.
+   Section body = everything after H2 until HR
 -------------------------------------------------------------- */
 
 h2 ~ p,
@@ -219,14 +198,17 @@ h2 ~ img {
   border-right: 1px solid var(--line);
   padding: 0.2rem 1.2rem;
   margin: 0;
+
+  /* Continue the accent through the section body */
+  box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.22);
 }
 
-/* Give the first paragraph a bit of top air */
+/* First paragraph breathing room */
 h2 + p {
   padding-top: 0.9rem;
 }
 
-/* Lists need a bit more padding and nicer alignment */
+/* Lists alignment inside section */
 h2 ~ ul,
 h2 ~ ol {
   padding-top: 0.6rem;
@@ -245,27 +227,29 @@ img {
 }
 
 /*
-  Use the Markdown '---' (HR) as the "card footer" to close the section.
-  IMPORTANT: keep bottom corners rounded (fillet) like the top.
+  HR closes the card:
+  - Give it HEIGHT so bottom radius is visible.
+  - Radius matches the top.
+  - Accent continues and follows the bottom fillet.
 */
 hr {
   display: block;
-  height: 0;
+  height: 14px;             /* IMPORTANT: makes bottom fillet visible */
   margin: 0 0 2.5rem 0;
   border: none;
 
+  background: var(--bg-alt);
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  border-radius: 0 0 var(--card-radius) var(--card-radius);
 
-  /* Bottom fillet matches top radius */
-  border-radius: 0 0 16px 16px;
-
-  background: var(--bg-alt);
+  /* Continue accent through the footer */
+  box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.22);
 }
 
 /* --------------------------------------------------------------
-   Stack chips (readable tags)
+   Stack chips
 -------------------------------------------------------------- */
 
 p strong {
@@ -315,22 +299,8 @@ p code {
     border-radius: 14px 14px 0 0;
   }
 
-  h2::before {
-    left: 0.45rem;
-    top: 0.75rem;
-    bottom: 0.75rem;
-    width: 6px;
-  }
-
-  h2 ~ p,
-  h2 ~ ul,
-  h2 ~ ol,
-  h2 ~ img {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
   hr {
+    height: 12px;
     border-radius: 0 0 14px 14px;
     margin-bottom: 2rem;
   }
