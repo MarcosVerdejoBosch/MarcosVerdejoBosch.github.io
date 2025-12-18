@@ -30,6 +30,7 @@ Selected engineering projects focused on **PCB design, hardware, and embedded sy
 - **Firmware:** Embedded C/C++, ESP32 and ARM-class MCUs, debugging and instrumentation.
 - **IoT/Systems:** GCP + Kubernetes observability (logs/metrics), service monitoring, automation tooling.
 
+[↑ Back to top](#top)
 ---
 
 ## Discrete Linear Voltage Regulator (5V / 3.3V)
@@ -53,6 +54,7 @@ Low-noise linear voltage regulator designed entirely with discrete components, f
 **Links:**  
 [GitHub repository (coming soon)](#)
 
+[↑ Back to top](#top)
 ---
 
 ## IoT Sensor Node
@@ -66,6 +68,7 @@ Low-power sensor node based on ESP32, designed for battery operation and remote 
 - Firmware optimized for sleep cycles
 - Designed for environmental sensing use cases
 
+[↑ Back to top](#top)
 ---
 
 ## Embedded Controller
@@ -79,6 +82,7 @@ ARM-based embedded controller with deterministic real-time logic.
 - Peripheral integration (GPIO, timers, UART)
 - Industrial-style control logic
 
+[↑ Back to top](#top)
 ---
 
 ## Lab Utilities
@@ -90,3 +94,5 @@ Small tools developed to support hardware testing and validation.
 **Highlights:**
 - Measurement and data-logging scripts
 - Utilities to speed up lab workflows
+
+  [↑ Back to top](#top)
