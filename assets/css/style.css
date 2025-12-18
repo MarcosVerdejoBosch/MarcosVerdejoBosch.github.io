@@ -23,8 +23,11 @@
   --muted: #d8dee9;
   --line: #4c566a;
 
-  /* Accent */
-  --accent: #8fbcbb;
+  /* Link / text accent (KEEP Nord blue) */
+  --accent: #88c0d0;
+
+  /* Border accent (ONLY for the left bar) */
+  --border-accent: #8fbcbb;
 
   /* Card radius + accent width */
   --card-radius: 16px;
@@ -70,7 +73,7 @@ li {
 }
 
 /* --------------------------------------------------------------
-   Links
+   Links (Nord blue)
 -------------------------------------------------------------- */
 
 a {
@@ -115,7 +118,7 @@ h2 {
   border-bottom: none;
   border-radius: var(--card-radius) var(--card-radius) 0 0;
 
-  /* Accent that "follows the border" (respects radius) */
+  /* Border accent only (does not affect link text) */
   box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.65);
 }
 
@@ -199,7 +202,7 @@ h2 ~ img {
   padding: 0.2rem 1.2rem;
   margin: 0;
 
-  /* Continue the accent through the section body */
+  /* Continue the border accent subtly */
   box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.22);
 }
 
@@ -226,15 +229,10 @@ img {
   border-radius: 14px;
 }
 
-/*
-  HR closes the card:
-  - Give it HEIGHT so bottom radius is visible.
-  - Radius matches the top.
-  - Accent continues and follows the bottom fillet.
-*/
+/* Card footer (HR) */
 hr {
   display: block;
-  height: 14px;             /* IMPORTANT: makes bottom fillet visible */
+  height: 14px;
   margin: 0 0 2.5rem 0;
   border: none;
 
@@ -244,7 +242,7 @@ hr {
   border-bottom: 1px solid var(--line);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
 
-  /* Continue accent through the footer */
+  /* Continue border accent through the footer */
   box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.22);
 }
 
