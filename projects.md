@@ -16,7 +16,6 @@ Notes:
 
 Selected engineering projects focused on **PCB design, hardware, and embedded systems**.
 
-<!-- Quick navigation (manual TOC) -->
 ## Index
 - [Tech I work with](#tech-i-work-with)
 - [Discrete Linear Voltage Regulator (5V / 3.3V)](#discrete-linear-voltage-regulator-5v--33v)
