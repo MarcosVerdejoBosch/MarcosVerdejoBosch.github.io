@@ -1,4 +1,3 @@
-
 ---
 layout: default
 title: Projects
@@ -17,6 +16,16 @@ Notes:
 
 Selected engineering projects focused on **PCB design, hardware, and embedded systems**.
 
+<!-- Quick navigation (manual TOC) -->
+## Index
+- [Tech I work with](#tech-i-work-with)
+- [Discrete Linear Voltage Regulator (5V / 3.3V)](#discrete-linear-voltage-regulator-5v--33v)
+- [IoT Sensor Node](#iot-sensor-node)
+- [Embedded Controller](#embedded-controller)
+- [Lab Utilities](#lab-utilities)
+
+---
+
 ## Tech I work with
 - **Hardware/PCB:** KiCad (schematic + layout), analog/power design, lab bring-up and measurements.
 - **Firmware:** Embedded C/C++, ESP32 and ARM-class MCUs, debugging and instrumentation.
@@ -34,7 +43,7 @@ Low-noise linear voltage regulator designed entirely with discrete components, f
   alt="Discrete linear voltage regulator PCB – KiCad 3D view"
 />
 
-**Stack:** `Analog Design` · `KiCad` · `LTspice` · `Power Electronics`
+**Stack:** `Analog Design` `KiCad` `LTspice` `Power Electronics`
 
 **Highlights:**
 - Discrete BJT-based topology for low-noise regulation
@@ -51,7 +60,7 @@ Low-noise linear voltage regulator designed entirely with discrete components, f
 
 Low-power sensor node based on ESP32, designed for battery operation and remote monitoring.
 
-**Stack:** `ESP32` · `Embedded C` · `IoT` · `Low Power Design`
+**Stack:** `ESP32` `Embedded C` `IoT` `Low Power Design`
 
 **Highlights:**
 - Custom PCB for low-power operation
@@ -64,7 +73,7 @@ Low-power sensor node based on ESP32, designed for battery operation and remote 
 
 ARM-based embedded controller with deterministic real-time logic.
 
-**Stack:** `ARM` · `Embedded Systems` · `RTOS`
+**Stack:** `ARM` `Embedded Systems` `RTOS`
 
 **Highlights:**
 - Real-time task scheduling
@@ -77,7 +86,7 @@ ARM-based embedded controller with deterministic real-time logic.
 
 Small tools developed to support hardware testing and validation.
 
-**Stack:** `Python` · `C` · `Instrumentation`
+**Stack:** `Python` `C` `Instrumentation`
 
 **Highlights:**
 - Measurement and data-logging scripts
