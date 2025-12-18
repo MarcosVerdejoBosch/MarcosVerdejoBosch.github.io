@@ -23,15 +23,16 @@
   --muted: #d8dee9;
   --line: #4c566a;
 
-  /* Link / text accent (KEEP Nord blue) */
+  /* Link / text accent (Nord blue) */
   --accent: #88c0d0;
 
-  /* Border accent (ONLY for the left bar) */
+  /* Border accent (ONLY for the top-left corner) */
   --border-accent: #8fbcbb;
 
-  /* Card radius + accent width */
+  /* Card radius + corner accent size */
   --card-radius: 16px;
-  --accent-w: 6px;
+  --corner-size: 18px;
+  --corner-w: 6px;
 }
 
 /* --------------------------------------------------------------
@@ -118,8 +119,22 @@ h2 {
   border-bottom: none;
   border-radius: var(--card-radius) var(--card-radius) 0 0;
 
-  /* Border accent only (does not affect link text) */
-  box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.65);
+  /* Corner accent only */
+  position: relative;
+}
+
+/* Top-left corner accent (small, not full-height) */
+h2::before {
+  content: "";
+  position: absolute;
+  left: 0.55rem;
+  top: 0.75rem;
+  width: var(--corner-w);
+  height: var(--corner-size);
+
+  border-radius: 999px;
+  background: var(--border-accent);
+  box-shadow: 0 0 0 1px rgba(143, 188, 187, 0.25);
 }
 
 h3 {
@@ -201,9 +216,6 @@ h2 ~ img {
   border-right: 1px solid var(--line);
   padding: 0.2rem 1.2rem;
   margin: 0;
-
-  /* Continue the border accent subtly */
-  box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.22);
 }
 
 /* First paragraph breathing room */
@@ -229,7 +241,7 @@ img {
   border-radius: 14px;
 }
 
-/* Card footer (HR) */
+/* Card footer (HR closes the section) */
 hr {
   display: block;
   height: 14px;
@@ -241,9 +253,19 @@ hr {
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
+}
 
-  /* Continue border accent through the footer */
-  box-shadow: inset var(--accent-w) 0 0 0 rgba(143, 188, 187, 0.22);
+/*
+  IMPORTANT: last section has no trailing HR,
+  so we close the final card by rounding the bottom of the last list/paragraph/image.
+*/
+h2:last-of-type ~ p:last-of-type,
+h2:last-of-type ~ ul:last-of-type,
+h2:last-of-type ~ ol:last-of-type,
+h2:last-of-type ~ img:last-of-type {
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 var(--card-radius) var(--card-radius);
+  padding-bottom: 1rem;
 }
 
 /* --------------------------------------------------------------
@@ -297,9 +319,23 @@ p code {
     border-radius: 14px 14px 0 0;
   }
 
+  h2::before {
+    left: 0.45rem;
+    top: 0.7rem;
+    height: 16px;
+    width: 6px;
+  }
+
   hr {
     height: 12px;
     border-radius: 0 0 14px 14px;
     margin-bottom: 2rem;
+  }
+
+  h2:last-of-type ~ p:last-of-type,
+  h2:last-of-type ~ ul:last-of-type,
+  h2:last-of-type ~ ol:last-of-type,
+  h2:last-of-type ~ img:last-of-type {
+    border-radius: 0 0 14px 14px;
   }
 }
