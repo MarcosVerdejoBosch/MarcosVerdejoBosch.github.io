@@ -139,9 +139,19 @@ code {
   border-radius: 8px;
 }
 
-/* Navbar */
+/* --------------------------------------------------------------
+   Navbar (STICKY)
+-------------------------------------------------------------- */
+
 .navbar {
-  background: var(--bg);
+  position: sticky;                 /* stays at top while scrolling */
+  top: 0;
+  z-index: 1000;                    /* above content */
+
+  /* Keep Nord look, slightly transparent + blur */
+  background: rgba(46, 52, 64, 0.92);
+  backdrop-filter: blur(6px);
+
   border-bottom: 1px solid var(--line);
   padding: 0.9rem 1.2rem;
 }
@@ -209,10 +219,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   IMPORTANT CHANGE:
-   Remove the "card footer block" site-wide.
-   The little block you see in About is the HR being rendered.
-   We'll make HR a thin divider only, not a rounded footer.
+   HR: thin divider only (prevents About "block")
 -------------------------------------------------------------- */
 
 hr {
