@@ -28,6 +28,24 @@
 
   /* Card radius */
   --card-radius: 16px;
+
+  /* Anchor offset for fixed-ish header area */
+  --anchor-offset: 88px;
+}
+
+/* --------------------------------------------------------------
+   UX: smooth scrolling + anchor offset (TOC / back-to-top)
+-------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;          /* Smooth jump for anchor links */
+  scroll-padding-top: var(--anchor-offset); /* Prevent navbar overlap */
+}
+
+/* When clicking a heading anchor, keep it visible below navbar */
+h2,
+h3 {
+  scroll-margin-top: var(--anchor-offset);
 }
 
 /* --------------------------------------------------------------
@@ -245,15 +263,13 @@ h2:last-of-type ~ img:last-of-type {
    Works with: [↑ Back to top](#top)
 -------------------------------------------------------------- */
 
-/* Style the paragraph that contains the back-to-top link */
 p:has(a[href="#top"]) {
-  text-align: right;        /* keep it out of the reading flow */
+  text-align: right;
   padding-top: 0.6rem;
   padding-bottom: 0.9rem;
   color: var(--muted);
 }
 
-/* Make the link look like a subtle action */
 p:has(a[href="#top"]) a {
   display: inline-block;
   font-size: 0.95em;
