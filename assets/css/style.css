@@ -5,7 +5,6 @@
 -------------------------------------------------------------- */
 
 :root {
-  /* Typography */
   --font-mono: "Source Code Pro",
                ui-monospace,
                SFMono-Regular,
@@ -16,42 +15,30 @@
                "Courier New",
                monospace;
 
-  /* Colors */
   --bg: #2e3440;
   --bg-alt: #3b4252;
   --fg: #eceff4;
   --muted: #d8dee9;
   --line: #4c566a;
 
-  /* Link / text accent (Nord blue) */
   --accent: #88c0d0;
-
-  /* Card radius */
   --card-radius: 16px;
 
-  /* Anchor offset for fixed-ish header area */
   --anchor-offset: 88px;
 }
 
-/* --------------------------------------------------------------
-   UX: smooth scrolling + anchor offset (TOC / back-to-top)
--------------------------------------------------------------- */
-
+/* UX: smooth scrolling + anchor offset */
 html {
-  scroll-behavior: smooth;          /* Smooth jump for anchor links */
-  scroll-padding-top: var(--anchor-offset); /* Prevent navbar overlap */
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--anchor-offset);
 }
 
-/* When clicking a heading anchor, keep it visible below navbar */
 h2,
 h3 {
   scroll-margin-top: var(--anchor-offset);
 }
 
-/* --------------------------------------------------------------
-   Base layout
--------------------------------------------------------------- */
-
+/* Base layout */
 html,
 body {
   margin: 0;
@@ -74,20 +61,14 @@ main {
   border: none;
 }
 
-/* --------------------------------------------------------------
-   Text alignment
--------------------------------------------------------------- */
-
+/* Text alignment */
 p,
 li {
   text-align: justify;
   text-justify: inter-word;
 }
 
-/* --------------------------------------------------------------
-   Links
--------------------------------------------------------------- */
-
+/* Links */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -100,10 +81,7 @@ a:hover {
   border-bottom-color: var(--accent);
 }
 
-/* --------------------------------------------------------------
-   Headings
--------------------------------------------------------------- */
-
+/* Headings */
 h1,
 h2,
 h3 {
@@ -119,7 +97,6 @@ h1 {
   padding-bottom: 0.6rem;
 }
 
-/* Section header = card header (NO accent marker) */
 h2 {
   font-size: 1.3rem;
   margin: 2.5rem 0 0 0;
@@ -136,10 +113,7 @@ h3 {
   margin-top: 2rem;
 }
 
-/* --------------------------------------------------------------
-   Text elements
--------------------------------------------------------------- */
-
+/* Text elements */
 p {
   margin: 0.9rem 0;
 }
@@ -162,10 +136,7 @@ code {
   border-radius: 8px;
 }
 
-/* --------------------------------------------------------------
-   Navbar
--------------------------------------------------------------- */
-
+/* Navbar */
 .navbar {
   background: var(--bg);
   border-bottom: 1px solid var(--line);
@@ -197,10 +168,7 @@ code {
   color: var(--accent);
 }
 
-/* --------------------------------------------------------------
-   Unified section body
--------------------------------------------------------------- */
-
+/* Unified section body */
 h2 ~ p,
 h2 ~ ul,
 h2 ~ ol,
@@ -259,25 +227,32 @@ h2:last-of-type ~ img:last-of-type {
 }
 
 /* --------------------------------------------------------------
-   Back to top (small, clean, right-aligned)
-   Works with: [↑ Back to top](#top)
+   Back to top (FIX: no extra block / no divider look)
+   - Keep it inside the same section body
+   - No own background/border that splits the card
 -------------------------------------------------------------- */
 
+/* Container paragraph: keep same background & side borders, just align right */
 p:has(a[href="#top"]) {
   text-align: right;
   padding-top: 0.6rem;
   padding-bottom: 0.9rem;
-  color: var(--muted);
 }
 
+/* Link: small pill, but transparent enough to not look like a new block */
 p:has(a[href="#top"]) a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
   font-size: 0.95em;
   color: var(--muted);
   border-bottom: none;
-  padding: 0.15rem 0.35rem;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.12);
+
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -286,10 +261,7 @@ p:has(a[href="#top"]) a:hover {
   border-color: rgba(136, 192, 208, 0.35);
 }
 
-/* --------------------------------------------------------------
-   Stack chips
--------------------------------------------------------------- */
-
+/* Stack chips */
 p strong {
   color: var(--muted);
 }
@@ -309,10 +281,7 @@ p code {
   line-height: 1.2;
 }
 
-/* --------------------------------------------------------------
-   Responsive
--------------------------------------------------------------- */
-
+/* Responsive */
 @media (max-width: 600px) {
   .nav-container {
     flex-direction: column;
