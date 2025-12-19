@@ -1,5 +1,5 @@
 /* --------------------------------------------------------------
-   Nord theme (dark) — Separated sections (unified card body)
+   Nord theme (dark) — Separated sections (unified body)
    Goal: readable + each section visually separated + unified body
    Font: Source Code Pro
 -------------------------------------------------------------- */
@@ -25,9 +25,6 @@
 
   /* Link / text accent (Nord blue) */
   --accent: #88c0d0;
-
-  /* Corner accent */
-  --corner-accent: #8fbcbb;
 
   /* Card radius */
   --card-radius: 16px;
@@ -104,7 +101,7 @@ h1 {
   padding-bottom: 0.6rem;
 }
 
-/* Section header = card header */
+/* Section header = card header (NO accent marker) */
 h2 {
   font-size: 1.3rem;
   margin: 2.5rem 0 0 0;
@@ -114,23 +111,6 @@ h2 {
   border: 1px solid var(--line);
   border-bottom: none;
   border-radius: var(--card-radius) var(--card-radius) 0 0;
-
-  /* Simple accent: a small rounded block in the top-left */
-  position: relative;
-}
-
-h2::before {
-  content: "";
-  position: absolute;
-  left: 0.9rem;
-  top: 0.95rem;
-
-  width: 10px;
-  height: 10px;
-
-  border-radius: 3px;
-  background: var(--corner-accent);
-  opacity: 0.9;
 }
 
 h3 {
@@ -200,12 +180,9 @@ code {
 }
 
 /* --------------------------------------------------------------
-   Unified section body (fix: no split blocks)
-   - Every element after H2 is one continuous card body.
-   - Borders are applied ONLY on the outside edges.
+   Unified section body
 -------------------------------------------------------------- */
 
-/* Base body blocks: only side borders, no top/bottom borders */
 h2 ~ p,
 h2 ~ ul,
 h2 ~ ol,
@@ -215,17 +192,13 @@ h2 ~ img {
   border-right: 1px solid var(--line);
   padding: 0.2rem 1.2rem;
   margin: 0;
-
-  /* IMPORTANT: prevent inner rounding/splitting */
   border-radius: 0;
 }
 
-/* First paragraph breathing room */
 h2 + p {
   padding-top: 0.9rem;
 }
 
-/* Lists alignment inside section */
 h2 ~ ul,
 h2 ~ ol {
   padding-top: 0.6rem;
@@ -257,7 +230,7 @@ hr {
   border-radius: 0 0 var(--card-radius) var(--card-radius);
 }
 
-/* If the last section has no trailing HR, close it anyway */
+/* Close last section if no trailing HR exists */
 h2:last-of-type ~ p:last-of-type,
 h2:last-of-type ~ ul:last-of-type,
 h2:last-of-type ~ ol:last-of-type,
@@ -265,6 +238,36 @@ h2:last-of-type ~ img:last-of-type {
   border-bottom: 1px solid var(--line);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
   padding-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------
+   Back to top (small, clean, right-aligned)
+   Works with: [↑ Back to top](#top)
+-------------------------------------------------------------- */
+
+/* Style the paragraph that contains the back-to-top link */
+p:has(a[href="#top"]) {
+  text-align: right;        /* keep it out of the reading flow */
+  padding-top: 0.6rem;
+  padding-bottom: 0.9rem;
+  color: var(--muted);
+}
+
+/* Make the link look like a subtle action */
+p:has(a[href="#top"]) a {
+  display: inline-block;
+  font-size: 0.95em;
+  color: var(--muted);
+  border-bottom: none;
+  padding: 0.15rem 0.35rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+p:has(a[href="#top"]) a:hover {
+  color: var(--fg);
+  border-color: rgba(136, 192, 208, 0.35);
 }
 
 /* --------------------------------------------------------------
