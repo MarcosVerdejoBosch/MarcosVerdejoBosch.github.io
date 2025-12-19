@@ -3,6 +3,8 @@ layout: default
 title: Projects
 ---
 
+<a id="top"></a>
+
 <!--
 File: projects.md
 Purpose: Professional portfolio of hardware, PCB, and IoT projects.
@@ -100,5 +102,3 @@ Small tools developed to support hardware testing and validation.
 - Utilities to speed up lab workflows
 
 [↑ Back to top](#top)
-
-
