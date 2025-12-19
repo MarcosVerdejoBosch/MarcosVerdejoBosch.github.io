@@ -56,6 +56,7 @@ Low-noise linear voltage regulator designed entirely with discrete components, f
 [GitHub repository (coming soon)](#)
 
 [↑ Back to top](#top)
+
 ---
 
 ## IoT Sensor Node
@@ -100,4 +101,4 @@ Small tools developed to support hardware testing and validation.
 
 [↑ Back to top](#top)
 
----
+
