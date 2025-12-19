@@ -202,17 +202,24 @@ img {
   border-radius: 14px;
 }
 
-/* Section footer (HR closes the card) */
+/* --------------------------------------------------------------
+   Card footer (HR)
+   FIX: remove the filled bar look (no background, minimal height)
+-------------------------------------------------------------- */
+
 hr {
   display: block;
-  height: 14px;
+  height: 0;                      /* IMPORTANT: no thick band */
   margin: 0 0 2.5rem 0;
+
+  background: transparent;        /* IMPORTANT: no fill */
   border: none;
 
-  background: var(--bg-alt);
+  /* Only draw the outer borders that "close" the card */
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+
   border-radius: 0 0 var(--card-radius) var(--card-radius);
 }
 
@@ -227,19 +234,17 @@ h2:last-of-type ~ img:last-of-type {
 }
 
 /* --------------------------------------------------------------
-   Back to top (FIX: no extra block / no divider look)
-   - Keep it inside the same section body
-   - No own background/border that splits the card
+   Back to top (no background)
+   Works with: [↑ Back to top](#top)
 -------------------------------------------------------------- */
 
-/* Container paragraph: keep same background & side borders, just align right */
 p:has(a[href="#top"]) {
   text-align: right;
   padding-top: 0.6rem;
   padding-bottom: 0.9rem;
 }
 
-/* Link: small pill, but transparent enough to not look like a new block */
+/* Link: no background, just clean text */
 p:has(a[href="#top"]) a {
   display: inline-flex;
   align-items: center;
@@ -249,16 +254,16 @@ p:has(a[href="#top"]) a {
   color: var(--muted);
   border-bottom: none;
 
-  padding: 0.25rem 0.55rem;
-  border-radius: 999px;
-
-  background: rgba(0, 0, 0, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0;                     /* IMPORTANT: no pill */
+  background: transparent;         /* IMPORTANT: no background */
+  border: none;                    /* IMPORTANT: no border */
 }
 
 p:has(a[href="#top"]) a:hover {
   color: var(--fg);
-  border-color: rgba(136, 192, 208, 0.35);
+  text-decoration: underline;
+  text-decoration-color: rgba(136, 192, 208, 0.45);
+  text-underline-offset: 4px;
 }
 
 /* Stack chips */
@@ -307,7 +312,6 @@ p code {
   }
 
   hr {
-    height: 12px;
     border-radius: 0 0 14px 14px;
     margin-bottom: 2rem;
   }
