@@ -1,6 +1,6 @@
 /* --------------------------------------------------------------
-   Nord theme (dark) — Separated sections (unified body)
-   Goal: readable + each section visually separated + unified body
+   Nord theme (dark) — Clean pages + card sections in Projects
+   Goal: About/Home clean (no card footer block), Projects keep cards
    Font: Source Code Pro
 -------------------------------------------------------------- */
 
@@ -50,12 +50,13 @@ body {
   font-size: 16px;
 }
 
+/* Page container: pull content up a bit (titles higher) */
 .content,
 .container,
 .post,
 main {
   max-width: 760px;
-  margin: 2.5rem auto;
+  margin: 1.9rem auto;      /* was 2.5rem */
   padding: 0 1.5rem;
   background: transparent;
   border: none;
@@ -90,16 +91,18 @@ h3 {
   text-align: left;
 }
 
+/* Main page title (About/Projects/Home): move up */
 h1 {
   font-size: 1.8rem;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1.2rem 0;      /* slightly tighter */
   border-bottom: 1px solid var(--line);
   padding-bottom: 0.6rem;
 }
 
+/* Project/section headings (cards) */
 h2 {
   font-size: 1.3rem;
-  margin: 2.5rem 0 0 0;
+  margin: 2.0rem 0 0 0;      /* was 2.5rem */
   padding: 1.1rem 1.2rem 0.9rem 1.2rem;
 
   background: var(--bg-alt);
@@ -110,7 +113,7 @@ h2 {
 
 h3 {
   font-size: 1.05rem;
-  margin-top: 2rem;
+  margin-top: 1.6rem;
 }
 
 /* Text elements */
@@ -168,7 +171,10 @@ code {
   color: var(--accent);
 }
 
-/* Unified section body */
+/* --------------------------------------------------------------
+   Projects cards (only apply card-body rules when there are H2 sections)
+-------------------------------------------------------------- */
+
 h2 ~ p,
 h2 ~ ul,
 h2 ~ ol,
@@ -203,48 +209,27 @@ img {
 }
 
 /* --------------------------------------------------------------
-   Card footer (HR)
-   FIX: remove the filled bar look (no background, minimal height)
+   IMPORTANT CHANGE:
+   Remove the "card footer block" site-wide.
+   The little block you see in About is the HR being rendered.
+   We'll make HR a thin divider only, not a rounded footer.
 -------------------------------------------------------------- */
 
 hr {
-  display: block;
-  height: 0;                      /* IMPORTANT: no thick band */
-  margin: 0 0 2.5rem 0;
-
-  background: transparent;        /* IMPORTANT: no fill */
   border: none;
-
-  /* Only draw the outer borders that "close" the card */
-  border-left: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-
-  border-radius: 0 0 var(--card-radius) var(--card-radius);
+  border-top: 1px solid var(--line);
+  margin: 1.4rem 0;
+  height: 0;
+  background: transparent;
 }
 
-/* Close last section if no trailing HR exists */
-h2:last-of-type ~ p:last-of-type,
-h2:last-of-type ~ ul:last-of-type,
-h2:last-of-type ~ ol:last-of-type,
-h2:last-of-type ~ img:last-of-type {
-  border-bottom: 1px solid var(--line);
-  border-radius: 0 0 var(--card-radius) var(--card-radius);
-  padding-bottom: 1rem;
-}
-
-/* --------------------------------------------------------------
-   Back to top (no background)
-   Works with: [↑ Back to top](#top)
--------------------------------------------------------------- */
-
+/* Back to top (no background) */
 p:has(a[href="#top"]) {
   text-align: right;
   padding-top: 0.6rem;
   padding-bottom: 0.9rem;
 }
 
-/* Link: no background, just clean text */
 p:has(a[href="#top"]) a {
   display: inline-flex;
   align-items: center;
@@ -254,9 +239,9 @@ p:has(a[href="#top"]) a {
   color: var(--muted);
   border-bottom: none;
 
-  padding: 0;                     /* IMPORTANT: no pill */
-  background: transparent;         /* IMPORTANT: no background */
-  border: none;                    /* IMPORTANT: no border */
+  padding: 0;
+  background: transparent;
+  border: none;
 }
 
 p:has(a[href="#top"]) a:hover {
@@ -302,24 +287,13 @@ p code {
   .container,
   .post,
   main {
-    margin: 1.5rem auto;
+    margin: 1.4rem auto;
     padding: 0 1rem;
   }
 
   h2 {
     padding: 1rem 1rem 0.8rem 1rem;
     border-radius: 14px 14px 0 0;
-  }
-
-  hr {
-    border-radius: 0 0 14px 14px;
-    margin-bottom: 2rem;
-  }
-
-  h2:last-of-type ~ p:last-of-type,
-  h2:last-of-type ~ ul:last-of-type,
-  h2:last-of-type ~ ol:last-of-type,
-  h2:last-of-type ~ img:last-of-type {
-    border-radius: 0 0 14px 14px;
+    margin-top: 1.6rem;
   }
 }
