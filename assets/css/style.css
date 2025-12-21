@@ -212,14 +212,20 @@ h2 + *:not(h2) {
   /* keep normal flow; nothing special here */
 }
 
-/* Add bottom border + bottom radius to the LAST element of each card.
-   This selector covers: last paragraph, last list, or last image
-   before the next H2 or end of content.
-*/
-h2 ~ p:last-of-type,
-h2 ~ ul:last-of-type,
-h2 ~ ol:last-of-type,
-h2 ~ img:last-of-type {
+/* Close card: Round bottom corners if the next element is a header (H2) */
+p:has(+ h2),
+ul:has(+ h2),
+ol:has(+ h2),
+img:has(+ h2),
+div:has(+ h2) {
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 var(--card-radius) var(--card-radius);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem; /* Space before the next card */
+}
+
+/* Close last card: Round bottom corners of the very last element in the content */
+main > :last-child {
   border-bottom: 1px solid var(--line);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
   padding-bottom: 1rem;
