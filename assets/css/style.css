@@ -341,18 +341,13 @@ p code {
     margin: 1.4rem auto;
     padding: 0 1rem;
   }
-
+  
+  /* Ajuste de padding para títulos en móvil (opcional, pero queda bien) */
   h2 {
     padding: 1rem 1rem 0.8rem 1rem;
-    border-radius: 14px 14px 0 0;
   }
-
-  h2 ~ p:last-of-type,
-  h2 ~ ul:last-of-type,
-  h2 ~ ol:last-of-type,
-  h2 ~ img:last-of-type {
-    border-radius: 0 0 14px 14px;
-  }
+  
+  /* ¡AQUÍ BORRAMOS EL BLOQUE "h2 ~ p:last-of-type..." QUE CAUSABA EL ERROR! */
 }
 
 /* --------------------------------------------------------------
