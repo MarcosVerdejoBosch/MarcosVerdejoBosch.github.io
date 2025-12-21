@@ -332,16 +332,6 @@ p code {
    Professional Interactions / Hover Effects
 -------------------------------------------------------------- */
 
-/* Add smooth transition to the Page Title */
-h1 {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Effect: Lift up and add shadow when hovering the Page Title */
-h1:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-}
 
 /* Add smooth transition to Project Headers */
 h2 {
