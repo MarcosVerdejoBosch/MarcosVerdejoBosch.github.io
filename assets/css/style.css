@@ -338,9 +338,3 @@ h2 {
   transition: border-color 0.3s ease, color 0.3s ease;
   cursor: default; /* Standard cursor to avoid confusion with links */
 }
-
-/* Effect: Highlight border and text in blue when hovering a Project Header */
-h2:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
