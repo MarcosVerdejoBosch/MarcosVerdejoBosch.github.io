@@ -100,22 +100,36 @@ h3 {
   text-align: left;
 }
 
-/* Page Title: Clean style with a subtle vertical accent bar */
+/* Page Title: Clean style with a perfectly PROPORTIONAL vertical accent bar */
 h1 {
   font-size: 2rem;
-  margin: 1.5rem 0 2rem 0; /* More breathing room */
-
-  /* Remove the bottom border to avoid visual noise with the navbar */
+  margin: 1.5rem 0 2rem 0;
   border-bottom: none;
   padding-bottom: 0;
-
-  /* Modern touch: SUBTLE vertical blue bar on the left */
-  border-left: 3px solid var(--accent); /* Thinner bar (was 5px) */
-  padding-left: 1rem; /* Adjusted spacing */
-
-  /* ensure text aligns nicely with the bar */
   line-height: 1.1;
   color: var(--fg);
+
+  /* Necessary for positioning the custom bar */
+  position: relative;
+  /* Make space for the bar */
+  padding-left: 1rem;
+  /* Remove the old border approach */
+  border-left: none;
+}
+
+/* The accent bar drawn manually to match text height */
+h1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  /* Fine-tune vertical alignment and height to match text caps */
+  top: 0.15em;   /* Pushes it down slightly */
+  height: 0.75em; /* Makes it shorter than the full line height */
+  /* Bar thickness and color */
+  width: 3px;
+  background-color: var(--accent);
+  /* Optional: subtle rounded corners for the bar itself */
+  border-radius: 4px;
 }
 
 /* --------------------------------------------------------------
