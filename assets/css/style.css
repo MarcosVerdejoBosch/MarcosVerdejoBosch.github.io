@@ -100,19 +100,19 @@ h3 {
   text-align: left;
 }
 
-/* Page Title: Clean style with vertical accent bar (no bottom line) */
+/* Page Title: Clean style with a subtle vertical accent bar */
 h1 {
   font-size: 2rem;
   margin: 1.5rem 0 2rem 0; /* More breathing room */
-  
+
   /* Remove the bottom border to avoid visual noise with the navbar */
   border-bottom: none;
   padding-bottom: 0;
 
-  /* Modern touch: Vertical blue bar on the left */
-  border-left: 5px solid var(--accent);
-  padding-left: 1.2rem;
-  
+  /* Modern touch: SUBTLE vertical blue bar on the left */
+  border-left: 3px solid var(--accent); /* Thinner bar (was 5px) */
+  padding-left: 1rem; /* Adjusted spacing */
+
   /* ensure text aligns nicely with the bar */
   line-height: 1.1;
   color: var(--fg);
