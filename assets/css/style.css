@@ -223,20 +223,20 @@ h2 + *:not(h2) {
 /* keep normal flow; nothing special here */
 }
 
-/* Close card: Round bottom if followed by a header (H2) OR a separator line (HR) */
-p:has(+ h2), p:has(+ hr),
-ul:has(+ h2), ul:has(+ hr),
-ol:has(+ h2), ol:has(+ hr),
-img:has(+ h2), img:has(+ hr),
-div:has(+ h2), div:has(+ hr) {
+/* Close card: Round bottom ONLY if the element is inside a card section (follows an H2) AND is followed by a new header or separator */
+h2 ~ p:has(+ h2), h2 ~ p:has(+ hr),
+h2 ~ ul:has(+ h2), h2 ~ ul:has(+ hr),
+h2 ~ ol:has(+ h2), h2 ~ ol:has(+ hr),
+h2 ~ img:has(+ h2), h2 ~ img:has(+ hr),
+h2 ~ div:has(+ h2), h2 ~ div:has(+ hr) {
   border-bottom: 1px solid var(--line);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
   padding-bottom: 1rem;
   margin-bottom: 2rem;
 }
 
-/* Close last card: Round bottom of the very last element */
-main > :last-child {
+/* Close last card: Round bottom of the very last element ONLY if it's inside a card section */
+main > h2 ~ :last-child {
   border-bottom: 1px solid var(--line);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
   padding-bottom: 1rem;
