@@ -47,6 +47,18 @@ body {
   font-family: var(--font-mono);
   line-height: 1.75;
   font-size: 16px;
+
+  /* Sticky Footer: Force full height and use column layout */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Push the footer to the bottom */
+.content {
+  flex: 1;
+  width: 100%; /* Ensure proper width within flex container */
+  box-sizing: border-box; /* Prevent padding issues */
 }
 
 .content,
@@ -337,4 +349,14 @@ p code {
 h2 {
   transition: border-color 0.3s ease, color 0.3s ease;
   cursor: default; /* Standard cursor to avoid confusion with links */
+}
+
+/* Center the copyright text */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  width: 100%;
+  color: var(--muted);
+  font-size: 0.9rem;
+  box-sizing: border-box;
 }
