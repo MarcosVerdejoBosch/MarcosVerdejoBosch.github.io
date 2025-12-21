@@ -90,9 +90,17 @@ h3 {
 
 h1 {
   font-size: 1.8rem;
-  margin: 0 0 1.2rem 0;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 0.6rem;
+  /* Spacing below the title card */
+  margin: 0 0 2rem 0;
+  /* Internal spacing */
+  padding: 1.2rem 1.5rem;
+
+  /* Card appearance: background, blue accent text, and border */
+  background: var(--bg-alt);
+  color: var(--accent);
+  border: 1px solid var(--line);
+  /* Round all 4 corners */
+  border-radius: var(--card-radius);
 }
 
 /* --------------------------------------------------------------
