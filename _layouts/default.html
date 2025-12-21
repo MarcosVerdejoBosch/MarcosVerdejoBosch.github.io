@@ -38,8 +38,12 @@
   </main>
 
   <footer class="footer">
-    © {{ "now" | date: "%Y" }} {{ site.author.name }}
+    © <span id="year"></span> {{ site.author.name }}
   </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
