@@ -88,19 +88,22 @@ h3 {
   text-align: left;
 }
 
+/* Page Title - Reverted to simple underlined style */
 h1 {
   font-size: 1.8rem;
-  /* Spacing below the title card */
-  margin: 0 0 2rem 0;
-  /* Internal spacing */
-  padding: 1.2rem 1.5rem;
+  margin: 0 0 1.2rem 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.6rem;
 
-  /* Card appearance: background, blue accent text, and border */
-  background: var(--bg-alt);
-  color: var(--accent);
-  border: 1px solid var(--line);
-  /* Round all 4 corners */
-  border-radius: var(--card-radius);
+  /* Reset overrides: Ensure background and borders are removed */
+  background: transparent;
+  color: var(--fg);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  padding-top: 0;
+  padding-left: 0;
 }
 
 /* --------------------------------------------------------------
