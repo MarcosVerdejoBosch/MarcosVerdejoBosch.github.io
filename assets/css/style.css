@@ -220,22 +220,22 @@ img {
 
 /* Close each card BEFORE the next H2 starts */
 h2 + *:not(h2) {
-  /* keep normal flow; nothing special here */
+/* keep normal flow; nothing special here */
 }
 
-/* Close card: Round bottom corners if the next element is a header (H2) */
-p:has(+ h2),
-ul:has(+ h2),
-ol:has(+ h2),
-img:has(+ h2),
-div:has(+ h2) {
+/* Close card: Round bottom if followed by a header (H2) OR a separator line (HR) */
+p:has(+ h2), p:has(+ hr),
+ul:has(+ h2), ul:has(+ hr),
+ol:has(+ h2), ol:has(+ hr),
+img:has(+ h2), img:has(+ hr),
+div:has(+ h2), div:has(+ hr) {
   border-bottom: 1px solid var(--line);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
   padding-bottom: 1rem;
-  margin-bottom: 2rem; /* Space before the next card */
+  margin-bottom: 2rem;
 }
 
-/* Close last card: Round bottom corners of the very last element in the content */
+/* Close last card: Round bottom of the very last element */
 main > :last-child {
   border-bottom: 1px solid var(--line);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
