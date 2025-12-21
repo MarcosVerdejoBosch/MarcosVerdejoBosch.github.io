@@ -25,7 +25,7 @@ Selected engineering projects focused on **PCB design, hardware, and embedded sy
 - [Embedded Controller](#embedded-controller)
 - [Lab Utilities](#lab-utilities)
 
----
+<hr style="display: block; border-top: 1px solid var(--line); margin: 2rem 0;">
 
 ## Tech I work with
 - **Hardware/PCB:** KiCad (schematic + layout), analog/power design, lab bring-up and measurements.
