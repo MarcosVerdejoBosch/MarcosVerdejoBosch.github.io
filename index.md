@@ -26,4 +26,12 @@ microcontrollers and IoT prototypes.
 This site serves as a space to document selected projects, experiments,  
 and technical notes.
 
+<br>
+
+## Tech I work with
+
+* **Hardware/PCB:** KiCad (schematic + layout), analog/power design, lab bring-up and measurements.
+* **Firmware:** Embedded C/C++, ESP32 and ARM-class MCUs, debugging and instrumentation.
+* **IoT/Systems:** GCP + Kubernetes observability (logs/metrics), service monitoring, automation tooling.
+
 → [Projects](./projects) · [About](./about)
