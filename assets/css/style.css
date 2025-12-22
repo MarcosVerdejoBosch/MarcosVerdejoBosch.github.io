@@ -115,24 +115,27 @@ h1 {
   border-left: none;
 }
 
-/* The accent bar: Perfectly centered and proportional */
+/* The accent bar: Aligned to the FIRST line of text */
 h1::before {
   content: "";
   position: absolute;
   left: 0;
   
-  /* Size relative to the font (0.75em = height of a capital letter) */
+  /* Size relative to the font */
   height: 0.75em; 
-  width: 4px; /* Slightly thicker for better visibility */
+  width: 4px;
   
-  /* Mathematical centering relative to the first line of text */
-  top: 50%;
-  transform: translateY(-50%);
+  /* ALIGNMENT FIX: 
+     Instead of centering vertically (which moves down on multi-line text),
+     we anchor it to the top.
+     Calculation: (Line-Height 1.2 - Bar-Height 0.75) / 2 = ~0.225em
+  */
+  top: 0.225em;
+  transform: none; /* Remove the old centering */
 
   background-color: var(--accent);
   border-radius: 4px;
 }
-
 /* --------------------------------------------------------------
    Navbar (sticky)
 -------------------------------------------------------------- */
