@@ -19,7 +19,6 @@ Notes:
 Selected engineering projects focused on **PCB design, hardware, and embedded systems**.
 
 ### Index
-- [Tech I work with](#tech-i-work-with)
 - [Discrete Linear Voltage Regulator (5V / 3.3V)](#discrete-linear-voltage-regulator-5v--33v)
 - [IoT Sensor Node](#iot-sensor-node)
 - [Embedded Controller](#embedded-controller)
