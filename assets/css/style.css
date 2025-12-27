@@ -1,28 +1,19 @@
 /* --------------------------------------------------------------
-   Nord theme (dark) — Modern cards (no horizontal separators)
+   Nord theme (dark) — Minimalist & Clean
    Font: Source Code Pro
 -------------------------------------------------------------- */
 
 :root {
-  --font-mono: "Source Code Pro",
-               ui-monospace,
-               SFMono-Regular,
-               Menlo,
-               Monaco,
-               Consolas,
-               "Liberation Mono",
-               "Courier New",
-               monospace;
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  --bg: #2e3440;
-  --bg-alt: #3b4252;
-  --fg: #eceff4;
-  --muted: #d8dee9;
-  --line: #4c566a;
+  --bg: #2e3440;      /* Dark Grey */
+  --bg-alt: #3b4252;  /* Lighter Grey */
+  --fg: #eceff4;      /* White-ish */
+  --muted: #d8dee9;   /* Muted White */
+  --line: #4c566a;    /* Grey Line */
+  
+  --accent: #88c0d0;  /* Cyan Blue */
 
-  --accent: #88c0d0;
-
-  --card-radius: 16px;
   --anchor-offset: 88px;
 }
 
@@ -32,14 +23,12 @@ html {
   scroll-padding-top: var(--anchor-offset);
 }
 
-h2,
-h3 {
+h2, h3 {
   scroll-margin-top: var(--anchor-offset);
 }
 
 /* Base layout */
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   background: var(--bg);
@@ -48,23 +37,19 @@ body {
   line-height: 1.75;
   font-size: 16px;
 
-  /* Sticky Footer: Force full height and use column layout */
+  /* Sticky Footer setup */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Push the footer to the bottom */
 .content {
   flex: 1;
-  width: 100%; /* Ensure proper width within flex container */
-  box-sizing: border-box; /* Prevent padding issues */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.content,
-.container,
-.post,
-main {
+.content, .container, .post, main {
   max-width: 760px;
   margin: 1.9rem auto;
   padding: 0 1.5rem;
@@ -72,8 +57,7 @@ main {
 }
 
 /* Text alignment */
-p,
-li {
+p, li {
   text-align: justify;
   text-justify: inter-word;
 }
@@ -91,57 +75,97 @@ a:hover {
   border-bottom-color: var(--accent);
 }
 
-/* Headings */
-h1,
-h2,
-h3 {
+/* --------------------------------------------------------------
+   TYPOGRAPHY & UI ELEMENTS
+-------------------------------------------------------------- */
+
+/* Headings Base */
+h1, h2, h3 {
   color: var(--fg);
-  letter-spacing: 0.2px;
+  letter-spacing: -0.02em; /* Modern tight tracking */
   text-align: left;
 }
 
-/* Page Title: Clean style with a subtle separator line underneath */
+/* H1: Page Title (Clean + Separator) */
 h1 {
   font-size: 2rem;
   margin: 1.5rem 0 2rem 0;
   line-height: 1.2;
   color: var(--fg);
   
-  /* Ensure no old accents remain */
+  /* Reset old styles */
   border: none;
   padding: 0;
-  position: relative; /* Needed for the new separator */
+  position: relative; 
 }
 
-/* Main content paragraphs: Add a subtle accent bullet for readability */
+/* The Separator Line below H1 */
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;        /* Short elegant line */
+  height: 3px;
+  background-color: var(--line);
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+
+/* H2: Project Titles (Minimalist, No Cards) */
+h2 {
+  margin-top: 3.5rem;      /* Breathing room between sections */
+  margin-bottom: 1rem; 
+  padding: 0;
+  
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--fg);
+  
+  /* Ensure no card borders remain */
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+/* Paragraphs: Accent Bullet for Readability */
 .content > p {
   position: relative;
-  padding-left: 1.2rem; /* Create space for the bullet */
+  padding-left: 1.2rem; /* Space for the bullet */
 }
 
 .content > p::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.7em; /* Align vertically with the first line of text */
+  top: 0.7em; /* Visual center with first line */
   width: 6px;
   height: 6px;
-  background-color: var(--accent); /* Use the blue accent color */
-  border-radius: 50%; /* Make it a perfect circle */
+  background-color: var(--accent);
+  border-radius: 50%;
 }
 
-/* The New Separator: A short, subtle horizontal line below the title */
-h1::after {
-  content: "";
-  display: block;
-  width: 60px; /* Short line, not full width */
-  height: 3px; /* Subtle thickness */
-  background-color: var(--line); /* Uses the theme's line color for subtlety */
-  margin-top: 1rem; /* Space between title text and line */
-  border-radius: 2px; /* Soft ends */
+/* Lists */
+ul, ol {
+  margin: 0.8rem 0 1.1rem 0;
+  padding-left: 1.4rem;
 }
+li {
+  margin: 0.4rem 0;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  
+  /* Clean border for images */
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
 /* --------------------------------------------------------------
-   Navbar (sticky)
+   NAVBAR (Glassmorphism / Apple Style)
 -------------------------------------------------------------- */
 
 .navbar {
@@ -149,8 +173,12 @@ h1::after {
   top: 0;
   z-index: 1000;
 
-  background: rgba(46, 52, 64, 0.92);
-  backdrop-filter: blur(6px);
+  /* Semi-transparent Dark Grey */
+  background-color: rgba(46, 52, 64, 0.85); 
+  
+  /* The Blur Effect */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
   border-bottom: 1px solid var(--line);
   padding: 0.9rem 1.2rem;
@@ -167,7 +195,6 @@ h1::after {
 .nav-title {
   font-weight: 700;
   color: var(--fg);
-  text-decoration: none;
 }
 
 .nav-links a {
@@ -182,131 +209,15 @@ h1::after {
 }
 
 /* --------------------------------------------------------------
-   REMOVE horizontal separators
-   - Hide <hr> so markdown '---' won't show lines anymore
+   UTILITIES & EXTRAS
 -------------------------------------------------------------- */
 
+/* Horizontal Separators (Hidden or Subtle) */
 hr {
-  display: none;
+  display: none; /* We use the specific one in HTML if needed */
 }
 
-/* --------------------------------------------------------------
-   Section cards (each H2 is a full card with rounded bottom)
-   Works for Projects and any page with H2 sections.
--------------------------------------------------------------- */
-
-/* Card header */
-h2 {
-  font-size: 1.3rem;
-  margin: 1.8rem 0 0 0;
-  padding: 1.1rem 1.2rem 0.8rem 1.2rem;
-
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-bottom: none;
-  border-radius: var(--card-radius) var(--card-radius) 0 0;
-}
-
-/* Card body blocks */
-h2 ~ p,
-h2 ~ ul,
-h2 ~ ol,
-h2 ~ img {
-  background: var(--bg-alt);
-  border-left: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  padding: 0.2rem 1.2rem;
-  margin: 0;
-}
-
-/* First paragraph breathing room */
-h2 + p {
-  padding-top: 0.7rem;
-}
-
-/* Lists */
-ul,
-ol {
-  margin: 0.8rem 0 1.1rem 0;
-  padding-left: 1.4rem;
-}
-
-h2 ~ ul,
-h2 ~ ol {
-  padding-top: 0.6rem;
-  padding-bottom: 0.9rem;
-  padding-left: 2.2rem;
-}
-
-li {
-  margin: 0.4rem 0;
-}
-
-/* Images */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0.9rem auto;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-}
-
-/* Close each card BEFORE the next H2 starts */
-h2 + *:not(h2) {
-/* keep normal flow; nothing special here */
-}
-
-/* Close card: Round bottom ONLY if the element is inside a card section (follows an H2) AND is followed by a new header or separator */
-h2 ~ p:has(+ h2), h2 ~ p:has(+ hr),
-h2 ~ ul:has(+ h2), h2 ~ ul:has(+ hr),
-h2 ~ ol:has(+ h2), h2 ~ ol:has(+ hr),
-h2 ~ img:has(+ h2), h2 ~ img:has(+ hr),
-h2 ~ div:has(+ h2), h2 ~ div:has(+ hr) {
-  border-bottom: 1px solid var(--line);
-  border-radius: 0 0 var(--card-radius) var(--card-radius);
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
-}
-
-/* Close last card: Round bottom of the very last element ONLY if it's inside a card section */
-main > h2 ~ :last-child {
-  border-bottom: 1px solid var(--line);
-  border-radius: 0 0 var(--card-radius) var(--card-radius);
-  padding-bottom: 1rem;
-}
-
-/* --------------------------------------------------------------
-   Back to top: integrated, no background, aligned right
--------------------------------------------------------------- */
-
-p:has(a[href="#top"]) {
-  text-align: right;
-  padding-top: 0.6rem;
-  padding-bottom: 0.9rem;
-}
-
-p:has(a[href="#top"]) a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-
-  font-size: 0.95em;
-  color: var(--muted);
-  border-bottom: none;
-}
-
-p:has(a[href="#top"]) a:hover {
-  color: var(--fg);
-  text-decoration: underline;
-  text-decoration-color: rgba(136, 192, 208, 0.45);
-  text-underline-offset: 4px;
-}
-
-/* --------------------------------------------------------------
-   Chips (stack)
--------------------------------------------------------------- */
-
+/* Chips / Code Styling */
 p strong {
   color: var(--muted);
 }
@@ -315,65 +226,43 @@ code {
   background: rgba(0, 0, 0, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 0.08rem 0.35rem;
-  border-radius: 8px;
+  border-radius: 6px;
+  font-size: 0.9em;
 }
 
-p code {
-  display: inline-block;
-  padding: 0.18rem 0.55rem;
-  margin: 0.15rem 0.25rem 0.15rem 0;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 0.92em;
-  line-height: 1.2;
+/* Back to top link */
+p:has(a[href="#top"]) {
+  text-align: right;
+  padding-top: 1rem;
+}
+p:has(a[href="#top"]) a {
+  color: var(--muted);
+  font-size: 0.9em;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .nav-links a {
-    margin-left: 0.8rem;
-  }
-
-  .content,
-  .container,
-  .post,
-  main {
-    margin: 1.4rem auto;
-    padding: 0 1rem;
-  }
-  
-  /* Ajuste de padding para títulos en móvil (opcional, pero queda bien) */
-  h2 {
-    padding: 1rem 1rem 0.8rem 1rem;
-  }
-  
-  /* ¡AQUÍ BORRAMOS EL BLOQUE "h2 ~ p:last-of-type..." QUE CAUSABA EL ERROR! */
-}
-
-/* --------------------------------------------------------------
-   Professional Interactions / Hover Effects
--------------------------------------------------------------- */
-
-
-/* Add smooth transition to Project Headers */
-h2 {
-  transition: border-color 0.3s ease, color 0.3s ease;
-  cursor: default; /* Standard cursor to avoid confusion with links */
-}
-
-/* Center the copyright text */
+/* Footer */
 .footer {
   text-align: center;
   padding: 2rem 1rem;
   width: 100%;
   color: var(--muted);
   font-size: 0.9rem;
-  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------
+   RESPONSIVE
+-------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .nav-links a {
+    margin-left: 0;
+    margin-right: 1rem; /* Better spacing on mobile */
+  }
+  .content, .container, main {
+    padding: 0 1rem;
+  }
 }
