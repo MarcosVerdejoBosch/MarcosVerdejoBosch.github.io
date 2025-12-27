@@ -290,3 +290,73 @@ p:has(a[href="#top"]) a:hover {
     padding: 0 1rem;
   }
 }
+
+/* --------------------------------------------------------------
+   "The Bateman" Layout - Minimalist Business Card Style
+   Only applies when page.class = "home-card"
+-------------------------------------------------------------- */
+
+body.home-card .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertical centering */
+  min-height: 65vh;        /* Minimum height to float content in the middle */
+}
+
+/* Center all text and override previous layout styles */
+body.home-card h1,
+body.home-card p,
+body.home-card h2,
+body.home-card div {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* The Name (H1) */
+body.home-card h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.03em;
+  border: none;
+}
+/* Hide the separator line used in other pages */
+body.home-card h1::after {
+  display: none;
+}
+
+/* The Role (Subtitle) */
+body.home-card p.subtitle {
+  font-size: 1.1rem;
+  color: var(--accent); /* Subtle accent color */
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* The Tech Stack (Compact & Clean) */
+body.home-card .tech-stack {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 1.5rem;
+  line-height: 1.8;
+}
+
+/* Contact Links (Card Footer) */
+body.home-card .contact-links {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+body.home-card .contact-links a {
+  margin: 0 0.8rem;
+  color: var(--fg);
+  border-bottom: 1px solid transparent;
+}
+
+body.home-card .contact-links a:hover {
+  border-bottom-color: var(--accent);
+}
