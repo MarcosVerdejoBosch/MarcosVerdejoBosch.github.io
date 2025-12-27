@@ -220,16 +220,50 @@ code {
   font-size: 0.9em;
 }
 
-/* Back to top link */
+/* --------------------------------------------------------------
+   Back to top links (Styled as Nord Chips)
+-------------------------------------------------------------- */
+
+/* Container: Aligns the button to the right */
 p:has(a[href="#top"]) {
   text-align: right;
-  padding-top: 1rem;
-}
-p:has(a[href="#top"]) a {
-  color: var(--muted);
-  font-size: 0.9em;
+  margin-top: 2rem; /* More separation from content */
+  margin-bottom: 1rem;
 }
 
+/* The Button styling */
+p:has(a[href="#top"]) a {
+  display: inline-flex; /* Keep icon and text aligned nicely */
+  align-items: center;
+  gap: 0.5rem; /* Space between text and arrow icon */
+  
+  /* Chip shape and size */
+  padding: 0.5rem 1rem;
+  border-radius: 999px; /* Fully rounded corners (pill shape) */
+  
+  /* Nord Theme Colors - Default State */
+  background-color: var(--bg-alt); /* Slightly lighter than the main background */
+  border: 1px solid var(--line);   /* Subtle border definition */
+  color: var(--muted);             /* Subdued text color */
+  
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none; /* No underline */
+  
+  /* Smooth hover transition */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover State: Glow with the Nord Accent color */
+p:has(a[href="#top"]) a:hover {
+  /* Use the accent color with transparency for the background */
+  background-color: rgba(136, 192, 208, 0.15); 
+  border-color: var(--accent);
+  color: var(--accent);
+  
+  /* Optional: slight lift effect */
+  transform: translateY(-2px);
+}
 /* Footer */
 .footer {
   text-align: center;
