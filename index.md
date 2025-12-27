@@ -1,28 +1,24 @@
 ---
 layout: default
 title: Home
+class: home-card
 ---
 
-# Hi, I'm Marcos.
+# Marcos Verdejo Bosch
 
-An Electronic Engineer focused on **analog circuits** and **embedded intelligence**.
+<p class="subtitle">Electronic Engineer</p>
 
-I enjoy creating reliable circuits that blend hardware precision with digital capabilities. My work ranges from power regulation and PCB design to firmware for microcontrollers.
+Focused on **hardware design**, **embedded intelligence**, and **analog circuits**.
+<br>Creating reliable systems that bridge the physical and digital worlds.
 
-<br>
+<div class="tech-stack">
+  KiCad · Altium · C/C++ · ESP32 · STM32
+  <br>
+  IoT Systems · GCP · Kubernetes · Lab Instrumentation
+</div>
 
-## Tech I work with
-
-* **Hardware/PCB:** KiCad (schematic + layout), analog/power design, lab bring-up and measurements.
-* **Firmware:** Embedded C/C++, ESP32 and ARM-class MCUs, debugging and instrumentation.
-* **IoT/Systems:** GCP + Kubernetes observability (logs/metrics), service monitoring, automation tooling.
-
-<br>
-
-## Connect
-
-Find my open-source projects or professional details here:
-
-* [GitHub](https://github.com/MarcosVerdejoBosch)
-* [LinkedIn](https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/)
-* [Email](mailto:marcosverdejo@gmail.com)
+<div class="contact-links">
+  <a href="https://github.com/MarcosVerdejoBosch" target="_blank">GitHub</a>
+  <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank">LinkedIn</a>
+  <a href="mailto:marcosverdejo@gmail.com">Email</a>
+</div>
