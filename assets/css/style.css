@@ -126,22 +126,12 @@ h2 {
   border-radius: 0;
 }
 
-/* Paragraphs: Accent Bullet for Readability */
+/* Paragraphs: Clean text (Reset) */
 .content > p {
-  position: relative;
-  padding-left: 1.2rem; /* Space for the bullet */
+  padding-left: 0;   /* Remove the indentation */
+  position: static;  /* Remove relative positioning */
 }
 
-.content > p::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.7em; /* Visual center with first line */
-  width: 6px;
-  height: 6px;
-  background-color: var(--accent);
-  border-radius: 50%;
-}
 
 /* Lists */
 ul, ol {
