@@ -18,14 +18,6 @@ Notes:
 
 Selected engineering projects focused on **PCB design, hardware, and embedded systems**.
 
-### Index
-- [Discrete Linear Voltage Regulator (5V / 3.3V)](#discrete-linear-voltage-regulator-5v--33v)
-- [IoT Sensor Node](#iot-sensor-node)
-- [Embedded Controller](#embedded-controller)
-- [Lab Utilities](#lab-utilities)
-
-<hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--line), transparent); opacity: 0.6; margin: 2rem 0;">
-
 ## Discrete Linear Voltage Regulator (5V / 3.3V)
 
 Low-noise linear voltage regulator designed entirely with discrete components, focused on analog performance and thermal stability.
