@@ -100,41 +100,45 @@ h3 {
   text-align: left;
 }
 
-/* Page Title: Clean style with a proportional vertical accent bar */
+/* Page Title: Clean style with a subtle separator line underneath */
 h1 {
   font-size: 2rem;
   margin: 1.5rem 0 2rem 0;
-  border-bottom: none;
-  padding-bottom: 0;
-  line-height: 1.2; /* Slightly relaxed to handle accents better */
+  line-height: 1.2;
   color: var(--fg);
-
-  /* Setup for the custom accent bar */
-  position: relative;
-  padding-left: 1rem;
-  border-left: none;
+  
+  /* Ensure no old accents remain */
+  border: none;
+  padding: 0;
+  position: relative; /* Needed for the new separator */
 }
 
-/* The accent bar: Aligned to the FIRST line of text */
-h1::before {
+/* Main content paragraphs: Add a subtle accent bullet for readability */
+.content > p {
+  position: relative;
+  padding-left: 1.2rem; /* Create space for the bullet */
+}
+
+.content > p::before {
   content: "";
   position: absolute;
   left: 0;
-  
-  /* Size relative to the font */
-  height: 0.75em; 
-  width: 4px;
-  
-  /* ALIGNMENT FIX: 
-     Instead of centering vertically (which moves down on multi-line text),
-     we anchor it to the top.
-     Calculation: (Line-Height 1.2 - Bar-Height 0.75) / 2 = ~0.225em
-  */
-  top: 0.225em;
-  transform: none; /* Remove the old centering */
+  top: 0.7em; /* Align vertically with the first line of text */
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent); /* Use the blue accent color */
+  border-radius: 50%; /* Make it a perfect circle */
+}
 
-  background-color: var(--accent);
-  border-radius: 4px;
+/* The New Separator: A short, subtle horizontal line below the title */
+h1::after {
+  content: "";
+  display: block;
+  width: 60px; /* Short line, not full width */
+  height: 3px; /* Subtle thickness */
+  background-color: var(--line); /* Uses the theme's line color for subtlety */
+  margin-top: 1rem; /* Space between title text and line */
+  border-radius: 2px; /* Soft ends */
 }
 /* --------------------------------------------------------------
    Navbar (sticky)
