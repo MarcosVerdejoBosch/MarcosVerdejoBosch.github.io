@@ -1,86 +1,37 @@
 ---
-layout: default
+layout: page
 title: Projects
+permalink: /projects/
 ---
-
-<a id="top"></a>
-
-<!--
-File: projects.md
-Purpose: Professional portfolio of hardware, PCB, and IoT projects.
-Author: Marcos Verdejo Bosch
-Notes:
-- Blog-style, easy to read
-- Each project follows the same structure
--->
-
-# Projects
-
-Selected engineering projects focused on **PCB design, hardware, and embedded systems**.
 
 ## Discrete Linear Voltage Regulator (5V / 3.3V)
 
-Low-noise linear voltage regulator designed entirely with discrete components, focused on analog performance and thermal stability.
+![Linear Regulator PCB Render](assets/img/regulator.jpg)
 
-<!-- Project image: KiCad 3D render -->
-<img
-  src="{{ '/assets/img/projects/linear-regulator/Regulador-3d.png' | relative_url }}"
-  alt="Discrete linear voltage regulator PCB – KiCad 3D view"
-/>
+A fully discrete linear power supply designed to explore the fundamentals of feedback loops, error amplifiers, and pass elements without relying on integrated regulators like the LM7805.
 
-**Stack:** `Analog Design` `KiCad` `LTspice` `Power Electronics`
+**Key Specifications:**
+* **Input:** 12V DC (Wall adapter or bench supply).
+* **Output:** Dual rail 5V and 3.3V @ 800mA max.
+* **Topology:** Series Linear Regulator with BJT pass element.
+* **Protection:** Active **Foldback Current Limiting** to protect against short circuits.
 
-**Highlights:**
-- Discrete BJT-based topology for low-noise regulation
-- Full schematic, simulation, and PCB layout
-- Layout optimized for current paths and thermal behavior
-- Test points added for lab validation and measurements
+### Design Highlights
 
-**Links:**  
-[GitHub repository (coming soon)](#)
+Instead of using an off-the-shelf IC, this circuit uses a **Zener diode** as a voltage reference and a differential pair as an error amplifier to drive the Darlington pass transistor.
 
-[↑ Back to top](#top)
+The standout feature is the **Foldback Current Limiting** mechanism. In the event of a short circuit, the output current is actively reduced to a safe level (approx. 50mA) rather than staying at the maximum peak, preventing the pass transistor from overheating and failing.
 
----
+Designed in **KiCad** with manual routing focused on thermal dissipation for the TO-220 transistors.
 
-## IoT Sensor Node
+[View Schematic on GitHub](https://github.com/MarcosVerdejoBosch) | [Download Gerbers](#)
 
-Low-power sensor node based on ESP32, designed for battery operation and remote monitoring.
-
-**Stack:** `ESP32` `Embedded C` `IoT` `Low Power Design`
-
-**Highlights:**
-- Custom PCB for low-power operation
-- Firmware optimized for sleep cycles
-- Designed for environmental sensing use cases
-
-[↑ Back to top](#top)
+<br>
 
 ---
 
-## Embedded Controller
+## IoT Sensor Node (ESP32)
 
-ARM-based embedded controller with deterministic real-time logic.
+![IoT Node Image](assets/img/iot-node.jpg)
 
-**Stack:** `ARM` `Embedded Systems` `RTOS`
-
-**Highlights:**
-- Real-time task scheduling
-- Peripheral integration (GPIO, timers, UART)
-- Industrial-style control logic
-
-[↑ Back to top](#top)
-
----
-
-## Lab Utilities
-
-Small tools developed to support hardware testing and validation.
-
-**Stack:** `Python` `C` `Instrumentation`
-
-**Highlights:**
-- Measurement and data-logging scripts
-- Utilities to speed up lab workflows
-
-[↑ Back to top](#top)
+*(Coming soon... This section is a placeholder for your next project)*
