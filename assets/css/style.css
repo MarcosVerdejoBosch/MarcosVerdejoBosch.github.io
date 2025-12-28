@@ -41,26 +41,19 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100%; /* Ensure full width availability */
 }
 
 .content {
   flex: 1;
   width: 100%;
   box-sizing: border-box;
-  /* Centering Fix: Ensure content doesn't shift left */
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
 }
 
-/* Global Container Constraints */
-.content > *, .container, .post, main {
-  width: 100%;
+.content, .container, .post, main {
   max-width: 760px;
-  /* Reset local margins to prevent conflicts with flex centering */
-  margin-left: 0;
-  margin-right: 0;
+  margin: 1.9rem auto;
+  padding: 0 1.5rem;
+  background: transparent;
 }
 
 /* Text alignment */
@@ -69,11 +62,12 @@ p, li {
   text-justify: inter-word;
 }
 
-/* Standard Links (Body text) */
+/* Standard Links (Body text) - ZERO MOVEMENT FIX */
 a {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px dotted transparent;
+  /* Reserve 1px space always so it doesn't jump on hover */
+  border-bottom: 1px solid transparent; 
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -159,8 +153,6 @@ img {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
   padding: 0.9rem 1.2rem;
-  width: 100%; /* Force full width */
-  box-sizing: border-box;
 }
 
 .nav-container {
@@ -174,7 +166,10 @@ img {
 .nav-title {
   font-weight: 700;
   color: var(--fg);
-  cursor: default; /* Shows it's static, not clickable */
+  /* MVB Static: No interaction */
+  text-decoration: none;
+  border: none !important;
+  cursor: default;
 }
 
 .nav-links a {
@@ -196,12 +191,11 @@ code {
   font-size: 0.9em;
 }
 
-/* Back to top links */
+/* Back to top links - STATIC (No movement) */
 p:has(a[href="#top"]) {
   text-align: right;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  width: 100%;
 }
 p:has(a[href="#top"]) a {
   display: inline-flex;
@@ -215,45 +209,21 @@ p:has(a[href="#top"]) a {
   font-size: 0.85rem;
   font-weight: 600;
   transition: all 0.2s ease-in-out;
+  /* Removed transform: translateY so it doesn't jump */
 }
 p:has(a[href="#top"]) a:hover {
   background-color: rgba(136, 192, 208, 0.15); 
   border-color: var(--accent);
   color: var(--accent);
-  transform: translateY(-2px);
 }
 
-/* --------------------------------------------------------------
-   FOOTER (Strict Centering)
--------------------------------------------------------------- */
+/* Footer Centering */
 .footer {
-  display: flex;        /* Use Flexbox for perfect centering */
-  justify-content: center;
-  align-items: center;
-  width: 100%;          /* Full viewport width */
+  text-align: center;
   padding: 2rem 0;
-  margin: 0;
+  width: 100%;
   color: var(--muted);
   font-size: 0.9rem;
-  text-align: center;   /* Backup for text */
-}
-
-/* --------------------------------------------------------------
-   RESPONSIVE
--------------------------------------------------------------- */
-@media (max-width: 600px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  .nav-links a {
-    margin-left: 0;
-    margin-right: 1rem;
-  }
-  .content, .container, main {
-    padding: 0 1rem;
-  }
 }
 
 /* --------------------------------------------------------------
@@ -264,11 +234,9 @@ p:has(a[href="#top"]) a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Critical for horizontal centering */
-  min-height: 70vh;
+  align-items: center;
+  min-height: 70vh; 
   width: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
 }
 
 .business-card {
@@ -277,15 +245,10 @@ p:has(a[href="#top"]) a:hover {
   background-color: var(--bg-alt);
   border: 1px solid var(--muted);
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-  
   padding: 3.5rem 2rem;
-  
-  /* Centering Override */
-  margin-left: auto;
-  margin-right: auto;
-  
-  text-align: center !important; 
+  margin: 0 auto;
   position: relative;
+  text-align: center !important; 
 }
 
 .business-card h1 {
@@ -341,35 +304,46 @@ p:has(a[href="#top"]) a:hover {
 }
 
 /* --------------------------------------------------------------
-   LINK INTERACTIONS (The Logic Split)
+   LINK INTERACTIONS (Zero Movement Guarantee)
+   Strategy: Always keep a 2px border. 
+   Default = Transparent (or subtle gray). Hover = Accent.
 -------------------------------------------------------------- */
 
-/* 1. Navbar Links: CLEAN by default (No underline) */
+/* 1. Navbar Links */
 .nav-links a {
   text-decoration: none;
   color: var(--muted);
-  border-bottom: 2px solid transparent; /* Invisible placeholder */
-  transition: all 0.2s ease;
+  /* Always 2px, initially transparent */
+  border-bottom: 2px solid transparent; 
+  transition: color 0.2s ease, border-color 0.2s ease;
   padding-bottom: 2px;
 }
 
-/* 2. Card Links: VISIBLE hint by default (Subtle underline) */
+/* 2. Card Links */
 .business-card .card-links a {
   text-decoration: none;
   color: var(--fg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* The subtle gray line */
-  transition: all 0.2s ease;
+  /* Always 2px. The gray hint is now 2px thick to match the hover state */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15); 
+  transition: color 0.2s ease, border-color 0.2s ease;
   padding-bottom: 2px;
   cursor: pointer;
 }
 
-/* 3. HOVER STATE: Shared logic (Blue solid line) */
+/* 3. Hover State (Shared) */
 .nav-links a:hover,
 .nav-links a.active,
 .business-card .card-links a:hover {
   color: var(--fg);
-  border-bottom: 2px solid var(--accent); /* The Active Blue */
+  /* Stays 2px, just changes color. No layout jump. */
+  border-bottom-color: var(--accent);
   opacity: 1;
+}
+
+/* MVB: Strict No Interaction */
+.nav-title, .nav-title:hover {
+  border: none !important;
+  color: var(--fg) !important;
 }
 
 /* Email Copied State */
@@ -385,11 +359,10 @@ p:has(a[href="#top"]) a:hover {
 @media (max-width: 600px) {
   .home-wrapper {
     min-height: 60vh;
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
   .business-card {
     padding: 2rem 1.2rem;
-    width: 100%; 
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
   .business-card h1 {
@@ -398,7 +371,6 @@ p:has(a[href="#top"]) a:hover {
   }
   .business-card .role {
     font-size: 0.75rem;
-    letter-spacing: 0.15em;
   }
   .business-card .bio { padding: 0; }
   .business-card .card-links { gap: 1rem; }
