@@ -41,19 +41,26 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%; /* Ensure full width availability */
 }
 
 .content {
   flex: 1;
   width: 100%;
   box-sizing: border-box;
+  /* Centering Fix: Ensure content doesn't shift left */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
-.content, .container, .post, main {
+/* Global Container Constraints */
+.content > *, .container, .post, main {
+  width: 100%;
   max-width: 760px;
-  margin: 1.9rem auto;
-  padding: 0 1.5rem;
-  background: transparent;
+  /* Reset local margins to prevent conflicts with flex centering */
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* Text alignment */
@@ -79,57 +86,48 @@ a:hover {
    TYPOGRAPHY & UI ELEMENTS
 -------------------------------------------------------------- */
 
-/* Headings Base */
 h1, h2, h3 {
   color: var(--fg);
-  letter-spacing: -0.02em; /* Modern tight tracking */
+  letter-spacing: -0.02em;
   text-align: left;
 }
 
-/* H1: Page Title (Clean + Separator) */
+/* H1: Page Title */
 h1 {
   font-size: 2rem;
   margin: 1.5rem 0 2rem 0;
   line-height: 1.2;
-  color: var(--fg);
-  
-  /* Reset old styles */
   border: none;
   padding: 0;
   position: relative; 
 }
 
-/* The Separator Line below H1 */
+/* H1 Separator */
 h1::after {
   content: "";
   display: block;
-  width: 60px;        /* Short elegant line */
+  width: 60px;
   height: 3px;
   background-color: var(--line);
   margin-top: 1rem;
   border-radius: 2px;
 }
 
-/* H2: Project Titles (Minimalist, No Cards) */
+/* H2: Project Titles */
 h2 {
-  margin-top: 3.5rem;      /* Breathing room between sections */
+  margin-top: 3.5rem;
   margin-bottom: 1rem; 
   padding: 0;
-  
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--fg);
-  
-  /* Ensure no card borders remain */
   background: none;
   border: none;
-  border-radius: 0;
 }
 
-/* Paragraphs: Clean text (Reset) */
+/* Paragraphs */
 .content > p {
-  padding-left: 0;   /* Remove the indentation */
-  position: static;  /* Remove relative positioning */
+  padding-left: 0;
+  position: static;
 }
 
 /* Lists */
@@ -137,9 +135,7 @@ ul, ol {
   margin: 0.8rem 0 1.1rem 0;
   padding-left: 1.4rem;
 }
-li {
-  margin: 0.4rem 0;
-}
+li { margin: 0.4rem 0; }
 
 /* Images */
 img {
@@ -147,30 +143,24 @@ img {
   height: auto;
   display: block;
   margin: 1.5rem auto;
-  
-  /* Clean border for images */
   border: 1px solid var(--line);
   border-radius: 12px;
 }
 
 /* --------------------------------------------------------------
-   NAVBAR (Glassmorphism / Apple Style)
+   NAVBAR (Glassmorphism)
 -------------------------------------------------------------- */
-
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-
-  /* Semi-transparent Dark Grey */
   background-color: rgba(46, 52, 64, 0.85); 
-  
-  /* The Blur Effect */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
   border-bottom: 1px solid var(--line);
   padding: 0.9rem 1.2rem;
+  width: 100%; /* Force full width */
+  box-sizing: border-box;
 }
 
 .nav-container {
@@ -184,6 +174,7 @@ img {
 .nav-title {
   font-weight: 700;
   color: var(--fg);
+  cursor: default; /* Shows it's static, not clickable */
 }
 
 .nav-links a {
@@ -194,16 +185,8 @@ img {
 /* --------------------------------------------------------------
    UTILITIES & EXTRAS
 -------------------------------------------------------------- */
-
-/* Horizontal Separators (Hidden or Subtle) */
-hr {
-  display: none; /* We use the specific one in HTML if needed */
-}
-
-/* Chips / Code Styling */
-p strong {
-  color: var(--muted);
-}
+hr { display: none; }
+p strong { color: var(--muted); }
 
 code {
   background: rgba(0, 0, 0, 0.18);
@@ -213,64 +196,46 @@ code {
   font-size: 0.9em;
 }
 
-/* --------------------------------------------------------------
-   Back to top links (Styled as Nord Chips)
--------------------------------------------------------------- */
-
-/* Container: Aligns the button to the right */
+/* Back to top links */
 p:has(a[href="#top"]) {
   text-align: right;
-  margin-top: 2rem; /* More separation from content */
+  margin-top: 2rem;
   margin-bottom: 1rem;
+  width: 100%;
 }
-
-/* The Button styling */
 p:has(a[href="#top"]) a {
-  display: inline-flex; /* Keep icon and text aligned nicely */
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem; /* Space between text and arrow icon */
-  
-  /* Chip shape and size */
+  gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border-radius: 999px; /* Fully rounded corners (pill shape) */
-  
-  /* Nord Theme Colors - Default State */
-  background-color: var(--bg-alt); /* Slightly lighter than the main background */
-  border: 1px solid var(--line);   /* Subtle border definition */
-  color: var(--muted);             /* Subdued text color */
-  
+  border-radius: 999px;
+  background-color: var(--bg-alt);
+  border: 1px solid var(--line);
+  color: var(--muted);
   font-size: 0.85rem;
   font-weight: 600;
-  text-decoration: none; /* No underline */
-  
-  /* Smooth hover transition */
   transition: all 0.2s ease-in-out;
 }
-
-/* Hover State: Glow with the Nord Accent color */
 p:has(a[href="#top"]) a:hover {
-  /* Use the accent color with transparency for the background */
   background-color: rgba(136, 192, 208, 0.15); 
   border-color: var(--accent);
   color: var(--accent);
-  
-  /* Optional: slight lift effect */
   transform: translateY(-2px);
 }
 
 /* --------------------------------------------------------------
-   Footer (Centering Fix)
+   FOOTER (Strict Centering)
 -------------------------------------------------------------- */
 .footer {
-  display: block;
-  width: 100%;
-  text-align: center; /* Explicit center alignment */
-  padding: 2rem 0;    /* Vertical spacing */
+  display: flex;        /* Use Flexbox for perfect centering */
+  justify-content: center;
+  align-items: center;
+  width: 100%;          /* Full viewport width */
+  padding: 2rem 0;
   margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
-  position: relative;
-  clear: both;
+  text-align: center;   /* Backup for text */
 }
 
 /* --------------------------------------------------------------
@@ -284,7 +249,7 @@ p:has(a[href="#top"]) a:hover {
   }
   .nav-links a {
     margin-left: 0;
-    margin-right: 1rem; /* Better spacing on mobile */
+    margin-right: 1rem;
   }
   .content, .container, main {
     padding: 0 1rem;
@@ -292,17 +257,17 @@ p:has(a[href="#top"]) a:hover {
 }
 
 /* --------------------------------------------------------------
-   "The Asset" Layout - Physical Business Card Look
+   "The Asset" Layout - Physical Business Card
 -------------------------------------------------------------- */
 
 .home-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  min-height: 70vh; /* Altura suficiente para centrar */
+  align-items: center; /* Critical for horizontal centering */
+  min-height: 70vh;
   width: 100%;
-  padding: 1rem; /* Margen de seguridad en móviles */
+  padding: 1rem;
   box-sizing: border-box;
 }
 
@@ -313,16 +278,16 @@ p:has(a[href="#top"]) a:hover {
   border: 1px solid var(--muted);
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
   
-  /* Padding amplio en escritorio */
   padding: 3.5rem 2rem;
-  margin: 0 auto;
-  position: relative;
   
-  /* FORCE all text inside to center */
+  /* Centering Override */
+  margin-left: auto;
+  margin-right: auto;
+  
   text-align: center !important; 
+  position: relative;
 }
 
-/* Fix: Explicitly center the H1 */
 .business-card h1 {
   text-align: center;
   font-family: var(--font-mono);
@@ -334,7 +299,6 @@ p:has(a[href="#top"]) a:hover {
   border: none;
   color: var(--fg);
 }
-
 .business-card h1::after { display: none; }
 
 .business-card .role {
@@ -370,8 +334,6 @@ p:has(a[href="#top"]) a:hover {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  
-  /* Flexbox para manejar los espacios correctamente en móvil */
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -379,32 +341,38 @@ p:has(a[href="#top"]) a:hover {
 }
 
 /* --------------------------------------------------------------
-   Unified Interactive Links (Smart Links)
+   LINK INTERACTIONS (The Logic Split)
 -------------------------------------------------------------- */
 
-/* Estado Base: Texto Blanco + Subrayado Gris Sutil (Indica click) */
-.nav-title,
-.nav-links a,
+/* 1. Navbar Links: CLEAN by default (No underline) */
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  border-bottom: 2px solid transparent; /* Invisible placeholder */
+  transition: all 0.2s ease;
+  padding-bottom: 2px;
+}
+
+/* 2. Card Links: VISIBLE hint by default (Subtle underline) */
 .business-card .card-links a {
   text-decoration: none;
   color: var(--fg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Pista visual sutil */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* The subtle gray line */
   transition: all 0.2s ease;
   padding-bottom: 2px;
-  cursor: pointer; /* Mano para indicar click */
+  cursor: pointer;
 }
 
-/* Estado Hover: Línea Azul Intensa */
-.nav-title:hover,
+/* 3. HOVER STATE: Shared logic (Blue solid line) */
 .nav-links a:hover,
-.business-card .card-links a:hover,
-.nav-links a.active {
-  color: var(--fg); 
-  border-bottom: 2px solid var(--accent); /* Nord Cyan Blue */
+.nav-links a.active,
+.business-card .card-links a:hover {
+  color: var(--fg);
+  border-bottom: 2px solid var(--accent); /* The Active Blue */
   opacity: 1;
 }
 
-/* Clase especial para cuando el email se copia */
+/* Email Copied State */
 .email-copied {
   color: var(--accent) !important;
   border-bottom-color: transparent !important;
@@ -412,36 +380,26 @@ p:has(a[href="#top"]) a:hover {
 }
 
 /* --------------------------------------------------------------
-   Mobile Optimization (Fixes alignment on phone)
+   Mobile Optimization
 -------------------------------------------------------------- */
 @media (max-width: 600px) {
   .home-wrapper {
-    min-height: 60vh; /* Ajuste para pantallas verticales */
+    min-height: 60vh;
     padding-top: 2rem;
   }
-  
   .business-card {
-    padding: 2rem 1.2rem; /* Menos padding interno para ganar espacio */
-    width: 100%; /* Ocupar todo el ancho disponible */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Sombra un poco más leve */
+    padding: 2rem 1.2rem;
+    width: 100%; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
-
   .business-card h1 {
-    font-size: 1.6rem; /* Ajustar tamaño del nombre */
-    word-wrap: break-word; /* Evitar desbordes si el nombre es largo */
+    font-size: 1.6rem;
+    word-wrap: break-word;
   }
-  
   .business-card .role {
     font-size: 0.75rem;
     letter-spacing: 0.15em;
   }
-  
-  .business-card .bio {
-    padding: 0; /* Quitar padding lateral extra en textos */
-    font-size: 0.9rem;
-  }
-  
-  .business-card .card-links {
-    gap: 1rem; /* Links un poco más juntos */
-  }
+  .business-card .bio { padding: 0; }
+  .business-card .card-links { gap: 1rem; }
 }
