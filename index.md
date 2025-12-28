@@ -23,9 +23,36 @@ title: Home
     <div class="card-links">
       <a href="https://github.com/MarcosVerdejoBosch" target="_blank">GitHub</a>
       <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank">LinkedIn</a>
-      <a href="mailto:marcosverdejo@gmail.com">Email</a>
+      <a id="email-btn" onclick="copyEmail()">Email</a>
     </div>
 
   </div>
 
 </div>
+
+<script>
+  function copyEmail() {
+    const email = "marcosverdejo@gmail.com";
+    const btn = document.getElementById("email-btn");
+    
+    // Copiar al portapapeles
+    navigator.clipboard.writeText(email).then(() => {
+      
+      // Guardar el texto original
+      const originalText = "Email";
+      
+      // Cambiar texto y estilo visualmente
+      btn.innerText = "COPIED!";
+      btn.classList.add("email-copied");
+      
+      // Esperar 2 segundos y volver a la normalidad
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.classList.remove("email-copied");
+      }, 2000);
+      
+    }).catch(err => {
+      console.error('Error al copiar: ', err);
+    });
+  }
+</script>
