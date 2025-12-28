@@ -62,18 +62,17 @@ p, li {
   text-justify: inter-word;
 }
 
-/* Standard Links (Body text) */
+/* Standard Links (Body text default) */
 a {
   color: var(--accent);
   text-decoration: none;
-  /* Dotted by default for standard text links */
   border-bottom: 1px dotted var(--accent);
   transition: all 0.15s ease;
 }
 
 a:hover {
   color: var(--fg);
-  border-bottom-style: solid; /* Switches to solid on hover */
+  border-bottom-style: solid;
 }
 
 /* --------------------------------------------------------------
@@ -209,7 +208,6 @@ p:has(a[href="#top"]) a {
   font-size: 0.85rem;
   font-weight: 600;
   transition: all 0.2s ease-in-out;
-  /* Override default link style for button */
   border-bottom: 1px solid var(--line);
 }
 p:has(a[href="#top"]) a:hover {
@@ -228,7 +226,7 @@ p:has(a[href="#top"]) a:hover {
 }
 
 /* --------------------------------------------------------------
-   PROJECT CARDS (For Projects Index)
+   PROJECT CARDS
 -------------------------------------------------------------- */
 .project-card {
   border: 1px solid var(--line);
@@ -273,7 +271,7 @@ p:has(a[href="#top"]) a:hover {
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--accent);
-  border: 1px solid var(--accent) !important; /* Force solid border for button */
+  border: 1px solid var(--accent) !important; 
   padding: 0.6rem 1.2rem;
   text-transform: uppercase;
   transition: all 0.2s ease;
@@ -362,30 +360,38 @@ p:has(a[href="#top"]) a:hover {
 }
 
 /* --------------------------------------------------------------
-   LINK INTERACTIONS (Dotted Style Restored)
+   LINK INTERACTIONS (Professional & Solid)
+   Strategy: 1px Solid Resting -> 3px Solid Active (No Jitter)
 -------------------------------------------------------------- */
 
-/* 1. Navbar & Card Links: Dotted by default */
+/* 1. Navbar & Card Links */
 .nav-links a,
 .business-card .card-links a {
   text-decoration: none;
-  color: var(--fg); /* White-ish text */
+  color: var(--fg);
   
-  /* The Dotted Line */
-  border-bottom: 1px dotted var(--muted); 
+  /* ESTADO NORMAL: 1px sólido (muy fino y profesional) */
+  border-bottom: 1px solid rgba(236, 239, 244, 0.4); 
   
-  transition: all 0.2s ease;
-  padding-bottom: 2px;
+  /* Compensación de espacio (Total = 1px borde + 3px padding = 4px) */
+  padding-bottom: 3px; 
+  
+  transition: all 0.1s ease-in-out;
   cursor: pointer;
 }
 
-/* 2. Hover State: Solid Blue Line */
+/* 2. Hover / Active State */
 .nav-links a:hover,
 .nav-links a.active,
 .business-card .card-links a:hover {
   color: var(--fg);
-  /* Switch to Solid, keep 1px width (no jump) */
-  border-bottom: 1px solid var(--accent); 
+  
+  /* ESTADO ACTIVO: 3px sólido (grueso y visible) */
+  border-bottom: 3px solid var(--accent); 
+  
+  /* Compensación (Total = 3px borde + 1px padding = 4px) */
+  padding-bottom: 1px;
+  
   opacity: 1;
 }
 
@@ -398,7 +404,7 @@ p:has(a[href="#top"]) a:hover {
 /* Email Copied State */
 .email-copied {
   color: var(--accent) !important;
-  border-bottom: none !important; /* Remove line when copied */
+  border-bottom: none !important;
   font-weight: bold;
 }
 
