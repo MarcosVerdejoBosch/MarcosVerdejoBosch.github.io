@@ -295,61 +295,54 @@ p:has(a[href="#top"]) a:hover {
    "The Asset" Layout - Physical Business Card Look
 -------------------------------------------------------------- */
 
-/* 1. The Stage: Centers the card vertically between Nav and Footer */
 .home-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 65vh; /* Occupy visual center */
+  min-height: 65vh;
   width: 100%;
 }
 
-/* 2. The Card: A distinct physical container */
 .business-card {
   width: 100%;
-  max-width: 580px; /* Standard card proportions */
-  
-  /* The Look */
-  background-color: var(--bg-alt); /* Slightly lighter than page bg */
-  border: 1px solid var(--muted);  /* The "Bone" white border */
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25); /* Deep shadow to make it float */
-  
-  /* Spacing */
+  max-width: 580px;
+  background-color: var(--bg-alt);
+  border: 1px solid var(--muted);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
   padding: 3.5rem 2rem;
   margin: 0 auto;
-  
-  /* Typography Alignment */
-  text-align: center;
   position: relative;
+  
+  /* FORCE all text inside to center */
+  text-align: center !important; 
 }
 
-/* 3. The Name (H1) - Impactful */
+/* Fix: Explicitly center the H1 to override global left-align */
 .business-card h1 {
+  text-align: center; /* Vital fix */
   font-family: var(--font-mono);
   font-size: 2rem;
-  text-transform: uppercase; /* Authority */
+  text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0 0 0.5rem 0;
   padding: 0;
   border: none;
-  color: var(--fg); /* Pure white/grey */
+  color: var(--fg);
 }
 
-.business-card h1::after { display: none; } /* Ensure separator is gone */
+.business-card h1::after { display: none; }
 
-/* 4. The Title - The "Silian Rail" detail */
 .business-card .role {
   font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em; /* Widely spaced like a premium card */
-  color: var(--muted);   /* No accent color, just elegant grey */
+  letter-spacing: 0.2em;
+  color: var(--muted);
   margin-bottom: 2rem;
   display: block;
   font-weight: 400;
 }
 
-/* 5. The Pitch - Clean text */
 .business-card .bio {
   font-size: 0.95rem;
   line-height: 1.6;
@@ -358,7 +351,6 @@ p:has(a[href="#top"]) a:hover {
   padding: 0 1rem;
 }
 
-/* 6. The Stack - Minimalist line */
 .business-card .stack {
   font-size: 0.8rem;
   color: var(--muted);
@@ -366,10 +358,9 @@ p:has(a[href="#top"]) a:hover {
   letter-spacing: 0.05em;
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--line); /* Divider inside the card */
+  border-top: 1px solid var(--line);
 }
 
-/* 7. Footer Links inside card */
 .business-card .card-links {
   margin-top: 1.5rem;
   font-size: 0.85rem;
@@ -384,5 +375,5 @@ p:has(a[href="#top"]) a:hover {
 }
 
 .business-card .card-links a:hover {
-  border-bottom-color: var(--fg); /* Monochrome hover */
+  border-bottom-color: var(--fg);
 }
