@@ -1,24 +1,31 @@
 ---
 layout: default
 title: Home
-class: home-card
 ---
 
-# Marcos Verdejo Bosch
+<div class="home-wrapper">
 
-<p class="subtitle">Electronic Engineer</p>
+  <div class="business-card">
+    
+    <h1>Marcos Verdejo Bosch</h1>
+    <span class="role">Electronic Engineer</span>
 
-Focused on **hardware design**, **embedded intelligence**, and **analog circuits**.
-<br>Creating reliable systems that bridge the physical and digital worlds.
+    <div class="bio">
+      Focused on <strong>hardware design</strong>, <strong>embedded intelligence</strong>, and <strong>analog circuits</strong>.
+      <br>
+      Creating reliable systems that bridge the physical and digital worlds.
+    </div>
 
-<div class="tech-stack">
-  KiCad · Altium · C/C++ · ESP32 · STM32
-  <br>
-  IoT Systems · GCP · Kubernetes · Lab Instrumentation
-</div>
+    <div class="stack">
+      KiCad · C/C++ · ESP32 · IoT · Kubernetes
+    </div>
 
-<div class="contact-links">
-  <a href="https://github.com/MarcosVerdejoBosch" target="_blank">GitHub</a>
-  <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank">LinkedIn</a>
-  <a href="mailto:marcosverdejo@gmail.com">Email</a>
+    <div class="card-links">
+      <a href="https://github.com/MarcosVerdejoBosch" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank">LinkedIn</a>
+      <a href="mailto:marcosverdejo@gmail.com">Email</a>
+    </div>
+
+  </div>
+
 </div>
