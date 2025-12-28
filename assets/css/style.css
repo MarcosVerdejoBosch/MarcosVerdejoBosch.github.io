@@ -62,18 +62,18 @@ p, li {
   text-justify: inter-word;
 }
 
-/* Standard Links (Body text) - ZERO MOVEMENT FIX */
+/* Standard Links (Body text) */
 a {
   color: var(--accent);
   text-decoration: none;
-  /* Reserve 1px space always so it doesn't jump on hover */
-  border-bottom: 1px solid transparent; 
-  transition: color 0.15s ease, border-color 0.15s ease;
+  /* Dotted by default for standard text links */
+  border-bottom: 1px dotted var(--accent);
+  transition: all 0.15s ease;
 }
 
 a:hover {
   color: var(--fg);
-  border-bottom-color: var(--accent);
+  border-bottom-style: solid; /* Switches to solid on hover */
 }
 
 /* --------------------------------------------------------------
@@ -191,7 +191,7 @@ code {
   font-size: 0.9em;
 }
 
-/* Back to top links - STATIC (No movement) */
+/* Back to top links - STATIC */
 p:has(a[href="#top"]) {
   text-align: right;
   margin-top: 2rem;
@@ -209,7 +209,8 @@ p:has(a[href="#top"]) a {
   font-size: 0.85rem;
   font-weight: 600;
   transition: all 0.2s ease-in-out;
-  /* Removed transform: translateY so it doesn't jump */
+  /* Override default link style for button */
+  border-bottom: 1px solid var(--line);
 }
 p:has(a[href="#top"]) a:hover {
   background-color: rgba(136, 192, 208, 0.15); 
@@ -224,6 +225,63 @@ p:has(a[href="#top"]) a:hover {
   width: 100%;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------
+   PROJECT CARDS (For Projects Index)
+-------------------------------------------------------------- */
+.project-card {
+  border: 1px solid var(--line);
+  background-color: transparent;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+  border-left: 4px solid var(--muted);
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  border-left-color: var(--accent);
+  background-color: rgba(59, 66, 82, 0.3);
+  transform: translateX(5px);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: var(--fg);
+}
+
+.project-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-card .specs {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--line);
+  margin-bottom: 1.5rem;
+}
+
+.btn-report {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  border: 1px solid var(--accent) !important; /* Force solid border for button */
+  padding: 0.6rem 1.2rem;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.btn-report:hover {
+  background-color: var(--accent);
+  color: var(--bg); 
 }
 
 /* --------------------------------------------------------------
@@ -304,43 +362,34 @@ p:has(a[href="#top"]) a:hover {
 }
 
 /* --------------------------------------------------------------
-   LINK INTERACTIONS (Zero Movement Guarantee)
-   Strategy: Always keep a 2px border. 
-   Default = Transparent (or subtle gray). Hover = Accent.
+   LINK INTERACTIONS (Dotted Style Restored)
 -------------------------------------------------------------- */
 
-/* 1. Navbar Links */
-.nav-links a {
-  text-decoration: none;
-  color: var(--muted);
-  /* Always 2px, initially transparent */
-  border-bottom: 2px solid transparent; 
-  transition: color 0.2s ease, border-color 0.2s ease;
-  padding-bottom: 2px;
-}
-
-/* 2. Card Links */
+/* 1. Navbar & Card Links: Dotted by default */
+.nav-links a,
 .business-card .card-links a {
   text-decoration: none;
-  color: var(--fg);
-  /* Always 2px. The gray hint is now 2px thick to match the hover state */
-  border-bottom: 2px solid rgba(255, 255, 255, 0.15); 
-  transition: color 0.2s ease, border-color 0.2s ease;
+  color: var(--fg); /* White-ish text */
+  
+  /* The Dotted Line */
+  border-bottom: 1px dotted var(--muted); 
+  
+  transition: all 0.2s ease;
   padding-bottom: 2px;
   cursor: pointer;
 }
 
-/* 3. Hover State (Shared) */
+/* 2. Hover State: Solid Blue Line */
 .nav-links a:hover,
 .nav-links a.active,
 .business-card .card-links a:hover {
   color: var(--fg);
-  /* Stays 2px, just changes color. No layout jump. */
-  border-bottom-color: var(--accent);
+  /* Switch to Solid, keep 1px width (no jump) */
+  border-bottom: 1px solid var(--accent); 
   opacity: 1;
 }
 
-/* MVB: Strict No Interaction */
+/* MVB: No Interaction */
 .nav-title, .nav-title:hover {
   border: none !important;
   color: var(--fg) !important;
@@ -349,7 +398,7 @@ p:has(a[href="#top"]) a:hover {
 /* Email Copied State */
 .email-copied {
   color: var(--accent) !important;
-  border-bottom-color: transparent !important;
+  border-bottom: none !important; /* Remove line when copied */
   font-weight: bold;
 }
 
@@ -374,65 +423,4 @@ p:has(a[href="#top"]) a:hover {
   }
   .business-card .bio { padding: 0; }
   .business-card .card-links { gap: 1rem; }
-}
-
-/* --------------------------------------------------------------
-   Project Cards (Menu Style)
--------------------------------------------------------------- */
-
-.project-card {
-  border: 1px solid var(--line);
-  background-color: transparent;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  transition: all 0.2s ease;
-  /* Borde izquierdo sólido para darle toque técnico */
-  border-left: 4px solid var(--muted);
-}
-
-.project-card:hover {
-  border-color: var(--accent);
-  border-left-color: var(--accent);
-  background-color: rgba(59, 66, 82, 0.3); /* Subtle highlight */
-  transform: translateX(5px); /* Pequeño movimiento a la derecha */
-}
-
-.project-card h3 {
-  margin-top: 0;
-  font-size: 1.4rem;
-  color: var(--fg);
-}
-
-.project-card p {
-  color: var(--muted);
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-}
-
-.project-card .specs {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--line); /* Darker grey for tech tags */
-  margin-bottom: 1.5rem;
-}
-
-/* El Botón "Patrick Bateman" */
-.btn-report {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 0.6rem 1.2rem;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-}
-
-.btn-report:hover {
-  background-color: var(--accent);
-  color: var(--bg); /* Texto oscuro sobre fondo azul */
-  border-bottom-color: var(--accent); /* Override link styles */
 }
