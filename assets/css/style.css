@@ -300,8 +300,10 @@ p:has(a[href="#top"]) a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 65vh;
+  min-height: 70vh; /* Altura suficiente para centrar */
   width: 100%;
+  padding: 1rem; /* Margen de seguridad en móviles */
+  box-sizing: border-box;
 }
 
 .business-card {
@@ -310,6 +312,8 @@ p:has(a[href="#top"]) a:hover {
   background-color: var(--bg-alt);
   border: 1px solid var(--muted);
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  
+  /* Padding amplio en escritorio */
   padding: 3.5rem 2rem;
   margin: 0 auto;
   position: relative;
@@ -318,9 +322,9 @@ p:has(a[href="#top"]) a:hover {
   text-align: center !important; 
 }
 
-/* Fix: Explicitly center the H1 to override global left-align */
+/* Fix: Explicitly center the H1 */
 .business-card h1 {
-  text-align: center; /* Vital fix */
+  text-align: center;
   font-family: var(--font-mono);
   font-size: 2rem;
   text-transform: uppercase;
@@ -331,7 +335,6 @@ p:has(a[href="#top"]) a:hover {
   color: var(--fg);
 }
 
-/* Ensure separator is gone in card */
 .business-card h1::after { display: none; }
 
 .business-card .role {
@@ -367,33 +370,78 @@ p:has(a[href="#top"]) a:hover {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-}
-
-.business-card .card-links a {
-  color: var(--fg);
-  margin: 0 1rem;
+  
+  /* Flexbox para manejar los espacios correctamente en móvil */
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 /* --------------------------------------------------------------
-   Unified Interactive Links (Blue Underline)
-   Targets: Navbar Title (MVB), Menu Links, and Card Links
+   Unified Interactive Links (Smart Links)
 -------------------------------------------------------------- */
 
-/* Base State: Transparent Border */
+/* Estado Base: Texto Blanco + Subrayado Gris Sutil (Indica click) */
 .nav-title,
 .nav-links a,
 .business-card .card-links a {
   text-decoration: none;
-  border-bottom: 2px solid transparent; /* Reserve space */
+  color: var(--fg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Pista visual sutil */
   transition: all 0.2s ease;
   padding-bottom: 2px;
+  cursor: pointer; /* Mano para indicar click */
 }
 
-/* Hover State: White Text + Blue Line */
+/* Estado Hover: Línea Azul Intensa */
 .nav-title:hover,
 .nav-links a:hover,
 .business-card .card-links a:hover,
 .nav-links a.active {
-  color: var(--fg); /* Pure White */
-  border-bottom-color: var(--accent); /* Nord Cyan Blue */
+  color: var(--fg); 
+  border-bottom: 2px solid var(--accent); /* Nord Cyan Blue */
+  opacity: 1;
+}
+
+/* Clase especial para cuando el email se copia */
+.email-copied {
+  color: var(--accent) !important;
+  border-bottom-color: transparent !important;
+  font-weight: bold;
+}
+
+/* --------------------------------------------------------------
+   Mobile Optimization (Fixes alignment on phone)
+-------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .home-wrapper {
+    min-height: 60vh; /* Ajuste para pantallas verticales */
+    padding-top: 2rem;
+  }
+  
+  .business-card {
+    padding: 2rem 1.2rem; /* Menos padding interno para ganar espacio */
+    width: 100%; /* Ocupar todo el ancho disponible */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Sombra un poco más leve */
+  }
+
+  .business-card h1 {
+    font-size: 1.6rem; /* Ajustar tamaño del nombre */
+    word-wrap: break-word; /* Evitar desbordes si el nombre es largo */
+  }
+  
+  .business-card .role {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+  }
+  
+  .business-card .bio {
+    padding: 0; /* Quitar padding lateral extra en textos */
+    font-size: 0.9rem;
+  }
+  
+  .business-card .card-links {
+    gap: 1rem; /* Links un poco más juntos */
+  }
 }
