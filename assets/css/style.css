@@ -62,7 +62,7 @@ p, li {
   text-justify: inter-word;
 }
 
-/* Links */
+/* Standard Links (Body text) */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -132,7 +132,6 @@ h2 {
   position: static;  /* Remove relative positioning */
 }
 
-
 /* Lists */
 ul, ol {
   margin: 0.8rem 0 1.1rem 0;
@@ -190,12 +189,6 @@ img {
 .nav-links a {
   margin-left: 1rem;
   color: var(--muted);
-  border-bottom: none;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--accent);
 }
 
 /* --------------------------------------------------------------
@@ -264,13 +257,20 @@ p:has(a[href="#top"]) a:hover {
   /* Optional: slight lift effect */
   transform: translateY(-2px);
 }
-/* Footer */
+
+/* --------------------------------------------------------------
+   Footer (Centering Fix)
+-------------------------------------------------------------- */
 .footer {
-  text-align: center;
-  padding: 2rem 1rem;
+  display: block;
   width: 100%;
+  text-align: center; /* Explicit center alignment */
+  padding: 2rem 0;    /* Vertical spacing */
+  margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
+  position: relative;
+  clear: both;
 }
 
 /* --------------------------------------------------------------
@@ -331,6 +331,7 @@ p:has(a[href="#top"]) a:hover {
   color: var(--fg);
 }
 
+/* Ensure separator is gone in card */
 .business-card h1::after { display: none; }
 
 .business-card .role {
@@ -371,9 +372,28 @@ p:has(a[href="#top"]) a:hover {
 .business-card .card-links a {
   color: var(--fg);
   margin: 0 1rem;
-  border-bottom: 1px solid transparent;
 }
 
-.business-card .card-links a:hover {
-  border-bottom-color: var(--fg);
+/* --------------------------------------------------------------
+   Unified Interactive Links (Blue Underline)
+   Targets: Navbar Title (MVB), Menu Links, and Card Links
+-------------------------------------------------------------- */
+
+/* Base State: Transparent Border */
+.nav-title,
+.nav-links a,
+.business-card .card-links a {
+  text-decoration: none;
+  border-bottom: 2px solid transparent; /* Reserve space */
+  transition: all 0.2s ease;
+  padding-bottom: 2px;
+}
+
+/* Hover State: White Text + Blue Line */
+.nav-title:hover,
+.nav-links a:hover,
+.business-card .card-links a:hover,
+.nav-links a.active {
+  color: var(--fg); /* Pure White */
+  border-bottom-color: var(--accent); /* Nord Cyan Blue */
 }
