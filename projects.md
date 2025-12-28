@@ -6,7 +6,29 @@ permalink: /projects/
 
 ## Discrete Linear Voltage Regulator (5V / 3.3V)
 
-![Linear Regulator PCB Render](assets/img/regulator.jpg)
+<div style="width: 100%; height: 450px; background: var(--bg-alt); border: 1px solid var(--muted); box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin: 2rem 0; position: relative;">
+
+  <model-viewer 
+    src="/assets/img/projects/linear-regulator/regulador.glb" 
+    poster="/assets/img/projects/linear-regulator/poster_opcional.jpg"
+    alt="3D Linear Regulator PCB"
+    auto-rotate 
+    camera-controls 
+    shadow-intensity="1.5"
+    shadow-softness="0.8"
+    exposure="1.2"
+    style="width: 100%; height: 100%; background-color: #2e3440;"
+    camera-orbit="45deg 55deg 105%"
+    min-camera-orbit="auto auto 5%"
+    max-camera-orbit="auto auto 100%">
+    
+  <div slot="progress-bar" style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.1);">
+      <div style="width: 100%; height: 100%; background: var(--accent); transform-origin: top left; transform: scaleX(0);"></div>
+  </div>
+    
+  </model-viewer>
+  
+</div>
 
 A fully discrete linear power supply designed to explore the fundamentals of feedback loops, error amplifiers, and pass elements without relying on integrated regulators like the LM7805.
 
