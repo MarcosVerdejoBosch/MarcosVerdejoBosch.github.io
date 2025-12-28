@@ -42,7 +42,7 @@ title: Home
       const originalText = "Email";
       
       // Cambiar texto y estilo visualmente
-      btn.innerText = "COPIED!";
+      btn.innerText = "Copied"; // Cambio realizado aquí
       btn.classList.add("email-copied");
       
       // Esperar 2 segundos y volver a la normalidad
