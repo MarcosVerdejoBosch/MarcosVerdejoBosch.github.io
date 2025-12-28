@@ -292,71 +292,97 @@ p:has(a[href="#top"]) a:hover {
 }
 
 /* --------------------------------------------------------------
-   "The Bateman" Layout - Minimalist Business Card Style
-   Only applies when page.class = "home-card"
+   "The Asset" Layout - Physical Business Card Look
 -------------------------------------------------------------- */
 
-body.home-card .content {
+/* 1. The Stage: Centers the card vertically between Nav and Footer */
+.home-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertical centering */
-  min-height: 65vh;        /* Minimum height to float content in the middle */
+  justify-content: center;
+  align-items: center;
+  min-height: 65vh; /* Occupy visual center */
+  width: 100%;
 }
 
-/* Center all text and override previous layout styles */
-body.home-card h1,
-body.home-card p,
-body.home-card h2,
-body.home-card div {
-  text-align: center !important;
-  margin-left: auto;
-  margin-right: auto;
+/* 2. The Card: A distinct physical container */
+.business-card {
+  width: 100%;
+  max-width: 580px; /* Standard card proportions */
+  
+  /* The Look */
+  background-color: var(--bg-alt); /* Slightly lighter than page bg */
+  border: 1px solid var(--muted);  /* The "Bone" white border */
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25); /* Deep shadow to make it float */
+  
+  /* Spacing */
+  padding: 3.5rem 2rem;
+  margin: 0 auto;
+  
+  /* Typography Alignment */
+  text-align: center;
+  position: relative;
 }
 
-/* The Name (H1) */
-body.home-card h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.2rem;
-  letter-spacing: -0.03em;
-  border: none;
-}
-/* Hide the separator line used in other pages */
-body.home-card h1::after {
-  display: none;
-}
-
-/* The Role (Subtitle) */
-body.home-card p.subtitle {
-  font-size: 1.1rem;
-  color: var(--accent); /* Subtle accent color */
-  margin-top: 0;
-  margin-bottom: 2rem;
-  font-weight: 500;
+/* 3. The Name (H1) - Impactful */
+.business-card h1 {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  text-transform: uppercase; /* Authority */
   letter-spacing: 0.05em;
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+  border: none;
+  color: var(--fg); /* Pure white/grey */
+}
+
+.business-card h1::after { display: none; } /* Ensure separator is gone */
+
+/* 4. The Title - The "Silian Rail" detail */
+.business-card .role {
+  font-size: 0.85rem;
   text-transform: uppercase;
+  letter-spacing: 0.2em; /* Widely spaced like a premium card */
+  color: var(--muted);   /* No accent color, just elegant grey */
+  margin-bottom: 2rem;
+  display: block;
+  font-weight: 400;
 }
 
-/* The Tech Stack (Compact & Clean) */
-body.home-card .tech-stack {
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin-top: 1.5rem;
-  line-height: 1.8;
-}
-
-/* Contact Links (Card Footer) */
-body.home-card .contact-links {
-  margin-top: 2rem;
+/* 5. The Pitch - Clean text */
+.business-card .bio {
   font-size: 0.95rem;
-  font-weight: 600;
+  line-height: 1.6;
+  color: var(--fg);
+  margin-bottom: 2rem;
+  padding: 0 1rem;
 }
 
-body.home-card .contact-links a {
-  margin: 0 0.8rem;
+/* 6. The Stack - Minimalist line */
+.business-card .stack {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line); /* Divider inside the card */
+}
+
+/* 7. Footer Links inside card */
+.business-card .card-links {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.business-card .card-links a {
   color: var(--fg);
+  margin: 0 1rem;
   border-bottom: 1px solid transparent;
 }
 
-body.home-card .contact-links a:hover {
-  border-bottom-color: var(--accent);
+.business-card .card-links a:hover {
+  border-bottom-color: var(--fg); /* Monochrome hover */
 }
