@@ -41,8 +41,9 @@ html, body {
   box-sizing: border-box;
 }
 
+/* RESTAURADO: Ancho original de 760px para centrado perfecto */
 .content, .container, .post, main {
-  max-width: 960px; /* Un poco más ancho para acomodar el menú izquierdo */
+  max-width: 760px; 
   margin: 1.9rem auto;
   padding: 0 1.5rem;
   background: transparent;
@@ -62,12 +63,9 @@ a:hover { color: var(--fg); border-bottom-style: solid; }
 
 /* Typography */
 h1, h2, h3 { color: var(--fg); letter-spacing: -0.02em; text-align: left; }
-
 h1 { font-size: 2rem; margin: 1.5rem 0 2rem 0; line-height: 1.2; border: none; padding: 0; position: relative; }
 h1::after { content: ""; display: block; width: 60px; height: 3px; background-color: var(--line); margin-top: 1rem; border-radius: 2px; }
-
 h2 { margin-top: 3.5rem; margin-bottom: 1rem; padding: 0; font-size: 1.5rem; font-weight: 600; border: none; }
-
 img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border: 1px solid var(--line); border-radius: 12px; }
 
 /* --------------------------------------------------------------
@@ -85,7 +83,7 @@ img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border
 }
 
 .nav-container {
-  max-width: 960px;
+  max-width: 760px; /* Alineado con el contenido */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -95,7 +93,7 @@ img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border
 .nav-title { font-weight: 700; color: var(--fg); text-decoration: none; border: none !important; cursor: default; }
 .nav-links { display: flex; gap: 1.5rem; align-items: center; }
 
-/* Dropdown Logic */
+/* Dropdown Logic (Mantenemos los arreglos de usabilidad) */
 .dropdown { position: relative; display: inline-block; }
 .dropdown-content {
   display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
@@ -108,70 +106,14 @@ img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border
 .dropdown-content a:hover { background-color: var(--bg); color: var(--accent); }
 .dropdown-content a::after { display: none; }
 
-/* Navbar Link Underlines */
+/* Navbar Link Styling */
 .nav-links > a, .dropdown > a { text-decoration: none; color: var(--fg); position: relative; padding-bottom: 5px; border: none; cursor: pointer; display: inline-block; }
 .nav-links > a::after, .dropdown > a::after { content: ''; position: absolute; width: 100%; height: 1px; bottom: 0; left: 0; background-color: rgba(236, 239, 244, 0.4); transition: all 0.2s ease-in-out; }
-.nav-links > a:hover::after, .dropdown:hover > a::after, .nav-links > a.active::after, .dropdown > a.active::after { height: 3px; background-color: var(--accent); }
+.nav-links > a:hover::after, .dropdown:hover > a::after { height: 3px; background-color: var(--accent); }
 
-/* --------------------------------------------------------------
-   REPORT LAYOUT (LEFT Sidebar + Active State)
--------------------------------------------------------------- */
-.report-grid {
-  display: grid;
-  /* CAMBIO: Sidebar a la izquierda (180px) | Contenido a la derecha */
-  grid-template-columns: 180px 1fr; 
-  gap: 3rem;
-  position: relative;
-}
-
-.report-content { min-width: 0; }
-
-.toc-sidebar {
-  position: sticky;
-  top: 120px;
-  height: fit-content;
-  /* CAMBIO: Borde a la derecha para separar del contenido */
-  border-right: 1px solid var(--line); 
-  border-left: none;
-  padding-right: 1.5rem;
-  padding-left: 0;
-  text-align: right; /* Alineación a la derecha queda elegante en sidebar izquierda */
-}
-
-.toc-sidebar h4 {
-  margin-top: 0;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--line); /* Color más sutil para el título */
-  margin-bottom: 1rem;
-}
-
-.toc-sidebar ul { list-style: none; padding: 0; margin: 0; }
-.toc-sidebar li { margin-bottom: 0.8rem; }
-
-/* Estilo Base de los Links del Índice */
-.toc-sidebar a {
-  font-size: 0.85rem;
-  color: var(--muted);
-  border: none;
-  transition: all 0.2s ease;
-  display: block;
-  opacity: 0.6;
-}
-
-.toc-sidebar a:hover { 
-  color: var(--fg);
-  opacity: 1; 
-}
-
-/* ESTADO ACTIVO (Cuando estás leyendo esa sección) */
-.toc-sidebar a.active {
-  color: var(--accent); /* Se pone azul */
-  font-weight: 700;
-  opacity: 1;
-  transform: translateX(-5px); /* Pequeño movimiento visual */
-}
+/* Active State: Solo línea azul, texto blanco */
+.nav-links > a.active, .dropdown > a.active { color: var(--fg); }
+.nav-links > a.active::after, .dropdown > a.active::after { height: 3px; background-color: var(--accent); }
 
 /* --------------------------------------------------------------
    HOME & CARD STYLES
@@ -181,4 +123,28 @@ img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border
 .business-card h1 { text-align: center; font-family: var(--font-mono); font-size: 2rem; text-transform: uppercase; margin: 0 0 0.5rem 0; color: var(--fg); border: none; }
 .business-card h1::after { display: none; }
 .business-card .role { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 2rem; display: block; }
-.business-card .bio { font-size: 0.95rem; line-height: 1.6; color: var(--fg); margin-bottom: 2rem; padding: 0
+.business-card .bio { font-size: 0.95rem; line-height: 1.6; color: var(--fg); margin-bottom: 2rem; padding: 0 1rem; }
+.business-card .stack { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.business-card .card-links { margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.business-card .card-links a { text-decoration: none; color: var(--fg); position: relative; padding-bottom: 5px; border: none; cursor: pointer; }
+.business-card .card-links a::after { content: ''; position: absolute; width: 100%; height: 1px; bottom: 0; left: 0; background-color: rgba(236, 239, 244, 0.4); transition: all 0.2s ease-in-out; }
+.business-card .card-links a:hover::after { height: 3px; background-color: var(--accent); }
+
+.btn-report { display: inline-block; font-size: 0.85rem; font-weight: 700; color: var(--accent); border: 1px solid var(--accent) !important; padding: 0.6rem 1.2rem; text-transform: uppercase; transition: all 0.2s ease; }
+.btn-report:hover { background-color: var(--accent); color: var(--bg); }
+.email-copied { color: var(--accent) !important; font-weight: bold; }
+.email-copied::after { display: none !important; }
+.project-card { border: 1px solid var(--line); padding: 2rem; margin-bottom: 2rem; border-left: 4px solid var(--muted); transition: all 0.2s ease; }
+.project-card:hover { border-color: var(--accent); border-left-color: var(--accent); background-color: rgba(59, 66, 82, 0.3); transform: translateX(5px); }
+.footer { text-align: center; padding: 2rem 0; width: 100%; color: var(--muted); font-size: 0.9rem; }
+
+/* Mobile Optimization */
+@media (max-width: 900px) {
+  .home-wrapper { min-height: 90vh; padding: 1rem; }
+  .business-card { padding: 2rem 1.2rem; }
+  .dropdown-content { position: static; transform: none; min-width: 100%; border: none; background: transparent; padding-left: 1rem; box-shadow: none; }
+  .dropdown-content::before { display: none; }
+  .dropdown:hover .dropdown-content { display: block; border-left: 2px solid var(--line); }
+  .nav-container { flex-direction: column; gap: 1rem; }
+  .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; align-items: flex-start; }
+}
