@@ -12,6 +12,10 @@
   --line: #4c566a;    /* Grey Line */
   --accent: #88c0d0;  /* Cyan Blue */
   --anchor-offset: 100px;
+
+  /* Layout sizing */
+  --page-max: 760px;
+  --card-max: 580px;
 }
 
 html {
@@ -21,7 +25,10 @@ html {
 
 h2, h3 { scroll-margin-top: var(--anchor-offset); }
 
-/* Base layout */
+/* --------------------------------------------------------------
+   Base layout
+-------------------------------------------------------------- */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -30,23 +37,27 @@ html, body {
   font-family: var(--font-mono);
   line-height: 1.75;
   font-size: 16px;
+
+  /* Keep footer at bottom */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Main wrapper */
 .content {
   flex: 1;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Contenedor principal centrado */
+/* Center main content */
 .content, .container, .post, main {
-  max-width: 760px; 
+  max-width: var(--page-max);
   margin: 1.9rem auto;
   padding: 0 1.5rem;
   background: transparent;
+  box-sizing: border-box;
 }
 
 /* Text alignment */
@@ -63,14 +74,47 @@ a:hover { color: var(--fg); border-bottom-style: solid; }
 
 /* Typography */
 h1, h2, h3 { color: var(--fg); letter-spacing: -0.02em; text-align: left; }
-h1 { font-size: 2rem; margin: 1.5rem 0 2rem 0; line-height: 1.2; border: none; padding: 0; position: relative; }
-h1::after { content: ""; display: block; width: 60px; height: 3px; background-color: var(--line); margin-top: 1rem; border-radius: 2px; }
-h2 { margin-top: 3.5rem; margin-bottom: 1rem; padding: 0; font-size: 1.5rem; font-weight: 600; border: none; }
-img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border: 1px solid var(--line); border-radius: 12px; }
+
+h1 {
+  font-size: 2rem;
+  margin: 1.5rem 0 2rem 0;
+  line-height: 1.2;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--line);
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+
+h2 {
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+  padding: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
 
 /* --------------------------------------------------------------
    NAVBAR & DROPDOWN
 -------------------------------------------------------------- */
+
 .navbar {
   position: sticky;
   top: 0;
@@ -83,33 +127,95 @@ img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border
 }
 
 .nav-container {
-  max-width: 760px;
+  max-width: var(--page-max);
   margin: 0 auto;
+  padding: 0 1.5rem;          /* keep aligned with main content */
+  box-sizing: border-box;
+
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
 
-.nav-title { font-weight: 700; color: var(--fg); text-decoration: none; border: none !important; cursor: default; }
+.nav-title {
+  font-weight: 700;
+  color: var(--fg);
+  text-decoration: none;
+  border: none !important;
+  cursor: default;
+}
+
 .nav-links { display: flex; gap: 1.5rem; align-items: center; }
 
 /* Dropdown Logic */
 .dropdown { position: relative; display: inline-block; }
+
 .dropdown-content {
-  display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-  background-color: var(--bg-alt); min-width: 180px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
-  border: 1px solid var(--line); border-radius: 4px; z-index: 1; padding: 0.5rem 0;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: var(--bg-alt);
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  z-index: 1;
+  padding: 0.5rem 0;
 }
-.dropdown-content::before { content: ""; position: absolute; top: -1rem; left: 0; width: 100%; height: 1rem; background: transparent; }
+
+.dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  background: transparent;
+}
+
 .dropdown:hover .dropdown-content { display: block; }
-.dropdown-content a { color: var(--muted); padding: 0.8rem 1.2rem; text-decoration: none; display: block; text-align: left; border: none; font-size: 0.9rem; }
+
+.dropdown-content a {
+  color: var(--muted);
+  padding: 0.8rem 1.2rem;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border: none;
+  font-size: 0.9rem;
+}
 .dropdown-content a:hover { background-color: var(--bg); color: var(--accent); }
 .dropdown-content a::after { display: none; }
 
 /* Navbar Link Styling */
-.nav-links > a, .dropdown > a { text-decoration: none; color: var(--fg); position: relative; padding-bottom: 5px; border: none; cursor: pointer; display: inline-block; }
-.nav-links > a::after, .dropdown > a::after { content: ''; position: absolute; width: 100%; height: 1px; bottom: 0; left: 0; background-color: rgba(236, 239, 244, 0.4); transition: all 0.2s ease-in-out; }
-.nav-links > a:hover::after, .dropdown:hover > a::after { height: 3px; background-color: var(--accent); }
+.nav-links > a, .dropdown > a {
+  text-decoration: none;
+  color: var(--fg);
+  position: relative;
+  padding-bottom: 5px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.nav-links > a::after, .dropdown > a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(236, 239, 244, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-links > a:hover::after, .dropdown:hover > a::after {
+  height: 3px;
+  background-color: var(--accent);
+}
 
 /* Active State */
 .nav-links > a.active, .dropdown > a.active { color: var(--fg); }
@@ -118,36 +224,136 @@ img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border
 /* --------------------------------------------------------------
    HOME & CARD STYLES
 -------------------------------------------------------------- */
-/* Wrapper del Home: Centrado Absoluto */
-.home-wrapper { 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; /* Centrado Vertical */
-  align-items: center;     /* Centrado Horizontal */
-  min-height: 80vh;        /* Altura mínima para asegurar centrado en pantalla */
-  width: 100%; 
+
+/* Home wrapper: center card */
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 80vh;
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Ensure equal side padding so the card is centered on mobile */
+  padding: 0 1rem;
 }
 
-.business-card { 
-  width: 100%; 
-  max-width: 580px; 
-  background-color: var(--bg-alt); 
-  border: 1px solid var(--muted); 
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25); 
-  padding: 3.5rem 2rem; 
-  margin: 0 auto; 
-  position: relative; 
-  text-align: center !important; 
+/* Business card */
+.business-card {
+  width: 100%;
+  max-width: var(--card-max);
+
+  background-color: var(--bg-alt);
+  border: 1px solid var(--muted);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+
+  padding: 3.5rem 2rem;
+  margin: 0 auto;
+
+  box-sizing: border-box;
+  text-align: center !important;
 }
-.business-card h1 { text-align: center; font-family: var(--font-mono); font-size: 2rem; text-transform: uppercase; margin: 0 0 0.5rem 0; color: var(--fg); border: none; }
+
+/* Card title */
+.business-card h1 {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+  color: var(--fg);
+  border: none;
+}
 .business-card h1::after { display: none; }
-.business-card .role { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 2rem; display: block; }
-.business-card .bio { font-size: 0.95rem; line-height: 1.6; color: var(--fg); margin-bottom: 2rem; padding: 0 1rem; }
-.business-card .stack { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-.business-card .card-links { margin-top: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-.business-card .card-links a { text-decoration: none; color: var(--fg); position: relative; padding-bottom: 5px; border: none; cursor: pointer; }
-.business-card .card-links a::after { content: ''; position: absolute; width: 100%; height: 1px; bottom: 0; left: 0; background-color: rgba(236, 239, 244, 0.4); transition: all 0.2s ease-in-out; }
+
+.business-card .role {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.business-card .bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--fg);
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  text-align: center; /* bio looks better centered on business card */
+}
+
+.business-card .stack {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+/* Links row */
+.business-card .card-links {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Link styling inside card */
+.business-card .card-links a {
+  text-decoration: none;
+  color: var(--fg);
+  position: relative;
+  padding-bottom: 5px;
+  border: none;
+  cursor: pointer;
+}
+.business-card .card-links a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(236, 239, 244, 0.4);
+  transition: all 0.2s ease-in-out;
+}
 .business-card .card-links a:hover::after { height: 3px; background-color: var(--accent); }
+
+/* Email button (matches link look, but semantic) */
+.email-btn {
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.email-btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(236, 239, 244, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+
+.email-btn:hover::after {
+  height: 3px;
+  background-color: var(--accent);
+}
 
 .email-copied { color: var(--accent) !important; font-weight: bold; }
 .email-copied::after { display: none !important; }
@@ -155,20 +361,21 @@ img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border
 /* --------------------------------------------------------------
    PROJECT CARDS (Restauradas)
 -------------------------------------------------------------- */
-.project-card { 
-  border: 1px solid var(--line); 
+
+.project-card {
+  border: 1px solid var(--line);
   background-color: transparent;
-  padding: 2rem; 
-  margin-bottom: 2rem; 
-  border-left: 4px solid var(--muted); 
-  transition: all 0.2s ease; 
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--muted);
+  transition: all 0.2s ease;
 }
 
-.project-card:hover { 
-  border-color: var(--accent); 
-  border-left-color: var(--accent); 
-  background-color: rgba(59, 66, 82, 0.3); 
-  transform: translateX(5px); 
+.project-card:hover {
+  border-color: var(--accent);
+  border-left-color: var(--accent);
+  background-color: rgba(59, 66, 82, 0.3);
+  transform: translateX(5px);
 }
 
 .project-card h3 {
@@ -192,41 +399,59 @@ img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border
   margin-bottom: 1.5rem;
 }
 
-.btn-report { 
-  display: inline-block; 
-  font-size: 0.85rem; 
-  font-weight: 700; 
-  color: var(--accent); 
-  border: 1px solid var(--accent) !important; 
-  padding: 0.6rem 1.2rem; 
-  text-transform: uppercase; 
-  transition: all 0.2s ease; 
+.btn-report {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1px solid var(--accent) !important;
+  padding: 0.6rem 1.2rem;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
 }
 
-.btn-report:hover { 
-  background-color: var(--accent); 
-  color: var(--bg); 
+.btn-report:hover {
+  background-color: var(--accent);
+  color: var(--bg);
 }
 
 /* --------------------------------------------------------------
-   FOOTER (Centrado)
+   FOOTER (centered with business card width)
 -------------------------------------------------------------- */
-.footer { 
-  text-align: center;   /* Centra el texto */
-  padding: 2rem 0; 
-  width: 100%;          /* Asegura que ocupe todo el ancho */
-  color: var(--muted); 
-  font-size: 0.9rem; 
-  margin-top: auto;     /* Empuja el footer al fondo si hay poco contenido */
+
+.footer {
+  /* Center the footer text block and match card width */
+  max-width: var(--card-max);
+  width: 100%;
+  margin: 0 auto;
+
+  text-align: center;
+  padding: 1.6rem 1rem; /* horizontal padding helps on mobile */
+  box-sizing: border-box;
+
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 /* Mobile Optimization */
 @media (max-width: 900px) {
   .home-wrapper { min-height: 90vh; padding: 1rem; }
+
   .business-card { padding: 2rem 1.2rem; }
-  .dropdown-content { position: static; transform: none; min-width: 100%; border: none; background: transparent; padding-left: 1rem; box-shadow: none; }
-  .dropdown-content::before { display: none; }
-  .dropdown:hover .dropdown-content { display: block; border-left: 2px solid var(--line); }
+
   .nav-container { flex-direction: column; gap: 1rem; }
   .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; align-items: flex-start; }
+
+  .dropdown-content {
+    position: static;
+    transform: none;
+    min-width: 100%;
+    border: none;
+    background: transparent;
+    padding-left: 1rem;
+    box-shadow: none;
+  }
+
+  .dropdown-content::before { display: none; }
+  .dropdown:hover .dropdown-content { display: block; border-left: 2px solid var(--line); }
 }
