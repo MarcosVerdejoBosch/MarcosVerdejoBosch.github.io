@@ -3,10 +3,18 @@ layout: default
 title: Home
 ---
 
+<!--
+File: index.md
+Purpose: Homepage "business card" with quick links.
+Notes:
+- Keep markup semantic and accessible
+- Email uses a button (not an <a> without href)
+-->
+
 <div class="home-wrapper">
 
   <div class="business-card">
-    
+
     <h1>Marcos Verdejo Bosch</h1>
     <span class="role">Electronic Engineer</span>
 
@@ -21,9 +29,25 @@ title: Home
     </div>
 
     <div class="card-links">
-      <a href="https://github.com/MarcosVerdejoBosch" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank">LinkedIn</a>
-      <a id="email-btn" onclick="copyEmail()">Email</a>
+      <!-- External links -->
+      <a href="https://github.com/MarcosVerdejoBosch" target="_blank" rel="noopener noreferrer">
+        GitHub
+      </a>
+
+      <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank" rel="noopener noreferrer">
+        LinkedIn
+      </a>
+
+      <!-- Email copy action (semantic button) -->
+      <button
+        id="email-btn"
+        type="button"
+        class="email-btn"
+        data-email="marcosverdejo@gmail.com"
+        aria-label="Copy email to clipboard"
+      >
+        Email
+      </button>
     </div>
 
   </div>
@@ -31,28 +55,29 @@ title: Home
 </div>
 
 <script>
-  function copyEmail() {
-    const email = "marcosverdejo@gmail.com";
+  // Copy email to clipboard and show short feedback (no inline onclick).
+  (function () {
     const btn = document.getElementById("email-btn");
-    
-    // Copiar al portapapeles
-    navigator.clipboard.writeText(email).then(() => {
-      
-      // Guardar el texto original
-      const originalText = "Email";
-      
-      // Cambiar texto y estilo visualmente
-      btn.innerText = "Copied"; // Cambio realizado aquí
-      btn.classList.add("email-copied");
-      
-      // Esperar 2 segundos y volver a la normalidad
-      setTimeout(() => {
-        btn.innerText = originalText;
-        btn.classList.remove("email-copied");
-      }, 2000);
-      
-    }).catch(err => {
-      console.error('Error al copiar: ', err);
+    if (!btn) return;
+
+    const originalText = btn.textContent.trim();
+    const email = btn.dataset.email;
+
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+
+        btn.textContent = "Copied";
+        btn.classList.add("email-copied");
+
+        window.setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove("email-copied");
+        }, 2000);
+      } catch (err) {
+        // Fallback: if clipboard fails, open mail client.
+        window.location.href = `mailto:${email}`;
+      }
     });
-  }
+  })();
 </script>
