@@ -17,5 +17,5 @@ permalink: /projects/
   <h3>IoT Sensor Node</h3>
   <p>Low-power ESP32 sensing unit with MQTT telemetry and deep-sleep optimization for battery longevity.</p>
   <div class="specs">C++ · ESP32 · GCP · IoT</div>
-  <a href="#" class="btn-report">COMING SOON</a>
+  <a href="#" class="btn-report" style="opacity: 0.6; cursor: default;">COMING SOON</a>
 </div>
