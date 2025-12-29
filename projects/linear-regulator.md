@@ -6,6 +6,18 @@ permalink: /projects/linear-regulator/
 
 <div class="report-grid">
 
+  <aside class="toc-sidebar">
+    <h4>Contents</h4>
+    <ul>
+      <li><a href="#abstract" class="toc-link">1. Abstract</a></li>
+      <li><a href="#architecture" class="toc-link">2. Architecture</a></li>
+      <li><a href="#foldback" class="toc-link">3. Protection</a></li>
+      <li><a href="#pcb-design" class="toc-link">4. PCB Design</a></li>
+      <li><a href="#conclusion" class="toc-link">5. Conclusion</a></li>
+      <li><a href="#top" style="font-size: 0.75rem; margin-top: 1rem; display: block; opacity: 0.5;">↑ Top</a></li>
+    </ul>
+  </aside>
+
   <div class="report-content">
 
     <h1 style="margin-top: 0;">Discrete Linear Regulator</h1>
@@ -55,16 +67,29 @@ permalink: /projects/linear-regulator/
     <br><hr><br>
     <a href="/projects/">← Back to Projects</a>
 
-  </div> <aside class="toc-sidebar">
-    <h4>Contents</h4>
-    <ul>
-      <li><a href="#abstract">1. Abstract</a></li>
-      <li><a href="#architecture">2. Architecture</a></li>
-      <li><a href="#foldback">3. Protection</a></li>
-      <li><a href="#pcb-design">4. PCB Design</a></li>
-      <li><a href="#conclusion">5. Conclusion</a></li>
-      <li><a href="#top" style="font-size: 0.8rem; margin-top: 1rem; display: block;">↑ Top</a></li>
-    </ul>
-  </aside>
+  </div> </div>
 
-</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const link = document.querySelector(`.toc-sidebar a[href="#${id}"]`);
+        
+        if (entry.isIntersecting) {
+          // Remover activo de todos
+          document.querySelectorAll('.toc-sidebar a').forEach(a => a.classList.remove('active'));
+          // Añadir activo al actual
+          if(link) link.classList.add('active');
+        }
+      });
+    }, {
+      rootMargin: "-20% 0px -60% 0px" // "Zona de lectura" (se activa cuando el titulo entra arriba)
+    });
+
+    // Observar todos los h2 que tengan ID
+    document.querySelectorAll('h2[id]').forEach((section) => {
+      observer.observe(section);
+    });
+  });
+</script>
