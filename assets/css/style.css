@@ -44,14 +44,12 @@ html, body {
   min-height: 100vh;
 }
 
-/* Main wrapper */
 .content {
   flex: 1;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Center main content */
 .content, .container, .post, main {
   max-width: var(--page-max);
   margin: 1.9rem auto;
@@ -112,7 +110,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   NAVBAR & DROPDOWN
+   NAVBAR & DROPDOWN (improved)
 -------------------------------------------------------------- */
 
 .navbar {
@@ -129,7 +127,7 @@ img {
 .nav-container {
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: 0 1.5rem;          /* keep aligned with main content */
+  padding: 0 1.5rem;
   box-sizing: border-box;
 
   display: flex;
@@ -145,81 +143,147 @@ img {
   cursor: default;
 }
 
-.nav-links { display: flex; gap: 1.5rem; align-items: center; }
-
-/* Dropdown Logic */
-.dropdown { position: relative; display: inline-block; }
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-
-  background-color: var(--bg-alt);
-  min-width: 180px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  z-index: 1;
-  padding: 0.5rem 0;
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
 }
 
-.dropdown-content::before {
-  content: "";
-  position: absolute;
-  top: -1rem;
-  left: 0;
-  width: 100%;
-  height: 1rem;
-  background: transparent;
-}
-
-.dropdown:hover .dropdown-content { display: block; }
-
-.dropdown-content a {
-  color: var(--muted);
-  padding: 0.8rem 1.2rem;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  border: none;
-  font-size: 0.9rem;
-}
-.dropdown-content a:hover { background-color: var(--bg); color: var(--accent); }
-.dropdown-content a::after { display: none; }
-
-/* Navbar Link Styling */
-.nav-links > a, .dropdown > a {
+/* Top-level nav links (Home, Projects) */
+.nav-links > a,
+.dropdown > a {
   text-decoration: none;
   color: var(--fg);
   position: relative;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
   border: none;
   cursor: pointer;
   display: inline-block;
 }
 
-.nav-links > a::after, .dropdown > a::after {
-  content: '';
+/* Underline base (dim) */
+.nav-links > a::after,
+.dropdown > a::after {
+  content: "";
   position: absolute;
   width: 100%;
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: rgba(236, 239, 244, 0.4);
-  transition: all 0.2s ease-in-out;
+
+  /* Default underline is subtle */
+  background-color: rgba(236, 239, 244, 0.28);
+  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.nav-links > a:hover::after, .dropdown:hover > a::after {
+/* HOVER underline: softer than active */
+.nav-links > a:hover::after,
+.dropdown:hover > a::after {
+  height: 3px;
+
+  /* Softer accent (less illumination than active) */
+  background-color: rgba(136, 192, 208, 0.55);
+
+  /* Small glow, not as strong as active */
+  box-shadow: 0 0 8px rgba(136, 192, 208, 0.20);
+}
+
+/* ACTIVE underline: strongest + crisp */
+.nav-links > a.active::after,
+.dropdown > a.active::after {
   height: 3px;
   background-color: var(--accent);
+  box-shadow: 0 0 10px rgba(136, 192, 208, 0.35);
 }
 
-/* Active State */
-.nav-links > a.active, .dropdown > a.active { color: var(--fg); }
-.nav-links > a.active::after, .dropdown > a.active::after { height: 3px; background-color: var(--accent); }
+/* Active text stays clean */
+.nav-links > a.active,
+.dropdown > a.active {
+  color: var(--fg);
+}
+
+/* ---------------------------
+   Dropdown
+--------------------------- */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Rectangular, defined border, professional shadow */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  min-width: 220px;
+
+  background-color: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: 6px; /* rectangular, but not sharp */
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+
+  padding: 0.35rem 0;
+  z-index: 1100;
+}
+
+/* Small top spacer so hover doesn't flicker */
+.dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: transparent;
+}
+
+.dropdown:hover .dropdown-content { display: block; }
+
+/* Dropdown items */
+.dropdown-content a {
+  color: var(--muted);
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+
+  border: none;
+  font-size: 0.92rem;
+
+  /* Cleaner feel */
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Hover row */
+.dropdown-content a:hover {
+  background-color: rgba(46, 52, 64, 0.55);
+  color: var(--fg);
+}
+
+/* Active dropdown row (requires class="active") */
+.dropdown-content a.active {
+  color: var(--fg);
+  background-color: rgba(136, 192, 208, 0.16);
+  position: relative;
+}
+
+/* Active marker on the left */
+.dropdown-content a.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+}
+
+/* Disable the global underline inside dropdown */
+.dropdown-content a::after { display: none; }
 
 /* --------------------------------------------------------------
    HOME & CARD STYLES
@@ -234,8 +298,6 @@ img {
   min-height: 80vh;
   width: 100%;
   box-sizing: border-box;
-
-  /* Symmetric padding helps true centering on mobile */
   padding: 0 1rem;
 }
 
@@ -247,14 +309,13 @@ img {
   border: 1px solid var(--muted);
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 
-  padding: 3.2rem 2rem; /* slightly tighter for better balance */
+  padding: 3.2rem 2rem;
   margin: 0 auto;
 
   box-sizing: border-box;
   text-align: center !important;
 }
 
-/* Name */
 .business-card h1 {
   text-align: center;
   font-family: var(--font-mono);
@@ -263,11 +324,10 @@ img {
   margin: 0 0 0.55rem 0;
   color: var(--fg);
   border: none;
-  letter-spacing: 0.06em; /* cleaner "title" feel */
+  letter-spacing: 0.06em;
 }
 .business-card h1::after { display: none; }
 
-/* Role line */
 .business-card .role {
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -277,29 +337,22 @@ img {
   display: block;
 }
 
-/* Bio line (THIS is the weight + spacing you asked for) */
 .business-card .bio {
   font-size: 1rem;
   line-height: 1.65;
-
-  /* Make it feel premium: slightly lighter, tighter max width */
   font-weight: 400;
   color: var(--fg);
 
   margin: 0 auto 1.8rem auto;
   max-width: 44ch;
-
-  /* Business card reads better centered */
   text-align: center;
 }
 
-/* Bio highlights */
 .business-card .bio strong {
   font-weight: 600;
   color: var(--fg);
 }
 
-/* Stack / tools line (refined) */
 .business-card .stack {
   margin-top: 2.0rem;
   padding-top: 1.15rem;
@@ -311,11 +364,9 @@ img {
 
   color: var(--muted);
   border-top: 1px solid var(--line);
-
   line-height: 1.6;
 }
 
-/* Links row */
 .business-card .card-links {
   margin-top: 1.35rem;
   display: flex;
@@ -324,7 +375,6 @@ img {
   flex-wrap: wrap;
 }
 
-/* Link styling inside card */
 .business-card .card-links a {
   text-decoration: none;
   color: var(--fg);
@@ -333,6 +383,7 @@ img {
   border: none;
   cursor: pointer;
 }
+
 .business-card .card-links a::after {
   content: '';
   position: absolute;
@@ -343,9 +394,9 @@ img {
   background-color: rgba(236, 239, 244, 0.4);
   transition: all 0.2s ease-in-out;
 }
+
 .business-card .card-links a:hover::after { height: 3px; background-color: var(--accent); }
 
-/* Email button (matches link look, but semantic) */
 .email-btn {
   background: transparent;
   border: none;
@@ -435,7 +486,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   FOOTER (centered with business card width)
+   FOOTER
 -------------------------------------------------------------- */
 
 .footer {
@@ -454,10 +505,8 @@ img {
 /* Mobile Optimization */
 @media (max-width: 900px) {
   .home-wrapper { min-height: 90vh; padding: 1rem; }
-
   .business-card { padding: 2.2rem 1.2rem; }
 
-  /* Mobile: keep bio readable and not cramped */
   .business-card .bio {
     font-size: 0.98rem;
     line-height: 1.7;
@@ -465,7 +514,6 @@ img {
     margin-bottom: 1.6rem;
   }
 
-  /* Mobile: stack spacing */
   .business-card .stack {
     font-size: 0.8rem;
     letter-spacing: 0.06em;
@@ -482,8 +530,16 @@ img {
     background: transparent;
     padding-left: 1rem;
     box-shadow: none;
+    margin-top: 0.25rem;
   }
 
   .dropdown-content::before { display: none; }
   .dropdown:hover .dropdown-content { display: block; border-left: 2px solid var(--line); }
+
+  /* Mobile: active item should still look active */
+  .dropdown-content a.active {
+    background: transparent;
+    color: var(--accent);
+  }
+  .dropdown-content a.active::before { display: none; }
 }
