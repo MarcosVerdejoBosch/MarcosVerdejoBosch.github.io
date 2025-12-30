@@ -23,9 +23,20 @@
         <div class="dropdown">
           <a href="{{ "/projects" | relative_url }}" class="{% if page.url contains "/projects" %}active{% endif %}">Projects ▾</a>
           <div class="dropdown-content">
-            <a href="{{ "/projects/linear-regulator/" | relative_url }}">Linear Regulator</a>
-            <a href="#" style="opacity: 0.5; cursor: default;">IoT Sensor (Soon)</a>
-          </div>
+           <!-- Mark as active when we are inside this project path -->
+           <a
+             href="{{ "/projects/linear-regulator/" | relative_url }}"
+             class="{% if page.url contains "/projects/linear-regulator" %}active{% endif %}"
+            >
+            Linear Regulator
+           </a>
+
+           <!-- Disabled item (no link yet) -->
+           <a href="#" style="opacity: 0.5; cursor: default;">
+             IoT Sensor (Soon)
+           </a>
+         </div>
+
         </div>
 
       </div>
