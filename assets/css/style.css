@@ -286,15 +286,23 @@ img {
   text-align: center; /* bio looks better centered on business card */
 }
 
+/* Stack / tools line (business card) */
 .business-card .stack {
-  font-size: 0.8rem;
-  color: var(--muted);
+  margin-top: 2.2rem;
+  padding-top: 1.2rem;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
+
+  color: var(--muted);
   border-top: 1px solid var(--line);
+
+  /* Improve readability */
+  line-height: 1.6;
 }
+
 
 /* Links row */
 .business-card .card-links {
@@ -438,6 +446,12 @@ img {
   .home-wrapper { min-height: 90vh; padding: 1rem; }
 
   .business-card { padding: 2rem 1.2rem; }
+   /* Stack spacing on mobile */
+   .business-card .stack {
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+   }
+
 
   .nav-container { flex-direction: column; gap: 1rem; }
   .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; align-items: flex-start; }
