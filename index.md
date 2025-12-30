@@ -5,10 +5,10 @@ title: Home
 
 <!--
 File: index.md
-Purpose: Homepage "business card" with quick links.
+Purpose: Homepage business card.
 Notes:
-- Keep markup semantic and accessible
-- Email uses a button (not an <a> without href)
+- Keep copy short and clear
+- Email button copies address to clipboard (fallback to mailto)
 -->
 
 <div class="home-wrapper">
@@ -19,24 +19,17 @@ Notes:
     <span class="role">Electronic Engineer</span>
 
     <div class="bio">
-      Focused on <strong>hardware design</strong>, <strong>embedded intelligence</strong>, and <strong>analog circuits</strong>.
-      <br>
-      Creating reliable systems that bridge the physical and digital worlds.
+      Focused on <strong>hardware design</strong>, <strong>embedded systems</strong>, and <strong>analog circuits</strong>.
     </div>
 
     <div class="stack">
-      KiCad · C/C++ · ESP32 · IoT · Kubernetes
+      KiCad · LTspice · C
     </div>
 
     <div class="card-links">
       <!-- External links -->
-      <a href="https://github.com/MarcosVerdejoBosch" target="_blank" rel="noopener noreferrer">
-        GitHub
-      </a>
-
-      <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank" rel="noopener noreferrer">
-        LinkedIn
-      </a>
+      <a href="https://github.com/MarcosVerdejoBosch" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 
       <!-- Email copy action (semantic button) -->
       <button
