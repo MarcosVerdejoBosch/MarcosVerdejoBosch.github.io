@@ -16,6 +16,13 @@
   /* Layout sizing */
   --page-max: 760px;
   --card-max: 580px;
+
+  /* Underline system (active vs hover) */
+  --u-base: rgba(236, 239, 244, 0.26);
+  --u-hover: rgba(136, 192, 208, 0.55);
+  --u-active: rgba(136, 192, 208, 1);
+  --u-hover-glow: 0 0 8px rgba(136, 192, 208, 0.18);
+  --u-active-glow: 0 0 10px rgba(136, 192, 208, 0.32);
 }
 
 html {
@@ -38,7 +45,6 @@ html, body {
   line-height: 1.75;
   font-size: 16px;
 
-  /* Keep footer at bottom */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -61,7 +67,7 @@ html, body {
 /* Text alignment */
 p, li { text-align: justify; text-justify: inter-word; }
 
-/* Standard Links */
+/* Standard Links (outside navbar / card links) */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -110,7 +116,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   NAVBAR & DROPDOWN (improved)
+   NAVBAR & DROPDOWN
 -------------------------------------------------------------- */
 
 .navbar {
@@ -143,13 +149,9 @@ img {
   cursor: default;
 }
 
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
 
-/* Top-level nav links (Home, Projects) */
+/* Unified underline behavior for navbar links */
 .nav-links > a,
 .dropdown > a {
   text-decoration: none;
@@ -161,7 +163,6 @@ img {
   display: inline-block;
 }
 
-/* Underline base (dim) */
 .nav-links > a::after,
 .dropdown > a::after {
   content: "";
@@ -170,48 +171,29 @@ img {
   height: 1px;
   bottom: 0;
   left: 0;
-
-  /* Default underline is subtle */
-  background-color: rgba(236, 239, 244, 0.28);
+  background-color: var(--u-base);
   transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-/* HOVER underline: softer than active */
+/* Hover = softer than active */
 .nav-links > a:hover::after,
 .dropdown:hover > a::after {
   height: 3px;
-
-  /* Softer accent (less illumination than active) */
-  background-color: rgba(136, 192, 208, 0.55);
-
-  /* Small glow, not as strong as active */
-  box-shadow: 0 0 8px rgba(136, 192, 208, 0.20);
+  background-color: var(--u-hover);
+  box-shadow: var(--u-hover-glow);
 }
 
-/* ACTIVE underline: strongest + crisp */
+/* Active = strongest */
 .nav-links > a.active::after,
 .dropdown > a.active::after {
   height: 3px;
-  background-color: var(--accent);
-  box-shadow: 0 0 10px rgba(136, 192, 208, 0.35);
+  background-color: var(--u-active);
+  box-shadow: var(--u-active-glow);
 }
 
-/* Active text stays clean */
-.nav-links > a.active,
-.dropdown > a.active {
-  color: var(--fg);
-}
+/* Dropdown container */
+.dropdown { position: relative; display: inline-block; }
 
-/* ---------------------------
-   Dropdown
---------------------------- */
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Rectangular, defined border, professional shadow */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -220,17 +202,15 @@ img {
   transform: translateX(-50%);
 
   min-width: 220px;
-
   background-color: var(--bg-alt);
   border: 1px solid var(--line);
-  border-radius: 6px; /* rectangular, but not sharp */
+  border-radius: 6px;
   box-shadow: 0 18px 40px rgba(0,0,0,0.35);
 
   padding: 0.35rem 0;
   z-index: 1100;
 }
 
-/* Small top spacer so hover doesn't flicker */
 .dropdown-content::before {
   content: "";
   position: absolute;
@@ -243,35 +223,28 @@ img {
 
 .dropdown:hover .dropdown-content { display: block; }
 
-/* Dropdown items */
 .dropdown-content a {
   color: var(--muted);
   padding: 0.75rem 1rem;
   text-decoration: none;
   display: block;
   text-align: left;
-
   border: none;
   font-size: 0.92rem;
-
-  /* Cleaner feel */
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Hover row */
 .dropdown-content a:hover {
   background-color: rgba(46, 52, 64, 0.55);
   color: var(--fg);
 }
 
-/* Active dropdown row (requires class="active") */
 .dropdown-content a.active {
   color: var(--fg);
-  background-color: rgba(136, 192, 208, 0.16);
+  background-color: rgba(136, 192, 208, 0.14);
   position: relative;
 }
 
-/* Active marker on the left */
 .dropdown-content a.active::before {
   content: "";
   position: absolute;
@@ -282,21 +255,23 @@ img {
   background: var(--accent);
 }
 
-/* Disable the global underline inside dropdown */
+/* Remove any underline from dropdown items */
 .dropdown-content a::after { display: none; }
 
 /* --------------------------------------------------------------
-   HOME & CARD STYLES
+   HOME & BUSINESS CARD
 -------------------------------------------------------------- */
 
+/* Center truly: give the wrapper full height and remove extra offsets */
 .home-wrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  min-height: 80vh;
+  /* Center in viewport minus navbar height (approx) */
+  min-height: calc(100vh - 140px);
   width: 100%;
+
   box-sizing: border-box;
   padding: 0 1rem;
 }
@@ -306,16 +281,24 @@ img {
   max-width: var(--card-max);
 
   background-color: var(--bg-alt);
-  border: 1px solid var(--muted);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+
+  /* More "life": subtle accent ring + clean border */
+  border: 1px solid rgba(236, 239, 244, 0.28);
+  box-shadow:
+    0 18px 44px rgba(0,0,0,0.28),
+    0 0 0 1px rgba(136, 192, 208, 0.18); /* subtle accent outline */
+
+  /* Slight rounding for modern feel */
+  border-radius: 10px;
 
   padding: 3.2rem 2rem;
   margin: 0 auto;
 
   box-sizing: border-box;
-  text-align: center !important;
+  text-align: center;
 }
 
+/* Name */
 .business-card h1 {
   text-align: center;
   font-family: var(--font-mono);
@@ -328,6 +311,7 @@ img {
 }
 .business-card h1::after { display: none; }
 
+/* Role line */
 .business-card .role {
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -337,6 +321,7 @@ img {
   display: block;
 }
 
+/* Bio */
 .business-card .bio {
   font-size: 1rem;
   line-height: 1.65;
@@ -353,6 +338,7 @@ img {
   color: var(--fg);
 }
 
+/* Stack */
 .business-card .stack {
   margin-top: 2.0rem;
   padding-top: 1.15rem;
@@ -367,6 +353,7 @@ img {
   line-height: 1.6;
 }
 
+/* Card links (match navbar underline style) */
 .business-card .card-links {
   margin-top: 1.35rem;
   display: flex;
@@ -375,57 +362,64 @@ img {
   flex-wrap: wrap;
 }
 
+/* Reset global dotted underline inside card links */
 .business-card .card-links a {
-  text-decoration: none;
   color: var(--fg);
-  position: relative;
-  padding-bottom: 5px;
   border: none;
-  cursor: pointer;
+  padding-bottom: 6px;
+  position: relative;
 }
 
 .business-card .card-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: rgba(236, 239, 244, 0.4);
-  transition: all 0.2s ease-in-out;
+  background-color: var(--u-base);
+  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.business-card .card-links a:hover::after { height: 3px; background-color: var(--accent); }
+.business-card .card-links a:hover::after {
+  height: 3px;
+  background-color: var(--u-hover);
+  box-shadow: var(--u-hover-glow);
+}
 
+/* Email button: same underline system as links */
 .email-btn {
   background: transparent;
   border: none;
   color: var(--fg);
   font-family: var(--font-mono);
   font-size: 1rem;
+
   padding: 0;
   cursor: pointer;
+
   position: relative;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
 }
 
 .email-btn::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: rgba(236, 239, 244, 0.4);
-  transition: all 0.2s ease-in-out;
+  background-color: var(--u-base);
+  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
 }
 
 .email-btn:hover::after {
   height: 3px;
-  background-color: var(--accent);
+  background-color: var(--u-hover);
+  box-shadow: var(--u-hover-glow);
 }
 
-.email-copied { color: var(--accent) !important; font-weight: bold; }
+.email-copied { color: var(--accent) !important; font-weight: 600; }
 .email-copied::after { display: none !important; }
 
 /* --------------------------------------------------------------
@@ -486,7 +480,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   FOOTER
+   FOOTER (match business card width)
 -------------------------------------------------------------- */
 
 .footer {
@@ -504,8 +498,15 @@ img {
 
 /* Mobile Optimization */
 @media (max-width: 900px) {
-  .home-wrapper { min-height: 90vh; padding: 1rem; }
-  .business-card { padding: 2.2rem 1.2rem; }
+  .home-wrapper {
+    min-height: calc(100vh - 160px);
+    padding: 1rem;
+  }
+
+  .business-card {
+    padding: 2.2rem 1.2rem;
+    border-radius: 10px;
+  }
 
   .business-card .bio {
     font-size: 0.98rem;
@@ -536,7 +537,6 @@ img {
   .dropdown-content::before { display: none; }
   .dropdown:hover .dropdown-content { display: block; border-left: 2px solid var(--line); }
 
-  /* Mobile: active item should still look active */
   .dropdown-content a.active {
     background: transparent;
     color: var(--accent);
