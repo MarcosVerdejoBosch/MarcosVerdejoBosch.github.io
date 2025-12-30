@@ -7,7 +7,7 @@ title: Home
 File: index.md
 Purpose: Homepage business card.
 Notes:
-- Keep copy short and clear
+- Short, clear copy
 - Email button copies address to clipboard (fallback to mailto)
 -->
 
@@ -23,15 +23,13 @@ Notes:
     </div>
 
     <div class="stack">
-      KiCad · LTspice · C
+      KiCad · LTspice
     </div>
 
     <div class="card-links">
-      <!-- External links -->
       <a href="https://github.com/MarcosVerdejoBosch" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 
-      <!-- Email copy action (semantic button) -->
       <button
         id="email-btn"
         type="button"
