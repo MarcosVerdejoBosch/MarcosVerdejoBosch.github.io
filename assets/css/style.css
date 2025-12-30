@@ -225,7 +225,6 @@ img {
    HOME & CARD STYLES
 -------------------------------------------------------------- */
 
-/* Home wrapper: center card */
 .home-wrapper {
   display: flex;
   flex-direction: column;
@@ -236,11 +235,10 @@ img {
   width: 100%;
   box-sizing: border-box;
 
-  /* Ensure equal side padding so the card is centered on mobile */
+  /* Symmetric padding helps true centering on mobile */
   padding: 0 1rem;
 }
 
-/* Business card */
 .business-card {
   width: 100%;
   max-width: var(--card-max);
@@ -249,47 +247,62 @@ img {
   border: 1px solid var(--muted);
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 
-  padding: 3.5rem 2rem;
+  padding: 3.2rem 2rem; /* slightly tighter for better balance */
   margin: 0 auto;
 
   box-sizing: border-box;
   text-align: center !important;
 }
 
-/* Card title */
+/* Name */
 .business-card h1 {
   text-align: center;
   font-family: var(--font-mono);
   font-size: 2rem;
   text-transform: uppercase;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.55rem 0;
   color: var(--fg);
   border: none;
+  letter-spacing: 0.06em; /* cleaner "title" feel */
 }
 .business-card h1::after { display: none; }
 
+/* Role line */
 .business-card .role {
   font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--muted);
-  margin-bottom: 2rem;
+  margin-bottom: 1.7rem;
   display: block;
 }
 
+/* Bio line (THIS is the weight + spacing you asked for) */
 .business-card .bio {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.65;
+
+  /* Make it feel premium: slightly lighter, tighter max width */
+  font-weight: 400;
   color: var(--fg);
-  margin-bottom: 2rem;
-  padding: 0 1rem;
-  text-align: center; /* bio looks better centered on business card */
+
+  margin: 0 auto 1.8rem auto;
+  max-width: 44ch;
+
+  /* Business card reads better centered */
+  text-align: center;
 }
 
-/* Stack / tools line (business card) */
+/* Bio highlights */
+.business-card .bio strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* Stack / tools line (refined) */
 .business-card .stack {
-  margin-top: 2.2rem;
-  padding-top: 1.2rem;
+  margin-top: 2.0rem;
+  padding-top: 1.15rem;
 
   font-size: 0.85rem;
   font-weight: 500;
@@ -299,14 +312,12 @@ img {
   color: var(--muted);
   border-top: 1px solid var(--line);
 
-  /* Improve readability */
   line-height: 1.6;
 }
 
-
 /* Links row */
 .business-card .card-links {
-  margin-top: 1.5rem;
+  margin-top: 1.35rem;
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -367,7 +378,7 @@ img {
 .email-copied::after { display: none !important; }
 
 /* --------------------------------------------------------------
-   PROJECT CARDS (Restauradas)
+   PROJECT CARDS (kept as-is)
 -------------------------------------------------------------- */
 
 .project-card {
@@ -428,13 +439,12 @@ img {
 -------------------------------------------------------------- */
 
 .footer {
-  /* Center the footer text block and match card width */
   max-width: var(--card-max);
   width: 100%;
   margin: 0 auto;
 
   text-align: center;
-  padding: 1.6rem 1rem; /* horizontal padding helps on mobile */
+  padding: 1.6rem 1rem;
   box-sizing: border-box;
 
   color: var(--muted);
@@ -445,13 +455,21 @@ img {
 @media (max-width: 900px) {
   .home-wrapper { min-height: 90vh; padding: 1rem; }
 
-  .business-card { padding: 2rem 1.2rem; }
-   /* Stack spacing on mobile */
-   .business-card .stack {
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-   }
+  .business-card { padding: 2.2rem 1.2rem; }
 
+  /* Mobile: keep bio readable and not cramped */
+  .business-card .bio {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    max-width: 36ch;
+    margin-bottom: 1.6rem;
+  }
+
+  /* Mobile: stack spacing */
+  .business-card .stack {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
 
   .nav-container { flex-direction: column; gap: 1rem; }
   .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; align-items: flex-start; }
