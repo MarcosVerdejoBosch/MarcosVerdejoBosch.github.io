@@ -1,58 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic meta -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>{{ page.title }} | {{ site.title }}</title>
+
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="{{ "/assets/css/style.css?v=7" | relative_url }}">
+
+  <!-- Optional: model-viewer for 3D embeds -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 
 <body id="top" class="{{ page.class }}">
 
+  <!-- Top navigation -->
   <nav class="navbar">
     <div class="nav-container">
       <span class="nav-title">MVB</span>
-      
+
       <div class="nav-links">
-        <a href="{{ "/" | relative_url }}" class="{% if page.url == "/" %}active{% endif %}">Home</a>
-        
+        <!-- Home active only on root -->
+        <a
+          href="{{ "/" | relative_url }}"
+          class="{% if page.url == "/" %}active{% endif %}"
+        >
+          Home
+        </a>
+
+        <!-- Projects active on /projects AND any /projects/... -->
         <div class="dropdown">
-          <a href="{{ "/projects" | relative_url }}" class="{% if page.url contains "/projects" %}active{% endif %}">Projects ▾</a>
+          <a
+            href="{{ "/projects" | relative_url }}"
+            class="{% if page.url contains "/projects" %}active{% endif %}"
+          >
+            Projects ▾
+          </a>
+
           <div class="dropdown-content">
-           <!-- Mark as active when we are inside this project path -->
-           <a
-             href="{{ "/projects/linear-regulator/" | relative_url }}"
-             class="{% if page.url contains "/projects/linear-regulator" %}active{% endif %}"
+            <!-- Active when inside the project path -->
+            <a
+              href="{{ "/projects/linear-regulator/" | relative_url }}"
+              class="{% if page.url contains "/projects/linear-regulator" %}active{% endif %}"
             >
-            Linear Regulator
-           </a>
+              Linear Regulator
+            </a>
 
-           <!-- Disabled item (no link yet) -->
-           <a href="#" style="opacity: 0.5; cursor: default;">
-             IoT Sensor (Soon)
-           </a>
-         </div>
-
+            <!-- Disabled item (placeholder) -->
+            <a href="#" style="opacity: 0.5; cursor: default;">
+              IoT Sensor (Soon)
+            </a>
+          </div>
         </div>
 
       </div>
     </div>
   </nav>
 
+  <!-- Page content -->
   <main class="content">
     {{ content }}
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
     Marcos Verdejo Bosch &copy; <span id="year"></span>
   </footer>
 
   <script>
+    // Keep copyright year current.
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
