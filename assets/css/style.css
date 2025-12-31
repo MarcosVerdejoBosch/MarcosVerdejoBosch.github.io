@@ -618,3 +618,25 @@ img {
     display: block;
   }
 }
+
+/* ==============================================================
+   NAV — Projects caret rotation (desktop only)
+   Purpose:
+   - Rotate only the caret (▾) when the dropdown is open.
+   - Keep mobile unchanged (dropdown opens downward).
+   ============================================================== */
+
+.caret {
+  display: inline-block; /* allows transform */
+  margin-left: 0.25rem;
+  transition: transform 0.18s ease;
+  transform-origin: 50% 55%;
+}
+
+/* Desktop only: rotate caret when dropdown is open (hover) */
+@media (min-width: 901px) {
+  .dropdown:hover > a .caret {
+    /* 90deg clockwise: down (▾) visually becomes right-ish */
+    transform: rotate(-90deg);
+  }
+}
