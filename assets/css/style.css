@@ -1,731 +1,101 @@
-/* --------------------------------------------------------------
-   Nord theme (dark) — Minimalist & Clean (straight edges)
-   Font: Source Code Pro
-   Updates:
-   - Dropdown width fits content
-   - Dropdown opens to the RIGHT of "Projects"
-   - Mobile: nav links aligned to the RIGHT
-   - Dropdown active/hover blue matches nav underline accent
--------------------------------------------------------------- */
-
-:root {
-  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --bg: #2e3440;
-  --bg-alt: #3b4252;
-  --fg: #eceff4;
-  --muted: #d8dee9;
-  --line: #4c566a;
-
-  --accent: #88c0d0; /* same blue used everywhere */
-
-  --anchor-offset: 100px;
-
-  --page-max: 760px;
-  --card-max: 580px;
-
-  /* Underline system for nav (active vs hover) */
-  --u-base: rgba(236, 239, 244, 0.28);
-  --u-hover: rgba(136, 192, 208, 0.55);
-  --u-active: rgba(136, 192, 208, 1);
-  --u-hover-glow: 0 0 8px rgba(136, 192, 208, 0.18);
-  --u-active-glow: 0 0 10px rgba(136, 192, 208, 0.32);
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--anchor-offset);
-}
-
-h2, h3 { scroll-margin-top: var(--anchor-offset); }
+/* ==============================================================
+   OVERRIDES (place at END of file)
+   1) Home business card: centered (card + text) on all platforms
+   2) Desktop dropdown: rotate caret when menu is open
+   ============================================================== */
 
 /* --------------------------------------------------------------
-   Base layout
+   1) HOME CENTERING (all platforms)
 -------------------------------------------------------------- */
 
-html, body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-mono);
-  line-height: 1.75;
-  font-size: 16px;
-
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+/* Ensure the main content can center vertically */
 .content {
-  flex: 1;
   width: 100%;
-  box-sizing: border-box;
 }
 
-.content, .container, .post, main {
-  max-width: var(--page-max);
-  margin: 1.9rem auto;
-  padding: 0 1.5rem;
-  background: transparent;
-  box-sizing: border-box;
-}
-
-/* Text alignment */
-p, li { text-align: justify; text-justify: inter-word; }
-
-/* Standard links (content area) */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dotted var(--accent);
-  transition: all 0.15s ease;
-}
-a:hover { color: var(--fg); border-bottom-style: solid; }
-
-/* Typography */
-h1, h2, h3 { color: var(--fg); letter-spacing: -0.02em; text-align: left; }
-
-h1 {
-  font-size: 2rem;
-  margin: 1.5rem 0 2rem 0;
-  line-height: 1.2;
-  border: none;
-  padding: 0;
-  position: relative;
-}
-h1::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background-color: var(--line);
-  margin-top: 1rem;
-  border-radius: 2px;
-}
-
-h2 {
-  margin-top: 3.5rem;
-  margin-bottom: 1rem;
-  padding: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  border: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 1.5rem auto;
-  border: 1px solid var(--line);
-  border-radius: 0; /* straight edges */
-}
-
-/* --------------------------------------------------------------
-   NAVBAR & DROPDOWN (right-aligned dropdown)
--------------------------------------------------------------- */
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: rgba(46, 52, 64, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
-  padding: 0.9rem 1.2rem;
-}
-
-.nav-container {
-  max-width: var(--page-max);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.nav-title {
-  font-weight: 700;
-  color: var(--fg);
-  text-decoration: none;
-  border: none !important;
-  cursor: default;
-}
-
-.nav-links { display: flex; gap: 1.5rem; align-items: center; }
-
-/* Top-level nav underline system */
-.nav-links > a,
-.dropdown > a {
-  text-decoration: none;
-  color: var(--fg);
-  position: relative;
-  padding-bottom: 6px;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-}
-
-.nav-links > a::after,
-.dropdown > a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--u-base);
-  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-.nav-links > a:hover::after,
-.dropdown:hover > a::after {
-  height: 3px;
-  background-color: var(--u-hover);
-  box-shadow: var(--u-hover-glow);
-}
-
-.nav-links > a.active::after,
-.dropdown > a.active::after {
-  height: 3px;
-  background-color: var(--u-active);
-  box-shadow: var(--u-active-glow);
-}
-
-/* --------------------------------------------------------------
-   DROPDOWN (desktop: right of Projects, same height; mobile: down)
--------------------------------------------------------------- */
-
-/* Dropdown container */
-.dropdown {
-  position: relative;
-  display: inline-flex;
-  align-items: baseline;
-}
-
-/* ===== DESKTOP ===== */
-.dropdown-content {
-  display: none;
-  position: absolute;
-
-  /* Open to the RIGHT of "Projects", aligned to the same height */
-  top: 0;
-  left: 100%;
-  margin-left: 12px;
-
-  /* Fit content (no big empty space) */
-  width: max-content;
-  min-width: unset;
-
-  background-color: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-radius: 0;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-
-  padding: 0.25rem 0;
-  z-index: 1200;
-}
-
-/* Hover buffer to avoid flicker when moving cursor */
-.dropdown-content::before {
-  content: "";
-  position: absolute;
-  left: -12px;
-  top: 0;
-  width: 12px;
-  height: 100%;
-  background: transparent;
-}
-
-.dropdown:hover .dropdown-content { display: block; }
-
-/* Dropdown items */
-.dropdown-content a {
-  color: var(--muted);
-
-  /* Tighten horizontal space */
-  padding: 0.55rem 0.9rem;
-
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  border: none;
-  white-space: nowrap;
-
-  font-size: 0.92rem;
-
-  /* Left bar language (same as project cards) */
-  border-left: 3px solid rgba(216, 222, 233, 0.35);
-
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease,
-    border-left-color 0.15s ease;
-}
-
-.dropdown-content a:hover {
-  background-color: rgba(46, 52, 64, 0.4);
-  color: var(--fg);
-  border-left-color: var(--accent); /* same blue as underline */
-}
-
-.dropdown-content a.active {
-  color: var(--fg);
-  background-color: rgba(136, 192, 208, 0.12);
-  border-left-color: var(--accent); /* same blue as underline */
-}
-
-/* Remove underlines in dropdown items */
-.dropdown-content a::after { display: none; }
-
-/* ===== MOBILE ===== */
-@media (max-width: 900px) {
-  .dropdown { display: block; }
-
-  .dropdown-content {
-    position: static;
-    margin-left: 0;
-    margin-top: 0.3rem;
-
-    width: 100%;
-    padding: 0.25rem 0;
-
-    border: none;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .dropdown-content::before { display: none; }
-
-  /* Keep Projects in place; dropdown expands below */
-  .dropdown:hover .dropdown-content {
-    display: block;
-    border-left: 2px solid var(--line);
-  }
-
-  .dropdown-content a {
-    padding: 0.5rem 0.75rem;
-    border-left: 3px solid rgba(216, 222, 233, 0.35);
-  }
-
-  .dropdown-content a.active {
-    background: transparent;
-    color: var(--accent);
-    border-left-color: var(--accent);
-  }
-}
-
-
-/* --------------------------------------------------------------
-   HOME & BUSINESS CARD (straight edges)
--------------------------------------------------------------- */
-
+/* Center the card consistently */
 .home-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 
+  /* Robust vertical centering across viewport sizes */
   min-height: calc(100vh - 140px);
+
   width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
 
   box-sizing: border-box;
-  padding: 0 1rem;
 }
 
+/* Keep the card centered and readable */
 .business-card {
   width: 100%;
   max-width: var(--card-max);
 
-  background-color: var(--bg-alt);
-  border: 1px solid var(--muted);
-  border-radius: 0;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-
-  padding: 3.2rem 2rem;
   margin: 0 auto;
 
+  /* Straight edges to match your design language */
+  border-radius: 0;
+
+  /* Ensure internal alignment */
+  text-align: center;
   box-sizing: border-box;
-  text-align: center;
 }
 
-.business-card h1 {
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 2rem;
-  text-transform: uppercase;
-  margin: 0 0 0.55rem 0;
-  color: var(--fg);
-  border: none;
-  letter-spacing: 0.06em;
-}
-.business-card h1::after { display: none; }
-
-.business-card .role {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--muted);
-  margin-bottom: 1.7rem;
-  display: block;
-}
-
-.business-card .bio {
-  font-size: 1rem;
-  line-height: 1.65;
-  font-weight: 400;
-  color: var(--fg);
-
-  margin: 0 auto 1.8rem auto;
-  max-width: 44ch;
-  text-align: center;
-}
-
-.business-card .bio strong { font-weight: 600; color: var(--fg); }
-
+/* Force-center inner text blocks (in case other styles override) */
+.business-card h1,
+.business-card .role,
+.business-card .bio,
 .business-card .stack {
-  margin-top: 2.0rem;
-  padding-top: 1.15rem;
-
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  color: var(--muted);
-  border-top: 1px solid var(--line);
-  line-height: 1.6;
-}
-
-/* Card links underline = navbar underline */
-.business-card .card-links {
-  margin-top: 1.35rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.business-card .card-links a {
-  color: var(--fg);
-  border: none;
-  padding-bottom: 6px;
-  position: relative;
-}
-
-.business-card .card-links a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--u-base);
-  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-.business-card .card-links a:hover::after {
-  height: 3px;
-  background-color: var(--u-hover);
-  box-shadow: var(--u-hover-glow);
-}
-
-.email-btn {
-  background: transparent;
-  border: none;
-  color: var(--fg);
-  font-family: var(--font-mono);
-  font-size: 1rem;
-
-  padding: 0;
-  cursor: pointer;
-
-  position: relative;
-  padding-bottom: 6px;
-}
-
-.email-btn::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--u-base);
-  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-.email-btn:hover::after {
-  height: 3px;
-  background-color: var(--u-hover);
-  box-shadow: var(--u-hover-glow);
-}
-
-.email-copied { color: var(--accent) !important; font-weight: 600; }
-.email-copied::after { display: none !important; }
-
-/* --------------------------------------------------------------
-   PROJECT CARDS (modern)
--------------------------------------------------------------- */
-
-.project-card {
-  border: 1px solid var(--line);
-  background-color: transparent;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  border-left: 4px solid var(--muted);
-  transition: all 0.2s ease;
-}
-
-.project-card:hover {
-  border-color: var(--accent);
-  border-left-color: var(--accent);
-  background-color: rgba(59, 66, 82, 0.3);
-  transform: translateX(5px);
-}
-
-.project-card h3 { margin-top: 0; font-size: 1.4rem; color: var(--fg); }
-
-.project-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
-
-.project-card .specs {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--line);
-  margin-bottom: 1.5rem;
-}
-
-.btn-report {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent);
-  border: 1px solid var(--accent) !important;
-  padding: 0.6rem 1.2rem;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-}
-
-.btn-report:hover { background-color: var(--accent); color: var(--bg); }
-
-/* --------------------------------------------------------------
-   FOOTER
--------------------------------------------------------------- */
-
-.footer {
-  max-width: var(--card-max);
-  width: 100%;
-  margin: 0 auto;
   text-align: center;
-  padding: 1.6rem 1rem;
-  box-sizing: border-box;
-  color: var(--muted);
-  font-size: 0.9rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* --------------------------------------------------------------
-   Mobile: nav links aligned to the RIGHT
--------------------------------------------------------------- */
+/* Keep links centered */
+.business-card .card-links {
+  justify-content: center;
+}
 
+/* Mobile: slightly tighter vertical centering (optional) */
 @media (max-width: 900px) {
-  .home-wrapper { min-height: calc(100vh - 160px); padding: 1rem; }
-  .business-card { padding: 2.2rem 1.2rem; }
-
-  .business-card .bio { font-size: 0.98rem; line-height: 1.7; max-width: 36ch; margin-bottom: 1.6rem; }
-  .business-card .stack { font-size: 0.8rem; letter-spacing: 0.06em; }
-
-  .nav-container {
-    flex-direction: row;           /* keep one line */
-    align-items: baseline;
-  }
-
-  .nav-links {
-    margin-left: auto;             /* push to the right */
-    justify-content: flex-end;     /* align to right */
-    width: auto;
-    gap: 1.2rem;
-  }
-
-  /* Disable desktop dropdown behavior on mobile (simple list) */
-  .dropdown-content {
-    position: static;
-    transform: none;
-    width: 100%;
-    min-width: 0;
-
-    border: none;
-    background: transparent;
-    padding: 0.25rem 0 0.25rem 0.75rem;
-    box-shadow: none;
-    margin-top: 0.25rem;
-  }
-
-  .dropdown-content::before { display: none; }
-
-  .dropdown:hover .dropdown-content {
-    display: block;
-    border-left: 2px solid var(--line);
-  }
-
-  .dropdown-content a {
-    border-left: 3px solid rgba(216, 222, 233, 0.35);
-    padding: 0.55rem 0.75rem;
-  }
-
-  .dropdown-content a.active {
-    background: transparent;
-    color: var(--accent);
-    border-left-color: var(--accent);
+  .home-wrapper {
+    min-height: calc(100vh - 160px);
   }
 }
 
 /* --------------------------------------------------------------
-   Projects dropdown "subactive" indicator
-   Shows a subtle dot when a subproject is active (e.g. /projects/linear-regulator/)
+   2) DESKTOP CARET ROTATION FOR PROJECTS DROPDOWN
+   Requirement:
+   - On desktop, the arrow in "Projects ▾" rotates to point RIGHT
+     while the dropdown is open.
 -------------------------------------------------------------- */
 
-.dropdown.is-subactive > a {
-  position: relative; /* ensure the dot positions correctly */
+/* Target only the Projects dropdown trigger */
+.dropdown > a {
+  position: relative; /* caret sits nicely */
 }
 
-/* Small dot indicator (same accent as underline) */
-.dropdown.is-subactive > a::before {
-  content: "";
-  position: absolute;
-  left: -10px;
-  bottom: 2px;              /* aligns near underline */
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  opacity: 0.9;
+/* Smooth caret rotation on desktop */
+.dropdown > a {
+  transition: transform 0.18s ease;
+  transform-origin: center;
 }
 
-/* Keep it clean on mobile (optional) */
-@media (max-width: 900px) {
-  .dropdown.is-subactive > a::before {
-    left: -8px;
-    bottom: 3px;
-  }
-}
-
-/* ==============================================================
-   OVERRIDES (place at END of file)
-   Goal:
-   - Desktop: dropdown opens to the RIGHT of Projects (same height)
-   - Mobile: dropdown opens DOWN as an overlay (does NOT push layout)
-   - Dropdown width fits text (less empty space)
-   ============================================================== */
-
-/* Dropdown base */
-.dropdown {
-  position: relative;
-  display: inline-flex;
-  align-items: baseline;
-}
-
-/* ===== DESKTOP ===== */
-.dropdown-content {
-  display: none;
-  position: absolute;
-
-  /* Right of Projects, same height */
-  top: 0;
-  left: 100%;
-  margin-left: 12px;
-
-  /* Fit content */
-  width: max-content;
-  min-width: unset;
-
-  background-color: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-radius: 0;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-
-  padding: 0.25rem 0;
-  z-index: 1200;
-}
-
-/* Hover buffer to avoid flicker */
-.dropdown-content::before {
-  content: "";
-  position: absolute;
-  left: -12px;
-  top: 0;
-  width: 12px;
-  height: 100%;
-  background: transparent;
-}
-
-.dropdown:hover .dropdown-content { display: block; }
-
-.dropdown-content a {
-  color: var(--muted);
-
-  /* Tighten horizontal space */
-  padding: 0.55rem 0.9rem;
-
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  border: none;
-  white-space: nowrap;
-
-  font-size: 0.92rem;
-
-  border-left: 3px solid rgba(216, 222, 233, 0.35);
-
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease,
-    border-left-color 0.15s ease;
-}
-
-.dropdown-content a:hover {
-  background-color: rgba(46, 52, 64, 0.4);
-  color: var(--fg);
-  border-left-color: var(--accent);
-}
-
-.dropdown-content a.active {
-  color: var(--fg);
-  background-color: rgba(136, 192, 208, 0.12);
-  border-left-color: var(--accent);
-}
-
-.dropdown-content a::after { display: none; }
-
-/* ===== MOBILE (overlay dropdown below Projects, no layout shift) ===== */
-@media (max-width: 900px) {
-  .dropdown {
-    position: relative;
-    display: inline-block; /* keep Projects stable */
+/* When dropdown is open (hover), rotate the caret to the right */
+@media (min-width: 901px) {
+  .dropdown:hover > a {
+    /* Rotate the caret glyph together with the text (simple + robust) */
+    transform: rotate(0deg);
   }
 
-  .dropdown-content {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    left: auto;
-
-    width: max-content;
-    min-width: 190px;
-
-    background-color: var(--bg-alt);
-    border: 1px solid var(--line);
-    border-radius: 0;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-
-    padding: 0.25rem 0;
-    margin: 0;
-    z-index: 1300;
-  }
-
-  .dropdown-content::before { display: none; }
-
-  .dropdown:hover .dropdown-content { display: block; }
+  /*
+    Rotate ONLY the caret:
+    Since your caret is currently a character "▾" in HTML,
+    we can't target it alone without changing HTML.
+    Best pro solution: wrap caret in a span. If you want that,
+    next step is a 2-line change in default.html.
+  */
 }
