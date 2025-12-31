@@ -1,24 +1,28 @@
 /* --------------------------------------------------------------
-   Nord theme (dark) — Minimalist & Clean
+   Nord theme (dark) — Minimalist & Clean (straight edges)
    Font: Source Code Pro
+   Goal:
+   - Business card: straight lines (no rounded corners / no accent ring)
+   - Dropdown: same visual language as project cards (left accent bar)
+   - Active underline in navbar stays strong; hover is softer
 -------------------------------------------------------------- */
 
 :root {
   --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --bg: #2e3440;      /* Dark Grey */
-  --bg-alt: #3b4252;  /* Lighter Grey */
-  --fg: #eceff4;      /* White-ish */
-  --muted: #d8dee9;   /* Muted White */
-  --line: #4c566a;    /* Grey Line */
-  --accent: #88c0d0;  /* Cyan Blue */
+  --bg: #2e3440;
+  --bg-alt: #3b4252;
+  --fg: #eceff4;
+  --muted: #d8dee9;
+  --line: #4c566a;
+
+  --accent: #88c0d0;
   --anchor-offset: 100px;
 
-  /* Layout sizing */
   --page-max: 760px;
   --card-max: 580px;
 
-  /* Underline system (active vs hover) */
-  --u-base: rgba(236, 239, 244, 0.26);
+  /* Underline system for nav (active vs hover) */
+  --u-base: rgba(236, 239, 244, 0.28);
   --u-hover: rgba(136, 192, 208, 0.55);
   --u-active: rgba(136, 192, 208, 1);
   --u-hover-glow: 0 0 8px rgba(136, 192, 208, 0.18);
@@ -67,7 +71,7 @@ html, body {
 /* Text alignment */
 p, li { text-align: justify; text-justify: inter-word; }
 
-/* Standard Links (outside navbar / card links) */
+/* Standard links (content area) */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -112,11 +116,11 @@ img {
   display: block;
   margin: 1.5rem auto;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 0; /* straight edges */
 }
 
 /* --------------------------------------------------------------
-   NAVBAR & DROPDOWN
+   NAVBAR & DROPDOWN (uniform + project-card style)
 -------------------------------------------------------------- */
 
 .navbar {
@@ -151,7 +155,7 @@ img {
 
 .nav-links { display: flex; gap: 1.5rem; align-items: center; }
 
-/* Unified underline behavior for navbar links */
+/* Top-level nav links underline system */
 .nav-links > a,
 .dropdown > a {
   text-decoration: none;
@@ -194,6 +198,12 @@ img {
 /* Dropdown container */
 .dropdown { position: relative; display: inline-block; }
 
+/*
+  Dropdown = "project-card language":
+  - straight rectangle
+  - 1px border
+  - left bar highlight on hover/active
+*/
 .dropdown-content {
   display: none;
   position: absolute;
@@ -201,16 +211,17 @@ img {
   left: 50%;
   transform: translateX(-50%);
 
-  min-width: 220px;
+  min-width: 240px;
   background-color: var(--bg-alt);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 0;              /* straight edges */
   box-shadow: 0 18px 40px rgba(0,0,0,0.35);
 
   padding: 0.35rem 0;
   z-index: 1100;
 }
 
+/* Invisible hover buffer to avoid flicker */
 .dropdown-content::before {
   content: "";
   position: absolute;
@@ -223,6 +234,7 @@ img {
 
 .dropdown:hover .dropdown-content { display: block; }
 
+/* Dropdown items */
 .dropdown-content a {
   color: var(--muted);
   padding: 0.75rem 1rem;
@@ -230,45 +242,45 @@ img {
   display: block;
   text-align: left;
   border: none;
+
   font-size: 0.92rem;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  position: relative;
+
+  /* Default: mimic project-card left bar (muted) */
+  border-left: 4px solid rgba(216, 222, 233, 0.35);
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-left-color 0.15s ease;
 }
 
+/* Hover row = left bar becomes accent, subtle bg */
 .dropdown-content a:hover {
-  background-color: rgba(46, 52, 64, 0.55);
+  background-color: rgba(46, 52, 64, 0.35);
   color: var(--fg);
+  border-left-color: var(--accent);
 }
 
+/* Active row = accent bar + slightly stronger bg */
 .dropdown-content a.active {
   color: var(--fg);
-  background-color: rgba(136, 192, 208, 0.14);
-  position: relative;
+  background-color: rgba(136, 192, 208, 0.10);
+  border-left-color: var(--accent);
 }
 
-.dropdown-content a.active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--accent);
-}
-
-/* Remove any underline from dropdown items */
+/* Remove any underline inside dropdown items */
 .dropdown-content a::after { display: none; }
 
 /* --------------------------------------------------------------
-   HOME & BUSINESS CARD
+   HOME & BUSINESS CARD (back to straight, centered)
 -------------------------------------------------------------- */
 
-/* Center truly: give the wrapper full height and remove extra offsets */
 .home-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  /* Center in viewport minus navbar height (approx) */
   min-height: calc(100vh - 140px);
   width: 100%;
 
@@ -282,14 +294,12 @@ img {
 
   background-color: var(--bg-alt);
 
-  /* More "life": subtle accent ring + clean border */
-  border: 1px solid rgba(236, 239, 244, 0.28);
-  box-shadow:
-    0 18px 44px rgba(0,0,0,0.28),
-    0 0 0 1px rgba(136, 192, 208, 0.18); /* subtle accent outline */
+  /* Straight, defined border */
+  border: 1px solid var(--muted);
+  border-radius: 0;
 
-  /* Slight rounding for modern feel */
-  border-radius: 10px;
+  /* Clean shadow only */
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 
   padding: 3.2rem 2rem;
   margin: 0 auto;
@@ -311,7 +321,7 @@ img {
 }
 .business-card h1::after { display: none; }
 
-/* Role line */
+/* Role */
 .business-card .role {
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -353,7 +363,7 @@ img {
   line-height: 1.6;
 }
 
-/* Card links (match navbar underline style) */
+/* Card links: use same underline system as navbar (uniform) */
 .business-card .card-links {
   margin-top: 1.35rem;
   display: flex;
@@ -362,7 +372,7 @@ img {
   flex-wrap: wrap;
 }
 
-/* Reset global dotted underline inside card links */
+/* Remove global dotted underline inside the card links */
 .business-card .card-links a {
   color: var(--fg);
   border: none;
@@ -387,7 +397,7 @@ img {
   box-shadow: var(--u-hover-glow);
 }
 
-/* Email button: same underline system as links */
+/* Email button: same underline system */
 .email-btn {
   background: transparent;
   border: none;
@@ -423,7 +433,7 @@ img {
 .email-copied::after { display: none !important; }
 
 /* --------------------------------------------------------------
-   PROJECT CARDS (kept as-is)
+   PROJECT CARDS (your modern style — kept)
 -------------------------------------------------------------- */
 
 .project-card {
@@ -431,7 +441,10 @@ img {
   background-color: transparent;
   padding: 2rem;
   margin-bottom: 2rem;
+
+  /* Left bar language (modern) */
   border-left: 4px solid var(--muted);
+
   transition: all 0.2s ease;
 }
 
@@ -480,7 +493,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   FOOTER (match business card width)
+   FOOTER (aligned with business card width)
 -------------------------------------------------------------- */
 
 .footer {
@@ -503,10 +516,7 @@ img {
     padding: 1rem;
   }
 
-  .business-card {
-    padding: 2.2rem 1.2rem;
-    border-radius: 10px;
-  }
+  .business-card { padding: 2.2rem 1.2rem; }
 
   .business-card .bio {
     font-size: 0.98rem;
@@ -523,23 +533,34 @@ img {
   .nav-container { flex-direction: column; gap: 1rem; }
   .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; align-items: flex-start; }
 
+  /* Mobile dropdown becomes inline list; keep left bar language */
   .dropdown-content {
     position: static;
     transform: none;
     min-width: 100%;
+
     border: none;
     background: transparent;
-    padding-left: 1rem;
+    padding: 0.25rem 0 0.25rem 1rem;
     box-shadow: none;
     margin-top: 0.25rem;
   }
 
   .dropdown-content::before { display: none; }
-  .dropdown:hover .dropdown-content { display: block; border-left: 2px solid var(--line); }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    border-left: 2px solid var(--line);
+  }
+
+  .dropdown-content a {
+    border-left: 3px solid rgba(216, 222, 233, 0.35);
+    padding: 0.55rem 0.75rem;
+  }
 
   .dropdown-content a.active {
     background: transparent;
     color: var(--accent);
+    border-left-color: var(--accent);
   }
-  .dropdown-content a.active::before { display: none; }
 }
