@@ -582,3 +582,32 @@ img {
     border-left-color: var(--accent);
   }
 }
+
+/* --------------------------------------------------------------
+   Projects dropdown "subactive" indicator
+   Shows a subtle dot when a subproject is active (e.g. /projects/linear-regulator/)
+-------------------------------------------------------------- */
+
+.dropdown.is-subactive > a {
+  position: relative; /* ensure the dot positions correctly */
+}
+
+/* Small dot indicator (same accent as underline) */
+.dropdown.is-subactive > a::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  bottom: 2px;              /* aligns near underline */
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+/* Keep it clean on mobile (optional) */
+@media (max-width: 900px) {
+  .dropdown.is-subactive > a::before {
+    left: -8px;
+    bottom: 3px;
+  }
+}
