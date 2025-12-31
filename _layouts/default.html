@@ -15,7 +15,7 @@
     rel="stylesheet"
   />
 
-  <!-- Main stylesheet (NO querystring while debugging) -->
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
 
   <!-- Optional: model-viewer for 3D embeds -->
@@ -32,7 +32,9 @@
         <a href="{{ "/" | relative_url }}" class="{% if page.url == "/" %}active{% endif %}">Home</a>
 
         <div class="dropdown">
-          <a href="{{ "/projects" | relative_url }}" class="{% if page.url contains "/projects" %}active{% endif %}">Projects ▾</a>
+          <a href="{{ "/projects" | relative_url }}" class="{% if page.url contains "/projects" %}active{% endif %}">
+            Projects <span class="caret">▾</span>
+          </a>
 
           <div class="dropdown-content">
             <a href="{{ "/projects/linear-regulator/" | relative_url }}"
