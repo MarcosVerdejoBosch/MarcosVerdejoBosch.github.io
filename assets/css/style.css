@@ -1,10 +1,11 @@
 /* --------------------------------------------------------------
    Nord theme (dark) — Minimalist & Clean (straight edges)
    Font: Source Code Pro
-   Goal:
-   - Business card: straight lines (no rounded corners / no accent ring)
-   - Dropdown: same visual language as project cards (left accent bar)
-   - Active underline in navbar stays strong; hover is softer
+   Updates:
+   - Dropdown width fits content
+   - Dropdown opens to the RIGHT of "Projects"
+   - Mobile: nav links aligned to the RIGHT
+   - Dropdown active/hover blue matches nav underline accent
 -------------------------------------------------------------- */
 
 :root {
@@ -15,7 +16,8 @@
   --muted: #d8dee9;
   --line: #4c566a;
 
-  --accent: #88c0d0;
+  --accent: #88c0d0; /* same blue used everywhere */
+
   --anchor-offset: 100px;
 
   --page-max: 760px;
@@ -120,7 +122,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   NAVBAR & DROPDOWN (uniform + project-card style)
+   NAVBAR & DROPDOWN (right-aligned dropdown)
 -------------------------------------------------------------- */
 
 .navbar {
@@ -155,7 +157,7 @@ img {
 
 .nav-links { display: flex; gap: 1.5rem; align-items: center; }
 
-/* Top-level nav links underline system */
+/* Top-level nav underline system */
 .nav-links > a,
 .dropdown > a {
   text-decoration: none;
@@ -179,7 +181,6 @@ img {
   transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-/* Hover = softer than active */
 .nav-links > a:hover::after,
 .dropdown:hover > a::after {
   height: 3px;
@@ -187,7 +188,6 @@ img {
   box-shadow: var(--u-hover-glow);
 }
 
-/* Active = strongest */
 .nav-links > a.active::after,
 .dropdown > a.active::after {
   height: 3px;
@@ -199,36 +199,41 @@ img {
 .dropdown { position: relative; display: inline-block; }
 
 /*
-  Dropdown = "project-card language":
-  - straight rectangle
-  - 1px border
-  - left bar highlight on hover/active
+  Dropdown:
+  - width fits content (no big box)
+  - opens to the RIGHT of the Projects link
+  - straight edges, defined border
 */
 .dropdown-content {
   display: none;
   position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%);
 
-  min-width: 240px;
+  /* Open aligned to the right edge of Projects */
+  top: calc(100% + 10px);
+  left: 100%;
+  transform: translateX(12px);
+
+  /* Fit content */
+  width: max-content;
+  min-width: 180px;
+
   background-color: var(--bg-alt);
   border: 1px solid var(--line);
-  border-radius: 0;              /* straight edges */
+  border-radius: 0;
   box-shadow: 0 18px 40px rgba(0,0,0,0.35);
 
   padding: 0.35rem 0;
   z-index: 1100;
 }
 
-/* Invisible hover buffer to avoid flicker */
+/* Hover buffer to avoid flicker when moving cursor */
 .dropdown-content::before {
   content: "";
   position: absolute;
-  top: -12px;
-  left: 0;
-  width: 100%;
-  height: 12px;
+  top: -10px;
+  left: -14px;
+  width: 14px;
+  height: calc(100% + 20px);
   background: transparent;
 }
 
@@ -246,7 +251,7 @@ img {
   font-size: 0.92rem;
   position: relative;
 
-  /* Default: mimic project-card left bar (muted) */
+  /* Left bar language (same as project cards) */
   border-left: 4px solid rgba(216, 222, 233, 0.35);
 
   transition:
@@ -255,25 +260,23 @@ img {
     border-left-color 0.15s ease;
 }
 
-/* Hover row = left bar becomes accent, subtle bg */
 .dropdown-content a:hover {
   background-color: rgba(46, 52, 64, 0.35);
   color: var(--fg);
-  border-left-color: var(--accent);
+  border-left-color: var(--accent); /* SAME accent blue */
 }
 
-/* Active row = accent bar + slightly stronger bg */
 .dropdown-content a.active {
   color: var(--fg);
   background-color: rgba(136, 192, 208, 0.10);
-  border-left-color: var(--accent);
+  border-left-color: var(--accent); /* SAME accent blue */
 }
 
-/* Remove any underline inside dropdown items */
+/* Remove underlines in dropdown items */
 .dropdown-content a::after { display: none; }
 
 /* --------------------------------------------------------------
-   HOME & BUSINESS CARD (back to straight, centered)
+   HOME & BUSINESS CARD (straight edges)
 -------------------------------------------------------------- */
 
 .home-wrapper {
@@ -293,12 +296,8 @@ img {
   max-width: var(--card-max);
 
   background-color: var(--bg-alt);
-
-  /* Straight, defined border */
   border: 1px solid var(--muted);
   border-radius: 0;
-
-  /* Clean shadow only */
   box-shadow: 0 15px 35px rgba(0,0,0,0.25);
 
   padding: 3.2rem 2rem;
@@ -308,7 +307,6 @@ img {
   text-align: center;
 }
 
-/* Name */
 .business-card h1 {
   text-align: center;
   font-family: var(--font-mono);
@@ -321,7 +319,6 @@ img {
 }
 .business-card h1::after { display: none; }
 
-/* Role */
 .business-card .role {
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -331,7 +328,6 @@ img {
   display: block;
 }
 
-/* Bio */
 .business-card .bio {
   font-size: 1rem;
   line-height: 1.65;
@@ -343,12 +339,8 @@ img {
   text-align: center;
 }
 
-.business-card .bio strong {
-  font-weight: 600;
-  color: var(--fg);
-}
+.business-card .bio strong { font-weight: 600; color: var(--fg); }
 
-/* Stack */
 .business-card .stack {
   margin-top: 2.0rem;
   padding-top: 1.15rem;
@@ -363,7 +355,7 @@ img {
   line-height: 1.6;
 }
 
-/* Card links: use same underline system as navbar (uniform) */
+/* Card links underline = navbar underline */
 .business-card .card-links {
   margin-top: 1.35rem;
   display: flex;
@@ -372,7 +364,6 @@ img {
   flex-wrap: wrap;
 }
 
-/* Remove global dotted underline inside the card links */
 .business-card .card-links a {
   color: var(--fg);
   border: none;
@@ -397,7 +388,6 @@ img {
   box-shadow: var(--u-hover-glow);
 }
 
-/* Email button: same underline system */
 .email-btn {
   background: transparent;
   border: none;
@@ -433,7 +423,7 @@ img {
 .email-copied::after { display: none !important; }
 
 /* --------------------------------------------------------------
-   PROJECT CARDS (your modern style — kept)
+   PROJECT CARDS (modern)
 -------------------------------------------------------------- */
 
 .project-card {
@@ -441,10 +431,7 @@ img {
   background-color: transparent;
   padding: 2rem;
   margin-bottom: 2rem;
-
-  /* Left bar language (modern) */
   border-left: 4px solid var(--muted);
-
   transition: all 0.2s ease;
 }
 
@@ -455,17 +442,9 @@ img {
   transform: translateX(5px);
 }
 
-.project-card h3 {
-  margin-top: 0;
-  font-size: 1.4rem;
-  color: var(--fg);
-}
+.project-card h3 { margin-top: 0; font-size: 1.4rem; color: var(--fg); }
 
-.project-card p {
-  color: var(--muted);
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-}
+.project-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
 .project-card .specs {
   font-family: var(--font-mono);
@@ -487,61 +466,56 @@ img {
   transition: all 0.2s ease;
 }
 
-.btn-report:hover {
-  background-color: var(--accent);
-  color: var(--bg);
-}
+.btn-report:hover { background-color: var(--accent); color: var(--bg); }
 
 /* --------------------------------------------------------------
-   FOOTER (aligned with business card width)
+   FOOTER
 -------------------------------------------------------------- */
 
 .footer {
   max-width: var(--card-max);
   width: 100%;
   margin: 0 auto;
-
   text-align: center;
   padding: 1.6rem 1rem;
   box-sizing: border-box;
-
   color: var(--muted);
   font-size: 0.9rem;
 }
 
-/* Mobile Optimization */
-@media (max-width: 900px) {
-  .home-wrapper {
-    min-height: calc(100vh - 160px);
-    padding: 1rem;
-  }
+/* --------------------------------------------------------------
+   Mobile: nav links aligned to the RIGHT
+-------------------------------------------------------------- */
 
+@media (max-width: 900px) {
+  .home-wrapper { min-height: calc(100vh - 160px); padding: 1rem; }
   .business-card { padding: 2.2rem 1.2rem; }
 
-  .business-card .bio {
-    font-size: 0.98rem;
-    line-height: 1.7;
-    max-width: 36ch;
-    margin-bottom: 1.6rem;
+  .business-card .bio { font-size: 0.98rem; line-height: 1.7; max-width: 36ch; margin-bottom: 1.6rem; }
+  .business-card .stack { font-size: 0.8rem; letter-spacing: 0.06em; }
+
+  .nav-container {
+    flex-direction: row;           /* keep one line */
+    align-items: baseline;
   }
 
-  .business-card .stack {
-    font-size: 0.8rem;
-    letter-spacing: 0.06em;
+  .nav-links {
+    margin-left: auto;             /* push to the right */
+    justify-content: flex-end;     /* align to right */
+    width: auto;
+    gap: 1.2rem;
   }
 
-  .nav-container { flex-direction: column; gap: 1rem; }
-  .nav-links { flex-direction: column; gap: 0.5rem; width: 100%; align-items: flex-start; }
-
-  /* Mobile dropdown becomes inline list; keep left bar language */
+  /* Disable desktop dropdown behavior on mobile (simple list) */
   .dropdown-content {
     position: static;
     transform: none;
-    min-width: 100%;
+    width: 100%;
+    min-width: 0;
 
     border: none;
     background: transparent;
-    padding: 0.25rem 0 0.25rem 1rem;
+    padding: 0.25rem 0 0.25rem 0.75rem;
     box-shadow: none;
     margin-top: 0.25rem;
   }
