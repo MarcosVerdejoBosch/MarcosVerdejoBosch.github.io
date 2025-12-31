@@ -8,7 +8,8 @@ permalink: /projects/linear-regulator/
 File: projects/linear-regulator.md
 Purpose: Project page with an embedded 3D model (model-viewer).
 Fix:
-- Use Jekyll `relative_url` so the GLB path works on GitHub Pages (baseurl-safe).
+- Point to the correct GLB filename: regulador.glb
+- Use Jekyll `relative_url` so it works with GitHub Pages baseurl.
 -->
 
 <h1 style="margin-top: 0;">Discrete Linear Regulator</h1>
@@ -16,10 +17,9 @@ Fix:
   ENGINEERING REPORT & ANALYSIS
 </p>
 
-<!-- 3D viewer container -->
 <div style="width: 100%; height: 450px; background-color: #eceff4; border: 1px solid var(--line); border-radius: 0; margin: 2rem 0; overflow: hidden; position: relative;">
   <model-viewer
-    src="{{ '/assets/img/projects/linear-regulator/regulator.glb' | relative_url }}"
+    src="{{ '/assets/img/projects/linear-regulator/regulador.glb' | relative_url }}"
     alt="3D PCB Model"
     auto-rotate
     camera-controls
@@ -31,7 +31,6 @@ Fix:
     loading="eager">
   </model-viewer>
 
-  <!-- Small label -->
   <div style="position: absolute; bottom: 10px; right: 15px; color: #4c566a; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; pointer-events: none;">
     Interactive 3D View
   </div>
