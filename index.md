@@ -3,14 +3,6 @@ layout: default
 title: Home
 ---
 
-<!--
-File: index.md
-Purpose: Homepage business card.
-Notes:
-- Short, clear copy
-- Email button copies address to clipboard (fallback to mailto)
--->
-
 <div class="home-wrapper">
 
   <div class="business-card">
@@ -27,18 +19,9 @@ Notes:
     </div>
 
     <div class="card-links">
-      <a href="https://github.com/MarcosVerdejoBosch" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-
-      <button
-        id="email-btn"
-        type="button"
-        class="email-btn"
-        data-email="marcosverdejo@gmail.com"
-        aria-label="Copy email to clipboard"
-      >
-        Email
-      </button>
+      <a href="https://github.com/MarcosVerdejoBosch" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/marcos-verdejo-bosch-7b85b4300/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" id="email-btn" onclick="copyEmail(); return false;">Email</a>
     </div>
 
   </div>
@@ -46,29 +29,23 @@ Notes:
 </div>
 
 <script>
-  // Copy email to clipboard and show short feedback (no inline onclick).
-  (function () {
+  // Copy email to clipboard and show a short "Copied" feedback state.
+  function copyEmail() {
+    const email = "marcosverdejo@gmail.com";
     const btn = document.getElementById("email-btn");
-    if (!btn) return;
 
-    const originalText = btn.textContent.trim();
-    const email = btn.dataset.email;
+    navigator.clipboard.writeText(email).then(() => {
+      const originalText = "Email";
 
-    btn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(email);
+      btn.innerText = "Copied";
+      btn.classList.add("email-copied");
 
-        btn.textContent = "Copied";
-        btn.classList.add("email-copied");
-
-        window.setTimeout(() => {
-          btn.textContent = originalText;
-          btn.classList.remove("email-copied");
-        }, 2000);
-      } catch (err) {
-        // Fallback: if clipboard fails, open mail client.
-        window.location.href = `mailto:${email}`;
-      }
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.classList.remove("email-copied");
+      }, 2000);
+    }).catch(err => {
+      console.error("Clipboard copy failed:", err);
     });
-  })();
+  }
 </script>
