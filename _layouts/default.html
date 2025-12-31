@@ -30,7 +30,6 @@
       <span class="nav-title">MVB</span>
 
       <div class="nav-links">
-        <!-- Home active only on root -->
         <a
           href="{{ "/" | relative_url }}"
           class="{% if page.url == "/" %}active{% endif %}"
@@ -38,12 +37,7 @@
           Home
         </a>
 
-        {%- comment -%}
-          Projects dropdown state:
-          - active: /projects and any /projects/...
-          - is-subactive: any /projects/... (but NOT /projects/ root)
-        {%- endcomment -%}
-        <div class="dropdown {% if page.url contains '/projects/' and page.url != '/projects/' %}is-subactive{% endif %}">
+        <div class="dropdown">
           <a
             href="{{ "/projects" | relative_url }}"
             class="{% if page.url contains "/projects" %}active{% endif %}"
@@ -69,18 +63,15 @@
     </div>
   </nav>
 
-  <!-- Page content -->
   <main class="content">
     {{ content }}
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     Marcos Verdejo Bosch &copy; <span id="year"></span>
   </footer>
 
   <script>
-    // Keep copyright year current.
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
