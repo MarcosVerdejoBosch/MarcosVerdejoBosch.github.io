@@ -640,3 +640,55 @@ img {
     transform: rotate(-90deg);
   }
 }
+
+
+/* ==============================================================
+   HOME — Card links visual consistency
+   Purpose:
+   - Make "Email" look exactly like other links (no button styling).
+   - Restore subtle underline in the default (not-hover) state.
+   ============================================================== */
+
+.business-card .card-links a {
+  /* Ensure links don't inherit any browser button styling */
+  background: transparent;
+  border: none !important;
+  border-radius: 0;
+  padding: 0;
+
+  color: var(--fg);
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Subtle underline by default (less visible) */
+.business-card .card-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 100%;
+  height: 1px;
+
+  background-color: rgba(236, 239, 244, 0.28);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Stronger underline on hover */
+.business-card .card-links a:hover::after {
+  height: 3px;
+  background-color: var(--accent);
+}
+
+/* "Copied" feedback: accent color, no underline */
+.email-copied {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+.email-copied::after {
+  display: none !important;
+}
+
