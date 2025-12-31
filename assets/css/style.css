@@ -195,45 +195,48 @@ img {
   box-shadow: var(--u-active-glow);
 }
 
-/* Dropdown container */
-.dropdown { position: relative; display: inline-block; }
+/* --------------------------------------------------------------
+   DROPDOWN (desktop: right of Projects, same height; mobile: down)
+-------------------------------------------------------------- */
 
-/*
-  Dropdown:
-  - width fits content (no big box)
-  - opens to the RIGHT of the Projects link
-  - straight edges, defined border
-*/
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+/* ===== DESKTOP ===== */
 .dropdown-content {
   display: none;
   position: absolute;
 
-  /* Open aligned to the right edge of Projects */
-  top: calc(100% + 10px);
+  /* Open to the RIGHT of "Projects", aligned to the same height */
+  top: 0;
   left: 100%;
-  transform: translateX(12px);
+  margin-left: 12px;
 
-  /* Fit content */
+  /* Fit content (no big empty space) */
   width: max-content;
-  min-width: 180px;
+  min-width: unset;
 
   background-color: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: 0;
   box-shadow: 0 18px 40px rgba(0,0,0,0.35);
 
-  padding: 0.35rem 0;
-  z-index: 1100;
+  padding: 0.25rem 0;
+  z-index: 1200;
 }
 
 /* Hover buffer to avoid flicker when moving cursor */
 .dropdown-content::before {
   content: "";
   position: absolute;
-  top: -10px;
-  left: -14px;
-  width: 14px;
-  height: calc(100% + 20px);
+  left: -12px;
+  top: 0;
+  width: 12px;
+  height: 100%;
   background: transparent;
 }
 
@@ -242,17 +245,20 @@ img {
 /* Dropdown items */
 .dropdown-content a {
   color: var(--muted);
-  padding: 0.75rem 1rem;
+
+  /* Tighten horizontal space */
+  padding: 0.55rem 0.9rem;
+
   text-decoration: none;
   display: block;
   text-align: left;
   border: none;
+  white-space: nowrap;
 
   font-size: 0.92rem;
-  position: relative;
 
   /* Left bar language (same as project cards) */
-  border-left: 4px solid rgba(216, 222, 233, 0.35);
+  border-left: 3px solid rgba(216, 222, 233, 0.35);
 
   transition:
     background-color 0.15s ease,
@@ -261,19 +267,57 @@ img {
 }
 
 .dropdown-content a:hover {
-  background-color: rgba(46, 52, 64, 0.35);
+  background-color: rgba(46, 52, 64, 0.4);
   color: var(--fg);
-  border-left-color: var(--accent); /* SAME accent blue */
+  border-left-color: var(--accent); /* same blue as underline */
 }
 
 .dropdown-content a.active {
   color: var(--fg);
-  background-color: rgba(136, 192, 208, 0.10);
-  border-left-color: var(--accent); /* SAME accent blue */
+  background-color: rgba(136, 192, 208, 0.12);
+  border-left-color: var(--accent); /* same blue as underline */
 }
 
 /* Remove underlines in dropdown items */
 .dropdown-content a::after { display: none; }
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .dropdown { display: block; }
+
+  .dropdown-content {
+    position: static;
+    margin-left: 0;
+    margin-top: 0.3rem;
+
+    width: 100%;
+    padding: 0.25rem 0;
+
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .dropdown-content::before { display: none; }
+
+  /* Keep Projects in place; dropdown expands below */
+  .dropdown:hover .dropdown-content {
+    display: block;
+    border-left: 2px solid var(--line);
+  }
+
+  .dropdown-content a {
+    padding: 0.5rem 0.75rem;
+    border-left: 3px solid rgba(216, 222, 233, 0.35);
+  }
+
+  .dropdown-content a.active {
+    background: transparent;
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+}
+
 
 /* --------------------------------------------------------------
    HOME & BUSINESS CARD (straight edges)
