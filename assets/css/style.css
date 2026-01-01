@@ -664,3 +664,96 @@ img {
     display: none;
   }
 }
+
+/* ==============================================================
+   HARD OVERRIDE — Underlines (dim vs bright) for NAV + Home links
+   Goal:
+   - Default: very dim underline
+   - Hover/Active: bright + thicker + subtle glow
+   ============================================================== */
+
+/* Kill global dotted underline for these areas */
+.navbar a,
+.business-card .card-links a,
+.dropdown-content a {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/* --- NAV links (Home / Projects) --- */
+.nav-links > a,
+.dropdown > a {
+  position: relative !important;
+  display: inline-block !important;
+  padding-bottom: 7px !important; /* stable baseline */
+}
+
+/* Default = DIM */
+.nav-links > a::after,
+.dropdown > a::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+
+  width: 100% !important;
+  height: 1px !important;
+
+  background: rgba(236, 239, 244, 0.16) !important; /* MUCH dimmer */
+  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease !important;
+  box-shadow: none !important;
+}
+
+/* Hover = BRIGHT */
+.nav-links > a:hover::after,
+.dropdown:hover > a::after {
+  height: 3px !important;
+  background: var(--accent) !important;
+  box-shadow: 0 0 10px rgba(136, 192, 208, 0.35) !important; /* glow */
+}
+
+/* Active = BRIGHT */
+.nav-links > a.active::after,
+.dropdown > a.active::after {
+  height: 3px !important;
+  background: var(--accent) !important;
+  box-shadow: 0 0 10px rgba(136, 192, 208, 0.35) !important;
+}
+
+/* --- Home contact links (GitHub / LinkedIn / Email) --- */
+.business-card .card-links a {
+  position: relative !important;
+  display: inline-block !important;
+  padding-bottom: 7px !important;
+  color: var(--fg) !important;
+}
+
+/* Default = DIM */
+.business-card .card-links a::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+
+  width: 100% !important;
+  height: 1px !important;
+
+  background: rgba(236, 239, 244, 0.16) !important;
+  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease !important;
+  box-shadow: none !important;
+}
+
+/* Hover = BRIGHT */
+.business-card .card-links a:hover::after {
+  height: 3px !important;
+  background: var(--accent) !important;
+  box-shadow: 0 0 10px rgba(136, 192, 208, 0.35) !important;
+}
+
+/* Copied state: no underline */
+.business-card .card-links a.email-copied::after {
+  display: none !important;
+}
+
