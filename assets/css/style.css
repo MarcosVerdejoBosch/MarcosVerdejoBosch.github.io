@@ -930,6 +930,134 @@ img {
   }
 }
 
+/* ==============================================================
+   OVERRIDES — Restore original Home card + dim/bright underlines
+   Place at END of style.css
+   ============================================================== */
+
+/* --------------------------------------------------------------
+   A) HOME CARD — revert to "straight + clean" (no top accent, no bullets)
+-------------------------------------------------------------- */
+
+/* Remove the top accent bar if it exists */
+.business-card::before {
+  display: none !important;
+}
+
+/* If you added list/tagline styles, disable them cleanly */
+.business-card .tagline,
+.business-card .bio-list {
+  display: none !important;
+}
+
+/* Keep original paragraph-style bio */
+.business-card .bio {
+  display: block !important;
+  text-align: center !important;
+  max-width: 60ch;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Keep the card looking like your original "straight edges" */
+.business-card {
+  border-radius: 0 !important;
+  border: 1px solid var(--muted) !important;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25) !important;
+}
+
+/* --------------------------------------------------------------
+   B) HARD OVERRIDE — Navbar underline (dim -> bright)
+   Fix: sometimes global link border-bottom makes it look "same"
+-------------------------------------------------------------- */
+
+/* Remove global dotted underline ONLY in navbar and dropdown */
+.navbar a,
+.dropdown-content a {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/* Default underline = dim */
+.nav-links > a,
+.dropdown > a {
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.nav-links > a::after,
+.dropdown > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1px;
+
+  /* dim line (less illuminated) */
+  background-color: rgba(236, 239, 244, 0.28);
+  transition: height 0.18s ease, background-color 0.18s ease;
+}
+
+/* Hover = brighter + thicker */
+.nav-links > a:hover::after,
+.dropdown:hover > a::after {
+  height: 3px;
+  background-color: var(--accent);
+}
+
+/* Active = brighter + thicker */
+.nav-links > a.active::after,
+.dropdown > a.active::after {
+  height: 3px;
+  background-color: var(--accent);
+}
+
+/* --------------------------------------------------------------
+   C) HARD OVERRIDE — Home contact links underline (dim -> bright)
+-------------------------------------------------------------- */
+
+.business-card .card-links a {
+  border-bottom: none !important; /* kill global dotted underline */
+  text-decoration: none !important;
+
+  color: var(--fg);
+  position: relative;
+  padding-bottom: 5px;
+}
+
+/* Default underline = dim */
+.business-card .card-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background-color: rgba(236, 239, 244, 0.28);
+  transition: height 0.18s ease, background-color 0.18s ease;
+}
+
+/* Hover = bright */
+.business-card .card-links a:hover::after {
+  height: 3px;
+  background-color: var(--accent);
+}
+
+/* Copied state: accent text, no underline */
+.business-card .card-links a.email-copied {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+.business-card .card-links a.email-copied::after {
+  display: none !important;
+}
+
+
 
 
 
