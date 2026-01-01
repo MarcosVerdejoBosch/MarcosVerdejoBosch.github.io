@@ -37,11 +37,13 @@
   /* Anchor offset (sticky navbar) */
   --anchor-offset: 100px;
 
-  /* Underline system (dim vs bright) */
-  --u-dim: rgba(236, 239, 244, 0.08);
-  --u-bright: var(--accent);
-  --u-h: 1px;     /* default underline thickness */
-  --u-h-on: 3px;  /* hover/active thickness */
+  /* Underline system */
+  --u-dim: rgba(236, 239, 244, 0.08);   /* default (inactive) */
+  --u-hover: rgba(136, 192, 208, 0.55); /* hover (must be dimmer than active) */
+  --u-active: var(--accent);            /* active */
+  --u-h: 1px;                           /* default thickness */
+  --u-h-hover: 2px;                     /* hover thickness */
+  --u-h-active: 3px;                    /* active thickness */
 }
 
 /* --------------------------------------------------------------
@@ -176,8 +178,10 @@ img {
 
 /* --------------------------------------------------------------
    5) Underline System (NAV + Home card links)
+   Rules:
    - Default: dim underline
-   - Hover/Active: bright + thicker
+   - Hover: dimmer than active (so active always wins)
+   - Active: brightest + thickest
 -------------------------------------------------------------- */
 .u-link,
 .nav-links > a,
@@ -189,9 +193,10 @@ img {
 
   position: relative;
   display: inline-block;
-  padding-bottom: 6px; /* stable baseline */
+  padding-bottom: 6px;
 }
 
+/* Default (inactive) */
 .u-link::after,
 .nav-links > a::after,
 .dropdown > a::after,
@@ -210,19 +215,21 @@ img {
   transition: height 0.18s ease, background-color 0.18s ease;
 }
 
+/* Hover (must be weaker than active) */
 .u-link:hover::after,
 .nav-links > a:hover::after,
 .dropdown:hover > a::after,
 .business-card .card-links a:hover::after {
-  height: var(--u-h-on);
-  background: var(--u-bright);
+  height: var(--u-h-hover);
+  background: var(--u-hover);
 }
 
+/* Active (strongest) — placed AFTER hover on purpose */
 .u-link.is-active::after,
 .nav-links > a.active::after,
 .dropdown > a.active::after {
-  height: var(--u-h-on);
-  background: var(--u-bright);
+  height: var(--u-h-active);
+  background: var(--u-active);
 }
 
 /* Copied state (no underline) */
@@ -421,22 +428,46 @@ img {
   display: block;
 }
 
+/* Bio keyword row (tag style like reference) */
 .business-card .bio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem;
+
   font-size: 0.92rem;
   line-height: 1.55;
-
   color: var(--fg);
-  margin-bottom: 2rem;
 
   padding: 0 1rem;
-  text-align: center;
+  margin: 0 auto 2rem auto;
+  max-width: 720px;
 
-  /* Helps the whole sentence fit in one line more often */
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
+  flex-wrap: nowrap; /* desktop: try one line */
 }
 
+@media (max-width: 700px) {
+  .business-card .bio {
+    flex-wrap: wrap; /* small screens: wrap */
+  }
+}
+
+.business-card .bio .hl {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.12em 0.5em;
+  border-radius: 4px;
+
+  background-color: rgba(136, 192, 208, 0.85);
+  color: var(--bg);
+
+  font-weight: 500;
+  line-height: 1.15;
+  white-space: nowrap;
+
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+}
 
 .business-card .stack {
   font-size: 0.8rem;
@@ -583,6 +614,7 @@ img {
     white-space: nowrap;
   }
 
+  /* Mobile dropdown: overlay below Projects (no layout shift) */
   .dropdown {
     position: relative;
     display: inline-block;
@@ -604,76 +636,3 @@ img {
     display: none;
   }
 }
-
-/* --------------------------------------------------------------
-   11) Home — Subtle keyword highlight (business card)
--------------------------------------------------------------- */
-.business-card .bio .hl {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 0.08em 0.42em;
-  margin: 0 0.06em;
-
-  background-color: rgba(136, 192, 208, 0.10);
-  border: 1px solid rgba(136, 192, 208, 0.22);
-  border-radius: 8px;
-
-  color: var(--fg);
-  font-weight: 600;
-  line-height: 1.2;
-
-  /* Slight “chip” depth but still subtle */
-  box-shadow: inset 0 -1px 0 rgba(136, 192, 208, 0.18);
-
-  /* Keep each highlighted phrase unbroken */
-  white-space: nowrap;
-}
-
-/* ==============================================================
-   HOME — Bio keyword tags (override, keep at end of file)
-   ============================================================== */
-.business-card .bio {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.55rem;
-
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: var(--fg);
-
-  padding: 0 1rem;
-  margin: 0 auto 2rem auto;
-  max-width: 720px;
-
-  flex-wrap: nowrap;
-}
-
-@media (max-width: 700px) {
-  .business-card .bio {
-    flex-wrap: wrap;
-  }
-}
-
-.business-card .bio .hl {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 0.12em 0.5em;
-  border-radius: 4px;
-
-  background-color: rgba(136, 192, 208, 0.85);
-  color: var(--bg);
-
-  font-weight: 500;
-  line-height: 1.15;
-  white-space: nowrap;
-
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
-}
-
-.business-card .bio .hl + .hl::before {
-  content: none;
-}
-
