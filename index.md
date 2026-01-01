@@ -11,12 +11,10 @@ title: Home
 
     <div class="bio">
       Focused on
-      <span class="hl">hardware design</span>,
-      <span class="hl">embedded systems</span>,
-      and
+      <span class="hl">hardware design</span>
+      <span class="hl">embedded systems</span>
       <span class="hl">analog circuits</span>.
     </div>
-
 
     <div class="stack">
       KiCad · LTspice
