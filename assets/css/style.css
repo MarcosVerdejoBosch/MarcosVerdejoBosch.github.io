@@ -422,15 +422,21 @@ img {
 }
 
 .business-card .bio {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.92rem;
+  line-height: 1.55;
 
   color: var(--fg);
   margin-bottom: 2rem;
 
   padding: 0 1rem;
   text-align: center;
+
+  /* Helps the whole sentence fit in one line more often */
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 
 .business-card .stack {
   font-size: 0.8rem;
@@ -603,15 +609,23 @@ img {
    11) Home — Subtle keyword highlight (business card)
 -------------------------------------------------------------- */
 .business-card .bio .hl {
-  display: inline-block;
-  padding: 0.12em 0.45em;
-  margin: 0 0.1em;
+  display: inline-flex;
+  align-items: center;
 
-  background-color: rgba(136, 192, 208, 0.18);
-  border-radius: 2px;
+  padding: 0.08em 0.42em;
+  margin: 0 0.06em;
+
+  background-color: rgba(136, 192, 208, 0.10);
+  border: 1px solid rgba(136, 192, 208, 0.22);
+  border-radius: 8px;
 
   color: var(--fg);
   font-weight: 600;
+  line-height: 1.2;
 
+  /* Slight “chip” depth but still subtle */
+  box-shadow: inset 0 -1px 0 rgba(136, 192, 208, 0.18);
+
+  /* Keep each highlighted phrase unbroken */
   white-space: nowrap;
 }
