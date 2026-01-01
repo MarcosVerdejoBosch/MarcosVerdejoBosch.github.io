@@ -13,7 +13,7 @@ title: Home
       Focused on
       <span class="hl">hardware design</span>
       <span class="hl">embedded systems</span>
-      <span class="hl">analog circuits</span>.
+      <span class="hl">analog circuits</span>
     </div>
 
     <div class="stack">
