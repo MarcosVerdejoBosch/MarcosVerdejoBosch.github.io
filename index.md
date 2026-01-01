@@ -9,17 +9,9 @@ title: Home
     <h1>Marcos Verdejo Bosch</h1>
     <span class="role">Electronic Engineer</span>
 
-    <!-- Short tagline (one sentence) -->
-    <p class="tagline">
-      Designing reliable circuits that bridge the physical and digital worlds.
-    </p>
-
-    <!-- Focus areas (clean list) -->
-    <ul class="bio-list" aria-label="Focus areas">
-      <li>Hardware design</li>
-      <li>Embedded systems</li>
-      <li>Analog circuits</li>
-    </ul>
+    <div class="bio">
+      Focused on <strong>hardware design</strong>, <strong>embedded systems</strong>, and <strong>analog circuits</strong>.
+    </div>
 
     <div class="stack">
       KiCad · LTspice
