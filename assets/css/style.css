@@ -177,17 +177,15 @@ img {
 /* --------------------------------------------------------------
    5) Underline System (NAV + Home card links)
    - Default: dim underline
-   - Hover/Active: brighter + thicker
+   - Hover/Active: bright + thicker
 -------------------------------------------------------------- */
-
-/* Base underline behavior */
 .u-link,
 .nav-links > a,
 .dropdown > a,
 .business-card .card-links a {
   color: var(--fg);
-  text-decoration: none !important;
-  border-bottom: none !important;
+  text-decoration: none;
+  border-bottom: none;
 
   position: relative;
   display: inline-block;
@@ -200,6 +198,7 @@ img {
 .business-card .card-links a::after {
   content: "";
   position: absolute;
+
   left: 0;
   right: 0;
   bottom: 0;
@@ -211,7 +210,6 @@ img {
   transition: height 0.18s ease, background-color 0.18s ease;
 }
 
-/* Hover = brighter/thicker */
 .u-link:hover::after,
 .nav-links > a:hover::after,
 .dropdown:hover > a::after,
@@ -220,7 +218,6 @@ img {
   background: var(--u-bright);
 }
 
-/* Active = brighter/thicker */
 .u-link.is-active::after,
 .nav-links > a.active::after,
 .dropdown > a.active::after {
@@ -230,9 +227,8 @@ img {
 
 /* Copied state (no underline) */
 .business-card .card-links a.email-copied::after {
-  display: none !important;
+  display: none;
 }
-
 
 /* --------------------------------------------------------------
    6) Navbar + dropdown
@@ -250,6 +246,14 @@ img {
   padding: 0.9rem 1.2rem;
 }
 
+/* Kill global dotted underline in navbar + card + dropdown items */
+.navbar a,
+.business-card .card-links a,
+.dropdown-content a {
+  border-bottom: none;
+  text-decoration: none;
+}
+
 .nav-container {
   max-width: var(--container-max);
   margin: 0 auto;
@@ -262,7 +266,7 @@ img {
 .nav-title {
   font-weight: 700;
   color: var(--fg);
-  border: none !important;
+  border: none;
   cursor: default;
 }
 
@@ -270,49 +274,6 @@ img {
   display: flex;
   gap: 1.5rem;
   align-items: center;
-}
-
-/* Apply underline system to navbar links */
-.nav-links > a,
-.dropdown > a {
-  /* Convert existing anchors to underline-system look */
-  color: var(--fg);
-  border-bottom: none !important;
-  text-decoration: none !important;
-
-  position: relative;
-  display: inline-block;
-  padding-bottom: 6px;
-}
-
-/* Make navbar links behave exactly like .u-link (without extra classes) */
-.nav-links > a::after,
-.dropdown > a::after {
-  content: "";
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-
-  bottom: 0;
-  width: 100%;
-  height: var(--u-h);
-
-  background: var(--u-dim);
-  transition: height 0.18s ease, background-color 0.18s ease;
-}
-
-.nav-links > a:hover::after,
-.dropdown:hover > a::after {
-  height: var(--u-h-on);
-  background: var(--u-bright);
-}
-
-.nav-links > a.active::after,
-.dropdown > a.active::after {
-  height: var(--u-h-on);
-  background: var(--u-bright);
 }
 
 /* Dropdown container */
@@ -364,8 +325,6 @@ img {
   color: var(--muted);
   padding: 0.55rem 0.9rem;
 
-  text-decoration: none;
-  border: none !important; /* kill global dotted underline */
   display: block;
 
   text-align: left;
@@ -405,7 +364,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   7) Home page — centered business card (original look)
+   7) Home page — centered business card
 -------------------------------------------------------------- */
 .home-wrapper {
   display: flex;
@@ -496,46 +455,10 @@ img {
   flex-wrap: wrap;
 }
 
-/* Use the same dim/bright underline system for card links */
-.business-card .card-links a {
-  color: var(--fg);
-  border-bottom: none !important;
-  text-decoration: none !important;
-
-  position: relative;
-  display: inline-block;
-  padding-bottom: 6px;
-}
-
-.business-card .card-links a::after {
-  content: "";
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-
-  bottom: 0;
-  width: 100%;
-  height: var(--u-h);
-
-  background: var(--u-dim);
-  transition: height 0.18s ease, background-color 0.18s ease;
-}
-
-.business-card .card-links a:hover::after {
-  height: var(--u-h-on);
-  background: var(--u-bright);
-}
-
-/* Email copied state (no underline) */
+/* Email copied state */
 .business-card .card-links a.email-copied {
-  color: var(--accent) !important;
+  color: var(--accent);
   font-weight: 700;
-}
-
-.business-card .card-links a.email-copied::after {
-  display: none !important;
 }
 
 /* --------------------------------------------------------------
@@ -591,7 +514,7 @@ img {
   font-weight: 700;
 
   color: var(--accent);
-  border: 1px solid var(--accent) !important;
+  border: 1px solid var(--accent);
 
   padding: 0.6rem 1.2rem;
   text-transform: uppercase;
@@ -622,7 +545,6 @@ img {
    10) Mobile optimization
 -------------------------------------------------------------- */
 @media (max-width: 900px) {
-  /* Home spacing */
   .home-wrapper {
     min-height: 90vh;
     padding: 1rem;
@@ -632,7 +554,6 @@ img {
     padding: 2rem 1.2rem;
   }
 
-  /* Navbar: keep single row, links on the right */
   .nav-container {
     flex-direction: row;
     align-items: center;
@@ -656,7 +577,6 @@ img {
     white-space: nowrap;
   }
 
-  /* Mobile dropdown: overlay below Projects (no layout shift) */
   .dropdown {
     position: relative;
     display: inline-block;
@@ -679,10 +599,9 @@ img {
   }
 }
 
-
-/* ==============================================================
-   HOME — Subtle keyword highlight (business card)
-   ============================================================== */
+/* --------------------------------------------------------------
+   11) Home — Subtle keyword highlight (business card)
+-------------------------------------------------------------- */
 .business-card .bio .hl {
   display: inline-block;
   padding: 0.12em 0.45em;
@@ -696,5 +615,3 @@ img {
 
   white-space: nowrap;
 }
-
-
