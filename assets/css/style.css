@@ -757,3 +757,21 @@ img {
   display: none !important;
 }
 
+/* ==============================================================
+   HOME — Subtle keyword highlight (business card)
+   ============================================================== */
+.business-card .bio .hl {
+  display: inline-block;
+  padding: 0.12em 0.45em;
+  margin: 0 0.1em;
+
+  background-color: rgba(136, 192, 208, 0.18);
+  border-radius: 2px;
+
+  color: var(--fg);
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
