@@ -895,6 +895,41 @@ img {
   opacity: 0.85;
 }
 
+/* ==============================================================
+   NAV (mobile) — Keep Home/Projects on the right
+   Purpose:
+   - Brand (MVB) stays left
+   - Links (Home, Projects) align to the right on small screens
+   ============================================================== */
+
+@media (max-width: 900px) {
+  .nav-container {
+    /* Keep a single row */
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-title {
+    /* Stick to the left */
+    margin-right: auto;
+  }
+
+  .nav-links {
+    /* Push links to the right */
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.25rem;
+
+    /* Prevent wrapping to next line */
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+}
+
 
 
 
