@@ -848,5 +848,53 @@ img {
   transform: translateY(-1px);
 }
 
+/* ==============================================================
+   HOME — Semantic bio list
+   Purpose:
+   - Use a real <ul> for the focus areas
+   - Keep it modern, minimal, and readable
+   ============================================================== */
+
+.business-card .tagline {
+  max-width: 52ch;
+  margin: 0 auto 1.4rem auto;
+  color: rgba(216, 222, 233, 0.92);
+  line-height: 1.65;
+  text-align: center;
+}
+
+/* Clean list, centered block but left-aligned text for scanning */
+.business-card .bio-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 2.2rem auto;
+
+  display: inline-block; /* keeps the list centered as a block */
+  text-align: left;      /* easier to scan */
+}
+
+/* List items with accent bullets */
+.business-card .bio-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin: 0.35rem 0;
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.business-card .bio-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+
+  width: 6px;
+  height: 6px;
+
+  background: var(--accent);
+  opacity: 0.85;
+}
+
+
 
 
