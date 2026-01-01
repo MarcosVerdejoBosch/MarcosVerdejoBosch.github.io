@@ -19,17 +19,30 @@ Fix:
 
 <div style="width: 100%; height: 450px; background-color: #eceff4; border: 1px solid var(--line); border-radius: 0; margin: 2rem 0; overflow: hidden; position: relative;">
   <model-viewer
-    src="{{ '/assets/img/projects/linear-regulator/regulador.glb' | relative_url }}"
+    src="/assets/img/projects/linear-regulator/regulador.glb"
     alt="3D PCB Model"
-    auto-rotate
+
     camera-controls
-    shadow-intensity="1.2"
-    shadow-softness="0.5"
-    exposure="1.0"
+    auto-rotate
+    rotation-per-second="15deg"
+
+    /* Lighting & quality */
+    exposure="1.25"
+    shadow-intensity="1.4"
+    shadow-softness="0.6"
+    environment-image="neutral"
+    tone-mapping="aces"
+
+    /* Rendering */
+    interpolation-decay="200"
+    min-camera-orbit="auto 30deg 90%"
+    max-camera-orbit="auto 80deg 160%"
+    camera-orbit="45deg 60deg 120%"
+
     style="width: 100%; height: 100%;"
-    camera-orbit="45deg 55deg 105%"
-    loading="eager">
+  >
   </model-viewer>
+
 
   <div style="position: absolute; bottom: 10px; right: 15px; color: #4c566a; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; pointer-events: none;">
     Interactive 3D View
