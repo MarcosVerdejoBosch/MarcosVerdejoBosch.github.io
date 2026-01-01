@@ -692,3 +692,46 @@ img {
   display: none !important;
 }
 
+/* ==============================================================
+   HOME — Card links underline (dim -> bright on hover)
+   Purpose:
+   - Default: subtle underline (less bright)
+   - Hover: thicker + accent underline (more bright)
+   ============================================================== */
+
+.business-card .card-links a {
+  color: var(--fg);
+  text-decoration: none;
+  border: none;              /* prevent global dotted underline */
+  position: relative;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+/* Default underline (dim) */
+.business-card .card-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1px;
+
+  /* dim/low glow like we had before */
+  background-color: rgba(236, 239, 244, 0.35);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover underline (bright) */
+.business-card .card-links a:hover::after {
+  height: 3px;
+  background-color: var(--accent);
+}
+
+/* Keep "Copied" clean (no underline) */
+.business-card .card-links a.email-copied::after {
+  display: none;
+}
+
+
