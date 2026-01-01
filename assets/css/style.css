@@ -629,3 +629,51 @@ img {
   /* Keep each highlighted phrase unbroken */
   white-space: nowrap;
 }
+
+/* ==============================================================
+   HOME — Bio keyword tags (override, keep at end of file)
+   ============================================================== */
+.business-card .bio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem;
+
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--fg);
+
+  padding: 0 1rem;
+  margin: 0 auto 2rem auto;
+  max-width: 720px;
+
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 700px) {
+  .business-card .bio {
+    flex-wrap: wrap;
+  }
+}
+
+.business-card .bio .hl {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.12em 0.5em;
+  border-radius: 4px;
+
+  background-color: rgba(136, 192, 208, 0.85);
+  color: var(--bg);
+
+  font-weight: 500;
+  line-height: 1.15;
+  white-space: nowrap;
+
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+}
+
+.business-card .bio .hl + .hl::before {
+  content: none;
+}
+
