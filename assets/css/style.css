@@ -38,7 +38,7 @@
   --anchor-offset: 100px;
 
   /* Underline system (dim vs bright) */
-  --u-dim: rgba(236, 239, 244, 0.14);
+  --u-dim: rgba(236, 239, 244, 0.08);
   --u-bright: var(--accent);
   --u-h: 1px;     /* default underline thickness */
   --u-h-on: 3px;  /* hover/active thickness */
