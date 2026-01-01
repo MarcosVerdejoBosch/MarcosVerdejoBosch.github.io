@@ -10,8 +10,13 @@ title: Home
     <span class="role">Electronic Engineer</span>
 
     <div class="bio">
-      Focused on <strong>hardware design</strong>, <strong>embedded systems</strong>, and <strong>analog circuits</strong>.
+      Focused on
+      <span class="hl">hardware design</span>,
+      <span class="hl">embedded systems</span>,
+      and
+      <span class="hl">analog circuits</span>.
     </div>
+
 
     <div class="stack">
       KiCad · LTspice
