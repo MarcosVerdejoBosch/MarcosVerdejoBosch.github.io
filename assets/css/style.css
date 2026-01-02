@@ -249,6 +249,20 @@ img {
   background: var(--u-active);
 }
 
+/* Keep Projects underline bright when it's the active dropdown/current page */
+.dropdown.active > a::after,
+.dropdown > a.active::after {
+  height: var(--u-h-active);
+  background: var(--u-active);
+}
+
+.dropdown.active:hover > a::after,
+.dropdown:hover > a.active::after {
+  height: var(--u-h-active);
+  background: var(--u-active);
+}
+
+
 /* Copied state (no underline) */
 .business-card .card-links a.email-copied::after {
   display: none;
