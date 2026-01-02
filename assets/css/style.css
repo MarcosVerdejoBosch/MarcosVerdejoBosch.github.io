@@ -38,7 +38,7 @@
   --anchor-offset: 100px;
 
   /* Underline system */
-  --u-dim: rgba(236, 239, 244, 0.08);   /* default (inactive) */
+  --u-dim: rgba(236, 239, 244, 0.14);   /* default (inactive) */
   --u-hover: rgba(136, 192, 208, 0.55); /* hover (must be dimmer than active) */
   --u-active: var(--accent);            /* active */
   --u-h: 1px;                           /* default thickness */
