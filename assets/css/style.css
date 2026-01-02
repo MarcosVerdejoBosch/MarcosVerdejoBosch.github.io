@@ -497,18 +497,21 @@ img {
   display: inline-flex;
   align-items: center;
 
-  padding: 0.10em 0.45em;
-  border-radius: 4px;
+  padding: 0.10em 0.48em;
+  border-radius: 3px;
 
-  background-color: rgba(136, 192, 208, 0.85);
-  color: var(--bg);
+  /* closer to underline accent, less "blocky" */
+  background-color: rgba(136, 192, 208, 0.18);
+  border: 1px solid rgba(136, 192, 208, 0.35);
 
+  color: var(--fg);
   font-size: 0.95em;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.1;
   white-space: nowrap;
 
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+  /* subtle crispness, no heavy shadow */
+  box-shadow: none;
 }
 
 .business-card .stack {
