@@ -493,16 +493,19 @@ img {
 }
 
 /* Keyword tags: slightly tighter to help 1-line fit */
+/* ==============================================================
+   1) HOME keyword tags — squarer + border matches underline blue
+   Replace ONLY your current .business-card .bio .hl block with this
+   ============================================================== */
 .business-card .bio .hl {
   display: inline-flex;
   align-items: center;
 
   padding: 0.10em 0.48em;
-  border-radius: 3px;
+  border-radius: 2px; /* more square */
 
-  /* closer to underline accent, less "blocky" */
-  background-color: rgba(136, 192, 208, 0.18);
-  border: 1px solid rgba(136, 192, 208, 0.35);
+  background: rgba(136, 192, 208, 0.14);
+  border: 1px solid rgba(136, 192, 208, 0.70); /* same hue as underline */
 
   color: var(--fg);
   font-size: 0.95em;
@@ -510,9 +513,12 @@ img {
   line-height: 1.1;
   white-space: nowrap;
 
-  /* subtle crispness, no heavy shadow */
-  box-shadow: none;
+  /* subtle “glass” feel */
+  box-shadow:
+    inset 0 1px 0 rgba(236, 239, 244, 0.08),
+    0 1px 0 rgba(0, 0, 0, 0.22);
 }
+
 
 .business-card .stack {
   font-size: 0.8rem;
@@ -679,5 +685,67 @@ img {
 
   .dropdown-content::before {
     display: none;
+  }
+}
+
+/* ==============================================================
+   2) Underline — glassy highlight + subtle shimmer on hover
+   Paste this at the END of style.css (override)
+   ============================================================== */
+
+/* Use a gradient underline instead of a flat color */
+.u-link::after,
+.nav-links > a::after,
+.dropdown > a::after,
+.business-card .card-links a::after {
+  background: linear-gradient(
+    90deg,
+    rgba(136, 192, 208, 0.00),
+    rgba(136, 192, 208, 0.55),
+    rgba(236, 239, 244, 0.28),
+    rgba(136, 192, 208, 0.55),
+    rgba(136, 192, 208, 0.00)
+  );
+  opacity: 0.45; /* default looks glassy, not loud */
+}
+
+/* Hover: a bit stronger but still weaker than active */
+.u-link:hover::after,
+.nav-links > a:hover::after,
+.dropdown:hover > a::after,
+.business-card .card-links a:hover::after {
+  opacity: 0.65;
+  filter: blur(0.2px);
+}
+
+/* Active: strongest + subtle glow */
+.u-link.is-active::after,
+.nav-links > a.active::after,
+.dropdown > a.active::after {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 10px rgba(136, 192, 208, 0.22);
+}
+
+/* Shimmer sweep (only when user can hover) */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .u-link::after,
+  .nav-links > a::after,
+  .dropdown > a::after,
+  .business-card .card-links a::after {
+    background-size: 220% 100%;
+    background-position: 0% 50%;
+    transition:
+      height 0.18s ease,
+      opacity 0.18s ease,
+      box-shadow 0.18s ease,
+      background-position 0.8s ease;
+  }
+
+  .u-link:hover::after,
+  .nav-links > a:hover::after,
+  .dropdown:hover > a::after,
+  .business-card .card-links a:hover::after {
+    background-position: 100% 50%;
   }
 }
