@@ -749,3 +749,36 @@ img {
     background-position: 100% 50%;
   }
 }
+
+@media (hover: none) {
+  /* Base glass underline stays visible on mobile */
+  .u-link::after,
+  .nav-links > a::after,
+  .dropdown > a::after,
+  .business-card .card-links a::after {
+    opacity: 0.55;              /* a bit stronger on mobile */
+    background-size: 220% 100%; /* keep the glass gradient richness */
+    background-position: 50% 50%;
+    filter: none;
+    box-shadow: none;
+  }
+
+  /* Tap feedback (brief “shine”) */
+  .u-link:active::after,
+  .nav-links > a:active::after,
+  .dropdown > a:active::after,
+  .business-card .card-links a:active::after {
+    opacity: 0.75;
+    background-position: 100% 50%;
+  }
+
+  /* Active tab stays the strongest on mobile too */
+  .u-link.is-active::after,
+  .nav-links > a.active::after,
+  .dropdown > a.active::after,
+  .dropdown.active > a::after {
+    opacity: 1;
+    background-position: 100% 50%;
+    box-shadow: 0 0 10px rgba(136, 192, 208, 0.22);
+  }
+}
