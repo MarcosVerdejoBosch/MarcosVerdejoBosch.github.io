@@ -782,3 +782,49 @@ img {
     box-shadow: 0 0 10px rgba(136, 192, 208, 0.22);
   }
 }
+
+/* Add a subtle Nord gradient + soft “aurora” accents behind the card */
+.home-wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+}
+
+.home-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+
+  background:
+    radial-gradient(600px 380px at 15% 25%, rgba(136, 192, 208, 0.14), transparent 60%),
+    radial-gradient(520px 360px at 85% 35%, rgba(191, 97, 106, 0.10), transparent 62%),
+    radial-gradient(520px 420px at 55% 85%, rgba(163, 190, 140, 0.10), transparent 62%),
+    linear-gradient(180deg, rgba(46, 52, 64, 1) 0%, rgba(59, 66, 82, 0.55) 100%);
+
+  filter: blur(6px);
+  opacity: 1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Keep card above the background */
+.business-card {
+  position: relative;
+  z-index: 1;
+
+  /* Slightly more modern "glass" card while staying Nord */
+  background: rgba(59, 66, 82, 0.72);
+  border: 1px solid rgba(216, 222, 233, 0.22);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(236, 239, 244, 0.06);
+}
+
+/* Optional: slightly sharpen the top divider in the card */
+.business-card .stack {
+  border-top-color: rgba(216, 222, 233, 0.18);
+}
