@@ -8,7 +8,7 @@
    ============================================================== */
 
 /* --------------------------------------------------------------
-   1) Design Tokens (colors, typography, shared constants)
+   1) Design Tokens
 -------------------------------------------------------------- */
 :root {
   /* Typography */
@@ -37,30 +37,17 @@
   /* Anchor offset (sticky navbar) */
   --anchor-offset: 100px;
 
-  /* Underline system */
-  --u-dim: rgba(236, 239, 244, 0.14);   /* default (inactive) */
-  --u-hover: rgba(136, 192, 208, 0.55); /* hover (must be dimmer than active) */
-  --u-active: var(--accent);            /* active */
-  --u-h: 1px;                           /* default thickness */
-  --u-h-hover: 2px;                     /* hover thickness */
-  --u-h-active: 3px;                    /* active thickness */
-  /* Hover (weaker than active) + focus (same as hover) */
-   .u-link:hover::after,
-   .u-link:focus-visible::after,
-   .nav-links > a:hover::after,
-   .nav-links > a:focus-visible::after,
-   .dropdown:hover > a::after,
-   .dropdown > a:focus-visible::after,
-   .business-card .card-links a:hover::after,
-   .business-card .card-links a:focus-visible::after {
-   height: var(--u-h-hover);
-   background: var(--u-hover);
-}
+  /* Underline system (dim < hover < active) */
+  --u-h: 1px;
+  --u-h-hover: 2px;
+  --u-h-active: 3px;
 
-/* Keep contact links color stable even if visited */
-.business-card .card-links a:visited {
-  color: var(--fg);
-} 
+  --u-op-dim: 0.60;   /* unselected underline visibility */
+  --u-op-hover: 0.78; /* hover underline (weaker than active) */
+  --u-op-active: 1.00;
+
+  --u-glow: rgba(136, 192, 208, 0.22);
+  --u-focus: rgba(136, 192, 208, 0.55);
 }
 
 /* --------------------------------------------------------------
@@ -94,14 +81,12 @@ body {
   min-height: 100vh;
 }
 
-/* Main content wrapper */
 .content {
   flex: 1;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Centered page container */
 .content,
 .container,
 .post,
@@ -124,7 +109,7 @@ li {
 /* --------------------------------------------------------------
    3) Base Links (content only)
    Note:
-   - Navbar + card links use a custom underline system.
+   - Navbar + card links override this with a custom underline system.
 -------------------------------------------------------------- */
 a {
   color: var(--accent);
@@ -194,11 +179,12 @@ img {
 }
 
 /* --------------------------------------------------------------
-   5) Underline System (NAV + Home card links)
+   5) Underline System (NAV + Home contact links)
    Rules:
    - Default: dim underline
-   - Hover: dimmer than active (so active always wins)
-   - Active: brightest + thickest
+   - Hover/Focus: stronger but still weaker than active
+   - Active: strongest and never dims on hover
+   - Glass effect: gradient + subtle shimmer on hover
 -------------------------------------------------------------- */
 .u-link,
 .nav-links > a,
@@ -213,7 +199,15 @@ img {
   padding-bottom: 6px;
 }
 
-/* Default (inactive) */
+/* Remove dotted underline in these areas */
+.navbar a,
+.business-card .card-links a,
+.dropdown-content a {
+  border-bottom: none;
+  text-decoration: none;
+}
+
+/* Glass underline (base) */
 .u-link::after,
 .nav-links > a::after,
 .dropdown > a::after,
@@ -227,63 +221,96 @@ img {
 
   width: 100%;
   height: var(--u-h);
-  background: var(--u-dim);
 
-  transition: height 0.18s ease, background-color 0.18s ease;
+  background: linear-gradient(
+    90deg,
+    rgba(136, 192, 208, 0.00),
+    rgba(136, 192, 208, 0.55),
+    rgba(236, 239, 244, 0.28),
+    rgba(136, 192, 208, 0.55),
+    rgba(136, 192, 208, 0.00)
+  );
+
+  opacity: var(--u-op-dim);
+  transition:
+    height 0.18s ease,
+    opacity 0.18s ease,
+    box-shadow 0.18s ease,
+    background-position 0.8s ease;
 }
 
-/* Hover (must be weaker than active) */
+/* Hover + focus-visible (weaker than active) */
 .u-link:hover::after,
+.u-link:focus-visible::after,
 .nav-links > a:hover::after,
+.nav-links > a:focus-visible::after,
 .dropdown:hover > a::after,
-.business-card .card-links a:hover::after {
+.dropdown > a:focus-visible::after,
+.business-card .card-links a:hover::after,
+.business-card .card-links a:focus-visible::after {
   height: var(--u-h-hover);
-  background: var(--u-hover);
+  opacity: var(--u-op-hover);
+  background-position: 100% 50%;
 }
 
-/* Active (strongest) — placed AFTER hover on purpose */
+/* Active (strongest) */
 .u-link.is-active::after,
 .nav-links > a.active::after,
-.dropdown > a.active::after {
+.dropdown > a.active::after,
+.dropdown.active > a::after {
   height: var(--u-h-active);
-  background: var(--u-active);
+  opacity: var(--u-op-active);
+  box-shadow: 0 0 10px var(--u-glow);
 }
 
-/* =======================
-   NAV — If link is active, keep ACTIVE underline even on hover
-   PEGALO en style.css justo DESPUÉS del bloque "Active (strongest)"
-   ======================= */
-
-.nav-links > a.active:hover::after,
-.nav-links > a.active:focus-visible::after,
+/* If link is active, keep ACTIVE underline even on hover/focus */
 .u-link.is-active:hover::after,
 .u-link.is-active:focus-visible::after,
+.nav-links > a.active:hover::after,
+.nav-links > a.active:focus-visible::after,
 .dropdown > a.active:hover::after,
 .dropdown > a.active:focus-visible::after,
 .dropdown.active:hover > a::after {
   height: var(--u-h-active);
-  background: var(--u-active);
-  opacity: 1;
+  opacity: var(--u-op-active);
+  box-shadow: 0 0 10px var(--u-glow);
 }
-
-
-/* Keep Projects underline bright when it's the active dropdown/current page */
-.dropdown.active > a::after,
-.dropdown > a.active::after {
-  height: var(--u-h-active);
-  background: var(--u-active);
-}
-
-.dropdown.active:hover > a::after,
-.dropdown:hover > a.active::after {
-  height: var(--u-h-active);
-  background: var(--u-active);
-}
-
 
 /* Copied state (no underline) */
 .business-card .card-links a.email-copied::after {
   display: none;
+}
+
+/* Keep contact links color stable even if visited */
+.business-card .card-links a:visited {
+  color: var(--fg);
+}
+
+/* Focus outline (accessibility) */
+.nav-links > a:focus-visible,
+.dropdown > a:focus-visible,
+.business-card .card-links a:focus-visible {
+  outline: 2px solid var(--u-focus);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Touch devices: keep underline visible, add tap feedback */
+@media (hover: none) {
+  .u-link::after,
+  .nav-links > a::after,
+  .dropdown > a::after,
+  .business-card .card-links a::after {
+    background-position: 50% 50%;
+  }
+
+  .u-link:active::after,
+  .nav-links > a:active::after,
+  .dropdown > a:active::after,
+  .business-card .card-links a:active::after {
+    opacity: 0.88;
+    background-position: 100% 50%;
+  }
 }
 
 /* --------------------------------------------------------------
@@ -302,14 +329,6 @@ img {
   padding: 0.9rem 1.2rem;
 }
 
-/* Kill global dotted underline in navbar + card + dropdown items */
-.navbar a,
-.business-card .card-links a,
-.dropdown-content a {
-  border-bottom: none;
-  text-decoration: none;
-}
-
 .nav-container {
   max-width: var(--container-max);
   margin: 0 auto;
@@ -323,7 +342,7 @@ img {
   font-weight: 700;
   color: var(--fg);
   border: none;
-  cursor: default;
+  cursor: pointer;
 }
 
 .nav-links {
@@ -389,7 +408,10 @@ img {
 
   border-left: 3px solid rgba(216, 222, 233, 0.35);
 
-  transition: background-color 0.15s ease, color 0.15s ease, border-left-color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-left-color 0.15s ease;
 }
 
 .dropdown-content a:hover {
@@ -420,9 +442,12 @@ img {
 }
 
 /* --------------------------------------------------------------
-   7) Home page — centered business card
+   7) Home page — centered business card + Nord "aurora" background
 -------------------------------------------------------------- */
 .home-wrapper {
+  position: relative;
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
 
@@ -434,15 +459,40 @@ img {
   box-sizing: border-box;
 }
 
+.home-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+
+  background:
+    radial-gradient(600px 380px at 15% 25%, rgba(136, 192, 208, 0.14), transparent 60%),
+    radial-gradient(520px 360px at 85% 35%, rgba(191, 97, 106, 0.10), transparent 62%),
+    radial-gradient(520px 420px at 55% 85%, rgba(163, 190, 140, 0.10), transparent 62%),
+    linear-gradient(180deg, rgba(46, 52, 64, 1) 0%, rgba(59, 66, 82, 0.55) 100%);
+
+  filter: blur(6px);
+  opacity: 1;
+  z-index: 0;
+  pointer-events: none;
+}
+
 /* Card */
 .business-card {
+  position: relative;
+  z-index: 1;
+
   width: 100%;
   max-width: var(--card-max);
 
-  background-color: var(--bg-alt);
-  border: 1px solid var(--muted);
+  background: rgba(59, 66, 82, 0.72);
+  border: 1px solid rgba(216, 222, 233, 0.22);
 
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(236, 239, 244, 0.06);
 
   padding: 3.5rem 2rem;
   margin: 0 auto;
@@ -477,14 +527,14 @@ img {
   display: block;
 }
 
-/* Bio keyword row (force 1 line on desktop, wrap on small screens) */
+/* Bio row (desktop: single line) */
 .business-card .bio {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.45rem;
 
-  font-size: 0.88rem;  /* smaller so it fits in one line */
+  font-size: 0.88rem;
   line-height: 1.25;
   color: var(--fg);
 
@@ -493,37 +543,23 @@ img {
   max-width: 760px;
 
   flex-wrap: nowrap;
-  white-space: nowrap; /* prevents "Focused / on" split */
+  white-space: nowrap;
 }
 
-/* Small screens: allow wrap */
-@media (max-width: 780px) {
-  .business-card .bio {
-    flex-wrap: wrap;
-    white-space: normal;
-    line-height: 1.4;
-  }
-}
-
-/* "Focused on" kept as a single unit */
 .business-card .bio .bio-lead {
   white-space: nowrap;
 }
 
-/* Keyword tags: slightly tighter to help 1-line fit */
-/* ==============================================================
-   1) HOME keyword tags — squarer + border matches underline blue
-   Replace ONLY your current .business-card .bio .hl block with this
-   ============================================================== */
+/* Keyword tags (square + blue border) */
 .business-card .bio .hl {
   display: inline-flex;
   align-items: center;
 
   padding: 0.10em 0.48em;
-  border-radius: 2px; /* more square */
+  border-radius: 2px;
 
   background: rgba(136, 192, 208, 0.14);
-  border: 1px solid rgba(136, 192, 208, 0.70); /* same hue as underline */
+  border: 1px solid rgba(136, 192, 208, 0.70);
 
   color: var(--fg);
   font-size: 0.95em;
@@ -531,12 +567,10 @@ img {
   line-height: 1.1;
   white-space: nowrap;
 
-  /* subtle “glass” feel */
   box-shadow:
     inset 0 1px 0 rgba(236, 239, 244, 0.08),
     0 1px 0 rgba(0, 0, 0, 0.22);
 }
-
 
 .business-card .stack {
   font-size: 0.8rem;
@@ -548,7 +582,7 @@ img {
   margin-top: 2rem;
   padding-top: 1.5rem;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(216, 222, 233, 0.18);
 }
 
 /* Contact links row */
@@ -565,6 +599,26 @@ img {
 .business-card .card-links a.email-copied {
   color: var(--accent);
   font-weight: 700;
+}
+
+/* Mobile: bio in column (Focused on / each keyword on its own line) */
+@media (max-width: 700px) {
+  .business-card .bio {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.45rem;
+    flex-wrap: nowrap;
+    white-space: normal;
+    line-height: 1.4;
+    font-size: 0.9rem;
+  }
+
+  .business-card .bio .bio-lead {
+    display: block;
+    margin-bottom: 0.1rem;
+  }
 }
 
 /* --------------------------------------------------------------
@@ -648,7 +702,7 @@ img {
 }
 
 /* --------------------------------------------------------------
-   10) Mobile optimization
+   10) Mobile optimization (navbar + dropdown)
 -------------------------------------------------------------- */
 @media (max-width: 900px) {
   .home-wrapper {
@@ -704,159 +758,4 @@ img {
   .dropdown-content::before {
     display: none;
   }
-}
-
-/* ==============================================================
-   2) Underline — glassy highlight + subtle shimmer on hover
-   Paste this at the END of style.css (override)
-   ============================================================== */
-
-/* Use a gradient underline instead of a flat color */
-.u-link::after,
-.nav-links > a::after,
-.dropdown > a::after,
-.business-card .card-links a::after {
-  background: linear-gradient(
-    90deg,
-    rgba(136, 192, 208, 0.00),
-    rgba(136, 192, 208, 0.55),
-    rgba(236, 239, 244, 0.28),
-    rgba(136, 192, 208, 0.55),
-    rgba(136, 192, 208, 0.00)
-  );
-  opacity: 0.45; /* default looks glassy, not loud */
-}
-
-/* Hover: a bit stronger but still weaker than active */
-.u-link:hover::after,
-.nav-links > a:hover::after,
-.dropdown:hover > a::after,
-.business-card .card-links a:hover::after {
-  opacity: 0.65;
-  filter: blur(0.2px);
-}
-
-/* Active: strongest + subtle glow */
-.u-link.is-active::after,
-.nav-links > a.active::after,
-.dropdown > a.active::after {
-  opacity: 1;
-  filter: none;
-  box-shadow: 0 0 10px rgba(136, 192, 208, 0.22);
-}
-
-/* Shimmer sweep (only when user can hover) */
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .u-link::after,
-  .nav-links > a::after,
-  .dropdown > a::after,
-  .business-card .card-links a::after {
-    background-size: 220% 100%;
-    background-position: 0% 50%;
-    transition:
-      height 0.18s ease,
-      opacity 0.18s ease,
-      box-shadow 0.18s ease,
-      background-position 0.8s ease;
-  }
-
-  .u-link:hover::after,
-  .nav-links > a:hover::after,
-  .dropdown:hover > a::after,
-  .business-card .card-links a:hover::after {
-    background-position: 100% 50%;
-  }
-}
-
-@media (hover: none) {
-  /* Base glass underline stays visible on mobile */
-  .u-link::after,
-  .nav-links > a::after,
-  .dropdown > a::after,
-  .business-card .card-links a::after {
-    opacity: 0.55;              /* a bit stronger on mobile */
-    background-size: 220% 100%; /* keep the glass gradient richness */
-    background-position: 50% 50%;
-    filter: none;
-    box-shadow: none;
-  }
-
-  /* Tap feedback (brief “shine”) */
-  .u-link:active::after,
-  .nav-links > a:active::after,
-  .dropdown > a:active::after,
-  .business-card .card-links a:active::after {
-    opacity: 0.75;
-    background-position: 100% 50%;
-  }
-
-  /* Active tab stays the strongest on mobile too */
-  .u-link.is-active::after,
-  .nav-links > a.active::after,
-  .dropdown > a.active::after,
-  .dropdown.active > a::after {
-    opacity: 1;
-    background-position: 100% 50%;
-    box-shadow: 0 0 10px rgba(136, 192, 208, 0.22);
-  }
-}
-
-/* Add a subtle Nord gradient + soft “aurora” accents behind the card */
-.home-wrapper {
-  position: relative;
-  overflow: hidden;
-  min-height: 80vh;
-}
-
-.home-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-
-  background:
-    radial-gradient(600px 380px at 15% 25%, rgba(136, 192, 208, 0.14), transparent 60%),
-    radial-gradient(520px 360px at 85% 35%, rgba(191, 97, 106, 0.10), transparent 62%),
-    radial-gradient(520px 420px at 55% 85%, rgba(163, 190, 140, 0.10), transparent 62%),
-    linear-gradient(180deg, rgba(46, 52, 64, 1) 0%, rgba(59, 66, 82, 0.55) 100%);
-
-  filter: blur(6px);
-  opacity: 1;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Keep card above the background */
-.business-card {
-  position: relative;
-  z-index: 1;
-
-  /* Slightly more modern "glass" card while staying Nord */
-  background: rgba(59, 66, 82, 0.72);
-  border: 1px solid rgba(216, 222, 233, 0.22);
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(236, 239, 244, 0.06);
-}
-
-/* Optional: slightly sharpen the top divider in the card */
-.business-card .stack {
-  border-top-color: rgba(216, 222, 233, 0.18);
-}
-
-/* style.css (PEGAR AL FINAL) — nav-title como link + focus-visible prolijo */
-.nav-title {
-  cursor: pointer; /* antes era default */
-}
-
-/* Accesibilidad: focus visible limpio (sin cambiar tu underline) */
-.nav-links > a:focus-visible,
-.dropdown > a:focus-visible,
-.business-card .card-links a:focus-visible {
-  outline: 2px solid rgba(136, 192, 208, 0.55);
-  outline-offset: 4px;
-  border-radius: 2px;
 }
