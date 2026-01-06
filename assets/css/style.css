@@ -846,3 +846,17 @@ img {
 .business-card .stack {
   border-top-color: rgba(216, 222, 233, 0.18);
 }
+
+/* style.css (PEGAR AL FINAL) — nav-title como link + focus-visible prolijo */
+.nav-title {
+  cursor: pointer; /* antes era default */
+}
+
+/* Accesibilidad: focus visible limpio (sin cambiar tu underline) */
+.nav-links > a:focus-visible,
+.dropdown > a:focus-visible,
+.business-card .card-links a:focus-visible {
+  outline: 2px solid rgba(136, 192, 208, 0.55);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
