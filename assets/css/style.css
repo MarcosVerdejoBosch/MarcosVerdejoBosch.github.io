@@ -37,17 +37,17 @@
   /* Anchor offset (sticky navbar) */
   --anchor-offset: 100px;
 
-  /* Underline system (dim < hover < active) */
-  --u-h: 1px;
-  --u-h-hover: 2px;
-  --u-h-active: 3px;
+   /* Underline (solid, modern, more visible) */
+  --u-h: 2px;          /* inactive thickness */
+  --u-h-hover: 2px;    /* hover thickness (same) */
+  --u-h-active: 3px;   /* active thickness */
 
-  --u-op-dim: 0.60;   /* unselected underline visibility */
-  --u-op-hover: 0.78; /* hover underline (weaker than active) */
-  --u-op-active: 1.00;
+  --u-inactive: rgba(136, 192, 208, 0.35); /* more notorio */
+  --u-hover: rgba(136, 192, 208, 0.60);    /* hover < active */
+  --u-active: rgba(136, 192, 208, 1.00);   /* active */
 
-  --u-glow: rgba(136, 192, 208, 0.22);
-  --u-focus: rgba(136, 192, 208, 0.55);
+  --u-glow-hover: 0 0 10px rgba(136, 192, 208, 0.12);
+  --u-glow-active: 0 0 14px rgba(136, 192, 208, 0.22);
 }
 
 /* --------------------------------------------------------------
@@ -207,14 +207,13 @@ img {
   text-decoration: none;
 }
 
-/* Glass underline (base) */
+/* Base underline (inactive) — SOLID, no gradient */
 .u-link::after,
 .nav-links > a::after,
 .dropdown > a::after,
 .business-card .card-links a::after {
   content: "";
   position: absolute;
-
   left: 0;
   right: 0;
   bottom: 0;
@@ -222,24 +221,14 @@ img {
   width: 100%;
   height: var(--u-h);
 
-  background: linear-gradient(
-    90deg,
-    rgba(136, 192, 208, 0.00),
-    rgba(136, 192, 208, 0.55),
-    rgba(236, 239, 244, 0.28),
-    rgba(136, 192, 208, 0.55),
-    rgba(136, 192, 208, 0.00)
-  );
+  background: var(--u-inactive);
+  opacity: 1;
 
-  opacity: var(--u-op-dim);
-  transition:
-    height 0.18s ease,
-    opacity 0.18s ease,
-    box-shadow 0.18s ease,
-    background-position 0.8s ease;
+  border-radius: 999px; /* modern pill underline */
+  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-/* Hover + focus-visible (weaker than active) */
+/* Hover/focus — more visible but still weaker than active */
 .u-link:hover::after,
 .u-link:focus-visible::after,
 .nav-links > a:hover::after,
@@ -249,21 +238,21 @@ img {
 .business-card .card-links a:hover::after,
 .business-card .card-links a:focus-visible::after {
   height: var(--u-h-hover);
-  opacity: var(--u-op-hover);
-  background-position: 100% 50%;
+  background: var(--u-hover);
+  box-shadow: var(--u-glow-hover);
 }
 
-/* Active (strongest) */
+/* Active — strongest */
 .u-link.is-active::after,
 .nav-links > a.active::after,
 .dropdown > a.active::after,
 .dropdown.active > a::after {
   height: var(--u-h-active);
-  opacity: var(--u-op-active);
-  box-shadow: 0 0 10px var(--u-glow);
+  background: var(--u-active);
+  box-shadow: var(--u-glow-active);
 }
 
-/* If link is active, keep ACTIVE underline even on hover/focus */
+/* Active stays active even when hovered */
 .u-link.is-active:hover::after,
 .u-link.is-active:focus-visible::after,
 .nav-links > a.active:hover::after,
@@ -272,9 +261,10 @@ img {
 .dropdown > a.active:focus-visible::after,
 .dropdown.active:hover > a::after {
   height: var(--u-h-active);
-  opacity: var(--u-op-active);
-  box-shadow: 0 0 10px var(--u-glow);
+  background: var(--u-active);
+  box-shadow: var(--u-glow-active);
 }
+
 
 /* Copied state (no underline) */
 .business-card .card-links a.email-copied::after {
@@ -459,47 +449,19 @@ img {
   box-sizing: border-box;
 }
 
-.home-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
 
-  background:
-    radial-gradient(600px 380px at 15% 25%, rgba(136, 192, 208, 0.14), transparent 60%),
-    radial-gradient(520px 360px at 85% 35%, rgba(191, 97, 106, 0.10), transparent 62%),
-    radial-gradient(520px 420px at 55% 85%, rgba(163, 190, 140, 0.10), transparent 62%),
-    linear-gradient(180deg, rgba(46, 52, 64, 1) 0%, rgba(59, 66, 82, 0.55) 100%);
-
-  filter: blur(6px);
-  opacity: 1;
-  z-index: 0;
-  pointer-events: none;
+/* Make the whole page background consistent */
+body {
+  background: var(--bg);
 }
 
-/* Card */
+/* Card: go back to solid Nord alt (no “glass panel”) */
 .business-card {
-  position: relative;
-  z-index: 1;
-
-  width: 100%;
-  max-width: var(--card-max);
-
-  background: rgba(59, 66, 82, 0.72);
-  border: 1px solid rgba(216, 222, 233, 0.22);
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(236, 239, 244, 0.06);
-
-  padding: 3.5rem 2rem;
-  margin: 0 auto;
-
-  text-align: center;
-  border-radius: 0;
-  box-sizing: border-box;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .business-card h1 {
