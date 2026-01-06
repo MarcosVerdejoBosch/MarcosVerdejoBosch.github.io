@@ -249,6 +249,24 @@ img {
   background: var(--u-active);
 }
 
+/* =======================
+   NAV — If link is active, keep ACTIVE underline even on hover
+   PEGALO en style.css justo DESPUÉS del bloque "Active (strongest)"
+   ======================= */
+
+.nav-links > a.active:hover::after,
+.nav-links > a.active:focus-visible::after,
+.u-link.is-active:hover::after,
+.u-link.is-active:focus-visible::after,
+.dropdown > a.active:hover::after,
+.dropdown > a.active:focus-visible::after,
+.dropdown.active:hover > a::after {
+  height: var(--u-h-active);
+  background: var(--u-active);
+  opacity: 1;
+}
+
+
 /* Keep Projects underline bright when it's the active dropdown/current page */
 .dropdown.active > a::after,
 .dropdown > a.active::after {
