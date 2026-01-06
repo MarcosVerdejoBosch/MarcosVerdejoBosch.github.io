@@ -819,4 +819,23 @@ body {
   border-top-color: rgba(216, 222, 233, 0.14) !important;
 }
 
+/* =======================
+   BACKGROUND — different from navbar/header
+   PEGAR AL FINAL de style.css (override)
+   ======================= */
+
+/* Page background: slightly darker than the navbar so they don't blend */
+body {
+  background:
+    radial-gradient(900px 520px at 50% 38%,
+      rgba(59, 66, 82, 0.35),
+      rgba(32, 36, 46, 1) 72%
+    );
+}
+
+/* Navbar stays as-is, but a touch lighter so it reads as a separate layer */
+.navbar {
+  background-color: rgba(46, 52, 64, 0.92) !important;
+}
+
 
