@@ -1,11 +1,19 @@
+<!-- _layouts/default.html (reemplazá TODO el archivo por esto) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Basic meta -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
 
   <title>{{ page.title }} | {{ site.title }}</title>
+
+  <!-- SEO / Social (safe defaults) -->
+  <meta name="description" content="{{ page.description | default: site.description | default: site.title }}">
+  <meta property="og:title" content="{{ page.title }} | {{ site.title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description | default: site.title }}">
+  <meta property="og:type" content="website">
 
   <!-- Load Source Code Pro from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,30 +26,40 @@
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
 
-  <!-- Optional: model-viewer for 3D embeds -->
+  <!-- Optional: model-viewer for 3D embeds (enable per-page) -->
+  {% if page.model_viewer %}
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  {% endif %}
 </head>
 
 <body id="top" class="{{ page.class }}">
 
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Primary">
     <div class="nav-container">
-      <span class="nav-title">MVB</span>
+      <a class="nav-title" href="{{ "/" | relative_url }}" aria-label="Go to Home">MVB</a>
 
       <div class="nav-links">
-        <a href="{{ "/" | relative_url }}" class="{% if page.url == "/" %}active{% endif %}">Home</a>
+        <a href="{{ "/" | relative_url }}"
+           class="{% if page.url == "/" %}active{% endif %}"
+           {% if page.url == "/" %}aria-current="page"{% endif %}>
+          Home
+        </a>
 
-        <div class="dropdown">
-          <a href="{{ "/projects" | relative_url }}" class="{% if page.url contains "/projects" %}active{% endif %}">
+        <div class="dropdown {% if page.url contains "/projects" %}active{% endif %}">
+          <a href="{{ "/projects" | relative_url }}"
+             class="{% if page.url contains "/projects" %}active{% endif %}"
+             {% if page.url contains "/projects" %}aria-current="page"{% endif %}
+             aria-haspopup="true">
             Projects <span class="caret">▾</span>
           </a>
 
-          <div class="dropdown-content">
+          <div class="dropdown-content" role="menu" aria-label="Projects menu">
             <a href="{{ "/projects/linear-regulator/" | relative_url }}"
-               class="{% if page.url contains "/projects/linear-regulator" %}active{% endif %}">
+               class="{% if page.url contains "/projects/linear-regulator" %}active{% endif %}"
+               {% if page.url contains "/projects/linear-regulator" %}aria-current="page"{% endif %}>
               Linear Regulator
             </a>
-            <a href="#" style="opacity: 0.5; cursor: default;">IoT Sensor (Soon)</a>
+            <a href="#" style="opacity: 0.5; cursor: default;" aria-disabled="true">IoT Sensor (Soon)</a>
           </div>
         </div>
 
