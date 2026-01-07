@@ -884,5 +884,31 @@ body {
   }
 }
 
+/* =======================
+   HOME — Center alignment for role + stack (and keep card text centered)
+   PEGAR AL FINAL de style.css (override)
+   ======================= */
+
+.business-card,
+.business-card h1,
+.business-card .role,
+.business-card .stack {
+  text-align: center !important;
+}
+
+/* Make the stack line truly centered and balanced */
+.business-card .stack {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+}
+
+/* If you ever add spans inside .stack, this keeps them aligned */
+.business-card .stack > * {
+  text-align: center !important;
+}
+
+
 
 
