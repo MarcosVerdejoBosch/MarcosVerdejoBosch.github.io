@@ -838,4 +838,51 @@ body {
   background-color: rgba(46, 52, 64, 0.92) !important;
 }
 
+/* =======================
+   HOME — Single strong accent border + floating card + subtle animation
+   PEGAR AL FINAL de style.css (override)
+   ======================= */
+
+/* Remove extra frames (if you had them) */
+.business-card::before,
+.business-card::after {
+  content: none !important;
+}
+
+/* One border, noticeable, same accent as underline + “floating” */
+.business-card {
+  border: 2px solid rgba(136, 192, 208, 0.75) !important;
+
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.60),
+    0 0 34px rgba(136, 192, 208, 0.14) !important;
+
+  transform: translateY(0);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Subtle lift on hover (desktop) */
+@media (hover: hover) {
+  .business-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 34px 85px rgba(0, 0, 0, 0.62),
+      0 0 44px rgba(136, 192, 208, 0.18) !important;
+  }
+}
+
+/* Gentle idle “float” animation */
+@media (prefers-reduced-motion: no-preference) {
+  .business-card {
+    animation: card-float 6s ease-in-out infinite;
+  }
+
+  @keyframes card-float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
+  }
+}
+
+
 
