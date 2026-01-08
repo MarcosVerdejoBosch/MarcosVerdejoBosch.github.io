@@ -16,6 +16,10 @@ class: home
       <span class="hl">Analog Circuits</span>
     </div>
 
+    <div class="stack">
+      KiCad • LTspice • C / C++
+    </div>
+
     <div class="card-links">
       <a href="https://github.com/MarcosVerdejoBosch" target="_blank" class="icon-link" title="GitHub">
         <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
@@ -36,10 +40,6 @@ class: home
       </a>
     </div>
 
-    <div class="stack">
-      KiCad • LTspice • Python
-    </div>
-
   </div>
 </div>
 
@@ -49,12 +49,7 @@ class: home
     const btn = document.getElementById("email-btn");
 
     navigator.clipboard.writeText(email).then(() => {
-      // Add class for visual feedback (e.g. turns Cyan)
       btn.classList.add("email-copied");
-      
-      // Optional: Log to console
-      console.log("Email copied to clipboard");
-
       setTimeout(() => {
         btn.classList.remove("email-copied");
       }, 2000);
