@@ -1,5 +1,5 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Cleaned Nord Terminal)
+   MVB — Portfolio Theme (Nord Terminal - Refined)
    ============================================================== */
 
 :root {
@@ -9,14 +9,15 @@
   /* Nord Palette */
   --bg: #2e3440;       /* Darkest Background */
   --bg-card: #3b4252;  /* Lighter Card Background */
-  --fg: #eceff4;       /* Main Text */
+  --fg: #eceff4;       /* Main Text (Snow Storm white) */
   --muted: #d8dee9;    /* Dimmed Text */
   --line: #4c566a;     /* Borders */
-  --accent: #88c0d0;   /* Cyan Accent */
+  
+  /* Accent: Nord Frost Blue */
+  --accent: #88c0d0;   
 
   /* Layout */
   --container-max: 760px;
-  --header-height: 60px;
 }
 
 /* --------------------------------------------------------------
@@ -75,8 +76,34 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-.nav-links a.active {
-  border-bottom: 2px solid var(--accent);
+/* Header Titles: White by default */
+.nav-links a {
+  color: var(--fg); 
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 4px;
+}
+
+/* Glowing Underline Logic */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+  /* The Glow Effect */
+  box-shadow: 0 0 8px var(--accent);
 }
 
 /* Dropdown */
@@ -85,27 +112,30 @@ a:hover { opacity: 0.8; }
   display: none;
   position: absolute;
   right: 0;
+  top: 100%; /* Push down slightly */
   background-color: var(--bg-card);
   min-width: 180px;
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
   border: 1px solid var(--line);
   z-index: 1;
+  margin-top: 8px; /* Gap from nav */
 }
 .dropdown:hover .dropdown-content { display: block; }
 .dropdown-content a {
   padding: 12px 16px;
   display: block;
   font-size: 0.85rem;
-  border-left: 2px solid transparent;
+  color: var(--muted);
 }
 .dropdown-content a:hover {
   background-color: var(--bg);
-  border-left: 2px solid var(--accent);
+  color: var(--accent);
 }
+.dropdown-content a::after { display: none; } /* No underline in dropdown items */
 .disabled { opacity: 0.5; pointer-events: none; }
 
 /* --------------------------------------------------------------
-   Home Card (The "Terminal" Box)
+   Home Card
 -------------------------------------------------------------- */
 .home-wrapper {
   display: flex;
@@ -124,10 +154,9 @@ a:hover { opacity: 0.8; }
   max-width: 600px;
   text-align: center;
   
-  /* The "Glow" Effect */
   box-shadow: 
     0 10px 30px rgba(0,0,0,0.3),
-    0 0 20px rgba(136, 192, 208, 0.05); /* Subtle accent glow */
+    0 0 20px rgba(136, 192, 208, 0.05);
 }
 
 .business-card h1 {
@@ -156,24 +185,26 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Badges: Boxy style for the engineer look */
+/* Badges */
 .business-card .bio .hl {
   background: rgba(46, 52, 64, 0.5);
   border: 1px solid var(--line);
   padding: 4px 10px;
-  border-radius: 4px; /* Slight rounding, mostly square */
+  border-radius: 4px;
   color: var(--fg);
   font-size: 0.85rem;
 }
 
+/* Stack (KiCad, etc) */
 .business-card .stack {
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
-  color: var(--muted);
+  color: var(--fg); /* Whiter text */
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
 /* Contact Icons */
@@ -191,23 +222,22 @@ a:hover { opacity: 0.8; }
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: 1px solid transparent;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 }
 
+/* Removed box background/border on hover */
 .icon-link:hover {
   color: var(--accent);
-  border: 1px solid var(--line);
-  background: var(--bg);
+  transform: translateY(-2px); /* Subtle lift instead */
+  background: transparent;
+  border: none;
 }
 
 .icon { width: 24px; height: 24px; }
-.sr-only { display: none; }
 
-/* Copied state text */
+/* Copied state */
 .email-copied {
   color: var(--accent) !important;
-  border-color: var(--accent) !important;
 }
 
 /* --------------------------------------------------------------
@@ -221,7 +251,6 @@ a:hover { opacity: 0.8; }
   margin-top: auto;
 }
 
-/* Mobile */
 @media (max-width: 600px) {
   .business-card h1 { font-size: 1.4rem; }
   .business-card .bio { flex-direction: column; }
