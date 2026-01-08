@@ -1,103 +1,58 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Modern Minimalist)
-   Refactored for: Inter (UI) + JetBrains Mono (Code)
+   MVB — Portfolio Theme (Cleaned Nord Terminal)
    ============================================================== */
 
-/* --------------------------------------------------------------
-   1) Design Tokens
--------------------------------------------------------------- */
 :root {
-  /* Fonts */
-  /* Main UI font: Inter (Clean, Professional) */
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  /* Tech font: JetBrains Mono (For badges/code) */
-  --font-mono: "JetBrains Mono", "Source Code Pro", monospace;
+  /* Typography */
+  --font-mono: "Source Code Pro", ui-monospace, monospace;
 
-  /* Nord Palette (Refined) */
-  --bg: #2e3440;       /* Dark Background */
+  /* Nord Palette */
+  --bg: #2e3440;       /* Darkest Background */
   --bg-card: #3b4252;  /* Lighter Card Background */
   --fg: #eceff4;       /* Main Text */
-  --muted: #d8dee9;    /* Secondary Text */
+  --muted: #d8dee9;    /* Dimmed Text */
   --line: #4c566a;     /* Borders */
-  
-  /* Accent */
-  --accent: #88c0d0;   /* Nord Cyan */
+  --accent: #88c0d0;   /* Cyan Accent */
 
   /* Layout */
-  --container-max: 800px;
-  --radius-card: 24px;  /* Modern rounded corners */
-  --radius-pill: 99px;  /* Fully rounded for buttons/badges */
-
-  /* Navigation Underline Styles */
-  --u-h: 2px;
-  --u-inactive: rgba(136, 192, 208, 0.0); /* Hidden by default for clean look */
-  --u-active: rgba(136, 192, 208, 1.0);
+  --container-max: 760px;
+  --header-height: 60px;
 }
 
 /* --------------------------------------------------------------
-   2) Global Base
+   Global Reset
 -------------------------------------------------------------- */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
+html, body {
   margin: 0;
   padding: 0;
   background-color: var(--bg);
-  
-  /* Subtle gradient background for depth */
-  background-image: radial-gradient(
-    circle at 50% 0%, 
-    rgba(59, 66, 82, 0.4) 0%, 
-    rgba(46, 52, 64, 0) 50%
-  );
-
   color: var(--fg);
-  font-family: var(--font-sans); /* CHANGED: Now using Inter */
+  font-family: var(--font-mono);
   line-height: 1.6;
-  font-size: 16px;
-  
+  scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Links */
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s;
 }
 a:hover { opacity: 0.8; }
 
 /* --------------------------------------------------------------
-   3) Typography
--------------------------------------------------------------- */
-h1, h2, h3 {
-  color: var(--fg);
-  font-weight: 700;
-  letter-spacing: -0.02em; /* Tight tracking for Inter */
-  margin-top: 0;
-}
-
-h1 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 1rem; }
-h2 { font-size: 1.75rem; margin-bottom: 1rem; }
-h3 { font-size: 1.25rem; }
-
-/* --------------------------------------------------------------
-   4) Navbar (Glass Effect)
+   Navbar
 -------------------------------------------------------------- */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 1rem 1.5rem;
-  
-  background: rgba(46, 52, 64, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255, 0.05);
+  background: rgba(46, 52, 64, 0.95);
+  border-bottom: 1px solid var(--line);
+  padding: 0.8rem 1.2rem;
+  backdrop-filter: blur(8px);
 }
 
 .nav-container {
@@ -109,172 +64,165 @@ h3 { font-size: 1.25rem; }
 }
 
 .nav-title {
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
+  font-weight: 700;
   color: var(--fg);
-  border: none;
+  font-size: 1.2rem;
 }
 
 .nav-links {
   display: flex;
-  gap: 2rem;
-  font-size: 0.95rem;
-  font-weight: 500;
+  gap: 1.5rem;
+  font-size: 0.9rem;
 }
 
-.nav-links a {
-  color: var(--muted);
-  position: relative;
-  border: none;
-}
-
-.nav-links a:hover,
 .nav-links a.active {
-  color: var(--fg);
+  border-bottom: 2px solid var(--accent);
 }
+
+/* Dropdown */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: var(--bg-card);
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  border: 1px solid var(--line);
+  z-index: 1;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a {
+  padding: 12px 16px;
+  display: block;
+  font-size: 0.85rem;
+  border-left: 2px solid transparent;
+}
+.dropdown-content a:hover {
+  background-color: var(--bg);
+  border-left: 2px solid var(--accent);
+}
+.disabled { opacity: 0.5; pointer-events: none; }
 
 /* --------------------------------------------------------------
-   5) Main Card (The "Home" View)
+   Home Card (The "Terminal" Box)
 -------------------------------------------------------------- */
 .home-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 85vh; /* Center vertically */
+  min-height: 80vh;
   padding: 1rem;
 }
 
 .business-card {
   background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 3rem 2rem;
   width: 100%;
-  max-width: 680px;
-  padding: 4rem 3rem;
-  
-  /* Modern clean border & shadow */
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-card);
-  box-shadow: 
-    0 20px 40px -10px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(0,0,0,0.2); /* Inner subtle stroke */
-
+  max-width: 600px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  
+  /* The "Glow" Effect */
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.3),
+    0 0 20px rgba(136, 192, 208, 0.05); /* Subtle accent glow */
 }
 
-/* Name */
 .business-card h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
   color: var(--fg);
-  border: none;
-}
-.business-card h1::after { display: none; } /* Remove old underline */
-
-/* Role (e.g. Electronic Engineer) */
-.business-card .role {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 2.5rem;
-  opacity: 0.9;
-}
-
-/* Bio Section */
-.business-card .bio {
-  font-size: 1.05rem;
-  color: var(--muted);
-  margin-bottom: 2.5rem;
-  line-height: 1.8;
-}
-
-/* Badges / Chips (.hl class) - NEW PILL STYLE */
-.business-card .bio .hl {
-  display: inline-block;
-  
-  /* Pill Shape */
-  background: rgba(136, 192, 208, 0.1); /* Very subtle blue bg */
-  border: 1px solid rgba(136, 192, 208, 0.3);
-  border-radius: var(--radius-pill);
-  
-  padding: 4px 14px;
-  margin: 0 4px;
-  
-  /* Text */
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  line-height: 1.4;
-  white-space: nowrap;
-}
-
-/* Stack / Footer of Card */
-.business-card .stack {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255,255,255, 0.05);
-  
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: #6d768a;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-/* Social Icons Area */
-.business-card .card-links {
-  margin-top: 2rem;
+.business-card .role {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.business-card .bio {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
 }
 
-/* Icons (SVG) styling */
-.business-card .card-links a {
-  color: var(--muted);
-  font-size: 1.5rem; /* Icon size */
-  transition: all 0.2s ease;
-  border: none;
-  padding: 8px;
-  border-radius: 8px;
-}
-
-.business-card .card-links a:hover {
+/* Badges: Boxy style for the engineer look */
+.business-card .bio .hl {
+  background: rgba(46, 52, 64, 0.5);
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 4px; /* Slight rounding, mostly square */
   color: var(--fg);
-  background: rgba(255,255,255, 0.05);
-  transform: translateY(-2px);
+  font-size: 0.85rem;
+}
+
+.business-card .stack {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Contact Icons */
+.business-card .card-links {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.icon-link {
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.icon-link:hover {
+  color: var(--accent);
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.icon { width: 24px; height: 24px; }
+.sr-only { display: none; }
+
+/* Copied state text */
+.email-copied {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
 }
 
 /* --------------------------------------------------------------
-   6) Footer
+   Footer
 -------------------------------------------------------------- */
 .footer {
   text-align: center;
   padding: 2rem;
-  font-size: 0.85rem;
-  color: #4c566a;
+  font-size: 0.8rem;
+  color: var(--line);
+  margin-top: auto;
 }
 
-/* --------------------------------------------------------------
-   7) Mobile Responsiveness
--------------------------------------------------------------- */
+/* Mobile */
 @media (max-width: 600px) {
-  .business-card {
-    padding: 2.5rem 1.5rem;
-  }
-  .business-card h1 {
-    font-size: 1.8rem;
-  }
-  .business-card .bio {
-    font-size: 0.95rem;
-  }
-  .business-card .bio .hl {
-    margin: 4px 2px; /* Add spacing for wrapped lines */
-  }
+  .business-card h1 { font-size: 1.4rem; }
+  .business-card .bio { flex-direction: column; }
 }
