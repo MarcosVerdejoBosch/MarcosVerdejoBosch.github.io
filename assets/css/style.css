@@ -1,5 +1,5 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Nord Cold Modern)
+   MVB — Portfolio Theme (Nord Cold Modern - Simplified)
    ============================================================== */
 
 :root {
@@ -29,9 +29,9 @@ html, body {
   margin: 0;
   padding: 0;
   
-  /* 1. Darker, Cold Modern Background */
+  /* Darker, Cold Modern Background */
   background: radial-gradient(circle at 50% 30%, var(--bg), var(--bg-darker));
-  background-attachment: fixed; /* Keeps gradient steady while scrolling */
+  background-attachment: fixed;
   
   color: var(--fg);
   font-family: var(--font-mono);
@@ -57,7 +57,6 @@ a:hover { opacity: 0.8; }
   top: 0;
   z-index: 1000;
   
-  /* Slight transparency to let the dark background show through */
   background: rgba(27, 31, 39, 0.85); 
   border-bottom: 1px solid var(--line);
   
@@ -85,33 +84,23 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Header Titles */
+/* Header Titles - Simplified Logic */
 .nav-links a {
   color: var(--fg); 
-  position: relative;
   text-decoration: none;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
+  
+  /* Simple transparent border that becomes visible on hover */
+  border-bottom: 2px solid transparent;
+  
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Glowing Underline */
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--accent);
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out, box-shadow 0.25s ease;
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-  box-shadow: 0 0 8px var(--accent);
+.nav-links a:hover,
+.nav-links a.active {
+  /* Simple solid underline + subtle glow */
+  border-bottom-color: var(--accent);
+  box-shadow: 0 4px 10px -2px rgba(136, 192, 208, 0.5);
 }
 
 /* Dropdown */
@@ -134,12 +123,15 @@ a:hover { opacity: 0.8; }
   display: block;
   font-size: 0.85rem;
   color: var(--muted);
+  border-bottom: none; /* No underline on dropdown items */
+  box-shadow: none;
 }
 .dropdown-content a:hover {
   background-color: var(--bg);
   color: var(--accent);
+  border-bottom: none;
+  box-shadow: none;
 }
-.dropdown-content a::after { display: none; } 
 .disabled { opacity: 0.5; pointer-events: none; }
 
 /* --------------------------------------------------------------
@@ -157,13 +149,10 @@ a:hover { opacity: 0.8; }
 .business-card {
   background: var(--bg-card);
   
-  /* 2. Nord White Border */
+  /* Nord White Border */
   border: 1px solid var(--fg); 
   
-  /* 3. Cold Blue Shadow / 3D Effect 
-     - Layer 1: Deep drop shadow for 3D Lift
-     - Layer 2: Subtle Cold Blue glow 
-  */
+  /* Cold Blue 3D Shadow */
   box-shadow: 
     0 20px 50px -10px rgba(0, 0, 0, 0.5), 
     0 0 40px -10px rgba(136, 192, 208, 0.15); 
