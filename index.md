@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Home
+class: home
 ---
 
 <div class="home-wrapper">
@@ -10,14 +11,10 @@ title: Home
     <span class="role">Electronic Engineer</span>
 
     <div class="bio">
-      <span class="bio-lead">Focused on</span>
+      Focused on 
       <span class="hl">hardware design</span>
       <span class="hl">embedded systems</span>
       <span class="hl">analog circuits</span>
-    </div>
-
-    <div class="stack">
-      KiCad · LTspice
     </div>
 
     <div class="card-links">
@@ -29,10 +26,9 @@ title: Home
         aria-label="GitHub"
         title="GitHub"
       >
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor" d="M12 .5C5.73.5.75 5.7.75 12.12c0 5.14 3.31 9.5 7.9 11.04.58.11.79-.26.79-.57v-2.1c-3.21.72-3.89-1.26-3.89-1.26-.53-1.4-1.28-1.77-1.28-1.77-1.05-.74.08-.73.08-.73 1.16.08 1.77 1.23 1.77 1.23 1.03 1.82 2.7 1.3 3.36.99.1-.77.4-1.3.72-1.6-2.56-.3-5.25-1.32-5.25-5.88 0-1.3.44-2.36 1.17-3.2-.12-.3-.51-1.52.11-3.16 0 0 .96-.32 3.14 1.22a10.5 10.5 0 0 1 2.86-.4c.97 0 1.94.14 2.86.4 2.18-1.54 3.14-1.22 3.14-1.22.62 1.64.23 2.86.11 3.16.73.84 1.17 1.9 1.17 3.2 0 4.57-2.7 5.58-5.28 5.88.41.37.78 1.1.78 2.22v3.3c0 .31.21.68.8.57 4.58-1.54 7.89-5.9 7.89-11.04C23.25 5.7 18.27.5 12 .5z"/>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
         </svg>
-        <span class="sr-only">GitHub</span>
       </a>
 
       <a
@@ -43,10 +39,9 @@ title: Home
         aria-label="LinkedIn"
         title="LinkedIn"
       >
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.63 0 4.3 2.39 4.3 5.5v6.24zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
         </svg>
-        <span class="sr-only">LinkedIn</span>
       </a>
 
       <a
@@ -56,56 +51,41 @@ title: Home
         onclick="copyEmail(); return false;"
         aria-label="Copy email"
         title="Copy email"
-        >
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/>
+      >
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>
         </svg>
-        <span class="sr-only">Email</span>
       </a>
     </div>
 
-    <script>
-      // Copy email to clipboard and show a short "Copied" feedback state.
-      function copyEmail() {
-        const email = "marcosverdejo@gmail.com";
-        const btn = document.getElementById("email-btn");
-
-        navigator.clipboard.writeText(email).then(() => {
-          btn.classList.add("email-copied");
-          btn.setAttribute("aria-label", "Email copied");
-          btn.setAttribute("title", "Copied");
-
-          setTimeout(() => {
-            btn.classList.remove("email-copied");
-            btn.setAttribute("aria-label", "Copy email");
-            btn.setAttribute("title", "Copy email");
-          }, 1800);
-        }).catch(err => {
-          console.error("Clipboard copy failed:", err);
-        });
-      }
-    </script>
-      </div>
+    <div class="stack">
+      KiCad · LTspice · Python
     </div>
 
-    <script>
-      // Copy email to clipboard and show a short "Copied" feedback state.
-      function copyEmail() {
-        const email = "marcosverdejo@gmail.com";
-        const btn = document.getElementById("email-btn");
+  </div>
+</div>
 
-        navigator.clipboard.writeText(email).then(() => {
-          const originalText = "Email";
-  
-          btn.innerText = "Copied";
-          btn.classList.add("email-copied");
+<script>
+  function copyEmail() {
+    const email = "marcosverdejo@gmail.com";
+    const btn = document.getElementById("email-btn");
 
-          setTimeout(() => {
-            btn.innerText = originalText;
-            btn.classList.remove("email-copied");
-          }, 2000);
-        }).catch(err => {
-          console.error("Clipboard copy failed:", err);
-        });
-      }
-    </script>
+    navigator.clipboard.writeText(email).then(() => {
+      // Add class for visual feedback (color change)
+      btn.classList.add("email-copied");
+      
+      // Update accessibility labels
+      btn.setAttribute("aria-label", "Email copied");
+      btn.setAttribute("title", "Copied: " + email);
+
+      // Remove feedback after 2 seconds
+      setTimeout(() => {
+        btn.classList.remove("email-copied");
+        btn.setAttribute("aria-label", "Copy email");
+        btn.setAttribute("title", "Copy email");
+      }, 2000);
+    }).catch(err => {
+      console.error("Clipboard copy failed:", err);
+    });
+  }
+</script>
