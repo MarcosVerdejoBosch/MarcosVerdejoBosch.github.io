@@ -1,5 +1,5 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Nord Terminal - Refined)
+   MVB — Portfolio Theme (Nord Cold Modern)
    ============================================================== */
 
 :root {
@@ -7,8 +7,10 @@
   --font-mono: "Source Code Pro", ui-monospace, monospace;
 
   /* Nord Palette */
-  --bg: #2e3440;       /* Darkest Background */
+  --bg: #2e3440;       /* Nord Polar Night (Base) */
+  --bg-darker: #1b1f27; /* Darker/Cold Slate for gradient edges */
   --bg-card: #3b4252;  /* Lighter Card Background */
+  
   --fg: #eceff4;       /* Main Text (Snow Storm white) */
   --muted: #d8dee9;    /* Dimmed Text */
   --line: #4c566a;     /* Borders */
@@ -26,7 +28,11 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg);
+  
+  /* 1. Darker, Cold Modern Background */
+  background: radial-gradient(circle at 50% 30%, var(--bg), var(--bg-darker));
+  background-attachment: fixed; /* Keeps gradient steady while scrolling */
+  
   color: var(--fg);
   font-family: var(--font-mono);
   line-height: 1.6;
@@ -50,8 +56,11 @@ a:hover { opacity: 0.8; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(46, 52, 64, 0.95);
+  
+  /* Slight transparency to let the dark background show through */
+  background: rgba(27, 31, 39, 0.85); 
   border-bottom: 1px solid var(--line);
+  
   padding: 0.8rem 1.2rem;
   backdrop-filter: blur(8px);
 }
@@ -76,7 +85,7 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Header Titles: White by default */
+/* Header Titles */
 .nav-links a {
   color: var(--fg); 
   position: relative;
@@ -84,7 +93,7 @@ a:hover { opacity: 0.8; }
   padding-bottom: 4px;
 }
 
-/* Glowing Underline Logic */
+/* Glowing Underline */
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -102,7 +111,6 @@ a:hover { opacity: 0.8; }
 .nav-links a.active::after {
   transform: scaleX(1);
   transform-origin: bottom left;
-  /* The Glow Effect */
   box-shadow: 0 0 8px var(--accent);
 }
 
@@ -112,13 +120,13 @@ a:hover { opacity: 0.8; }
   display: none;
   position: absolute;
   right: 0;
-  top: 100%; /* Push down slightly */
+  top: 100%;
   background-color: var(--bg-card);
   min-width: 180px;
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
   border: 1px solid var(--line);
   z-index: 1;
-  margin-top: 8px; /* Gap from nav */
+  margin-top: 8px;
 }
 .dropdown:hover .dropdown-content { display: block; }
 .dropdown-content a {
@@ -131,7 +139,7 @@ a:hover { opacity: 0.8; }
   background-color: var(--bg);
   color: var(--accent);
 }
-.dropdown-content a::after { display: none; } /* No underline in dropdown items */
+.dropdown-content a::after { display: none; } 
 .disabled { opacity: 0.5; pointer-events: none; }
 
 /* --------------------------------------------------------------
@@ -148,15 +156,22 @@ a:hover { opacity: 0.8; }
 
 .business-card {
   background: var(--bg-card);
-  border: 1px solid var(--line);
+  
+  /* 2. Nord White Border */
+  border: 1px solid var(--fg); 
+  
+  /* 3. Cold Blue Shadow / 3D Effect 
+     - Layer 1: Deep drop shadow for 3D Lift
+     - Layer 2: Subtle Cold Blue glow 
+  */
+  box-shadow: 
+    0 20px 50px -10px rgba(0, 0, 0, 0.5), 
+    0 0 40px -10px rgba(136, 192, 208, 0.15); 
+
   padding: 3rem 2rem;
   width: 100%;
   max-width: 600px;
   text-align: center;
-  
-  box-shadow: 
-    0 10px 30px rgba(0,0,0,0.3),
-    0 0 20px rgba(136, 192, 208, 0.05);
 }
 
 .business-card h1 {
@@ -195,12 +210,12 @@ a:hover { opacity: 0.8; }
   font-size: 0.85rem;
 }
 
-/* Stack (KiCad, etc) */
+/* Stack */
 .business-card .stack {
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
-  color: var(--fg); /* Whiter text */
+  color: var(--fg);
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -225,17 +240,15 @@ a:hover { opacity: 0.8; }
   transition: all 0.2s ease;
 }
 
-/* Removed box background/border on hover */
 .icon-link:hover {
   color: var(--accent);
-  transform: translateY(-2px); /* Subtle lift instead */
+  transform: translateY(-2px);
   background: transparent;
   border: none;
 }
 
 .icon { width: 24px; height: 24px; }
 
-/* Copied state */
 .email-copied {
   color: var(--accent) !important;
 }
