@@ -1,976 +1,280 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Nord Dark)
-   Purpose:
-   - Clean, technical, readable layout for PCB / hardware projects.
-   - Consistent nav + centered home “business card”.
-   Font:
-   - Source Code Pro (loaded in _layouts/default.html)
+   MVB — Portfolio Theme (Modern Minimalist)
+   Refactored for: Inter (UI) + JetBrains Mono (Code)
    ============================================================== */
 
 /* --------------------------------------------------------------
    1) Design Tokens
 -------------------------------------------------------------- */
 :root {
-  /* Typography */
-  --font-mono: "Source Code Pro",
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    Monaco,
-    Consolas,
-    monospace;
+  /* Fonts */
+  /* Main UI font: Inter (Clean, Professional) */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  /* Tech font: JetBrains Mono (For badges/code) */
+  --font-mono: "JetBrains Mono", "Source Code Pro", monospace;
 
-  /* Nord palette */
-  --bg: #2e3440;
-  --bg-alt: #3b4252;
-  --fg: #eceff4;
-  --muted: #d8dee9;
-  --line: #4c566a;
-
+  /* Nord Palette (Refined) */
+  --bg: #2e3440;       /* Dark Background */
+  --bg-card: #3b4252;  /* Lighter Card Background */
+  --fg: #eceff4;       /* Main Text */
+  --muted: #d8dee9;    /* Secondary Text */
+  --line: #4c566a;     /* Borders */
+  
   /* Accent */
-  --accent: #88c0d0;
+  --accent: #88c0d0;   /* Nord Cyan */
 
   /* Layout */
-  --container-max: 760px;
-  --card-max: 580px;
+  --container-max: 800px;
+  --radius-card: 24px;  /* Modern rounded corners */
+  --radius-pill: 99px;  /* Fully rounded for buttons/badges */
 
-  /* Anchor offset (sticky navbar) */
-  --anchor-offset: 100px;
-
-   /* Underline (solid, modern, more visible) */
-  --u-h: 2px;          /* inactive thickness */
-  --u-h-hover: 2px;    /* hover thickness (same) */
-  --u-h-active: 3px;   /* active thickness */
-
-  --u-inactive: rgba(136, 192, 208, 0.35); /* more notorio */
-  --u-hover: rgba(136, 192, 208, 0.60);    /* hover < active */
-  --u-active: rgba(136, 192, 208, 1.00);   /* active */
-
-  --u-glow-hover: 0 0 10px rgba(136, 192, 208, 0.12);
-  --u-glow-active: 0 0 14px rgba(136, 192, 208, 0.22);
+  /* Navigation Underline Styles */
+  --u-h: 2px;
+  --u-inactive: rgba(136, 192, 208, 0.0); /* Hidden by default for clean look */
+  --u-active: rgba(136, 192, 208, 1.0);
 }
 
 /* --------------------------------------------------------------
-   2) Global behavior + base layout
+   2) Global Base
 -------------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--anchor-offset);
 }
 
-h2,
-h3 {
-  scroll-margin-top: var(--anchor-offset);
-}
-
-html,
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--bg);
+  
+  /* Subtle gradient background for depth */
+  background-image: radial-gradient(
+    circle at 50% 0%, 
+    rgba(59, 66, 82, 0.4) 0%, 
+    rgba(46, 52, 64, 0) 50%
+  );
 
-  background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-mono);
-
-  line-height: 1.75;
+  font-family: var(--font-sans); /* CHANGED: Now using Inter */
+  line-height: 1.6;
   font-size: 16px;
-
-  /* Sticky footer layout */
+  
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.content {
-  flex: 1;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.content,
-.container,
-.post,
-main {
-  max-width: var(--container-max);
-  margin: 1.9rem auto;
-  padding: 0 1.5rem;
-
-  background: transparent;
-  box-sizing: border-box;
-}
-
-/* Text alignment */
-p,
-li {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-/* --------------------------------------------------------------
-   3) Base Links (content only)
-   Note:
-   - Navbar + card links override this with a custom underline system.
--------------------------------------------------------------- */
+/* Links */
 a {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px dotted var(--accent);
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: opacity 0.2s ease;
 }
-
-a:hover {
-  color: var(--fg);
-  border-bottom-style: solid;
-}
+a:hover { opacity: 0.8; }
 
 /* --------------------------------------------------------------
-   4) Typography
+   3) Typography
 -------------------------------------------------------------- */
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   color: var(--fg);
-  letter-spacing: -0.02em;
-  text-align: left;
+  font-weight: 700;
+  letter-spacing: -0.02em; /* Tight tracking for Inter */
+  margin-top: 0;
 }
 
-h1 {
-  font-size: 2rem;
-  margin: 1.5rem 0 2rem 0;
-  line-height: 1.2;
-
-  border: none;
-  padding: 0;
-  position: relative;
-}
-
-h1::after {
-  content: "";
-  display: block;
-
-  width: 60px;
-  height: 3px;
-  background-color: var(--line);
-
-  margin-top: 1rem;
-  border-radius: 2px;
-}
-
-h2 {
-  margin-top: 3.5rem;
-  margin-bottom: 1rem;
-
-  padding: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-
-  border: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-
-  display: block;
-  margin: 1.5rem auto;
-
-  border: 1px solid var(--line);
-  border-radius: 12px;
-}
+h1 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 1rem; }
+h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+h3 { font-size: 1.25rem; }
 
 /* --------------------------------------------------------------
-   5) Underline System (NAV + Home contact links)
-   Rules:
-   - Default: dim underline
-   - Hover/Focus: stronger but still weaker than active
-   - Active: strongest and never dims on hover
-   - Glass effect: gradient + subtle shimmer on hover
--------------------------------------------------------------- */
-.u-link,
-.nav-links > a,
-.dropdown > a,
-.business-card .card-links a {
-  color: var(--fg);
-  text-decoration: none;
-  border-bottom: none;
-
-  position: relative;
-  display: inline-block;
-  padding-bottom: 6px;
-}
-
-/* Remove dotted underline in these areas */
-.navbar a,
-.business-card .card-links a,
-.dropdown-content a {
-  border-bottom: none;
-  text-decoration: none;
-}
-
-/* Base underline (inactive) — SOLID, no gradient */
-.u-link::after,
-.nav-links > a::after,
-.dropdown > a::after,
-.business-card .card-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  width: 100%;
-  height: var(--u-h);
-
-  background: var(--u-inactive);
-  opacity: 1;
-
-  border-radius: 999px; /* modern pill underline */
-  transition: height 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-/* Hover/focus — more visible but still weaker than active */
-.u-link:hover::after,
-.u-link:focus-visible::after,
-.nav-links > a:hover::after,
-.nav-links > a:focus-visible::after,
-.dropdown:hover > a::after,
-.dropdown > a:focus-visible::after,
-.business-card .card-links a:hover::after,
-.business-card .card-links a:focus-visible::after {
-  height: var(--u-h-hover);
-  background: var(--u-hover);
-  box-shadow: var(--u-glow-hover);
-}
-
-/* Active — strongest */
-.u-link.is-active::after,
-.nav-links > a.active::after,
-.dropdown > a.active::after,
-.dropdown.active > a::after {
-  height: var(--u-h-active);
-  background: var(--u-active);
-  box-shadow: var(--u-glow-active);
-}
-
-/* Active stays active even when hovered */
-.u-link.is-active:hover::after,
-.u-link.is-active:focus-visible::after,
-.nav-links > a.active:hover::after,
-.nav-links > a.active:focus-visible::after,
-.dropdown > a.active:hover::after,
-.dropdown > a.active:focus-visible::after,
-.dropdown.active:hover > a::after {
-  height: var(--u-h-active);
-  background: var(--u-active);
-  box-shadow: var(--u-glow-active);
-}
-
-
-/* Copied state (no underline) */
-.business-card .card-links a.email-copied::after {
-  display: none;
-}
-
-/* Keep contact links color stable even if visited */
-.business-card .card-links a:visited {
-  color: var(--fg);
-}
-
-/* Focus outline (accessibility) */
-.nav-links > a:focus-visible,
-.dropdown > a:focus-visible,
-.business-card .card-links a:focus-visible {
-  outline: 2px solid var(--u-focus);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
-/* Touch devices: keep underline visible, add tap feedback */
-@media (hover: none) {
-  .u-link::after,
-  .nav-links > a::after,
-  .dropdown > a::after,
-  .business-card .card-links a::after {
-    background-position: 50% 50%;
-  }
-
-  .u-link:active::after,
-  .nav-links > a:active::after,
-  .dropdown > a:active::after,
-  .business-card .card-links a:active::after {
-    opacity: 0.88;
-    background-position: 100% 50%;
-  }
-}
-
-/* --------------------------------------------------------------
-   6) Navbar + dropdown
+   4) Navbar (Glass Effect)
 -------------------------------------------------------------- */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-
-  background-color: rgba(46, 52, 64, 0.9);
+  padding: 1rem 1.5rem;
+  
+  background: rgba(46, 52, 64, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
-  border-bottom: 1px solid var(--line);
-  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid rgba(255,255,255, 0.05);
 }
 
 .nav-container {
   max-width: var(--container-max);
   margin: 0 auto;
-
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 }
 
 .nav-title {
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
   color: var(--fg);
   border: none;
-  cursor: pointer;
 }
 
 .nav-links {
   display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  gap: 2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-/* Dropdown container */
-.dropdown {
-  position: relative;
-  display: inline-flex;
-  align-items: baseline;
-}
-
-/* Dropdown menu (desktop: to the right of Projects) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-
-  top: 0;
-  left: 100%;
-  margin-left: 12px;
-
-  width: max-content;
-  min-width: unset;
-
-  background-color: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-radius: 0;
-
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-
-  padding: 0.25rem 0;
-  z-index: 1200;
-}
-
-/* Hover buffer to avoid flicker */
-.dropdown-content::before {
-  content: "";
-  position: absolute;
-  left: -12px;
-  top: 0;
-  width: 12px;
-  height: 100%;
-  background: transparent;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Dropdown items */
-.dropdown-content a {
+.nav-links a {
   color: var(--muted);
-  padding: 0.55rem 0.9rem;
-
-  display: block;
-
-  text-align: left;
-  white-space: nowrap;
-  font-size: 0.92rem;
-
-  border-left: 3px solid rgba(216, 222, 233, 0.35);
-
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease,
-    border-left-color 0.15s ease;
-}
-
-.dropdown-content a:hover {
-  background-color: rgba(46, 52, 64, 0.4);
-  color: var(--fg);
-  border-left-color: var(--accent);
-}
-
-.dropdown-content a.active {
-  color: var(--fg);
-  background-color: rgba(136, 192, 208, 0.12);
-  border-left-color: var(--accent);
-}
-
-/* Projects caret */
-.caret {
-  display: inline-block;
-  margin-left: 0.25rem;
-  transition: transform 0.18s ease;
-  transform-origin: 50% 55%;
-}
-
-/* Desktop only: rotate caret when dropdown opens */
-@media (min-width: 901px) {
-  .dropdown:hover > a .caret {
-    transform: rotate(-90deg);
-  }
-}
-
-/* --------------------------------------------------------------
-   7) Home page — centered business card + Nord "aurora" background
--------------------------------------------------------------- */
-.home-wrapper {
   position: relative;
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-
-  min-height: 80vh;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-
-/* Make the whole page background consistent */
-body {
-  background: var(--bg);
-}
-
-/* Card: go back to solid Nord alt (no “glass panel”) */
-.business-card {
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-.business-card h1 {
-  text-align: center;
-  font-size: 2rem;
-  text-transform: uppercase;
-
-  margin: 0 0 0.5rem 0;
-  color: var(--fg);
-
   border: none;
 }
 
-.business-card h1::after {
-  display: none;
-}
-
-.business-card .role {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-
-  color: var(--muted);
-  margin-bottom: 2rem;
-  display: block;
-}
-
-/* Bio row (desktop: single line) */
-.business-card .bio {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.45rem;
-
-  font-size: 0.88rem;
-  line-height: 1.25;
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--fg);
-
-  padding: 0 1rem;
-  margin: 0 auto 2rem auto;
-  max-width: 760px;
-
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
-
-.business-card .bio .bio-lead {
-  white-space: nowrap;
-}
-
-/* Keyword tags (square + blue border) */
-.business-card .bio .hl {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 0.10em 0.48em;
-  border-radius: 2px;
-
-  background: rgba(136, 192, 208, 0.14);
-  border: 1px solid rgba(136, 192, 208, 0.70);
-
-  color: var(--fg);
-  font-size: 0.95em;
-  font-weight: 600;
-  line-height: 1.1;
-  white-space: nowrap;
-
-  box-shadow:
-    inset 0 1px 0 rgba(236, 239, 244, 0.08),
-    0 1px 0 rgba(0, 0, 0, 0.22);
-}
-
-.business-card .stack {
-  font-size: 0.8rem;
-  color: var(--muted);
-
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-
-  border-top: 1px solid rgba(216, 222, 233, 0.18);
-}
-
-/* Contact links row */
-.business-card .card-links {
-  margin-top: 1.5rem;
-
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-/* Email copied state */
-.business-card .card-links a.email-copied {
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* Mobile: bio in column (Focused on / each keyword on its own line) */
-@media (max-width: 700px) {
-  .business-card .bio {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 0.45rem;
-    flex-wrap: nowrap;
-    white-space: normal;
-    line-height: 1.4;
-    font-size: 0.9rem;
-  }
-
-  .business-card .bio .bio-lead {
-    display: block;
-    margin-bottom: 0.1rem;
-  }
 }
 
 /* --------------------------------------------------------------
-   8) Project cards
+   5) Main Card (The "Home" View)
 -------------------------------------------------------------- */
-.project-card {
-  border: 1px solid var(--line);
-  background-color: transparent;
-
-  padding: 2rem;
-  margin-bottom: 2rem;
-
-  border-left: 4px solid var(--muted);
-  transition: all 0.2s ease;
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh; /* Center vertically */
+  padding: 1rem;
 }
 
-.project-card:hover {
-  border-color: var(--accent);
-  border-left-color: var(--accent);
+.business-card {
+  background: var(--bg-card);
+  width: 100%;
+  max-width: 680px;
+  padding: 4rem 3rem;
+  
+  /* Modern clean border & shadow */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-card);
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0,0,0,0.2); /* Inner subtle stroke */
 
-  background-color: rgba(59, 66, 82, 0.3);
-  transform: translateX(5px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.project-card h3 {
-  margin-top: 0;
-  font-size: 1.4rem;
+/* Name */
+.business-card h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
   color: var(--fg);
+  border: none;
 }
+.business-card h1::after { display: none; } /* Remove old underline */
 
-.project-card p {
-  color: var(--muted);
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-}
-
-.project-card .specs {
-  font-size: 0.75rem;
+/* Role (e.g. Electronic Engineer) */
+.business-card .role {
+  display: block;
   font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
 
+/* Bio Section */
+.business-card .bio {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+/* Badges / Chips (.hl class) - NEW PILL STYLE */
+.business-card .bio .hl {
+  display: inline-block;
+  
+  /* Pill Shape */
+  background: rgba(136, 192, 208, 0.1); /* Very subtle blue bg */
+  border: 1px solid rgba(136, 192, 208, 0.3);
+  border-radius: var(--radius-pill);
+  
+  padding: 4px 14px;
+  margin: 0 4px;
+  
+  /* Text */
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Stack / Footer of Card */
+.business-card .stack {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255, 0.05);
+  
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #6d768a;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-
-  color: var(--line);
-  margin-bottom: 1.5rem;
 }
 
-/* Button */
-.btn-report {
-  display: inline-block;
+/* Social Icons Area */
+.business-card .card-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
 
-  font-size: 0.85rem;
-  font-weight: 700;
-
-  color: var(--accent);
-  border: 1px solid var(--accent);
-
-  padding: 0.6rem 1.2rem;
-  text-transform: uppercase;
-
+/* Icons (SVG) styling */
+.business-card .card-links a {
+  color: var(--muted);
+  font-size: 1.5rem; /* Icon size */
   transition: all 0.2s ease;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
 }
 
-.btn-report:hover {
-  background-color: var(--accent);
-  color: var(--bg);
+.business-card .card-links a:hover {
+  color: var(--fg);
+  background: rgba(255,255,255, 0.05);
+  transform: translateY(-2px);
 }
 
 /* --------------------------------------------------------------
-   9) Footer
+   6) Footer
 -------------------------------------------------------------- */
 .footer {
   text-align: center;
-  padding: 2rem 0;
-
-  width: 100%;
-  color: var(--muted);
-
-  font-size: 0.9rem;
-  margin-top: auto;
+  padding: 2rem;
+  font-size: 0.85rem;
+  color: #4c566a;
 }
 
 /* --------------------------------------------------------------
-   10) Mobile optimization (navbar + dropdown)
+   7) Mobile Responsiveness
 -------------------------------------------------------------- */
-@media (max-width: 900px) {
-  .home-wrapper {
-    min-height: 90vh;
-    padding: 1rem;
-  }
-
+@media (max-width: 600px) {
   .business-card {
-    padding: 2rem 1.2rem;
+    padding: 2.5rem 1.5rem;
   }
-
-  .nav-container {
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
+  .business-card h1 {
+    font-size: 1.8rem;
   }
-
-  .nav-title {
-    margin-right: auto;
+  .business-card .bio {
+    font-size: 0.95rem;
   }
-
-  .nav-links {
-    margin-left: auto;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-
-    gap: 1.25rem;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-  }
-
-  /* Mobile dropdown: overlay below Projects (no layout shift) */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropdown-content {
-    top: calc(100% + 10px);
-    left: auto;
-    right: 0;
-    margin-left: 0;
-
-    min-width: 190px;
-    width: max-content;
-
-    z-index: 1300;
-  }
-
-  .dropdown-content::before {
-    display: none;
+  .business-card .bio .hl {
+    margin: 4px 2px; /* Add spacing for wrapped lines */
   }
 }
-
-/* =======================
-   HOME — Keyword chips: more padding + centered text
-   =======================
-   PEGALO AL FINAL de style.css (override).
-   (Ajusta solo los recuadros de palabras clave)
-*/
-
-.business-card .bio .hl {
-  padding: 0.16em 0.62em !important; /* more space inside the box */
-  text-align: center !important;     /* center text inside */
-  justify-content: center !important;
-}
-
-/* =======================
-   HOME — Card look like your reference (glow frame + subtle vignette)
-   PEGAR AL FINAL de style.css (override)
-   ======================= */
-
-/* Subtle vignette on the whole page (keeps Nord, not a “separate box” behind the card) */
-body {
-  background:
-    radial-gradient(900px 520px at 50% 40%, rgba(59, 66, 82, 0.55), rgba(46, 52, 64, 1) 70%),
-    var(--bg);
-}
-
-/* Card: solid Nord surface + framed glow border */
-.business-card {
-  position: relative;
-  background: rgba(59, 66, 82, 0.92) !important; /* solid, but a touch modern */
-  border: 1px solid rgba(136, 192, 208, 0.35) !important; /* accent frame */
-  box-shadow:
-    0 22px 60px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(216, 222, 233, 0.08) inset,
-    0 0 28px rgba(136, 192, 208, 0.10) !important;
-
-  padding: 4.1rem 2.7rem !important; /* more balanced breathing room */
-}
-
-/* Outer thin glow frame (like the image border) */
-.business-card::before {
-  content: "";
-  position: absolute;
-  inset: -14px;              /* frame outside the card */
-  border: 2px solid rgba(136, 192, 208, 0.18);
-  pointer-events: none;
-  box-shadow: 0 0 26px rgba(136, 192, 208, 0.10);
-}
-
-/* Inner crisp edge */
-.business-card::after {
-  content: "";
-  position: absolute;
-  inset: 10px;               /* inner line */
-  border: 1px solid rgba(216, 222, 233, 0.10);
-  pointer-events: none;
-}
-
-/* Title: a bit more “printed” like the reference */
-.business-card h1 {
-  letter-spacing: 0.06em !important;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
-}
-
-/* Role: slightly more Nord-accented */
-.business-card .role {
-  color: rgba(136, 192, 208, 0.80) !important;
-}
-
-/* Bio spacing: nicer rhythm */
-.business-card .bio {
-  gap: 0.75rem !important;
-}
-
-/* Keyword chips: darker + subtle highlight (more like your image) */
-.business-card .bio .hl {
-  padding: 0.18em 0.70em !important;
-  border-radius: 4px !important;
-
-  background: rgba(46, 52, 64, 0.55) !important;
-  border: 1px solid rgba(136, 192, 208, 0.28) !important;
-
-  color: rgba(236, 239, 244, 0.92) !important;
-  font-weight: 600 !important;
-
-  box-shadow:
-    inset 0 1px 0 rgba(236, 239, 244, 0.06),
-    0 2px 10px rgba(0, 0, 0, 0.25) !important;
-
-  justify-content: center !important;
-  text-align: center !important;
-}
-
-/* Divider line inside the card (stack) a bit softer */
-.business-card .stack {
-  border-top-color: rgba(216, 222, 233, 0.14) !important;
-}
-
-/* =======================
-   BACKGROUND — different from navbar/header
-   PEGAR AL FINAL de style.css (override)
-   ======================= */
-
-/* Page background: slightly darker than the navbar so they don't blend */
-body {
-  background:
-    radial-gradient(900px 520px at 50% 38%,
-      rgba(59, 66, 82, 0.35),
-      rgba(32, 36, 46, 1) 72%
-    );
-}
-
-/* Navbar stays as-is, but a touch lighter so it reads as a separate layer */
-.navbar {
-  background-color: rgba(46, 52, 64, 0.92) !important;
-}
-
-/* =======================
-   HOME — Single strong accent border + floating card + subtle animation
-   PEGAR AL FINAL de style.css (override)
-   ======================= */
-
-/* Remove extra frames (if you had them) */
-.business-card::before,
-.business-card::after {
-  content: none !important;
-}
-
-/* One border, noticeable, same accent as underline + “floating” */
-.business-card {
-  border: 2px solid rgba(136, 192, 208, 0.75) !important;
-
-  box-shadow:
-    0 28px 70px rgba(0, 0, 0, 0.60),
-    0 0 34px rgba(136, 192, 208, 0.14) !important;
-
-  transform: translateY(0);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Subtle lift on hover (desktop) */
-@media (hover: hover) {
-  .business-card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      0 34px 85px rgba(0, 0, 0, 0.62),
-      0 0 44px rgba(136, 192, 208, 0.18) !important;
-  }
-}
-
-/* Gentle idle “float” animation */
-@media (prefers-reduced-motion: no-preference) {
-  .business-card {
-    animation: card-float 6s ease-in-out infinite;
-  }
-
-  @keyframes card-float {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-4px); }
-    100% { transform: translateY(0); }
-  }
-}
-
-/* =======================
-   HOME — Center alignment for role + stack (and keep card text centered)
-   PEGAR AL FINAL de style.css (override)
-   ======================= */
-
-.business-card,
-.business-card h1,
-.business-card .role,
-.business-card .stack {
-  text-align: center !important;
-}
-
-/* Make the stack line truly centered and balanced */
-.business-card .stack {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 0.6rem !important;
-}
-
-/* If you ever add spans inside .stack, this keeps them aligned */
-.business-card .stack > * {
-  text-align: center !important;
-}
-
-/* style.css (PEGAR AL FINAL) — icon links for the home card */
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* Make the contact links look like clean icon buttons (keeps your underline system) */
-.business-card .card-links a.icon-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 44px;
-  height: 44px;
-
-  padding-bottom: 8px; /* keeps underline nicely spaced */
-  border-radius: 10px;
-
-  color: var(--fg);
-}
-
-/* Icon sizing */
-.business-card .card-links a.icon-link .icon {
-  width: 22px;
-  height: 22px;
-  display: block;
-}
-
-/* Optional: tiny hover lift (subtle) */
-@media (hover: hover) {
-  .business-card .card-links a.icon-link {
-    transition: transform 0.18s ease;
-  }
-  .business-card .card-links a.icon-link:hover {
-    transform: translateY(-2px);
-  }
-}
-
-/* Copied state (keeps your existing rule that hides underline) + visible feedback */
-.business-card .card-links a.email-copied {
-  color: var(--accent) !important;
-  position: relative;
-}
-
-.business-card .card-links a.email-copied::before {
-  content: "Copied";
-  position: absolute;
-  top: -14px;
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
-  color: var(--accent);
-}
-
-
-
-
-
