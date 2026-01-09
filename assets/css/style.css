@@ -1,24 +1,21 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Cold Electric)
+   MVB — Portfolio Theme (Original Nord Clean)
    ============================================================== */
 
 :root {
   /* Typography */
   --font-mono: "Source Code Pro", ui-monospace, monospace;
 
-  /* Nord Palette (Modified) */
-  --bg: #2e3440;       /* Nord Polar Night (Header/Base) */
-  --bg-grad-center: #292e39; /* Slightly darker center for gradient */
-  --bg-grad-edge: #12151a;   /* Deep/Black edges for high contrast */
+  /* Nord Palette (Original) */
+  --bg: #2e3440;       /* Polar Night 0 */
+  --bg-card: #3b4252;  /* Polar Night 1 */
   
-  --bg-card: #3b4252;  /* Lighter Card Background */
+  --fg: #eceff4;       /* Snow Storm 2 (White) */
+  --muted: #d8dee9;    /* Snow Storm 0 (Dimmed) */
+  --line: #4c566a;     /* Polar Night 3 */
   
-  --fg: #eceff4;       /* Main Text (Snow Storm white) */
-  --muted: #d8dee9;    /* Dimmed Text */
-  --line: #4c566a;     /* Borders */
-  
-  /* ACCENT: Brighter "Electric Ice" Blue */
-  --accent: #46D9FF;   
+  /* Accent: Nord Frost (Light Cold Blue) */
+  --accent: #88c0d0;   
 
   /* Layout */
   --container-max: 760px;
@@ -31,9 +28,8 @@ html, body {
   margin: 0;
   padding: 0;
   
-  /* Deep, Cold Vignette Background */
-  background: radial-gradient(circle at 50% 30%, var(--bg-grad-center), var(--bg-grad-edge));
-  background-attachment: fixed;
+  /* Original Flat Nord Background (Clean & Simple) */
+  background-color: var(--bg);
   
   color: var(--fg);
   font-family: var(--font-mono);
@@ -52,19 +48,18 @@ a {
 a:hover { opacity: 0.8; }
 
 /* --------------------------------------------------------------
-   Navbar (Distinct & Professional)
+   Navbar
 -------------------------------------------------------------- */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
   
-  /* Restored to distinct solid color (Original Nord Base) */
+  /* Matches body background for seamless look, slightly distinct via border */
   background-color: var(--bg);
   border-bottom: 1px solid var(--line);
   
   padding: 0.8rem 1.2rem;
-  /* Removed transparency to keep it simple and distinct */
 }
 
 .nav-container {
@@ -99,8 +94,7 @@ a:hover { opacity: 0.8; }
 .nav-links a:hover,
 .nav-links a.active {
   border-bottom-color: var(--accent);
-  /* The glow now uses the new brighter blue */
-  box-shadow: 0 4px 12px -2px rgba(70, 217, 255, 0.4);
+  box-shadow: 0 4px 10px -2px rgba(136, 192, 208, 0.4);
 }
 
 /* Dropdown */
@@ -120,7 +114,7 @@ a:hover { opacity: 0.8; }
   top: 100%;
   background-color: var(--bg-card);
   min-width: 180px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
   border: 1px solid var(--line);
   z-index: 100;
   margin-top: 10px;
@@ -155,7 +149,7 @@ a:hover { opacity: 0.8; }
 }
 
 .dropdown-content a:hover {
-  background-color: rgba(70, 217, 255, 0.1);
+  background-color: var(--bg);
   color: var(--accent);
   padding-left: 20px;
 }
@@ -174,12 +168,12 @@ a:hover { opacity: 0.8; }
 
 .business-card {
   background: var(--bg-card);
-  border: 1px solid var(--fg); /* White Border */
+  border: 1px solid var(--fg); /* Nord White Border */
   
-  /* Shadow with new cold blue glow */
+  /* Subtle cold shadow (Nord Frost glow) */
   box-shadow: 
-    0 20px 50px -10px rgba(0, 0, 0, 0.6), 
-    0 0 50px -10px rgba(70, 217, 255, 0.1); 
+    0 15px 35px rgba(0,0,0,0.3),
+    0 0 25px rgba(136, 192, 208, 0.1); 
 
   padding: 3rem 2rem;
   width: 100%;
@@ -202,7 +196,6 @@ a:hover { opacity: 0.8; }
   color: var(--accent);
   display: block;
   margin-bottom: 2rem;
-  text-shadow: 0 0 8px rgba(70, 217, 255, 0.3); /* Slight text glow */
 }
 
 .business-card .bio {
@@ -261,7 +254,6 @@ a:hover { opacity: 0.8; }
   transform: translateY(-2px);
   background: transparent;
   border: none;
-  filter: drop-shadow(0 0 5px var(--accent)); /* Make icons glow */
 }
 
 .icon { width: 24px; height: 24px; }
