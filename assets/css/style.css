@@ -1,5 +1,5 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Nord Cold Modern - Simplified)
+   MVB — Portfolio Theme (Nord Cold Modern - Final Layout)
    ============================================================== */
 
 :root {
@@ -84,28 +84,22 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Header Titles - Simplified Logic */
+/* Header Titles - Simplified Underline */
 .nav-links a {
   color: var(--fg); 
   text-decoration: none;
   padding-bottom: 2px;
-  
-  /* Simple transparent border that becomes visible on hover */
   border-bottom: 2px solid transparent;
-  
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  /* Simple solid underline + subtle glow */
   border-bottom-color: var(--accent);
   box-shadow: 0 4px 10px -2px rgba(136, 192, 208, 0.5);
 }
 
-/* --------------------------------------------------------------
-   Dropdown (Improved Usability)
--------------------------------------------------------------- */
+/* Dropdown */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -113,49 +107,39 @@ a:hover { opacity: 0.8; }
 }
 
 .dropdown-content {
-  /* Hidden State by default (using opacity for transition) */
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px); /* Start slightly lower */
+  transform: translateY(10px);
   transition: all 0.2s ease-in-out;
-
-  /* Layout */
   position: absolute;
   right: 0;
   top: 100%;
-  
-  /* Visuals */
   background-color: var(--bg-card);
   min-width: 180px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.4); /* Stronger shadow for visibility */
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
   border: 1px solid var(--line);
   z-index: 100;
-  
-  /* Spacing */
-  margin-top: 10px; /* The visual gap */
+  margin-top: 10px;
   padding: 0.5rem 0;
   border-radius: 4px;
 }
 
-/* THE FIX: Invisible Bridge to fill the gap */
 .dropdown-content::before {
   content: "";
   position: absolute;
-  top: -15px; /* Extends upwards to overlap the nav link */
+  top: -15px;
   left: 0;
   width: 100%;
-  height: 15px; /* Covers the margin gap */
+  height: 15px;
   background: transparent;
 }
 
-/* Hover State - Show Menu */
 .dropdown:hover .dropdown-content {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0); /* Slide up into place */
+  transform: translateY(0);
 }
 
-/* Links inside Dropdown */
 .dropdown-content a {
   padding: 10px 16px;
   display: block;
@@ -167,11 +151,10 @@ a:hover { opacity: 0.8; }
 }
 
 .dropdown-content a:hover {
-  background-color: rgba(136, 192, 208, 0.1); /* Subtle accent bg */
+  background-color: rgba(136, 192, 208, 0.1);
   color: var(--accent);
-  padding-left: 20px; /* Slight movement effect */
+  padding-left: 20px;
 }
-.disabled { opacity: 0.5; pointer-events: none; }
 
 /* --------------------------------------------------------------
    Home Card
@@ -187,9 +170,7 @@ a:hover { opacity: 0.8; }
 
 .business-card {
   background: var(--bg-card);
-  
-  /* Nord White Border */
-  border: 1px solid var(--fg); 
+  border: 1px solid var(--fg); /* Nord White Border */
   
   /* Cold Blue 3D Shadow */
   box-shadow: 
@@ -228,7 +209,6 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Badges */
 .business-card .bio .hl {
   background: rgba(46, 52, 64, 0.5);
   border: 1px solid var(--line);
@@ -238,11 +218,15 @@ a:hover { opacity: 0.8; }
   font-size: 0.85rem;
 }
 
-/* Stack */
+/* UPDATED SECTION: Separator Line Placement 
+*/
+
+/* 1. Tech Stack (KiCad) - Clean (No Top Border) */
 .business-card .stack {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
+  margin-top: 2.5rem; /* Gap from Bio */
+  padding-top: 0;
+  border: none;       /* Removed the line from here */
+  
   color: var(--fg);
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -250,9 +234,12 @@ a:hover { opacity: 0.8; }
   font-weight: 600;
 }
 
-/* Contact Icons */
+/* 2. Social Links - Line is now ABOVE this section */
 .business-card .card-links {
-  margin-top: 1.5rem;
+  margin-top: 1.5rem;    /* Distance from stack text to line */
+  padding-top: 1.5rem;   /* Distance from line to icons */
+  border-top: 1px solid var(--line); /* The Separator Line */
+  
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -276,10 +263,7 @@ a:hover { opacity: 0.8; }
 }
 
 .icon { width: 24px; height: 24px; }
-
-.email-copied {
-  color: var(--accent) !important;
-}
+.email-copied { color: var(--accent) !important; }
 
 /* --------------------------------------------------------------
    Footer
