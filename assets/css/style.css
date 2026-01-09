@@ -1,5 +1,5 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Original Nord Clean)
+   MVB — Portfolio Theme (Nord Cold Modern - Refined Nav)
    ============================================================== */
 
 :root {
@@ -27,10 +27,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  
-  /* Original Flat Nord Background (Clean & Simple) */
   background-color: var(--bg);
-  
   color: var(--fg);
   font-family: var(--font-mono);
   line-height: 1.6;
@@ -54,11 +51,8 @@ a:hover { opacity: 0.8; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  
-  /* Matches body background for seamless look, slightly distinct via border */
   background-color: var(--bg);
   border-bottom: 1px solid var(--line);
-  
   padding: 0.8rem 1.2rem;
 }
 
@@ -76,68 +70,90 @@ a:hover { opacity: 0.8; }
   font-size: 1.2rem;
 }
 
+/* Flexbox container for perfect alignment */
 .nav-links {
   display: flex;
   gap: 1.5rem;
   font-size: 0.9rem;
+  align-items: center; /* Vertically center items */
 }
 
 /* Header Titles */
 .nav-links a {
   color: var(--fg); 
   text-decoration: none;
-  padding-bottom: 2px;
+  padding-bottom: 4px; /* Space for underline */
   border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  
+  /* Alignment Fixes */
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
+  /* 3. Remove Background Rectangle */
+  background: transparent !important; 
+  background-color: transparent !important;
+  
+  /* Keep Underline & Glow */
   border-bottom-color: var(--accent);
   box-shadow: 0 4px 10px -2px rgba(136, 192, 208, 0.4);
 }
 
-/* Dropdown */
+/* Dropdown Container */
 .dropdown {
   position: relative;
-  display: inline-block;
+  display: inline-flex; /* Matches nav links behavior */
+  align-items: center;
   height: 100%;
 }
 
+/* 2. Dropdown Menu (Right Side Flyout) */
 .dropdown-content {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
+  
+  /* Animation Start State */
+  transform: translateX(10px); 
   transition: all 0.2s ease-in-out;
+  
   position: absolute;
-  right: 0;
-  top: 100%;
+  /* Position to the RIGHT of the parent link */
+  left: 100%; 
+  top: 0;
+  margin-left: 15px; /* Gap between link and menu */
+  
   background-color: var(--bg-card);
   min-width: 180px;
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
   border: 1px solid var(--line);
   z-index: 100;
-  margin-top: 10px;
   padding: 0.5rem 0;
   border-radius: 4px;
 }
 
+/* Invisible Bridge (Updated for Right Side) */
 .dropdown-content::before {
   content: "";
   position: absolute;
-  top: -15px;
-  left: 0;
-  width: 100%;
-  height: 15px;
+  top: 0;
+  left: -15px; /* Covers the margin gap to the left */
+  width: 15px;
+  height: 100%;
   background: transparent;
 }
 
+/* Show Dropdown on Hover */
 .dropdown:hover .dropdown-content {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
+/* Dropdown Links */
 .dropdown-content a {
   padding: 10px 16px;
   display: block;
@@ -152,6 +168,21 @@ a:hover { opacity: 0.8; }
   background-color: var(--bg);
   color: var(--accent);
   padding-left: 20px;
+  /* Ensure no underline on items inside the menu */
+  border-bottom: none;
+  box-shadow: none;
+}
+
+/* Arrow / Caret Styling */
+.caret {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform 0.2s ease;
+}
+
+/* 2. Arrow Rotation (Points Right when active) */
+.dropdown:hover .caret {
+  transform: rotate(-90deg); /* Points Right */
 }
 
 /* --------------------------------------------------------------
@@ -168,13 +199,10 @@ a:hover { opacity: 0.8; }
 
 .business-card {
   background: var(--bg-card);
-  border: 1px solid var(--fg); /* Nord White Border */
-  
-  /* Subtle cold shadow (Nord Frost glow) */
+  border: 1px solid var(--fg);
   box-shadow: 
     0 15px 35px rgba(0,0,0,0.3),
     0 0 25px rgba(136, 192, 208, 0.1); 
-
   padding: 3rem 2rem;
   width: 100%;
   max-width: 600px;
@@ -233,7 +261,6 @@ a:hover { opacity: 0.8; }
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
-  
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -273,4 +300,14 @@ a:hover { opacity: 0.8; }
 @media (max-width: 600px) {
   .business-card h1 { font-size: 1.4rem; }
   .business-card .bio { flex-direction: column; }
+  
+  /* Mobile Dropdown Fix: On mobile, keep it below to avoid overflow */
+  .dropdown-content {
+    left: auto;
+    right: 0;
+    top: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  /* Reset arrow rotation for mobile if desired, or keep as is */
 }
