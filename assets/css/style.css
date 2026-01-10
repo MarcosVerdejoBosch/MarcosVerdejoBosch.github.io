@@ -1,5 +1,5 @@
 /* ==============================================================
-   MVB — Portfolio Theme (Nord Cold Modern - Refined Nav)
+   MVB — Portfolio Theme (Nord Final Refinement)
    ============================================================== */
 
 :root {
@@ -15,7 +15,10 @@
   --line: #4c566a;     /* Polar Night 3 */
   
   /* Accent: Nord Frost (Light Cold Blue) */
-  --accent: #88c0d0;   
+  --accent: #88c0d0;
+  
+  /* Lighter Accent for specific highlights (Nord 7) */
+  --accent-light: #8FBCBB; 
 
   /* Layout */
   --container-max: 760px;
@@ -70,23 +73,25 @@ a:hover { opacity: 0.8; }
   font-size: 1.2rem;
 }
 
-/* Flexbox container for perfect alignment */
 .nav-links {
   display: flex;
   gap: 1.5rem;
   font-size: 0.9rem;
-  align-items: center; /* Vertically center items */
+  align-items: center;
 }
 
 /* Header Titles */
 .nav-links a {
   color: var(--fg); 
   text-decoration: none;
-  padding-bottom: 4px; /* Space for underline */
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  padding-bottom: 4px;
   
-  /* Alignment Fixes */
+  /* Border only - no background or box-shadow on base */
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  
+  transition: border-color 0.2s ease, text-shadow 0.2s ease, color 0.2s ease;
+  
   display: inline-flex;
   align-items: center;
   height: 100%;
@@ -94,37 +99,35 @@ a:hover { opacity: 0.8; }
 
 .nav-links a:hover,
 .nav-links a.active {
-  /* 3. Remove Background Rectangle */
   background: transparent !important; 
-  background-color: transparent !important;
   
-  /* Keep Underline & Glow */
+  /* Only underline the text */
   border-bottom-color: var(--accent);
-  box-shadow: 0 4px 10px -2px rgba(136, 192, 208, 0.4);
+  
+  /* Replaced box-shadow with text-shadow to remove the "rectangle" look */
+  box-shadow: none; 
+  text-shadow: 0 0 8px rgba(136, 192, 208, 0.6);
 }
 
 /* Dropdown Container */
 .dropdown {
   position: relative;
-  display: inline-flex; /* Matches nav links behavior */
+  display: inline-flex;
   align-items: center;
   height: 100%;
 }
 
-/* 2. Dropdown Menu (Right Side Flyout) */
+/* Dropdown Menu */
 .dropdown-content {
   opacity: 0;
   visibility: hidden;
-  
-  /* Animation Start State */
   transform: translateX(10px); 
   transition: all 0.2s ease-in-out;
   
   position: absolute;
-  /* Position to the RIGHT of the parent link */
   left: 100%; 
   top: 0;
-  margin-left: 15px; /* Gap between link and menu */
+  margin-left: 15px; 
   
   background-color: var(--bg-card);
   min-width: 180px;
@@ -135,25 +138,22 @@ a:hover { opacity: 0.8; }
   border-radius: 4px;
 }
 
-/* Invisible Bridge (Updated for Right Side) */
 .dropdown-content::before {
   content: "";
   position: absolute;
   top: 0;
-  left: -15px; /* Covers the margin gap to the left */
+  left: -15px;
   width: 15px;
   height: 100%;
   background: transparent;
 }
 
-/* Show Dropdown on Hover */
 .dropdown:hover .dropdown-content {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
 }
 
-/* Dropdown Links */
 .dropdown-content a {
   padding: 10px 16px;
   display: block;
@@ -161,6 +161,7 @@ a:hover { opacity: 0.8; }
   color: var(--muted);
   border-bottom: none;
   box-shadow: none;
+  text-shadow: none; /* No glow inside menu */
   transition: all 0.15s ease;
 }
 
@@ -168,21 +169,17 @@ a:hover { opacity: 0.8; }
   background-color: var(--bg);
   color: var(--accent);
   padding-left: 20px;
-  /* Ensure no underline on items inside the menu */
   border-bottom: none;
-  box-shadow: none;
 }
 
-/* Arrow / Caret Styling */
 .caret {
   display: inline-block;
   margin-left: 6px;
   transition: transform 0.2s ease;
 }
 
-/* 2. Arrow Rotation (Points Right when active) */
 .dropdown:hover .caret {
-  transform: rotate(-90deg); /* Points Right */
+  transform: rotate(-90deg);
 }
 
 /* --------------------------------------------------------------
@@ -217,11 +214,15 @@ a:hover { opacity: 0.8; }
   letter-spacing: 0.05em;
 }
 
+/* Electronic Engineer Role - Updated Color */
 .business-card .role {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--accent);
+  
+  /* Lighter Nord Blue (Nord 7) */
+  color: var(--accent-light); 
+  
   display: block;
   margin-bottom: 2rem;
 }
@@ -301,7 +302,6 @@ a:hover { opacity: 0.8; }
   .business-card h1 { font-size: 1.4rem; }
   .business-card .bio { flex-direction: column; }
   
-  /* Mobile Dropdown Fix: On mobile, keep it below to avoid overflow */
   .dropdown-content {
     left: auto;
     right: 0;
@@ -309,5 +309,4 @@ a:hover { opacity: 0.8; }
     margin-left: 0;
     margin-top: 10px;
   }
-  /* Reset arrow rotation for mobile if desired, or keep as is */
 }
