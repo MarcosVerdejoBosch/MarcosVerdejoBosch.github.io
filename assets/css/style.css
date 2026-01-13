@@ -109,6 +109,21 @@ a:hover { opacity: 0.8; }
   text-shadow: 0 0 8px rgba(136, 192, 208, 0.6);
 }
 
+/* Keep Projects styled as active while dropdown is focused/open */
+.dropdown:focus-within > a {
+  background: transparent !important;
+  border-bottom-color: var(--accent);
+  box-shadow: none;
+  text-shadow: 0 0 8px rgba(136, 192, 208, 0.6);
+}
+
+.dropdown:focus-within .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+
 /* Dropdown Container */
 .dropdown {
   position: relative;
@@ -367,8 +382,12 @@ a:hover { opacity: 0.8; }
   border: 1px solid var(--line);
   padding: 0.75rem 1rem;
   border-radius: 4px;
+}
+
+/* --------------------------------------------------------------
    404 Page
 -------------------------------------------------------------- */
+
 .not-found-wrapper {
   display: flex;
   align-items: center;
