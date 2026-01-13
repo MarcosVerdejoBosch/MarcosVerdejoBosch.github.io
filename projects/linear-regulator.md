@@ -4,22 +4,13 @@ title: Linear Regulator Report
 permalink: /projects/linear-regulator/
 ---
 
-<!--
-File: projects/linear-regulator.md
-Purpose: Project page with an embedded 3D model (model-viewer).
-Fix:
-- Point to the correct GLB filename: regulador.glb
-- Use Jekyll `relative_url` so it works with GitHub Pages baseurl.
--->
+<div class="case-study">
+<h1>Discrete Linear Regulator</h1>
+<p class="caption">ENGINEERING REPORT &amp; ANALYSIS</p>
 
-<h1 style="margin-top: 0;">Discrete Linear Regulator</h1>
-<p style="color: var(--muted); font-size: 0.9rem; margin-top: -1.5rem;">
-  ENGINEERING REPORT & ANALYSIS
-</p>
-
-<div style="width: 100%; height: 450px; background-color: #eceff4; border: 1px solid var(--line); border-radius: 0; margin: 2rem 0; overflow: hidden; position: relative;">
+<div class="figure">
   <model-viewer
-    src="/assets/img/projects/linear-regulator/regulador.glb"
+    src="{{ "/assets/img/projects/linear-regulator/regulador.glb" | relative_url }}"
     alt="3D PCB Model"
 
     camera-controls
@@ -43,51 +34,88 @@ Fix:
   >
   </model-viewer>
 
-
-  <div style="position: absolute; bottom: 10px; right: 15px; color: #4c566a; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; pointer-events: none;">
+  <div class="caption">
     Interactive 3D View
   </div>
 </div>
 
-<h2 id="abstract">1. Abstract</h2>
+<h2 id="overview">Overview</h2>
 <p>
-  The goal of this project was to design a robust, low-noise linear power supply without using integrated regulators
-  (like LM7805). The focus was on understanding feedback loops, thermal management, and active protection circuitry.
+  This project focuses on a discrete linear regulator built without monolithic IC regulators, emphasizing feedback
+  behavior, protection circuitry, and layout decisions for low-noise output. The case study outlines design intent,
+  implementation notes, and a validation plan before results are finalized.
 </p>
 
-<h2 id="architecture">2. System Architecture</h2>
-<p>
-  The topology is a classic <strong>Series Linear Regulator</strong> utilizing a Darlington pair for high current gain.
-</p>
+<h2 id="requirements">Requirements / Constraints</h2>
 <ul>
-  <li><strong>Reference:</strong> 5.1V Zener Diode (Temperature compensated).</li>
-  <li><strong>Error Amplifier:</strong> Long-tailed pair (Differential Amplifier) for precise voltage tracking.</li>
-  <li><strong>Pass Element:</strong> TIP41C (NPN) driven by BD139.</li>
+  <li>Regulated 5V output with low ripple under load.</li>
+  <li>Discrete topology (no integrated regulator ICs).</li>
+  <li>Robust short-circuit protection behavior.</li>
+  <li>Thermal performance compatible with continuous load operation.</li>
 </ul>
 
-<h2 id="foldback">3. Foldback Protection</h2>
-<p>
-  Unlike standard constant current limiting, this design implements <strong>Foldback Limiting</strong>.
-</p>
-<blockquote>
-  <strong>Behavior:</strong> When V_out drops due to a short circuit, the current limit is dynamically reduced.
-</blockquote>
-<p>
-  This prevents the pass transistor from dissipating excessive power during a fault, allowing for a safer and more reliable operation.
-</p>
+<h2 id="architecture">Architecture / Key Design Decisions</h2>
+<ul>
+  <li><strong>Topology:</strong> Series linear regulator with a Darlington pass stage.</li>
+  <li><strong>Reference:</strong> 5.1V temperature-compensated Zener reference.</li>
+  <li><strong>Error Amplifier:</strong> Long-tailed pair for voltage tracking stability.</li>
+  <li><strong>Protection:</strong> Foldback current limiting to reduce dissipation during faults.</li>
+</ul>
 
-<h2 id="pcb-design">4. PCB Design</h2>
-<p>
-  Designed in <strong>KiCad</strong>. The layout prioritizes separation of power and signal grounds (Kelvin connection),
-  wide traces for high-current paths, and thermal relief for manual soldering ease.
-</p>
+<h2 id="implementation">Implementation Notes</h2>
+<ul>
+  <li>PCB layout separates power and signal grounds with Kelvin connections.</li>
+  <li>Wide copper pours on high-current paths to reduce IR drop.</li>
+  <li>Thermal reliefs applied for serviceability and rework.</li>
+</ul>
 
-<h2 id="conclusion">5. Conclusion</h2>
-<p>
-  The discrete regulator successfully maintains 5V output with &lt;10mV ripple at full load (800mA).
-  The foldback mechanism triggers at 950mA, folding back to 50mA, successfully protecting the BJT.
-</p>
+<h2 id="validation">Validation Plan</h2>
+<ul>
+  <li><strong>Output accuracy:</strong> Measure Vout across load range with a calibrated DMM.</li>
+  <li><strong>Ripple:</strong> Measure mVpp with oscilloscope + short ground spring.</li>
+  <li><strong>Load/line regulation:</strong> Step load and supply input, log Vout changes.</li>
+  <li><strong>Transient response:</strong> Step load and capture ΔV and recovery time.</li>
+  <li><strong>Thermals:</strong> Record heatsink and pass device rise with thermocouple.</li>
+  <li><strong>Short-circuit behavior:</strong> Observe foldback current and device temperature.</li>
+</ul>
+
+<h2 id="results">Results</h2>
+<table class="results-table">
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Output accuracy</td><td>TBD</td></tr>
+    <tr><td>Load regulation</td><td>TBD</td></tr>
+    <tr><td>Line regulation</td><td>TBD</td></tr>
+    <tr><td>Ripple (mVpp)</td><td>TBD</td></tr>
+    <tr><td>Transient response (ΔV, recovery time)</td><td>TBD</td></tr>
+    <tr><td>Efficiency (if applicable)</td><td>TBD</td></tr>
+    <tr><td>Thermal rise (°C @ load)</td><td>TBD</td></tr>
+    <tr><td>Short-circuit behavior</td><td>TBD</td></tr>
+  </tbody>
+</table>
+<p class="caption">Test conditions: TBD (input voltage, load steps, ambient, instrumentation).</p>
+
+<h2 id="limitations">Known Limitations / Next Improvements</h2>
+<ul>
+  <li>TBD: quantify ripple and stability margins under full load.</li>
+  <li>TBD: validate foldback behavior across temperature range.</li>
+  <li>TBD: explore thermal optimization and enclosure airflow.</li>
+</ul>
+
+<h2 id="artifacts">Artifacts &amp; Links</h2>
+<ul>
+  <li>Repository: TBD</li>
+  <li>Schematic: TBD</li>
+  <li>BOM: TBD</li>
+  <li>Test data: TBD</li>
+</ul>
 
 <br><hr><br>
 
-<a href="{{ '/projects/' | relative_url }}">← Back to Projects</a>
+<a href="{{ "/projects/" | relative_url }}">← Back to Projects</a>
+</div>
