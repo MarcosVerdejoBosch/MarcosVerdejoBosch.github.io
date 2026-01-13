@@ -1,0 +1,25 @@
+---
+layout: default
+title: 404
+class: not-found
+permalink: /404.html
+---
+
+<div class="not-found-wrapper">
+  <div class="not-found-card">
+    <p class="not-found-code">404</p>
+    <h1>Page not found</h1>
+    <p class="not-found-message">
+      This route returned an empty response. The page may have moved, or the URL
+      could be mistyped.
+    </p>
+    <div class="not-found-hint">
+      <span class="prompt">mvb@terminal</span>:<span class="path">~</span>$ cd /
+      <span class="cursor">▌</span>
+    </div>
+    <div class="not-found-actions">
+      <a class="not-found-link" href="{{ "/" | relative_url }}">Return home</a>
+      <a class="not-found-link" href="{{ "/projects" | relative_url }}">View projects</a>
+    </div>
+  </div>
+</div>
