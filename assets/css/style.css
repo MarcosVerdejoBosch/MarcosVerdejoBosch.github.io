@@ -122,6 +122,14 @@ a:hover { opacity: 0.8; }
   border-bottom-width: 3px;
 }
 
+
+.dropdown:focus-within .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+
 /* Dropdown Container */
 .dropdown {
   position: relative;
@@ -253,13 +261,30 @@ a:hover { opacity: 0.8; }
   margin: 0 0 1.5rem;
 }
 
-.business-card .bio {
+.card-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
+  margin: 0 0 1.5rem;
+}
+
+.card-sections {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.card-section {
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+}
+
+.business-card .bio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
-  margin-bottom: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .business-card .bio .hl {
@@ -273,25 +298,20 @@ a:hover { opacity: 0.8; }
 
 /* Stack */
 .business-card .stack {
-  margin-top: 2.5rem;
-  padding-top: 0;
-  border: none;
   color: var(--fg);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   font-weight: 600;
   text-align: center;
 }
 
 /* Social Links */
 .business-card .card-links {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .icon-link {
@@ -349,9 +369,167 @@ a:hover { opacity: 0.8; }
   margin-top: auto;
 }
 
+/* --------------------------------------------------------------
+   Case Study
+-------------------------------------------------------------- */
+.case-study {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1.2rem 2.5rem;
+}
+
+.case-study h1 {
+  margin-top: 0;
+}
+
+.figure {
+  width: 100%;
+  height: 450px;
+  background-color: #eceff4;
+  border: 1px solid var(--line);
+  margin: 2rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.caption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.figure .caption {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: #4c566a;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  margin: 0;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.results-table th,
+.results-table td {
+  border: 1px solid var(--line);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+}
+
+.results-table th {
+  background: var(--bg-card);
+  color: var(--fg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.callout {
+  background: rgba(46, 52, 64, 0.5);
+  border: 1px solid var(--line);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------
+   404 Page
+-------------------------------------------------------------- */
+
+.not-found-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+  padding: 2rem 1.5rem;
+}
+
+.not-found-card {
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 2.5rem 2rem;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+}
+
+.not-found-code {
+  font-size: 3.5rem;
+  margin: 0;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+}
+
+.not-found-message {
+  color: var(--muted);
+  margin: 1rem 0 1.5rem;
+}
+
+.not-found-hint {
+  font-size: 0.85rem;
+  background: rgba(46, 52, 64, 0.5);
+  border: 1px solid var(--line);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  color: var(--fg);
+  text-align: left;
+  display: inline-block;
+}
+
+.not-found-hint .prompt {
+  color: var(--accent-light);
+}
+
+.not-found-hint .path {
+  color: var(--muted);
+}
+
+.not-found-hint .cursor {
+  color: var(--accent);
+  margin-left: 4px;
+}
+
+.not-found-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.not-found-link {
+  border: 1px solid var(--line);
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  color: var(--fg);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.not-found-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 @media (max-width: 600px) {
   .business-card h1 { font-size: 1.4rem; }
-  .business-card .bio { flex-direction: column; }
+  .card-sections {
+    grid-template-columns: 1fr;
+  }
+  .business-card .bio,
+  .card-sections .stack {
+    grid-template-columns: 1fr;
+  }
   
   .dropdown-content {
     left: auto;
