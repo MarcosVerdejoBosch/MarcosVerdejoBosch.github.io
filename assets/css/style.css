@@ -111,15 +111,14 @@ a:hover { opacity: 0.8; }
   border-bottom-color: var(--accent-light);
 }
 
+
 .nav-links a.active {
   border-bottom-color: var(--accent);
-  border-bottom-width: 3px;
 }
 
 .dropdown:hover > a,
 .dropdown:focus-within > a {
   border-bottom-color: var(--accent);
-  border-bottom-width: 3px;
 }
 
 
