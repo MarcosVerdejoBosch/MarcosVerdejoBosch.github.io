@@ -7,8 +7,8 @@
   --font-mono: "Source Code Pro", ui-monospace, monospace;
 
   /* Nord Palette (Original) */
-  --bg: #2e3440;       /* Polar Night 0 */
-  --bg-card: #3b4252;  /* Polar Night 1 */
+  --bg: #3b4252;       /* Polar Night 1 */
+  --bg-card: #434c5e;  /* Polar Night 2 */
   
   --fg: #eceff4;       /* Snow Storm 2 (White) */
   --muted: #d8dee9;    /* Snow Storm 0 (Dimmed) */
@@ -90,7 +90,7 @@ a:hover { opacity: 0.8; }
   border-bottom: 1px solid transparent;
   background: transparent;
   
-  transition: border-color 0.2s ease, text-shadow 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
   
   display: inline-flex;
   align-items: center;
@@ -184,6 +184,12 @@ a:hover { opacity: 0.8; }
   transform: translateX(0);
 }
 
+.dropdown:focus-within .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
 .dropdown-content a {
   padding: 10px 16px;
   display: block;
@@ -254,16 +260,33 @@ a:hover { opacity: 0.8; }
   color: var(--accent-light); 
   
   display: block;
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
+  margin: 0 0 1.5rem;
+}
+
+.card-sections {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.card-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .business-card .bio {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
-  margin-bottom: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .business-card .bio .hl {
@@ -277,24 +300,26 @@ a:hover { opacity: 0.8; }
 
 /* Stack */
 .business-card .stack {
-  margin-top: 2.5rem;
-  padding-top: 0;
-  border: none;
   color: var(--fg);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   font-weight: 600;
+  text-align: center;
+}
+
+.card-sections .stack {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
 }
 
 /* Social Links */
 .business-card .card-links {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .icon-link {
@@ -482,7 +507,13 @@ a:hover { opacity: 0.8; }
 
 @media (max-width: 600px) {
   .business-card h1 { font-size: 1.4rem; }
-  .business-card .bio { flex-direction: column; }
+  .card-sections {
+    grid-template-columns: 1fr;
+  }
+  .business-card .bio,
+  .card-sections .stack {
+    grid-template-columns: 1fr;
+  }
   
   .dropdown-content {
     left: auto;
