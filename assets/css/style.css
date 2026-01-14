@@ -7,7 +7,8 @@
   --font-mono: "Source Code Pro", ui-monospace, monospace;
 
   /* Nord Palette (Original) */
-  --bg: #3b4252;       /* Polar Night 1 */
+  --bg-page: #3b4252;  /* Polar Night 1 */
+  --bg-nav: #2e3440;   /* Polar Night 0 */
   --bg-card: #434c5e;  /* Polar Night 2 */
   
   --fg: #eceff4;       /* Snow Storm 2 (White) */
@@ -30,7 +31,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg);
+  background-color: var(--bg-page);
   color: var(--fg);
   font-family: var(--font-mono);
   line-height: 1.6;
@@ -54,7 +55,7 @@ a:hover { opacity: 0.8; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: var(--bg);
+  background-color: var(--bg-nav);
   border-bottom: 1px solid var(--line);
   padding: 0.8rem 1.2rem;
 }
@@ -87,7 +88,7 @@ a:hover { opacity: 0.8; }
   padding-bottom: 4px;
   
   /* Border only - no background or box-shadow on base */
-  border-bottom: 1px solid transparent;
+  border-bottom: 3px solid transparent;
   background: transparent;
   
   transition: border-color 0.2s ease, color 0.2s ease;
@@ -97,38 +98,28 @@ a:hover { opacity: 0.8; }
   height: 100%;
 }
 
-/* Hover = subtle underline (lighter/softer) */
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a.active {
   background: transparent !important;
-  border-bottom-color: var(--accent-light); /* softer than active */
   box-shadow: none;
   text-shadow: none;
 }
 
-/* Active = stronger underline (higher contrast) */
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  border-bottom-color: var(--accent-light);
+}
+
 .nav-links a.active {
-  background: transparent !important;
-  border-bottom-color: var(--accent);       /* main accent */
-  box-shadow: none;
-  text-shadow: none;
+  border-bottom-color: var(--accent);
+  border-bottom-width: 3px;
 }
 
-/* Stronger active underline thickness */
-.nav-links a.active {
-  border-bottom-width: 2px;
-}
-
-/* Slightly thinner hover underline */
-.nav-links a:hover {
-  border-bottom-width: 1px;
-}
-
-
-/* Keep Projects styled as active while dropdown is focused/open */
+.dropdown:hover > a,
 .dropdown:focus-within > a {
   border-bottom-color: var(--accent);
-  text-shadow: none;
-  box-shadow: none;
+  border-bottom-width: 3px;
 }
 
 
@@ -202,7 +193,7 @@ a:hover { opacity: 0.8; }
 }
 
 .dropdown-content a:hover {
-  background-color: var(--bg);
+  background-color: var(--bg-page);
   color: var(--accent);
   padding-left: 20px;
   border-bottom: none;
@@ -270,6 +261,13 @@ a:hover { opacity: 0.8; }
   margin: 0 0 1.5rem;
 }
 
+.card-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
+  margin: 0 0 1.5rem;
+}
+
 .card-sections {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -308,12 +306,6 @@ a:hover { opacity: 0.8; }
   text-align: center;
 }
 
-.card-sections .stack {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.6rem;
-}
-
 /* Social Links */
 .business-card .card-links {
   display: grid;
@@ -323,6 +315,7 @@ a:hover { opacity: 0.8; }
 }
 
 .icon-link {
+  position: relative;
   color: var(--muted);
   display: flex;
   align-items: center;
@@ -341,6 +334,29 @@ a:hover { opacity: 0.8; }
 
 .icon { width: 24px; height: 24px; }
 .email-copied { color: var(--accent) !important; }
+
+.copy-tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  padding: 2px 8px;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.copy-tooltip.visible {
+  opacity: 1;
+}
 
 /* --------------------------------------------------------------
    Footer
