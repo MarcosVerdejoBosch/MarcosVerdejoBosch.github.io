@@ -87,7 +87,7 @@ a:hover { opacity: 0.8; }
   padding-bottom: 4px;
   
   /* Border only - no background or box-shadow on base */
-  border-bottom: 3px solid transparent;
+  border-bottom: 1px solid transparent;
   background: transparent;
   
   transition: border-color 0.2s ease, color 0.2s ease;
@@ -97,29 +97,47 @@ a:hover { opacity: 0.8; }
   height: 100%;
 }
 
-.nav-links a:hover,
-.nav-links a:focus-visible,
-.nav-links a.active {
+/* Hover = subtle underline (lighter/softer) */
+.nav-links a:hover {
   background: transparent !important;
+  border-bottom-color: var(--accent-light); /* softer than active */
   box-shadow: none;
   text-shadow: none;
 }
 
-.nav-links a:hover,
-.nav-links a:focus-visible {
-  border-bottom-color: var(--accent-light);
-}
-
+/* Active = stronger underline (higher contrast) */
 .nav-links a.active {
-  border-bottom-color: var(--accent);
-  border-bottom-width: 3px;
+  background: transparent !important;
+  border-bottom-color: var(--accent);       /* main accent */
+  box-shadow: none;
+  text-shadow: none;
 }
 
-.dropdown:hover > a,
+/* Stronger active underline thickness */
+.nav-links a.active {
+  border-bottom-width: 2px;
+}
+
+/* Slightly thinner hover underline */
+.nav-links a:hover {
+  border-bottom-width: 1px;
+}
+
+
+/* Keep Projects styled as active while dropdown is focused/open */
 .dropdown:focus-within > a {
   border-bottom-color: var(--accent);
-  border-bottom-width: 3px;
+  text-shadow: none;
+  box-shadow: none;
 }
+
+
+.dropdown:focus-within .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
 
 /* Dropdown Container */
 .dropdown {
@@ -333,6 +351,158 @@ a:hover { opacity: 0.8; }
   font-size: 0.8rem;
   color: var(--line);
   margin-top: auto;
+}
+
+/* --------------------------------------------------------------
+   Case Study
+-------------------------------------------------------------- */
+.case-study {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1.2rem 2.5rem;
+}
+
+.case-study h1 {
+  margin-top: 0;
+}
+
+.figure {
+  width: 100%;
+  height: 450px;
+  background-color: #eceff4;
+  border: 1px solid var(--line);
+  margin: 2rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.caption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.figure .caption {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: #4c566a;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  margin: 0;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.results-table th,
+.results-table td {
+  border: 1px solid var(--line);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+}
+
+.results-table th {
+  background: var(--bg-card);
+  color: var(--fg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.callout {
+  background: rgba(46, 52, 64, 0.5);
+  border: 1px solid var(--line);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------
+   404 Page
+-------------------------------------------------------------- */
+
+.not-found-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+  padding: 2rem 1.5rem;
+}
+
+.not-found-card {
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 2.5rem 2rem;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+}
+
+.not-found-code {
+  font-size: 3.5rem;
+  margin: 0;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+}
+
+.not-found-message {
+  color: var(--muted);
+  margin: 1rem 0 1.5rem;
+}
+
+.not-found-hint {
+  font-size: 0.85rem;
+  background: rgba(46, 52, 64, 0.5);
+  border: 1px solid var(--line);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  color: var(--fg);
+  text-align: left;
+  display: inline-block;
+}
+
+.not-found-hint .prompt {
+  color: var(--accent-light);
+}
+
+.not-found-hint .path {
+  color: var(--muted);
+}
+
+.not-found-hint .cursor {
+  color: var(--accent);
+  margin-left: 4px;
+}
+
+.not-found-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.not-found-link {
+  border: 1px solid var(--line);
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  color: var(--fg);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.not-found-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 @media (max-width: 600px) {

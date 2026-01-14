@@ -13,6 +13,18 @@ Personal website showcasing my engineering projects,
 PCB designs, and technical explorations.
 
 ------------------------------------------------------------
+  GitHub Pages (Actions)
+------------------------------------------------------------
+In GitHub Settings → Pages, set:
+- Source: GitHub Actions
+
+------------------------------------------------------------
+  Local Development
+------------------------------------------------------------
+bundle install
+bundle exec jekyll serve
+
+------------------------------------------------------------
   Skills
 ------------------------------------------------------------
 Electronics · Embedded Systems · Python · C/C++
