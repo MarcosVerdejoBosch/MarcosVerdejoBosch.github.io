@@ -7,8 +7,9 @@
   --font-mono: "Source Code Pro", ui-monospace, monospace;
 
   /* Nord Palette (Original) */
-  --bg: #2e3440;       /* Polar Night 0 */
-  --bg-card: #3b4252;  /* Polar Night 1 */
+  --bg-page: #3b4252;  /* Polar Night 1 */
+  --bg-nav: #2e3440;   /* Polar Night 0 */
+  --bg-card: #434c5e;  /* Polar Night 2 */
   
   --fg: #eceff4;       /* Snow Storm 2 (White) */
   --muted: #d8dee9;    /* Snow Storm 0 (Dimmed) */
@@ -30,7 +31,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg);
+  background-color: var(--bg-page);
   color: var(--fg);
   font-family: var(--font-mono);
   line-height: 1.6;
@@ -54,7 +55,7 @@ a:hover { opacity: 0.8; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: var(--bg);
+  background-color: var(--bg-nav);
   border-bottom: 1px solid var(--line);
   padding: 0.8rem 1.2rem;
 }
@@ -87,10 +88,10 @@ a:hover { opacity: 0.8; }
   padding-bottom: 4px;
   
   /* Border only - no background or box-shadow on base */
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   background: transparent;
   
-  transition: border-color 0.2s ease, text-shadow 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
   
   display: inline-flex;
   align-items: center;
@@ -98,15 +99,27 @@ a:hover { opacity: 0.8; }
 }
 
 .nav-links a:hover,
+.nav-links a:focus-visible,
 .nav-links a.active {
-  background: transparent !important; 
-  
-  /* Only underline the text */
+  background: transparent !important;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  border-bottom-color: var(--accent-light);
+}
+
+.nav-links a.active {
   border-bottom-color: var(--accent);
-  
-  /* Replaced box-shadow with text-shadow to remove the "rectangle" look */
-  box-shadow: none; 
-  text-shadow: 0 0 8px rgba(136, 192, 208, 0.6);
+  border-bottom-width: 3px;
+}
+
+.dropdown:hover > a,
+.dropdown:focus-within > a {
+  border-bottom-color: var(--accent);
+  border-bottom-width: 3px;
 }
 
 /* Dropdown Container */
@@ -154,6 +167,12 @@ a:hover { opacity: 0.8; }
   transform: translateX(0);
 }
 
+.dropdown:focus-within .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
 .dropdown-content a {
   padding: 10px 16px;
   display: block;
@@ -166,7 +185,7 @@ a:hover { opacity: 0.8; }
 }
 
 .dropdown-content a:hover {
-  background-color: var(--bg);
+  background-color: var(--bg-page);
   color: var(--accent);
   padding-left: 20px;
   border-bottom: none;
@@ -224,7 +243,14 @@ a:hover { opacity: 0.8; }
   color: var(--accent-light); 
   
   display: block;
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
+  margin: 0 0 1.5rem;
 }
 
 .business-card .bio {
@@ -255,6 +281,7 @@ a:hover { opacity: 0.8; }
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 600;
+  text-align: center;
 }
 
 /* Social Links */
@@ -268,6 +295,7 @@ a:hover { opacity: 0.8; }
 }
 
 .icon-link {
+  position: relative;
   color: var(--muted);
   display: flex;
   align-items: center;
@@ -286,6 +314,29 @@ a:hover { opacity: 0.8; }
 
 .icon { width: 24px; height: 24px; }
 .email-copied { color: var(--accent) !important; }
+
+.copy-tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  padding: 2px 8px;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.copy-tooltip.visible {
+  opacity: 1;
+}
 
 /* --------------------------------------------------------------
    Footer
