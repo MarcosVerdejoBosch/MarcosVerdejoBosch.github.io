@@ -226,7 +226,7 @@ a:hover { opacity: 0.8; }
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--accent-light);
+  color: var(--fg);
   display: block;
   margin-bottom: 0.75rem;
 }
@@ -252,7 +252,7 @@ a:hover { opacity: 0.8; }
   border: 1px solid var(--line);
   padding: 6px 12px;
   border-radius: 6px;
-  color: var(--fg);
+  color: var(--accent-light);
   font-size: 0.85rem;
 }
 
