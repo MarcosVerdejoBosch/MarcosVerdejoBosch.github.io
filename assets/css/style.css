@@ -100,9 +100,10 @@ a:hover { opacity: 0.8; }
 /* Hover/focus: text + underline use accent-light */
 .nav-links a:hover,
 .nav-links a:focus-visible {
-  color: var(--fg);
+  opacity: 0.82;
   border-bottom-color: var(--accent-light);
-  opacity: 1; /* so the color reads clean */
+  /* no color change */
+  color: var(--fg);
 }
 
 /* Active: text + underline use accent */
@@ -114,8 +115,8 @@ a:hover { opacity: 0.8; }
 /* Projects stays “active” while dropdown is open */
 .dropdown:hover > a,
 .dropdown:focus-within > a {
-  color: var(--accent);
   border-bottom-color: var(--accent);
+  color: var(--fg); /* prevent teal on hover */
 }
 
 /* Dropdown Container */
@@ -219,7 +220,7 @@ a:hover { opacity: 0.8; }
   font-size: 1.8rem;
   text-transform: uppercase;
   margin: 0 0 0.5rem 0;
-  color: var(--accent-light);
+  color: var(--fg);
   letter-spacing: 0.05em;
 }
 
@@ -251,10 +252,10 @@ a:hover { opacity: 0.8; }
 .business-card .bio .hl {
   background: rgba(46, 52, 64, 0.45);
   border: 1px solid var(--line);
-  border-color: var(--accent-light);
+  border-color: var(--line);
+  color: var(--accent-light);
   padding: 6px 12px;
   border-radius: 6px;
-  color: var(--accent-light);
   font-size: 0.85rem;
 }
 
