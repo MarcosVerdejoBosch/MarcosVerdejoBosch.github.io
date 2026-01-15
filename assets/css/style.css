@@ -6,20 +6,18 @@
   /* Typography */
   --font-mono: "Source Code Pro", ui-monospace, monospace;
 
-  /* Nord Palette (Original) */
+  /* Nord Palette */
   --bg-page: #3b4252;  /* Polar Night 1 */
-  --bg-nav: #2e3440;   /* Polar Night 0 */
-  --bg-card: #434c5e;  /* Polar Night 2 */
-  
-  --fg: #eceff4;       /* Snow Storm 2 (White) */
-  --muted: #d8dee9;    /* Snow Storm 0 (Dimmed) */
+  --bg-nav:  #2e3440;  /* Polar Night 0 */
+  --bg-card: #4c566a;  /* Polar Night 3 (more contrast vs page) */
+
+  --fg: #eceff4;       /* Snow Storm 2 */
+  --muted: #d8dee9;    /* Snow Storm 0 */
   --line: #4c566a;     /* Polar Night 3 */
-  
-  /* Accent: Nord Frost (Light Cold Blue) */
-  --accent: #88c0d0;
-  
-  /* Lighter Accent for specific highlights (Nord 7) */
-  --accent-light: #8FBCBB; 
+
+  /* Accent */
+  --accent: #88c0d0;        /* Frost */
+  --accent-light: #8fbcbb;  /* Frost */
 
   /* Layout */
   --container-max: 760px;
@@ -44,7 +42,7 @@ html, body {
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease;
 }
 a:hover { opacity: 0.8; }
 
@@ -83,51 +81,41 @@ a:hover { opacity: 0.8; }
 
 /* Header Titles */
 .nav-links a {
-  color: var(--fg); 
+  color: var(--fg);
   text-decoration: none;
   padding-bottom: 4px;
-  
-  /* Border only - no background or box-shadow on base */
-  border-bottom: 3px solid transparent;
+
+  /* Keep layout stable (no jumping) */
+  border-bottom: 2px solid transparent;
   background: transparent;
-  
-  transition: border-color 0.2s ease, color 0.2s ease;
-  
+
+  /* Bring back the “dim” feel on hover */
+  transition: border-color 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+
   display: inline-flex;
   align-items: center;
   height: 100%;
 }
 
-.nav-links a:hover,
-.nav-links a:focus-visible,
-.nav-links a.active {
-  background: transparent !important;
-  box-shadow: none;
-  text-shadow: none;
-}
-
+/* Hover/Focus: dim + medium underline (not same as active) */
 .nav-links a:hover,
 .nav-links a:focus-visible {
+  opacity: 0.82;
   border-bottom-color: var(--accent-light);
 }
 
-
+/* Active: full opacity + stronger underline */
 .nav-links a.active {
+  opacity: 1;
   border-bottom-color: var(--accent);
 }
 
+/* Projects stays underlined while dropdown is open/hovered/focused */
 .dropdown:hover > a,
 .dropdown:focus-within > a {
+  opacity: 1;
   border-bottom-color: var(--accent);
 }
-
-
-.dropdown:focus-within .dropdown-content {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
 
 /* Dropdown Container */
 .dropdown {
@@ -141,14 +129,14 @@ a:hover { opacity: 0.8; }
 .dropdown-content {
   opacity: 0;
   visibility: hidden;
-  transform: translateX(10px); 
+  transform: translateX(10px);
   transition: all 0.2s ease-in-out;
-  
+
   position: absolute;
-  left: 100%; 
+  left: 100%;
   top: 0;
-  margin-left: 15px; 
-  
+  margin-left: 15px;
+
   background-color: var(--bg-card);
   min-width: 180px;
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
@@ -168,12 +156,7 @@ a:hover { opacity: 0.8; }
   background: transparent;
 }
 
-.dropdown:hover .dropdown-content {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
+.dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content {
   opacity: 1;
   visibility: visible;
@@ -186,8 +169,6 @@ a:hover { opacity: 0.8; }
   font-size: 0.85rem;
   color: var(--muted);
   border-bottom: none;
-  box-shadow: none;
-  text-shadow: none; /* No glow inside menu */
   transition: all 0.15s ease;
 }
 
@@ -196,6 +177,7 @@ a:hover { opacity: 0.8; }
   color: var(--accent);
   padding-left: 20px;
   border-bottom: none;
+  opacity: 1;
 }
 
 .caret {
@@ -223,9 +205,9 @@ a:hover { opacity: 0.8; }
 .business-card {
   background: var(--bg-card);
   border: 1px solid var(--fg);
-  box-shadow: 
-    0 15px 35px rgba(0,0,0,0.3),
-    0 0 25px rgba(136, 192, 208, 0.1); 
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.32),
+    0 0 18px rgba(136, 192, 208, 0.08);
   padding: 3rem 2rem;
   width: 100%;
   max-width: 600px;
@@ -240,15 +222,11 @@ a:hover { opacity: 0.8; }
   letter-spacing: 0.05em;
 }
 
-/* Electronic Engineer Role - Updated Color */
 .business-card .role {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  
-  /* Lighter Nord Blue (Nord 7) */
-  color: var(--accent-light); 
-  
+  color: var(--accent-light);
   display: block;
   margin-bottom: 0.75rem;
 }
@@ -260,14 +238,6 @@ a:hover { opacity: 0.8; }
   margin: 0 0 1.5rem;
 }
 
-.card-divider {
-  height: 1px;
-  width: 100%;
-  background: var(--line);
-  margin: 0 0 1.5rem;
-}
-
-
 .business-card .bio {
   display: flex;
   justify-content: center;
@@ -278,31 +248,38 @@ a:hover { opacity: 0.8; }
 }
 
 .business-card .bio .hl {
-  background: rgba(46, 52, 64, 0.5);
+  background: rgba(46, 52, 64, 0.45);
   border: 1px solid var(--line);
-  padding: 4px 10px;
-  border-radius: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
   color: var(--fg);
   font-size: 0.85rem;
 }
 
 /* Stack */
 .business-card .stack {
-  margin-top: 2.5rem;
+  margin-top: 2.2rem;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 600;
 }
 
-/* Social Links */
+/* Social Links (force row) */
 .business-card .card-links {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
   display: flex;
+  flex-direction: row;     /* important */
   justify-content: center;
+  align-items: center;
   gap: 1.5rem;
+}
+
+/* Ensure icons never stack due to inherited styles */
+.business-card .card-links .icon-link {
+  display: inline-flex;
 }
 
 .icon-link {
@@ -313,7 +290,7 @@ a:hover { opacity: 0.8; }
   justify-content: center;
   width: 40px;
   height: 40px;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
 .icon-link:hover {
@@ -321,6 +298,7 @@ a:hover { opacity: 0.8; }
   transform: translateY(-2px);
   background: transparent;
   border: none;
+  opacity: 1;
 }
 
 .icon { width: 24px; height: 24px; }
@@ -331,7 +309,7 @@ a:hover { opacity: 0.8; }
   bottom: 110%;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--bg-card);
+  background: var(--bg-nav);
   border: 1px solid var(--line);
   color: var(--fg);
   padding: 2px 8px;
@@ -376,7 +354,7 @@ a:hover { opacity: 0.8; }
 .figure {
   width: 100%;
   height: 450px;
-  background-color: #eceff4;
+  background-color: rgba(236, 239, 244, 0.06);
   border: 1px solid var(--line);
   margin: 2rem 0;
   overflow: hidden;
@@ -393,7 +371,7 @@ a:hover { opacity: 0.8; }
   position: absolute;
   bottom: 10px;
   right: 15px;
-  color: #4c566a;
+  color: var(--line);
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -434,7 +412,6 @@ a:hover { opacity: 0.8; }
 /* --------------------------------------------------------------
    404 Page
 -------------------------------------------------------------- */
-
 .not-found-wrapper {
   display: flex;
   align-items: center;
@@ -514,8 +491,7 @@ a:hover { opacity: 0.8; }
 
 @media (max-width: 600px) {
   .business-card h1 { font-size: 1.4rem; }
-  
-  
+
   .dropdown-content {
     left: auto;
     right: 0;
