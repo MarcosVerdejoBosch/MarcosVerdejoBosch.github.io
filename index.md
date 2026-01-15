@@ -23,7 +23,7 @@ class: home
           KiCad • LTspice • C / C++
         </div>
 
-          <div class="card-links">
+        <div class="card-links">
           <a href="https://github.com/MarcosVerdejoBosch" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub" aria-label="GitHub">
             <!-- svg -->
           </a>
