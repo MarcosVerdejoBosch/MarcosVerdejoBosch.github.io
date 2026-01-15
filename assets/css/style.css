@@ -100,14 +100,14 @@ a:hover { opacity: 0.8; }
 /* Hover/focus: text + underline use accent-light */
 .nav-links a:hover,
 .nav-links a:focus-visible {
-  color: var(--accent-light);
+  color: var(--fg);
   border-bottom-color: var(--accent-light);
   opacity: 1; /* so the color reads clean */
 }
 
 /* Active: text + underline use accent */
 .nav-links a.active {
-  color: var(--accent);
+  color: var(--fg);
   border-bottom-color: var(--accent);
 }
 
@@ -219,7 +219,7 @@ a:hover { opacity: 0.8; }
   font-size: 1.8rem;
   text-transform: uppercase;
   margin: 0 0 0.5rem 0;
-  color: var(--fg);
+  color: var(--accent-light);
   letter-spacing: 0.05em;
 }
 
@@ -251,6 +251,7 @@ a:hover { opacity: 0.8; }
 .business-card .bio .hl {
   background: rgba(46, 52, 64, 0.45);
   border: 1px solid var(--line);
+  border-color: var(--accent-light);
   padding: 6px 12px;
   border-radius: 6px;
   color: var(--accent-light);
