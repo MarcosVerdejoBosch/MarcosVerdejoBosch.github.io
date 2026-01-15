@@ -267,23 +267,14 @@ a:hover { opacity: 0.8; }
   margin: 0 0 1.5rem;
 }
 
-.card-sections {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
-}
-
-.card-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .business-card .bio {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 0.8rem;
-  font-size: 0.85rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
 }
 
 .business-card .bio .hl {
@@ -297,20 +288,21 @@ a:hover { opacity: 0.8; }
 
 /* Stack */
 .business-card .stack {
-  color: var(--fg);
-  font-size: 0.75rem;
+  margin-top: 2.5rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-weight: 600;
-  text-align: center;
 }
 
 /* Social Links */
 .business-card .card-links {
-  display: grid;
-  grid-template-columns: repeat(3, 40px);
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .icon-link {
@@ -522,13 +514,7 @@ a:hover { opacity: 0.8; }
 
 @media (max-width: 600px) {
   .business-card h1 { font-size: 1.4rem; }
-  .card-sections {
-    grid-template-columns: 1fr;
-  }
-  .business-card .bio,
-  .card-sections .stack {
-    grid-template-columns: 1fr;
-  }
+  
   
   .dropdown-content {
     left: auto;
