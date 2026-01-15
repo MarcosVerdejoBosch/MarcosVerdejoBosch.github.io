@@ -97,23 +97,24 @@ a:hover { opacity: 0.8; }
   height: 100%;
 }
 
-/* Hover/Focus: dim + medium underline (not same as active) */
+/* Hover/focus: text + underline use accent-light */
 .nav-links a:hover,
 .nav-links a:focus-visible {
-  opacity: 0.82;
+  color: var(--accent-light);
   border-bottom-color: var(--accent-light);
+  opacity: 1; /* so the color reads clean */
 }
 
-/* Active: full opacity + stronger underline */
+/* Active: text + underline use accent */
 .nav-links a.active {
-  opacity: 1;
+  color: var(--accent);
   border-bottom-color: var(--accent);
 }
 
-/* Projects stays underlined while dropdown is open/hovered/focused */
+/* Projects stays “active” while dropdown is open */
 .dropdown:hover > a,
 .dropdown:focus-within > a {
-  opacity: 1;
+  color: var(--accent);
   border-bottom-color: var(--accent);
 }
 
