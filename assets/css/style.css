@@ -144,31 +144,11 @@ a:hover { opacity: 0.8; }
   border: 1px solid var(--line);
   z-index: 100;
 
-  /* Rail sizing */
-  --dd-rail-w: 5px;      /* 4–6px */
-  --dd-rail-gap: 10px;   /* spacing between rail and items */
 
   padding: 0.6rem;
-  padding-left: calc(0.6rem + var(--dd-rail-w) + var(--dd-rail-gap));
   border-radius: 4px;
 }
 
-
-/* Accent rail (inside dropdown) */
-.dropdown-content::before{
-  content: "";
-  position: absolute;
-  top: 1px;
-  bottom: 1px;
-  left: 1px;
-  width: var(--dd-rail-w);
-  background: var(--accent);
-  opacity: 0.95;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* Hover-bridge (keeps menu open across the 15px gap) */
 .dropdown-content::after{
@@ -205,6 +185,9 @@ a:hover { opacity: 0.8; }
   gap: 0.5rem;
   opacity: 0.92;
   transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+  /* Per-item accent rail (flat stripe, not glow) */
+  box-shadow: inset 5px 0 0 rgba(136, 192, 208, 0.55);
+  padding-left: 14px; /* keeps text off the rail */
 }
 
 
@@ -217,6 +200,7 @@ a:hover { opacity: 0.8; }
   background: rgba(46, 52, 64, 0.35);
   border-color: rgba(76, 86, 106, 0.7);
   transform: none;
+  box-shadow: inset 5px 0 0 rgba(136, 192, 208, 0.18); /* calmer */
 }
 
 /* If Projects is active, hovering dropdown uses dim accent underline */
@@ -232,6 +216,7 @@ a:hover { opacity: 0.8; }
   opacity: 1;
   transform: translateX(2px);
   padding-left: 12px; /* keep stable */
+  box-shadow: inset 5px 0 0 rgba(136, 192, 208, 0.9);
 }
 
 .caret {
