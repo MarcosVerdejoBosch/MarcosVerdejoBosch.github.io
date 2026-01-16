@@ -86,6 +86,7 @@ a:hover { opacity: 0.8; }
   padding: 4px 0;                /* same vertical box for all links */
   border-bottom: 2px solid transparent;
   transition: opacity .2s ease, border-color .2s ease;
+  color: var(--fg); 
 }
 
 
