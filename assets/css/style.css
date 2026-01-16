@@ -81,41 +81,39 @@ a:hover { opacity: 0.8; }
 
 /* Header Titles */
 /* Header Titles */
-.nav-links a {
+.nav-links a{
   color: var(--fg);
-  text-decoration: none;
-  padding-bottom: 4px;
-
-  /* stable underline (no jumping) */
   border-bottom: 2px solid transparent;
-  background: transparent;
-
-  transition: opacity 0.2s ease, border-color 0.2s ease;
-
-  display: inline-flex;
-  align-items: center;
-  height: 100%;
+  padding-bottom: 4px;
+  transition: opacity .2s ease, border-color .2s ease;
 }
 
 
-/* Hover/focus: ALWAYS dim text + dim underline (even if active) */
+/* Hover on INACTIVE link = dim + neutral underline */
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible{
   opacity: 0.75;
   border-bottom-color: var(--line);
 }
 
+/* Hover on ACTIVE link = dim + dim accent underline */
+.nav-links a.active:hover,
+.nav-links a.active:focus-visible{
+  opacity: 0.75;
+  border-bottom-color: rgba(136, 192, 208, 0.55); /* dim accent */
+}
+
 /* Active page (Projects page or any /projects/* page): strong underline by default */
-.nav-links a.active {
+.nav-links a.active{
   opacity: 1;
   border-bottom-color: var(--accent);
 }
 
 
-/* When dropdown is open (cursor over dropdown OR keyboard focus inside),
-   keep the Projects link in the dimmed hover state */
+
+/* Treat hovering dropdown as hovering Projects */
 .dropdown:hover > a,
-.dropdown:focus-within > a {
+.dropdown:focus-within > a{
   opacity: 0.75;
   border-bottom-color: var(--line);
 }
@@ -174,6 +172,13 @@ a:hover { opacity: 0.8; }
   color: var(--muted);
   border-bottom: none;
   transition: all 0.15s ease;
+}
+
+/* If Projects is active, hovering dropdown uses dim accent underline */
+.dropdown:hover > a.active,
+.dropdown:focus-within > a.active{
+  opacity: 0.75;
+  border-bottom-color: rgba(136, 192, 208, 0.55);
 }
 
 .dropdown-content a:hover {
