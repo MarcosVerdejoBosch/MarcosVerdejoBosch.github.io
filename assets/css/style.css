@@ -79,14 +79,15 @@ a:hover { opacity: 0.8; }
   align-items: center;
 }
 
-/* Header Titles */
-/* Header Titles */
+/* Nav links: consistent underline baseline + word-length */
 .nav-links a{
-  color: var(--fg);
+  display: inline-block;          /* underline matches word width */
+  line-height: 1;                /* consistent baseline */
+  padding: 4px 0;                /* same vertical box for all links */
   border-bottom: 2px solid transparent;
-  padding-bottom: 4px;
   transition: opacity .2s ease, border-color .2s ease;
 }
+
 
 
 /* Hover on INACTIVE link = dim + neutral underline */
@@ -131,45 +132,48 @@ a:hover { opacity: 0.8; }
 .dropdown-content {
   opacity: 0;
   visibility: hidden;
-  transform: translateX(10px);
+  transform: translateY(6px);
   transition: all 0.2s ease-in-out;
 
   position: absolute;
-  left: 100%;
-  top: 0;
-  margin-left: 15px;
+  left: 0;                 /* align with Projects */
+  top: calc(100% + 10px);  /* dropdown below the link */
+  margin-left: 0;
 
   background-color: var(--bg-card);
-  min-width: 180px;
+  min-width: 220px;
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
   border: 1px solid var(--line);
   z-index: 100;
 
-  padding: 0;            /* no gaps */
+  padding: 0;              /* no gaps */
   border-radius: 4px;
-  overflow: hidden;      /* clean outer corners */
+  overflow: hidden;        /* clean outer corners */
 }
 
 
-/* Projects link: align text + caret perfectly */
+
+/* Projects link: align text + caret */
 .dropdown > a{
-  display: inline-flex;
+  display: inline-flex;          /* text + caret align */
   align-items: center;
-  gap: 6px;           /* controls closeness */
-  line-height: 1;     /* prevents caret sitting lower */
+  gap: 6px;                      /* arrow closer/farther */
+  line-height: 1;
+  padding: 4px 0;                /* match .nav-links a */
 }
 
-/* Hover-bridge (keeps menu open across the 15px gap) */
+
+/* Hover-bridge for dropdown below the link */
 .dropdown-content::after{
   content: "";
   position: absolute;
-  top: 0;
-  left: -15px;
-  width: 15px;
-  height: 100%;
+  left: 0;
+  top: -10px;
+  width: 100%;
+  height: 10px;
   background: transparent;
-  z-index: 2;
 }
+
 
 
 /* Dropdown stays open for keyboard focus */
