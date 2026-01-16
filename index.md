@@ -34,46 +34,57 @@ class: home
         </svg>
       </a>
 
-      <a href="#" id="email-btn" class="icon-link" onclick="copyEmail(); return false;" title="Copy Email" aria-label="Copy email address">
+      <button type="button" class="icon-link js-copy-email" title="Copy Email" aria-label="Copy email address" data-email="marcosverdejo@gmail.com">
         <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/>
         </svg>
         <span class="copy-tooltip" aria-live="polite"></span>
-      </a>
+      </button>
     </div>
 
   </div>
 </div>
 
 <script>
-  function copyEmail() {
-    const email = "marcosverdejo@gmail.com";
-    const btn = document.getElementById("email-btn");
-    const tooltip = btn.querySelector(".copy-tooltip");
+(function () {
+  const btn = document.querySelector(".js-copy-email");
+  if (!btn) return;
 
-    const showTooltip = (message) => {
-      if (!tooltip) return;
-      tooltip.textContent = message;
-      tooltip.classList.add("visible");
-      setTimeout(() => {
-        tooltip.classList.remove("visible");
-        tooltip.textContent = "";
-      }, 1500);
-    };
+  const tooltip = btn.querySelector(".copy-tooltip");
+  const email = btn.getAttribute("data-email") || "";
 
-    const onSuccess = () => {
-      btn.classList.add("email-copied");
-      showTooltip("Copied!");
-      setTimeout(() => btn.classList.remove("email-copied"), 2000);
-    };
+  let timer;
 
-    const onFail = (err) => {
-      console.error("Clipboard copy failed:", err);
-      showTooltip("Failed");
-    };
+  const showTooltip = (message) => {
+    if (!tooltip) return;
+    tooltip.textContent = message;
+    tooltip.classList.add("visible");
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      tooltip.classList.remove("visible");
+      tooltip.textContent = "";
+    }, 1500);
+  };
 
+  const onSuccess = () => {
+    btn.classList.add("email-copied");
+    showTooltip("Copied!");
+    setTimeout(() => btn.classList.remove("email-copied"), 2000);
+  };
+
+  const onFail = (err) => {
+    console.error("Clipboard copy failed:", err);
+    showTooltip("Failed");
+  };
+
+  btn.addEventListener("click", async () => {
     if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(email).then(onSuccess).catch(onFail);
+      try {
+        await navigator.clipboard.writeText(email);
+        onSuccess();
+      } catch (e) {
+        onFail(e);
+      }
       return;
     }
 
@@ -91,5 +102,6 @@ class: home
     } catch (e) {
       onFail(e);
     }
-  }
+  });
+})();
 </script>
