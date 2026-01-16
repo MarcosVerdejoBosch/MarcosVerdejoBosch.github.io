@@ -359,6 +359,31 @@ a:hover { opacity: 0.8; }
   opacity: 1;
 }
 
+/* Email icon button should look identical to the <a> icon links */
+button.icon-link{
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* No focus outline on mouse click */
+button.icon-link:focus{
+  outline: none;
+}
+
+/* Keyboard-only focus (subtle, Nord accent) */
+button.icon-link:focus-visible{
+  outline: 2px solid rgba(136, 192, 208, 0.55);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
 .icon { width: 24px; height: 24px; }
 .email-copied { color: var(--accent) !important; }
 
