@@ -145,7 +145,7 @@ a:hover { opacity: 0.8; }
   z-index: 100;
 
 
-  padding: 0.6rem;
+  padding: 8px 0;
   border-radius: 4px;
 }
 
@@ -181,23 +181,33 @@ a:hover { opacity: 0.8; }
 .dropdown-content a {
   position: relative;
   z-index: 1;
-  margin: 0.25rem 0;
-  padding: 10px 12px;
+
+  /* Align item border with dropdown edges */
+  width: 100%;
+  box-sizing: border-box;
+  margin: 6px 0;
+
+  /* Rectangle button */
   border-radius: 6px;
   background: rgba(46, 52, 64, 0.35);
-  border: 1px solid rgba(76, 86, 106, 0.7);
+  border: 1px solid rgba(76, 86, 106, 0.75);
+
+  /* Straight accent stripe */
+  border-left: 5px solid rgba(136, 192, 208, 0.7);
+
+  /* Content */
+  padding: 10px 14px;
   color: var(--fg);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   opacity: 0.92;
+
   transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
-  /* straight accent, aligned to the item box */
-  border-left: 5px solid rgba(136, 192, 208, 0.7);
-  /* optional: slightly stronger overall border for a “button” feel */
-  border-color: rgba(76, 86, 106, 0.75); 
-  padding-left: 12px; /* keeps text off the rail */
 }
+
+.dropdown-content a:first-child { margin-top: 0; }
+.dropdown-content a:last-child  { margin-bottom: 0; }
 
 
 .dropdown-content a.disabled{
