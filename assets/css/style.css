@@ -342,7 +342,7 @@ a:hover { opacity: 0.8; }
 
   background: rgba(236, 239, 244, 0.06);     /* very subtle */
   border: 1px solid rgba(76, 86, 106, 0.85); /* neutral line */
-  border-color: rgba(136, 192, 208, 0.45);
+  box-shadow: inset 0 1px 0 rgba(136, 192, 208, 0.22);;
   color: rgba(236, 239, 244, 0.92);
 }
 
