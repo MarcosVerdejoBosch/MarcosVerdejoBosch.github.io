@@ -359,7 +359,7 @@ a:hover { opacity: 0.8; }
   padding: 4px 0;
   padding-left: 10px;
 
-  color: rgba(236, 239, 244, 0.90);
+  color: var(--fg);
 }
 
 
