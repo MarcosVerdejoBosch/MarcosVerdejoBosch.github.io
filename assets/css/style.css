@@ -334,16 +334,15 @@ a:hover { opacity: 0.8; }
 }
 
 .business-card .bio .hl{
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 999px; /* reads as tag, not button */
-  line-height: 1.1;
-
-  background: rgba(236, 239, 244, 0.06);     /* very subtle */
-  border: 1px solid rgba(76, 86, 106, 0.85); /* neutral line */
-  box-shadow: inset 0 1px 0 rgba(136, 192, 208, 0.22);;
+  background: transparent;
+  border: 1px solid rgba(76, 86, 106, 0.85);
+  border-left: 3px solid rgba(136, 192, 208, 0.6);
+  border-radius: 6px;
+  padding: 6px 10px;
+  padding-left: 11px;
   color: rgba(236, 239, 244, 0.92);
 }
+
 
 
 
