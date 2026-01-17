@@ -357,17 +357,23 @@ a:hover { opacity: 0.8; }
 
   border-left: 2px solid rgba(136, 192, 208, 0.45);
   padding: 4px 0;
-  padding-left: 10px;
+  position: relative;
+  border-left: 0;        /* turn off the tall bar */
+  padding-left: 12px; 
 
   color: var(--fg);
 }
 
-
-
-
-
-
-
+.business-card .bio .hl::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 12px;          /* shorter bar */
+  background: rgba(136, 192, 208, 0.55);
+}
 
 
 /* Stack */
