@@ -302,17 +302,17 @@ a:hover { opacity: 0.8; }
 }
 
 .business-card h1 {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   text-transform: uppercase;
   margin: 0 0 0.5rem 0;
   color: var(--fg);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
 }
 
 .business-card .role {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--fg);
   display: block;
   margin-bottom: 0.75rem;
@@ -330,30 +330,32 @@ a:hover { opacity: 0.8; }
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.8rem;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }
 
-.business-card .bio .hl {
+.business-card .bio .hl{
   display: inline-block;
-  padding: 5px 10px;          /* tighter around text */
-  border-radius: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
   line-height: 1.1;
 
-  background: rgba(136, 192, 208, 0.20);   /* more “flashy” */
-  border: 1px solid rgba(136, 192, 208, 0.40);
+  /* darker, more professional */
+  background: rgba(46, 52, 64, 0.55);        /* --bg-nav tint */
+  border: 1px solid rgba(76, 86, 106, 0.85); /* --line */
   color: var(--fg);
 }
 
 
 
 
+
 /* Stack */
 .business-card .stack {
-  margin-top: 1.6rem;
-  font-size: 0.8rem;
+  margin-top: 1.8rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   font-weight: 600;
 }
 
@@ -366,7 +368,7 @@ a:hover { opacity: 0.8; }
   flex-direction: row;     /* important */
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 /* Ensure icons never stack due to inherited styles */
@@ -380,8 +382,8 @@ a:hover { opacity: 0.8; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
