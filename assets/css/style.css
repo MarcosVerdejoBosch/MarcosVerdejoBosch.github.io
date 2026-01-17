@@ -129,41 +129,27 @@ a:hover { opacity: 0.8; }
 }
 
 /* Dropdown Menu */
-/* Dropdown Menu */
 .dropdown-content {
   opacity: 0;
   visibility: hidden;
   transform: translateY(6px);
-  transition: all 0.2s ease-in-out;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
 
   position: absolute;
   left: 0;                 /* align with Projects */
   top: calc(100% + 10px);  /* dropdown below the link */
-  margin-left: 0;
 
-  background-color: var(--bg-card);
-  min-width: 190px;
-  width: max-content;   /* hugs content */
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  border: 1px solid var(--line);
+  background: rgba(67, 76, 94, 0.98);          /* solid, no “panel in panel” */
+  border: 1px solid rgba(76, 86, 106, 0.85);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
   z-index: 100;
 
-  padding: 0;              /* no gaps */
-  border-radius: 4px;
-  overflow: hidden;        /* clean outer corners */
+  min-width: 190px;
+  width: max-content;
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
 }
-
-
-
-/* Projects link: align text + caret */
-.dropdown > a{
-  display: inline-flex;          /* text + caret align */
-  align-items: center;
-  gap: 6px;                      /* arrow closer/farther */
-  line-height: 1;
-  padding: 4px 0;                /* match .nav-links a */
-}
-
 
 /* Hover-bridge for dropdown below the link */
 .dropdown-content::after{
@@ -176,67 +162,43 @@ a:hover { opacity: 0.8; }
   background: transparent;
 }
 
-
-
 /* Dropdown stays open for keyboard focus */
 .dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content {
   opacity: 1;
   visibility: visible;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
+/* Rows: make them “slices” of the menu (no row panel bg) */
 .dropdown-content a{
   width: 100%;
   box-sizing: border-box;
   margin: 0;
 
-  border-radius: 0;
-  background: rgba(46, 52, 64, 0.48);  /* slightly more solid */
-  border: 0;
-
   position: relative;
-  padding: 12px 12px;      /* less right padding */
-  padding-left: 18px;      /* room for stripe */
-  background-clip: padding-box;
-  color: var(--fg);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  opacity: 0.92;
+
+  padding: 12px 12px;
+  padding-left: 18px;      /* room for stripe */
   white-space: nowrap;
-  transition: background 0.15s ease, opacity 0.15s ease;
-}
 
-/* stronger, crisp separators between rows */
-.dropdown-content a + a{
-  border-top: 1px solid rgba(76, 86, 106, 0.75);
-}
-
-
-.dropdown-content a:hover{
-  background: rgba(136, 192, 208, 0.10);
+  background: transparent; /* important: removes inner panel look */
+  border: 0;
+  color: rgba(236, 239, 244, 0.92);
   opacity: 1;
-  border-left-color: rgba(136, 192, 208, 0.95);
-  transform: none; /* no movement */
+
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.dropdown-content a.disabled{
-  opacity: 0.45;
-  cursor: not-allowed;
-  border-left-color: rgba(136, 192, 208, 0.22);
+/* One crisp separator line */
+.dropdown-content a + a{
+  border-top: 1px solid rgba(76, 86, 106, 0.60);
 }
 
-.dropdown-content a:hover::before{ background: rgba(136, 192, 208, 0.95); }
-.dropdown-content a.disabled::before{ background: rgba(136, 192, 208, 0.22); }
-
-
-.dropdown-content a.disabled:hover{
-  background: rgba(46, 52, 64, 0.35);
-  opacity: 0.45;
-  border-left-color: rgba(136, 192, 208, 0.22);
-}
-
+/* Stripe: subtle by default, stronger on hover */
 .dropdown-content a::before{
   content: "";
   position: absolute;
@@ -244,7 +206,31 @@ a:hover { opacity: 0.8; }
   top: 0;
   bottom: 0;
   width: 5px;
-  background: rgba(136, 192, 208, 0.75);
+  background: rgba(136, 192, 208, 0.30);
+}
+
+.dropdown-content a:hover{
+  background: rgba(136, 192, 208, 0.10);
+  color: rgba(236, 239, 244, 0.98);
+}
+
+.dropdown-content a:hover::before{
+  background: rgba(136, 192, 208, 0.85);
+}
+
+/* Disabled */
+.dropdown-content a.disabled{
+  color: rgba(216, 222, 233, 0.55);
+  cursor: not-allowed;
+}
+
+.dropdown-content a.disabled:hover{
+  background: transparent;
+  color: rgba(216, 222, 233, 0.55);
+}
+
+.dropdown-content a.disabled::before{
+  background: rgba(136, 192, 208, 0.18);
 }
 
 /* If Projects is active, hovering dropdown uses dim accent underline */
@@ -253,6 +239,7 @@ a:hover { opacity: 0.8; }
   opacity: 0.75;
   border-bottom-color: rgba(136, 192, 208, 0.55);
 }
+
 
 
 /* Caret: always down, highlight when dropdown is open */
