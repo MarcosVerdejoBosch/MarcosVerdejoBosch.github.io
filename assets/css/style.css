@@ -278,11 +278,17 @@ a:hover { opacity: 0.8; }
   opacity: 0.9;
 }
 
-/* Open state: highlight (no rotation) */
+/* Open state: brighter caret */
 .dropdown:hover .caret,
 .dropdown:focus-within .caret{
-  color: rgba(136, 192, 208, 0.95); /* Nord accent */
+  color: rgba(136, 192, 208, 1);   /* a touch brighter */
 }
+
+.dropdown:hover .caret::before,
+.dropdown:focus-within .caret::before{
+  opacity: 1;                      /* ensure it pops */
+}
+
 
 
 
