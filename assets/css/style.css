@@ -358,12 +358,22 @@ a:hover { opacity: 0.8; }
   border: 0;
 
   border-left: 2px solid rgba(136, 192, 208, 0.45);
-  padding: 4px 0;
+  padding: 2px 2px 4px;
   position: relative;
   border-left: 0;        /* turn off the tall bar */
   padding-left: 12px; 
 
   color: var(--fg);
+}
+
+.business-card .bio .hl::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(136, 192, 208, 0.45);
 }
 
 .business-card .bio .hl::before{
