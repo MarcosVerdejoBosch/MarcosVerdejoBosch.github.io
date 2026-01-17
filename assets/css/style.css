@@ -142,7 +142,8 @@ a:hover { opacity: 0.8; }
   margin-left: 0;
 
   background-color: var(--bg-card);
-  min-width: 220px;
+  min-width: 190px;
+  width: max-content;   /* hugs content */
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
   border: 1px solid var(--line);
   z-index: 100;
@@ -190,29 +191,26 @@ a:hover { opacity: 0.8; }
   box-sizing: border-box;
   margin: 0;
 
-  /* stacked rows */
   border-radius: 0;
-  background: rgba(46, 52, 64, 0.35);
-
-  /* single clean cut line (no border stacking) */
+  background: rgba(46, 52, 64, 0.48);  /* slightly more solid */
   border: 0;
-  box-shadow: inset 0 -1px 0 rgba(76, 86, 106, 0.55);
 
   position: relative;
-  padding: 12px 14px;
-  padding-left: 18px; /* room for stripe */
+  padding: 12px 12px;      /* less right padding */
+  padding-left: 18px;      /* room for stripe */
 
   color: var(--fg);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   opacity: 0.92;
-
+  white-space: nowrap;
   transition: background 0.15s ease, opacity 0.15s ease;
 }
 
-.dropdown-content a:last-child{
-  box-shadow: none;
+/* ONE crisp divider line (no overlap/double) */
+.dropdown-content a + a{
+  border-top: 1px solid rgba(76, 86, 106, 0.55);
 }
 
 
