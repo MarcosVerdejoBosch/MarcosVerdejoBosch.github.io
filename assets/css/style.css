@@ -353,13 +353,16 @@ a:hover { opacity: 0.8; }
 
 .business-card .bio .hl{
   background: transparent;
-  border: 1px solid rgba(76, 86, 106, 0.85);
-  border-left: 3px solid rgba(136, 192, 208, 0.6);
-  border-radius: 6px;
-  padding: 6px 10px;
-  padding-left: 11px;
-  color: rgba(236, 239, 244, 0.92);
+  border: 0;
+
+  border-left: 2px solid rgba(136, 192, 208, 0.45);
+  padding: 4px 0;
+  padding-left: 10px;
+
+  color: rgba(236, 239, 244, 0.90);
 }
+
+
 
 
 
