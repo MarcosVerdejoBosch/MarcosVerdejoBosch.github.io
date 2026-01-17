@@ -362,8 +362,6 @@ a:hover { opacity: 0.8; }
   box-shadow: inset 0 0 0 1px rgba(76, 86, 106, 0.35);
   color: rgba(236, 239, 244, 0.96);
 
-  /* safety: ensure no rail */
-  border-left: 0;
 }
 
 
