@@ -198,7 +198,7 @@ a:hover { opacity: 0.8; }
   position: relative;
   padding: 12px 12px;      /* less right padding */
   padding-left: 18px;      /* room for stripe */
-
+  background-clip: padding-box;
   color: var(--fg);
   display: flex;
   align-items: center;
@@ -208,9 +208,9 @@ a:hover { opacity: 0.8; }
   transition: background 0.15s ease, opacity 0.15s ease;
 }
 
-/* ONE crisp divider line (no overlap/double) */
+/* stronger, crisp separators between rows */
 .dropdown-content a + a{
-  border-top: 1px solid rgba(76, 86, 106, 0.55);
+  border-top: 1px solid rgba(76, 86, 106, 0.75);
 }
 
 
