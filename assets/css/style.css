@@ -197,9 +197,8 @@ a:hover { opacity: 0.8; }
   /* crisp separators */
   border: 0;
   border-bottom: 1px solid rgba(76, 86, 106, 0.85);
-
-  /* straight accent */
-  border-left: 5px solid rgba(136, 192, 208, 0.75);
+  position: relative;
+  padding-left: 18px; /* room for stripe */
 
   padding: 12px 14px;
   color: var(--fg);
@@ -228,12 +227,25 @@ a:hover { opacity: 0.8; }
   border-left-color: rgba(136, 192, 208, 0.22);
 }
 
+.dropdown-content a:hover::before{ background: rgba(136, 192, 208, 0.95); }
+.dropdown-content a.disabled::before{ background: rgba(136, 192, 208, 0.22); }
+
+
 .dropdown-content a.disabled:hover{
   background: rgba(46, 52, 64, 0.35);
   opacity: 0.45;
   border-left-color: rgba(136, 192, 208, 0.22);
 }
 
+.dropdown-content a::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: rgba(136, 192, 208, 0.75);
+}
 
 /* If Projects is active, hovering dropdown uses dim accent underline */
 .dropdown:hover > a.active,
