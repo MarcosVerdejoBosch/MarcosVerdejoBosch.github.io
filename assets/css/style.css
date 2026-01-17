@@ -359,9 +359,10 @@ a:hover { opacity: 0.8; }
   border-radius: 5px;
 
   background: rgba(46, 52, 64, 0.55);
-  border: 1px solid rgba(136, 192, 208, 0.28); /* subtle Nord accent edge */
+  border: 1px solid rgba(136, 192, 208, 0.20); /* softer */
   color: rgba(236, 239, 244, 0.96);
 }
+
 
 
 
