@@ -364,23 +364,6 @@ a:hover { opacity: 0.8; }
 }
 
 
-.business-card .bio .hl::after{
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: rgba(136, 192, 208, 0.45);
-}
-
-.business-card .bio .hl::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
 
 
 /* Stack */
