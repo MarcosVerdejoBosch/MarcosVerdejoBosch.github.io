@@ -433,6 +433,18 @@ button.icon-link:focus-visible{
   border-radius: 10px;
 }
 
+/* Force all icon SVGs to render with the same inherited color */
+.icon-link svg {
+  display: block;
+  fill: currentColor;
+}
+
+/* Also force the email SVG path (just in case) */
+.icon-link svg path {
+  fill: currentColor;
+}
+
+
 .icon { width: 24px; height: 24px; }
 .email-copied { color: var(--accent) !important; }
 
