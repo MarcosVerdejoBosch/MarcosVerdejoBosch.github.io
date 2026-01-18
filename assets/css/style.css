@@ -133,20 +133,21 @@ a:hover { opacity: 0.8; }
   padding: 4px 0;
 }
 
-/* Menu */
+/* ===== Dropdown (Option A: VS Code list) ===== */
+
 .dropdown-content{
   opacity: 0;
   visibility: hidden;
   transform: translateY(6px);
-  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
 
   position: absolute;
   left: 0;
   top: calc(100% + 10px);
 
-  background: var(--bg-card);
+  background: rgba(67, 76, 94, 0.98);            /* flat surface */
   border: 1px solid rgba(76, 86, 106, 0.85);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.26);
   border-radius: 6px;
   overflow: hidden;
   z-index: 100;
@@ -156,7 +157,7 @@ a:hover { opacity: 0.8; }
   padding: 0;
 }
 
-/* Hover bridge so it doesn't collapse when moving mouse down */
+/* keep it open while moving mouse down */
 .dropdown-content::after{
   content: "";
   position: absolute;
@@ -174,72 +175,58 @@ a:hover { opacity: 0.8; }
   transform: translateY(0);
 }
 
-/* Rows: SOLID slices + crisp separators (no bleed) */
+/* Rows: transparent by default (no inner panels) */
 .dropdown-content a{
   position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 
-  padding: 12px 12px 12px 18px; /* tighter right padding */
+  padding: 12px 12px;     /* tighter right space */
+  padding-left: 14px;     /* no permanent stripe space */
   white-space: nowrap;
 
-  background: rgba(46, 52, 64, 0.58);  /* solid row background */
-  color: rgba(236, 239, 244, 0.92);
-  text-decoration: none;
+  background: transparent;
+  border: 0;
+  margin: 0;
+
+  color: rgba(236, 239, 244, 0.90);
+  opacity: 1;
 }
 
-/* Single clean separator line (always visible) */
+/* crisp separators */
 .dropdown-content a + a{
-  border-top: 1px solid rgba(76, 86, 106, 0.70);
+  border-top: 1px solid rgba(76, 86, 106, 0.65);
 }
 
-/* Left accent stripe (flat, no rounding) */
-.dropdown-content a::before{
+/* Hover: soft tint + show stripe */
+.dropdown-content a:hover{
+  background: rgba(136, 192, 208, 0.10);
+  color: rgba(236, 239, 244, 0.97);
+}
+
+/* Stripe only on hover (clean, no rounding) */
+.dropdown-content a:hover::before{
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 5px;
-  background: rgba(136, 192, 208, 0.30); /* subtle by default */
+  width: 4px;
+  background: rgba(136, 192, 208, 0.95);
 }
 
-.dropdown-content a:hover{
-  background: rgba(136, 192, 208, 0.10);
-  color: rgba(236, 239, 244, 0.98);
-}
-
-.dropdown-content a:hover::before{
-  background: rgba(136, 192, 208, 0.85);
-}
-
-/* Disabled row */
+/* Disabled */
 .dropdown-content a.disabled{
-  cursor: not-allowed;
   color: rgba(216, 222, 233, 0.55);
-  background: rgba(46, 52, 64, 0.48);
-}
-
-.dropdown-content a.disabled::before{
-  background: rgba(136, 192, 208, 0.18);
+  cursor: not-allowed;
 }
 
 .dropdown-content a.disabled:hover{
-  background: rgba(46, 52, 64, 0.48);
+  background: transparent;
   color: rgba(216, 222, 233, 0.55);
 }
 
-.dropdown-content a.disabled:hover::before{
-  background: rgba(136, 192, 208, 0.18);
-}
-
-/* If Projects is active, hovering dropdown uses dim accent underline */
-.dropdown:hover > a.active,
-.dropdown:focus-within > a.active{
-  opacity: 0.75;
-  border-bottom-color: rgba(136, 192, 208, 0.55);
-}
 
 
 /* Caret: always down, highlight when dropdown is open */
