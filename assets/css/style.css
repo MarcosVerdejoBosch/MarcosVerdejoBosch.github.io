@@ -166,16 +166,17 @@ a:hover { opacity: 0.8; }
   padding: 0;
 }
 
-/* keep it open while moving mouse down */
+/* keep it open while moving mouse down (less sensitive hover bridge) */
 .dropdown-content::after{
   content: "";
   position: absolute;
-  left: 0;
-  top: -10px;
-  width: 100%;
-  height: 10px;
+  left: -12px;            /* give forgiveness on the sides */
+  right: -12px;
+  top: -18px;             /* bigger gap coverage */
+  height: 18px;           /* taller bridge = easier handoff */
   background: transparent;
 }
+
 
 .dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content{
