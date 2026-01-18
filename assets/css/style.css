@@ -113,45 +113,50 @@ a:hover { opacity: 0.8; }
 
 
 
-/* Treat hovering dropdown as hovering Projects */
-.dropdown:hover > a,
-.dropdown:focus-within > a{
-  opacity: 0.75;
-  border-bottom-color: var(--line);
-}
+/* ==============================
+   Dropdown (rework)
+============================== */
 
-/* Dropdown Container */
-.dropdown {
+/* Container */
+.dropdown{
   position: relative;
   display: inline-flex;
   align-items: center;
-  height: 100%;
 }
 
-/* Dropdown Menu */
-.dropdown-content {
+/* Projects link: text + caret aligned */
+.dropdown > a{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+  padding: 4px 0;
+}
+
+/* Menu */
+.dropdown-content{
   opacity: 0;
   visibility: hidden;
   transform: translateY(6px);
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
 
   position: absolute;
-  left: 0;                 /* align with Projects */
-  top: calc(100% + 10px);  /* dropdown below the link */
+  left: 0;
+  top: calc(100% + 10px);
 
-  background: rgba(67, 76, 94, 0.98);          /* solid, no “panel in panel” */
+  background: var(--bg-card);
   border: 1px solid rgba(76, 86, 106, 0.85);
   box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+  border-radius: 6px;
+  overflow: hidden;
   z-index: 100;
 
   min-width: 190px;
   width: max-content;
   padding: 0;
-  border-radius: 6px;
-  overflow: hidden;
 }
 
-/* Hover-bridge for dropdown below the link */
+/* Hover bridge so it doesn't collapse when moving mouse down */
 .dropdown-content::after{
   content: "";
   position: absolute;
@@ -162,43 +167,34 @@ a:hover { opacity: 0.8; }
   background: transparent;
 }
 
-/* Dropdown stays open for keyboard focus */
 .dropdown:hover .dropdown-content,
-.dropdown:focus-within .dropdown-content {
+.dropdown:focus-within .dropdown-content{
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* Rows: make them “slices” of the menu (no row panel bg) */
+/* Rows: SOLID slices + crisp separators (no bleed) */
 .dropdown-content a{
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-
   position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 
-  padding: 12px 12px;
-  padding-left: 18px;      /* room for stripe */
+  padding: 12px 12px 12px 18px; /* tighter right padding */
   white-space: nowrap;
 
-  background: transparent; /* important: removes inner panel look */
-  border: 0;
+  background: rgba(46, 52, 64, 0.58);  /* solid row background */
   color: rgba(236, 239, 244, 0.92);
-  opacity: 1;
-
-  transition: background 0.15s ease, color 0.15s ease;
+  text-decoration: none;
 }
 
-/* One crisp separator line */
+/* Single clean separator line (always visible) */
 .dropdown-content a + a{
-  border-top: 1px solid rgba(76, 86, 106, 0.60);
+  border-top: 1px solid rgba(76, 86, 106, 0.70);
 }
 
-/* Stripe: subtle by default, stronger on hover */
+/* Left accent stripe (flat, no rounding) */
 .dropdown-content a::before{
   content: "";
   position: absolute;
@@ -206,7 +202,7 @@ a:hover { opacity: 0.8; }
   top: 0;
   bottom: 0;
   width: 5px;
-  background: rgba(136, 192, 208, 0.30);
+  background: rgba(136, 192, 208, 0.30); /* subtle by default */
 }
 
 .dropdown-content a:hover{
@@ -218,18 +214,23 @@ a:hover { opacity: 0.8; }
   background: rgba(136, 192, 208, 0.85);
 }
 
-/* Disabled */
+/* Disabled row */
 .dropdown-content a.disabled{
-  color: rgba(216, 222, 233, 0.55);
   cursor: not-allowed;
-}
-
-.dropdown-content a.disabled:hover{
-  background: transparent;
   color: rgba(216, 222, 233, 0.55);
+  background: rgba(46, 52, 64, 0.48);
 }
 
 .dropdown-content a.disabled::before{
+  background: rgba(136, 192, 208, 0.18);
+}
+
+.dropdown-content a.disabled:hover{
+  background: rgba(46, 52, 64, 0.48);
+  color: rgba(216, 222, 233, 0.55);
+}
+
+.dropdown-content a.disabled:hover::before{
   background: rgba(136, 192, 208, 0.18);
 }
 
@@ -239,7 +240,6 @@ a:hover { opacity: 0.8; }
   opacity: 0.75;
   border-bottom-color: rgba(136, 192, 208, 0.55);
 }
-
 
 
 /* Caret: always down, highlight when dropdown is open */
