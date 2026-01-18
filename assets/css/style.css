@@ -162,7 +162,7 @@ a:hover { opacity: 0.8; }
   overflow: hidden;
   z-index: 100;
 
-  width: 210px;                               /* stops “huge right gap” */
+  width: 200px;                               /* stops “huge right gap” */
   padding: 0;
 }
 
