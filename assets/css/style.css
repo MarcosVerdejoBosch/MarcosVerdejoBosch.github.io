@@ -124,6 +124,18 @@ a:hover { opacity: 0.8; }
   align-items: center;
 }
 
+/* Bigger invisible hover buffer so the menu doesn't close easily */
+.dropdown::after{
+  content: "";
+  position: absolute;
+  left: -12px;
+  right: -12px;
+  top: 0;
+  bottom: -18px;      /* extends hover area down past the link */
+  background: transparent;
+}
+
+
 /* Treat hovering dropdown as hovering Projects (underline rules) */
 .dropdown:hover > a,
 .dropdown:focus-within > a{
@@ -170,10 +182,10 @@ a:hover { opacity: 0.8; }
 .dropdown-content::after{
   content: "";
   position: absolute;
-  left: -12px;            /* give forgiveness on the sides */
+  left: -12px;
   right: -12px;
-  top: -18px;             /* bigger gap coverage */
-  height: 18px;           /* taller bridge = easier handoff */
+  top: -18px;
+  height: 18px;
   background: transparent;
 }
 
