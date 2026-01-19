@@ -357,16 +357,21 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
+/* Pills: higher contrast, still flat + Nord */
 .business-card .bio .hl{
   display: inline-block;
   padding: 6px 12px;
   border-radius: 6px;
 
-  background: rgba(136, 192, 208, 0.16);
-  border: 0;
-  box-shadow: none;                       /* no border look */
+  /* darker, more defined fill (Nord-ish blue-gray) */
+  background: rgba(46, 52, 64, 0.62);
+
+  /* subtle frost edge for definition (no “glow”) */
+  box-shadow: inset 0 0 0 1px rgba(136, 192, 208, 0.22);
+
   color: rgba(236, 239, 244, 0.97);
 }
+
 
 
 
