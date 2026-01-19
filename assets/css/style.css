@@ -397,13 +397,14 @@ a:hover { opacity: 0.8; }
 }
 
 /* Ensure icons never stack due to inherited styles */
-.business-card .card-links .icon-link {
-  display: inline-flex;
+.business-card .card-links{
+  color: rgba(236, 239, 244, 0.88);
 }
 
-.icon-link {
+.icon-link{
   position: relative;
-  color: rgba(216, 222, 233, 0.85);
+  color: inherit;          /* inherit from .card-links so all match */
+  opacity: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -411,6 +412,12 @@ a:hover { opacity: 0.8; }
   height: 38px;
   transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
+
+/* prevent visited links from changing icon color */
+.icon-link:visited{
+  color: inherit;
+}
+
 
 .icon-link:hover {
   color: var(--accent);
@@ -458,6 +465,13 @@ button.icon-link:focus-visible{
 
 
 .icon { width: 24px; height: 24px; }
+/* Force ALL SVG icons to use the same paint source */
+.icon-link .icon,
+.icon-link .icon *{
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
 .email-copied { color: var(--accent) !important; }
 
 .copy-tooltip {
