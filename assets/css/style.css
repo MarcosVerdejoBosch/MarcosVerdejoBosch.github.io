@@ -159,7 +159,8 @@ a:hover { opacity: 0.8; }
 
   position: absolute;
   left: 0;
-  top: 100%;
+  top: calc(100% + 8px);
+
 
 
   background: var(--bg-card);
@@ -175,6 +176,23 @@ a:hover { opacity: 0.8; }
   padding: 0;
 
   pointer-events: none;
+}
+
+/* Hover bridge: preserves gap without killing clicks */
+.dropdown::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 10px;          /* must match the gap (8px) or slightly more */
+  background: transparent;
+  pointer-events: none;
+}
+
+.dropdown:hover::after,
+.dropdown:focus-within::after{
+  pointer-events: auto;
 }
 
 
