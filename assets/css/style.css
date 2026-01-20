@@ -431,8 +431,8 @@ a:hover { opacity: 0.8; }
 
 /* Hover: same language as dropdown row highlight */
 .business-card .bio.tags .tag:hover{
-  background: rgba(67, 76, 94, 0.85);
-  color: rgba(236, 239, 244, 0.98);
+  background: inherit;
+  color: inherit;
 }
 
 
