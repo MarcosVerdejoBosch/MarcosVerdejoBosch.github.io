@@ -425,32 +425,6 @@ a:hover { opacity: 0.8; }
   hyphens: none;
 }
 
-/* Blinking cursor */
-.business-card .bio.terminal-line .term-cursor{
-  display: inline-block;
-  width: 10px;
-  height: 1.05em;
-  margin-left: 2px;
-
-  background: var(--accent);
-  border-radius: 1px;
-  vertical-align: -2px;
-
-  animation: mvb-cursor-blink 1s steps(1, end) infinite;
-}
-
-@keyframes mvb-cursor-blink{
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .business-card .bio.terminal-line .term-cursor{
-    animation: none;
-    opacity: 1;
-  }
-}
-
 
 
 
