@@ -366,27 +366,24 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Pills: flat, brighter, no border/outline */
+/* Pills: flat, Frost-tinted (Nord), no border/outline */
 .business-card .bio .hl{
   display: inline-block;
   padding: 6px 12px;
   border-radius: 6px;
 
-  /* lighter Nord-ish chip so it doesn't look dull */
-  background: rgba(216, 222, 233, 0.10);
-
-  /* remove the “border-like” definition */
-  box-shadow: none;
+  background: rgba(136, 192, 208, 0.12); /* Frost base */
   border: 0;
+  box-shadow: none;
 
-  /* crisp readable text */
   color: rgba(236, 239, 244, 0.98);
 }
 
-/* Pills: subtle hover tint (flat Nord, no movement) */
+/* Pills: subtle hover tint (flat, no movement) */
 .business-card .bio .hl:hover{
-  background: rgba(136, 192, 208, 0.14); /* Frost tint */
+  background: rgba(136, 192, 208, 0.18); /* Frost hover */
 }
+
 
 .business-card .bio .hl:focus-visible{
   background: rgba(136, 192, 208, 0.14);
