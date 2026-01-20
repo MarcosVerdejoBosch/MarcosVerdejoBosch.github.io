@@ -352,29 +352,48 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Pills: flat, Frost-tinted (Nord), no border/outline */
+/* Pills → Bracket Tags (flat, Nord, distinct from nav underlines) */
 .business-card .bio .hl{
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 
-  background: rgba(136, 192, 208, 0.12); /* Frost base */
+  padding: 2px 0;          /* no box */
   border: 0;
+  border-radius: 0;
+  background: transparent;
   box-shadow: none;
 
+  color: rgba(236, 239, 244, 0.90);
+  letter-spacing: 0.02em;
+}
+
+/* Brackets */
+.business-card .bio .hl::before,
+.business-card .bio .hl::after{
+  color: rgba(216, 222, 233, 0.55);
+  transition: color 160ms ease;
+}
+.business-card .bio .hl::before{ content: "["; }
+.business-card .bio .hl::after{ content: "]"; }
+
+/* Hover: subtle Frost emphasis, no movement */
+.business-card .bio .hl:hover{
   color: rgba(236, 239, 244, 0.98);
 }
-
-/* Pills: subtle hover tint (flat, no movement) */
-.business-card .bio .hl:hover{
-  background: rgba(136, 192, 208, 0.18); /* Frost hover */
+.business-card .bio .hl:hover::before,
+.business-card .bio .hl:hover::after{
+  color: rgba(136, 192, 208, 0.85);
 }
 
-
+/* Keyboard focus: same visual language as hover (subtle) */
 .business-card .bio .hl:focus-visible{
-  background: rgba(136, 192, 208, 0.14);
-  outline: 2px solid rgba(136, 192, 208, 0.35);
-  outline-offset: 2px;
+  outline: none;
+  color: rgba(236, 239, 244, 0.98);
+}
+.business-card .bio .hl:focus-visible::before,
+.business-card .bio .hl:focus-visible::after{
+  color: rgba(136, 192, 208, 0.85);
 }
 
 
