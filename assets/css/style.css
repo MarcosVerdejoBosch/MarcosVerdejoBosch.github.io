@@ -491,28 +491,58 @@ button.icon-link:focus-visible{
 
 .email-copied { color: var(--accent) !important; }
 
-.copy-tooltip {
+.copy-tooltip{
   position: absolute;
-  bottom: 110%;
   left: 50%;
-  transform: translateX(-50%);
-  background: var(--bg-nav);
-  border: 1px solid var(--line);
-  color: var(--fg);
-  padding: 2px 8px;
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
+  bottom: calc(100% + 10px);     /* consistent gap above icon */
+  transform: translate(-50%, 6px);
+  transform-origin: bottom center;
+
+  background: rgba(46, 52, 64, 0.95);   /* Polar Night (flat, readable) */
+  border: 1px solid rgba(76, 86, 106, 0.85);
+  color: rgba(236, 239, 244, 0.98);
+
+  padding: 6px 10px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  border-radius: 4px;
+
+  border-radius: 8px;
+
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease;
   white-space: nowrap;
+  transition: opacity 160ms ease, transform 160ms ease;
 }
 
-.copy-tooltip.visible {
-  opacity: 1;
+/* little caret (border + fill, crisp + flat) */
+.copy-tooltip::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: rgba(76, 86, 106, 0.85); /* border */
 }
+
+.copy-tooltip::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  margin-top: -1px; /* sits inside the border triangle */
+  border: 6px solid transparent;
+  border-top-color: rgba(46, 52, 64, 0.95);  /* fill */
+}
+
+.copy-tooltip.visible{
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 
 /* --------------------------------------------------------------
    Footer
