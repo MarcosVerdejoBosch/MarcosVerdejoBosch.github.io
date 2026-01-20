@@ -595,7 +595,6 @@ button.icon-link:focus-visible{
 -------------------------------------------------------------- */
 .footer{
   text-align: center;
-  border-top: 1px solid rgba(76, 86, 106, 0.25);
   padding: 2rem;
   font-size: 0.8rem;
   color: rgba(216, 222, 233, 0.55); /* muted but readable */
