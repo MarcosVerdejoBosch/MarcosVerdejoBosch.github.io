@@ -30,9 +30,17 @@
             Projects <span class="caret" aria-hidden="true"></span>
           </a>
           <div class="dropdown-content">
-            <a href="{{ "/projects/linear-regulator/" | relative_url }}">Linear Regulator</a>
-            <a href="#" class="disabled">IoT Sensor (Soon)</a>
-          </div>
+            <a
+            href="{{ "/projects/linear-regulator/" | relative_url }}"
+            class="{% if page.url contains '/projects/linear-regulator/' %}active{% endif %}"
+            {% if page.url contains '/projects/linear-regulator/' %}aria-current="page"{% endif %}
+          >
+            Linear Regulator
+          </a>
+
+          <a href="#" class="disabled">IoT Sensor (Soon)</a>
+        </div>
+
         </div>
       </div>
     </div>
