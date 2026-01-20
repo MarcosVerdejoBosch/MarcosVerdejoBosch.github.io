@@ -388,19 +388,18 @@ a:hover { opacity: 0.8; }
 /* Pills → Bracket Tags (flat, Nord; spans are not focusable) */
 
 
-/* Terminal skill line (replaces "pills" visually) */
 .business-card .bio.terminal-line{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+  flex-wrap: nowrap;              /* single line */
+  gap: 0.75rem;
 
-  padding: 8px 10px;
-  background: rgba(46, 52, 64, 0.35); /* subtle terminal strip */
-  border-radius: 4px;                /* small radius, editor-like */
-  color: rgba(236, 239, 244, 0.92);
+  padding: 10px 12px;
+  background: rgba(46, 52, 64, 0.38); /* clearer terminal strip */
+  border-radius: 4px;
 
+  color: rgba(236, 239, 244, 0.95);
   font-size: 0.95rem;
   letter-spacing: 0.01em;
 }
@@ -420,15 +419,14 @@ a:hover { opacity: 0.8; }
   opacity: 0.95;
 }
 
-/* Blinking cursor */
 .business-card .bio.terminal-line .term-cursor{
   width: 10px;
   height: 1.05em;
   display: inline-block;
-  background: rgba(136, 192, 208, 0.85); /* Frost */
+  background: rgba(136, 192, 208, 0.95);
   border-radius: 1px;
   transform: translateY(1px);
-  animation: mvb-cursor-blink 1.05s steps(1, end) infinite;
+  animation: mvb-cursor-blink 1s steps(1, end) infinite;
 }
 
 @keyframes mvb-cursor-blink{
