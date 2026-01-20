@@ -122,27 +122,28 @@ a:hover { opacity: 0.8; }
   position: relative;
   display: inline-flex;
   align-items: center;
+  --dd-width: 200px;  /* keeps bridge + menu width in sync */
 }
 
-/* Single safe hover buffer (no duplicates)
-   - Does NOT block clicking "Projects" when closed
-   - Only becomes active when menu is open
-   - Bridge is BELOW the link (cursor handoff helper) */
+
+/* Single safe hover buffer (covers full menu width) */
 .dropdown::after{
   content: "";
   position: absolute;
-  left: -12px;
-  right: -12px;
-  top: 100%;          /* below the Projects link */
-  height: 14px;       /* forgiving gap */
+  left: 0;
+  top: 100%;
+  height: 14px;
+  width: var(--dd-width);
+  min-width: 100%;        /* never smaller than the trigger */
   background: transparent;
-  pointer-events: none; /* critical: never blocks clicks when closed */
+  pointer-events: none;   /* never blocks clicks when closed */
 }
 
 .dropdown:hover::after,
 .dropdown:focus-within::after{
-  pointer-events: auto; /* active only while open */
+  pointer-events: auto;   /* active only while open */
 }
+
 
 
 
@@ -184,7 +185,8 @@ a:hover { opacity: 0.8; }
   overflow: hidden;
   z-index: 100;
 
-  width: 200px;                               /* stops “huge right gap” */
+  width: var(--dd-width);
+  min-width: 100%; /* keeps it aligned and not smaller than Projects */
   padding: 0;
   pointer-events: none;
 }
