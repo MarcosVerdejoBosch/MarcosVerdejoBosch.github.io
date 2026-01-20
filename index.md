@@ -11,13 +11,15 @@ class: home
     <span class="role">Electronic Engineer</span>
     <div class="card-divider" aria-hidden="true"></div>
 
-    <div class="bio terminal-line" aria-label="Key skills">
-      <span class="prompt">$</span>
-      <span class="cmd">skills</span>
-      <span class="arg">--hardware_design</span>
-      <span class="arg">--embedded_systems</span>
-      <span class="arg">--analog_circuits</span>
+    <div class="bio terminal-line" aria-label="Profile focus">
+      <span class="path">~/profile</span><span class="colon">:</span>
+      <span class="arg">hardware design</span>
+      <span class="dot">·</span>
+      <span class="arg">embedded systems</span>
+      <span class="dot">·</span>
+      <span class="arg">analog circuits</span>
     </div>
+
 
 
     
