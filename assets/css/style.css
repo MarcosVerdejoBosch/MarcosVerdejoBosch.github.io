@@ -404,37 +404,43 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Pills → Bracket Tags (flat, Nord; spans are not focusable) */
-
-
-/* Profile tags — clean, VS Code-ish, flat */
-.business-card .bio.tags{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1.35rem;
+/* Pills: flat + subtle pixel-corner accents (Nord) */
+.business-card .bio .hl{
+  position: relative;
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: rgba(46, 52, 64, 0.22); /* flat, low-contrast */
+  color: rgba(236, 239, 244, 0.94);
 }
 
-.business-card .bio.tags .tag{
-  display: inline-flex;
-  align-items: center;
+/* Pixel corners (no full border, no glow) */
+.business-card .bio .hl::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  pointer-events: none;
 
-  padding: 8px 12px;
-  border-radius: 4px;                 /* small, not pill-y */
-  background: rgba(46, 52, 64, 0.22);  /* subtle tint (flat) */
-  border: 0;
-  box-shadow: none;
+  /* Frost “pixels” */
+  --px: rgba(136, 192, 208, 0.32);
 
-  color: rgba(236, 239, 244, 0.90);
-  font-size: 0.92rem;
-  line-height: 1.2;
-}
+  background:
+    /* top-left (L shape) */
+    linear-gradient(var(--px) 0 0) left 6px top / 6px 1px no-repeat,
+    linear-gradient(var(--px) 0 0) left top 6px / 1px 6px no-repeat,
 
-/* Hover: same language as dropdown row highlight */
-.business-card .bio.tags .tag:hover{
-  background: inherit;
-  color: inherit;
+    /* top-right */
+    linear-gradient(var(--px) 0 0) right 6px top / 6px 1px no-repeat,
+    linear-gradient(var(--px) 0 0) right top 6px / 1px 6px no-repeat,
+
+    /* bottom-left */
+    linear-gradient(var(--px) 0 0) left 6px bottom / 6px 1px no-repeat,
+    linear-gradient(var(--px) 0 0) left bottom 6px / 1px 6px no-repeat,
+
+    /* bottom-right */
+    linear-gradient(var(--px) 0 0) right 6px bottom / 6px 1px no-repeat,
+    linear-gradient(var(--px) 0 0) right bottom 6px / 1px 6px no-repeat;
 }
 
 
