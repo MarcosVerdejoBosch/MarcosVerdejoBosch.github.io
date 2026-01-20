@@ -11,11 +11,15 @@ class: home
     <span class="role">Electronic Engineer</span>
     <div class="card-divider" aria-hidden="true"></div>
 
-    <div class="bio">
-      <span class="hl">Hardware Design</span>
-      <span class="hl">Embedded Systems</span>
-      <span class="hl">Analog Circuits</span>
+    <div class="bio terminal-line" aria-label="Key skills">
+      <span class="prompt">$</span>
+      <span class="cmd">skills</span>
+      <span class="arg">--hardware-design</span>
+      <span class="arg">--embedded-systems</span>
+      <span class="arg">--analog-circuits</span>
+      <span class="term-cursor" aria-hidden="true"></span>
     </div>
+
 
     
 
