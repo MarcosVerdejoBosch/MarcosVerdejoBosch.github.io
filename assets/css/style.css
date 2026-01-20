@@ -388,40 +388,41 @@ a:hover { opacity: 0.8; }
 /* Pills → Bracket Tags (flat, Nord; spans are not focusable) */
 
 
-/* Terminal skill line — single clean command */
+/* Terminal vibe (path prompt) — minimal + clean */
 .business-card .bio.terminal-line{
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  flex-wrap: nowrap;
-  gap: 0.6rem;
+  flex-wrap: wrap;
+  column-gap: 0.6rem;
+  row-gap: 0.35rem;
 
-  padding: 8px 12px;
-  background: rgba(46, 52, 64, 0.30); /* lighter strip */
-  border-radius: 4px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
 
-  color: rgba(236, 239, 244, 0.95);
   font-size: 0.95rem;
-  line-height: 1.2;
+  line-height: 1.35;
   letter-spacing: 0.01em;
-
-  max-width: 100%;
-  overflow: hidden;        /* keeps it clean */
-  white-space: nowrap;     /* prevent multi-line command */
 }
 
-/* prompt / cmd / args */
-.business-card .bio.terminal-line .prompt{
-  color: rgba(143, 188, 187, 0.95);
-}
-.business-card .bio.terminal-line .cmd{
-  color: rgba(236, 239, 244, 0.98);
+.business-card .bio.terminal-line .path{
+  color: rgba(143, 188, 187, 0.95); /* accent-light */
   font-weight: 600;
 }
+
+.business-card .bio.terminal-line .colon{
+  color: rgba(216, 222, 233, 0.55);
+  margin-left: -0.35rem; /* keeps ~/profile: tight like a prompt */
+}
+
+.business-card .bio.terminal-line .dot{
+  color: rgba(216, 222, 233, 0.40);
+}
+
 .business-card .bio.terminal-line .arg{
-  color: rgba(216, 222, 233, 0.92);
-  white-space: nowrap;
-  word-break: keep-all;    /* don't break at hyphens */
+  color: rgba(216, 222, 233, 0.88);
+  white-space: nowrap;     /* prevents awkward breaks inside words */
   hyphens: none;
 }
 
