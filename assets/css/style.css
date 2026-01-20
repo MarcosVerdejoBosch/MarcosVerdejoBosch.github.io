@@ -433,9 +433,9 @@ a:hover { opacity: 0.8; }
 
 /* Social Links (force row) */
 .business-card .card-links {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(76, 86, 106, 0.35); /* softer */
   display: flex;
   flex-direction: row;     /* important */
   justify-content: center;
