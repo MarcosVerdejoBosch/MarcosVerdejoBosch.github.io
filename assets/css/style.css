@@ -294,37 +294,39 @@ a:hover { opacity: 0.8; }
 }
 
 
-/* Caret: always down, brighter when menu is open */
+/* Caret: always down, more noticeable when menu is open */
 .caret{
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   display: inline-block;
-  margin-left: 4px;
+  margin-left: 6px;
   position: relative;
   top: -1px;
-  color: rgba(236, 239, 244, 0.75);
+  color: rgba(216, 222, 233, 0.78); /* slightly brighter at rest */
 }
 
 .caret::before{
   content: "";
   position: absolute;
   inset: 0;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
+  border-right: 2px solid currentColor; /* thicker */
+  border-bottom: 2px solid currentColor;/* thicker */
   transform: rotate(45deg);
   transform-origin: 50% 50%;
-  opacity: 0.9;
-  transition: opacity 180ms ease, color 180ms ease;
+  opacity: 0.95;
+  transition: color 180ms ease, opacity 180ms ease;
 }
 
+/* open state (hover/focus-within) */
 .dropdown:hover .caret,
 .dropdown:focus-within .caret{
-  color: rgba(136, 192, 208, 1);
+  color: rgba(136, 192, 208, 1); /* Frost */
 }
 .dropdown:hover .caret::before,
 .dropdown:focus-within .caret::before{
   opacity: 1;
 }
+
 
 
 
