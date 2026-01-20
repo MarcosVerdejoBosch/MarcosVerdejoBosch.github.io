@@ -9,7 +9,6 @@ class: home
 
     <h1>Marcos Verdejo Bosch</h1>
     <span class="role">Electronic Engineer</span>
-    <div class="card-divider" aria-hidden="true"></div>
 
     <div class="bio tags" aria-label="Profile focus">
       <span class="tag">hardware design</span>
