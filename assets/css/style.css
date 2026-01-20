@@ -294,38 +294,41 @@ a:hover { opacity: 0.8; }
 }
 
 
-/* Caret: always down, more noticeable when menu is open */
+/* Caret: always down, brighter when menu is open (color-only change) */
 .caret{
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   display: inline-block;
-  margin-left: 6px;
+  margin-left: 4px;
   position: relative;
   top: -1px;
-  color: rgba(216, 222, 233, 0.78); /* slightly brighter at rest */
+  color: rgba(216, 222, 233, 0.82); /* slightly more visible at rest */
 }
 
 .caret::before{
   content: "";
   position: absolute;
   inset: 0;
-  border-right: 2px solid currentColor; /* thicker */
-  border-bottom: 2px solid currentColor;/* thicker */
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
   transform: rotate(45deg);
   transform-origin: 50% 50%;
-  opacity: 0.95;
-  transition: color 180ms ease, opacity 180ms ease;
+  opacity: 0.9;
+  transition: opacity 180ms ease, color 180ms ease, filter 180ms ease;
 }
 
-/* open state (hover/focus-within) */
+/* Open state: same size, just more noticeable color */
 .dropdown:hover .caret,
 .dropdown:focus-within .caret{
-  color: rgba(136, 192, 208, 1); /* Frost */
+  color: var(--accent);
+  filter: brightness(1.15); /* subtle boost, not glow */
 }
+
 .dropdown:hover .caret::before,
 .dropdown:focus-within .caret::before{
   opacity: 1;
 }
+
 
 
 
