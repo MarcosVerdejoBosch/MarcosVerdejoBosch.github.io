@@ -210,6 +210,19 @@ a:hover { opacity: 0.8; }
   transform: translateY(0);
 }
 
+/* Selected row (current page) — VS Code style */
+.dropdown-content a.active,
+.dropdown-content a[aria-current="page"]{
+  background: rgba(67, 76, 94, 0.92); /* same family as hover, slightly stronger */
+  color: rgba(236, 239, 244, 0.98);
+}
+
+.dropdown-content a.active::before,
+.dropdown-content a[aria-current="page"]::before{
+  opacity: 1; /* keep the accent stripe visible */
+}
+
+
 /* Rows — compact, crisp separators, no “card gaps” */
 .dropdown-content a{
   position: relative;
@@ -239,7 +252,7 @@ a:hover { opacity: 0.8; }
   left: 0;
   top: 0;
   bottom: 0;
-  width: 4px;
+  width: 3px;
   background: var(--stripe);
   opacity: 0;                                 /* off by default */
   transition: opacity 140ms ease;
@@ -260,18 +273,22 @@ a:hover { opacity: 0.8; }
   opacity: 1;
 }
 
-/* Disabled */
+/* Disabled — terminal style */
 .dropdown-content a.disabled{
-  color: rgba(216, 222, 233, 0.55);
+  color: rgba(216, 222, 233, 0.48);
+  font-style: italic;
   cursor: not-allowed;
 }
+
 .dropdown-content a.disabled::before{
-  opacity: 0;                                 /* never show stripe */
+  opacity: 0; /* never show stripe */
 }
+
 .dropdown-content a.disabled:hover{
   background: transparent;
-  color: rgba(216, 222, 233, 0.55);
+  color: rgba(216, 222, 233, 0.48);
 }
+
 
 /* Caret: always down, brighter when menu is open */
 .caret{
