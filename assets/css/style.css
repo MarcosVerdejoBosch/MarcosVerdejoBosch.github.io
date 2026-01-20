@@ -386,38 +386,64 @@ a:hover { opacity: 0.8; }
 }
 
 /* Pills → Bracket Tags (flat, Nord; spans are not focusable) */
-.business-card .bio .hl{
+
+
+/* Terminal skill line (replaces "pills" visually) */
+.business-card .bio.terminal-line{
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 
-  padding: 2px 0;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
+  padding: 8px 10px;
+  background: rgba(46, 52, 64, 0.35); /* subtle terminal strip */
+  border-radius: 4px;                /* small radius, editor-like */
+  color: rgba(236, 239, 244, 0.92);
 
-  cursor: default;
-  color: rgba(236, 239, 244, 0.90);
-  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
 }
 
-.business-card .bio .hl::before,
-.business-card .bio .hl::after{
-  content: "";
-  color: rgba(216, 222, 233, 0.55);
-  transition: color 160ms ease;
+/* prompt + command + args */
+.business-card .bio.terminal-line .prompt{
+  color: rgba(143, 188, 187, 0.95); /* accent-light */
 }
-.business-card .bio .hl::before{ content: "["; }
-.business-card .bio .hl::after{ content: "]"; }
 
-.business-card .bio .hl:hover{
+.business-card .bio.terminal-line .cmd{
   color: rgba(236, 239, 244, 0.98);
+  font-weight: 600;
 }
-.business-card .bio .hl:hover::before,
-.business-card .bio .hl:hover::after{
-  color: rgba(136, 192, 208, 0.85);
+
+.business-card .bio.terminal-line .arg{
+  color: rgba(216, 222, 233, 0.90);
+  opacity: 0.95;
 }
+
+/* Blinking cursor */
+.business-card .bio.terminal-line .term-cursor{
+  width: 10px;
+  height: 1.05em;
+  display: inline-block;
+  background: rgba(136, 192, 208, 0.85); /* Frost */
+  border-radius: 1px;
+  transform: translateY(1px);
+  animation: mvb-cursor-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes mvb-cursor-blink{
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .business-card .bio.terminal-line .term-cursor{
+    animation: none;
+    opacity: 1;
+  }
+}
+
 
 
 /* Stack */
