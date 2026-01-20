@@ -342,18 +342,27 @@ a:hover { opacity: 0.8; }
   padding: 1rem;
 }
 
-.business-card {
+.business-card{
   background: var(--bg-card);
   border: 1px solid rgba(76, 86, 106, 0.75);
-  border-top: 2px solid rgba(136, 192, 208, 0.65);
+
+  /* match dropdown radius */
   border-radius: 4px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.32);
-  padding: 2.6rem 2rem;
+  overflow: hidden;
+
+  /* tighter vertical padding = less empty bottom space */
+  padding: 2.3rem 2rem;
+
   width: 100%;
   max-width: 600px;
   text-align: center;
-  overflow: hidden;
+
+  /* Nord-blue tinted depth (subtle, not glowy) */
+  box-shadow:
+    0 14px 30px rgba(136, 192, 208, 0.08),
+    0 10px 22px rgba(0, 0, 0, 0.28);
 }
+
 
 .business-card h1 {
   font-size: 1.7rem;
@@ -397,7 +406,7 @@ a:hover { opacity: 0.8; }
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 1.9rem;
+  margin-bottom: 1.35rem;
 }
 
 .business-card .bio.tags .tag{
@@ -436,8 +445,8 @@ a:hover { opacity: 0.8; }
 
 /* Social Links (force row) */
 .business-card .card-links {
-  margin-top: 1.0rem;
-  padding-top: 1.15rem;
+  margin-top: 0.75rem;
+  padding-top: 1.0rem;
   border-top: 1px solid rgba(76, 86, 106, 0.35); /* softer */
   display: flex;
   flex-direction: row;     /* important */
