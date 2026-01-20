@@ -251,14 +251,16 @@ a:hover { opacity: 0.8; }
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 2px;            /* inset so it doesn't hit rounded corners */
+  bottom: 2px;         /* inset so it doesn't hit rounded corners */
   width: 3px;
   background: var(--stripe);
-  opacity: 0;                                 /* off by default */
+  opacity: 0;
   transition: opacity 140ms ease;
   pointer-events: none;
+  border-radius: 1px;  /* tiny smoothing on the stripe itself */
 }
+
 
 .dropdown-content a + a{
   border-top: 1px solid rgba(76, 86, 106, 0.85);
