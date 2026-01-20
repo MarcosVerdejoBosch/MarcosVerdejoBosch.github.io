@@ -17,7 +17,6 @@ class: home
       <span class="arg">--hardware_design</span>
       <span class="arg">--embedded_systems</span>
       <span class="arg">--analog_circuits</span>
-      <span class="term-cursor" aria-hidden="true"></span>
     </div>
 
 
