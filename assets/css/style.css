@@ -366,19 +366,21 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Pills: higher contrast, still flat + Nord */
+/* Pills: flat, brighter, no border/outline */
 .business-card .bio .hl{
   display: inline-block;
   padding: 6px 12px;
   border-radius: 6px;
 
-  /* darker, more defined fill (Nord-ish blue-gray) */
-  background: rgba(46, 52, 64, 0.62);
+  /* lighter Nord-ish chip so it doesn't look dull */
+  background: rgba(216, 222, 233, 0.10);
 
-  /* subtle frost edge for definition (no “glow”) */
-  box-shadow: inset 0 0 0 1px rgba(136, 192, 208, 0.22);
+  /* remove the “border-like” definition */
+  box-shadow: none;
+  border: 0;
 
-  color: rgba(236, 239, 244, 0.97);
+  /* crisp readable text */
+  color: rgba(236, 239, 244, 0.98);
 }
 
 
