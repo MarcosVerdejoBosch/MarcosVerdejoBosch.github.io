@@ -352,47 +352,37 @@ a:hover { opacity: 0.8; }
   font-size: 0.9rem;
 }
 
-/* Pills → Bracket Tags (flat, Nord, distinct from nav underlines) */
+/* Pills → Bracket Tags (flat, Nord; spans are not focusable) */
 .business-card .bio .hl{
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
 
-  padding: 2px 0;          /* no box */
+  padding: 2px 0;
+  background: transparent;
   border: 0;
   border-radius: 0;
-  background: transparent;
   box-shadow: none;
 
+  cursor: default;
   color: rgba(236, 239, 244, 0.90);
   letter-spacing: 0.02em;
 }
 
-/* Brackets */
 .business-card .bio .hl::before,
 .business-card .bio .hl::after{
+  content: "";
   color: rgba(216, 222, 233, 0.55);
   transition: color 160ms ease;
 }
 .business-card .bio .hl::before{ content: "["; }
 .business-card .bio .hl::after{ content: "]"; }
 
-/* Hover: subtle Frost emphasis, no movement */
 .business-card .bio .hl:hover{
   color: rgba(236, 239, 244, 0.98);
 }
 .business-card .bio .hl:hover::before,
 .business-card .bio .hl:hover::after{
-  color: rgba(136, 192, 208, 0.85);
-}
-
-/* Keyboard focus: same visual language as hover (subtle) */
-.business-card .bio .hl:focus-visible{
-  outline: none;
-  color: rgba(236, 239, 244, 0.98);
-}
-.business-card .bio .hl:focus-visible::before,
-.business-card .bio .hl:focus-visible::after{
   color: rgba(136, 192, 208, 0.85);
 }
 
