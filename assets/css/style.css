@@ -383,12 +383,16 @@ a:hover { opacity: 0.8; }
   color: rgba(236, 239, 244, 0.98);
 }
 
+/* Pills: subtle hover tint (flat Nord, no movement) */
+.business-card .bio .hl:hover{
+  background: rgba(136, 192, 208, 0.14); /* Frost tint */
+}
 
-
-
-
-
-
+.business-card .bio .hl:focus-visible{
+  background: rgba(136, 192, 208, 0.14);
+  outline: 2px solid rgba(136, 192, 208, 0.35);
+  outline-offset: 2px;
+}
 
 
 /* Stack */
