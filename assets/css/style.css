@@ -419,6 +419,15 @@ a:hover { opacity: 0.8; }
   cursor: default;
 }
 
+/* Apple-clean delimiter */
+.business-card .bio .hl:not(:last-child)::after{
+  content: " ·";
+  display: inline-block;
+  margin: 0 0.9rem;
+  color: rgba(216, 222, 233, 0.55); /* subtle, not attention-grabbing */
+}
+
+
 /* Safety: no hover effect even if something else adds it later */
 .business-card .bio .hl:hover{
   background: transparent;
