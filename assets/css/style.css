@@ -395,28 +395,24 @@ a:hover { opacity: 0.8; }
   margin: 0 0 1.5rem;
 }
 
-/* Bio keywords — clean text (no pills, no hover) */
+/* Bio — clean tags with Apple-like separators */
 .business-card .bio{
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  overflow: hidden;
-  gap: 1.6rem;                 /* more breathing room */
-  margin: 1.3rem 0 1.1rem;     /* balanced vertical spacing */
+  align-items: center;
+  flex-wrap: wrap;        /* so mobile can wrap instead of staying one long line */
+  gap: 0;                 /* spacing comes from the separators */
+  margin: 1.2rem 0 1.4rem;
   font-size: 0.95rem;
-  color: rgba(236, 239, 244, 0.92);
 }
 
-/* Keep your existing spans, but make them “just text” */
 .business-card .bio .hl{
+  display: inline;
   padding: 0;
-  background: transparent;
+  background: none;
   border: 0;
-  box-shadow: none;
-  border-radius: 0;
-  color: inherit;
-  cursor: default;
+  color: rgba(236, 239, 244, 0.92);
+  white-space: nowrap;    /* keeps “hardware design” together */
 }
 
 /* Apple-clean delimiter */
@@ -427,12 +423,25 @@ a:hover { opacity: 0.8; }
   color: rgba(216, 222, 233, 0.55); /* subtle, not attention-grabbing */
 }
 
+/* visible separator that won’t conflict with your old ::after */
+.business-card .bio .hl + .hl::before{
+  content: "·";
+  display: inline-block;
+  margin: 0 1.05rem;
+  color: rgba(136, 192, 208, 0.70);  /* Nord Frost, actually visible */
+}
+
 
 /* Safety: no hover effect even if something else adds it later */
 .business-card .bio .hl:hover{
   background: transparent;
 }
 
+/* Minimal small-screen tweak */
+@media (max-width: 520px){
+  .business-card .bio{ font-size: 0.9rem; }
+  .business-card .bio .hl + .hl::before{ margin: 0 0.75rem; }
+}
 
 
 
