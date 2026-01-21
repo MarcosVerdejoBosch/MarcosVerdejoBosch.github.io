@@ -394,55 +394,52 @@ a:hover { opacity: 0.8; }
   background: var(--line);
   margin: 0 0 1.5rem;
 }
-
-/* Bio — clean tags with Apple-like separators */
+/* Bio — clean tags + “real” Nord bullet separators (no text dots) */
 .business-card .bio{
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;        /* so mobile can wrap instead of staying one long line */
-  gap: 0;                 /* spacing comes from the separators */
+  flex-wrap: wrap;      /* mobile can wrap cleanly */
+  gap: 0;               /* spacing comes from separator padding */
   margin: 1.2rem 0 1.4rem;
   font-size: 0.95rem;
 }
 
 .business-card .bio .hl{
-  display: inline;
+  position: relative;
+  display: inline-block;
   padding: 0;
   background: none;
   border: 0;
   color: rgba(236, 239, 244, 0.92);
-  white-space: nowrap;    /* keeps “hardware design” together */
+  white-space: nowrap;  /* keep each skill together */
 }
 
-/* Apple-clean delimiter */
+/* Reserve space for the separator */
+.business-card .bio .hl:not(:last-child){
+  padding-right: 1.6rem;
+}
+
+/* “Real” bullet: a tiny circle (more visible than a text dot) */
 .business-card .bio .hl:not(:last-child)::after{
-  content: " ·";
-  display: inline-block;
-  margin: 0 0.9rem;
-  color: rgba(216, 222, 233, 0.55); /* subtle, not attention-grabbing */
+  content: "";
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: rgba(136, 192, 208, 0.85); /* Nord Frost */
 }
 
-/* visible separator that won’t conflict with your old ::after */
-.business-card .bio .hl + .hl::before{
-  content: "·";
-  display: inline-block;
-  margin: 0 1.05rem;
-  color: rgba(136, 192, 208, 0.70);  /* Nord Frost, actually visible */
-}
-
-
-/* Safety: no hover effect even if something else adds it later */
+/* Safety: no hover effect */
 .business-card .bio .hl:hover{
   background: transparent;
 }
 
-/* Minimal small-screen tweak */
-@media (max-width: 520px){
-  .business-card .bio{ font-size: 0.9rem; }
-  .business-card .bio .hl + .hl::before{ margin: 0 0.75rem; }
-}
-
+/* Minimal small-screen tweak (one line) */
+@media (max-width: 520px){ .business-card .bio{ font-size: 0.9rem; } }
 
 
 
