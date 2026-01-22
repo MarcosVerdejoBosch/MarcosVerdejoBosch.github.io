@@ -394,51 +394,43 @@ a:hover { opacity: 0.8; }
   background: var(--line);
   margin: 0 0 1.5rem;
 }
-/* Bio — clean tags + “real” Nord bullet separators (no text dots) */
+
+/* Bio — clean tags + real Nord bullet separators */
 .business-card .bio{
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;      /* mobile can wrap cleanly */
-  gap: 0;               /* spacing comes from separator padding */
+  flex-wrap: wrap;
+  column-gap: 1.4rem;   /* space between items */
+  row-gap: 0.6rem;      /* space between lines on mobile */
   margin: 1.2rem 0 1.4rem;
   font-size: 0.95rem;
 }
 
 .business-card .bio .hl{
-  position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;         /* space between text and bullet */
   padding: 0;
   background: none;
   border: 0;
   color: rgba(236, 239, 244, 0.92);
-  white-space: nowrap;  /* keep each skill together */
+  white-space: nowrap;
 }
 
-/* Reserve space for the separator */
-.business-card .bio .hl:not(:last-child){
-  padding-right: 1.6rem;
-}
-
-/* “Real” bullet: a tiny circle (more visible than a text dot) */
 .business-card .bio .hl:not(:last-child)::after{
   content: "";
-  position: absolute;
-  right: 0.75rem;
-  top: 50%;
   width: 5px;
   height: 5px;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  background: rgba(136, 192, 208, 0.85); /* Nord Frost */
+  border-radius: 999px;
+  background: rgba(136, 192, 208, 0.85);
+  flex: 0 0 auto;
 }
 
 /* Safety: no hover effect */
-.business-card .bio .hl:hover{
-  background: transparent;
-}
+.business-card .bio .hl:hover{ background: transparent; }
 
-/* Minimal small-screen tweak (one line) */
+/* one-line minimal tweak for small screens */
 @media (max-width: 520px){ .business-card .bio{ font-size: 0.9rem; } }
 
 
