@@ -420,12 +420,16 @@ a:hover { opacity: 0.8; }
 
 .business-card .bio .hl:not(:last-child)::after{
   content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 999px;
-  background: rgba(136, 192, 208, 0.85);
-  flex: 0 0 auto;
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: rgba(136, 192, 208, 0.55);
 }
+
 
 /* Safety: no hover effect */
 .business-card .bio .hl:hover{ background: transparent; }
