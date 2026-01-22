@@ -538,30 +538,7 @@ button.icon-link:focus-visible{
 
 .email-copied { color: var(--accent) !important; }
 
-.copy-tooltip{
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 4px);
-  transform: translate(-50%, 4px);
-  transform-origin: bottom center;
 
-  background: rgba(46, 52, 64, 0.95);   /* Polar Night (flat, readable) */
-  border: 1px solid rgba(76, 86, 106, 0.85);
-  color: rgba(236, 239, 244, 0.98);
-
-  padding: 6px 10px;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-
-  border-radius: 8px;
-
-  opacity: 0;
-  pointer-events: none;
-  white-space: nowrap;
-  transition: opacity 160ms ease, transform 160ms ease;
-}
 
 /* Tooltip — match dropdown panel (clean, Nord, no extra flair) */
 .copy-tooltip{
