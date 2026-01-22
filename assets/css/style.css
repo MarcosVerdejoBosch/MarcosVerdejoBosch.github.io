@@ -762,7 +762,7 @@ button.icon-link:focus-visible{
 @media (max-width: 600px) {
   .business-card h1 { font-size: 1.4rem; }
    
-   business-card .bio{
+  .business-card .bio{
     flex-wrap: wrap;
     white-space: normal;
     overflow: visible;
