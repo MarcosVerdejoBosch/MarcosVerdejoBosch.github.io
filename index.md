@@ -10,11 +10,12 @@ class: home
     <h1>Marcos Verdejo Bosch</h1>
     <span class="role">Electronic Engineer</span>
 
-    <div class="bio tags" aria-label="Profile focus">
-      <span class="tag">hardware design</span>
-      <span class="tag">embedded systems</span>
-      <span class="tag">analog circuits</span>
+    <div class="bio">
+      <span class="hl">hardware design</span>
+      <span class="hl">embedded systems</span>
+      <span class="hl">analog circuits</span>
     </div>
+
 
 
 
