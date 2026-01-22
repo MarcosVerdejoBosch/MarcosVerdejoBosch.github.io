@@ -418,21 +418,12 @@ a:hover { opacity: 0.8; }
   white-space: nowrap;
 }
 
-/* Reserve space for the separator */
-.business-card .bio .hl:not(:last-child){
-  padding-right: 1.2rem;   /* was 1.6rem */
-}
-
+/* Separator: Apple-clean dash */
 .business-card .bio .hl:not(:last-child)::after{
-  content: "";
-  position: absolute;
-  right: 0.55rem;
-  top: 50%;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  background: rgba(136, 192, 208, 0.55);
+  content: "-";
+  display: inline-block;
+  margin: 0 1.0rem;
+  color: rgba(216, 222, 233, 0.55);
 }
 
 
