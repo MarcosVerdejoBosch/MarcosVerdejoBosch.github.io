@@ -560,27 +560,35 @@ button.icon-link:focus-visible{
   transition: opacity 160ms ease, transform 160ms ease;
 }
 
-/* little caret (border + fill, crisp + flat) */
-.copy-tooltip::before{
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translateX(-50%);
-  border: 7px solid transparent;
-  border-top-color: rgba(76, 86, 106, 0.85); /* border */
+/* Tooltip — match dropdown panel (clean, Nord, no extra flair) */
+.copy-tooltip{
+  background: rgba(46, 52, 64, 0.92);      /* same as dropdown */
+  border: 1px solid rgba(76, 86, 106, 0.90);
+  color: rgba(236, 239, 244, 0.96);
+
+  border-radius: 4px;                      /* match card/dropdown */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22); /* match dropdown */
+
+  padding: 6px 10px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;                  /* slightly calmer */
+  text-transform: uppercase;
+
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 160ms ease, transform 160ms ease;
 }
 
-.copy-tooltip::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translateX(-50%);
-  margin-top: -1px; /* sits inside the border triangle */
-  border: 6px solid transparent;
-  border-top-color: rgba(46, 52, 64, 0.95);  /* fill */
+/* caret (border + fill) matched to tooltip border/bg */
+.copy-tooltip::before{
+  border-top-color: rgba(76, 86, 106, 0.90);
 }
+.copy-tooltip::after{
+  border-top-color: rgba(46, 52, 64, 0.92);
+}
+
 
 .copy-tooltip.visible{
   opacity: 1;
