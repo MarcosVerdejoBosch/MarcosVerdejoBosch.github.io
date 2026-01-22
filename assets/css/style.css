@@ -360,7 +360,7 @@ a:hover { opacity: 0.8; }
   overflow: hidden;
 
   /* tighter vertical padding = less empty bottom space */
-  padding: 2.3rem 2rem;
+  padding: 2.2rem 2rem 1.6rem;
 
   width: 100%;
   max-width: 520px;
