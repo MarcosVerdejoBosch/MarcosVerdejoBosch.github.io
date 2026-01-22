@@ -377,6 +377,8 @@ a:hover { opacity: 0.8; }
   margin: 0 0 0.5rem 0;
   color: var(--fg);
   letter-spacing: 0.04em;
+  text-shadow: none;
+  filter: none;
 }
 
 .business-card .role {
