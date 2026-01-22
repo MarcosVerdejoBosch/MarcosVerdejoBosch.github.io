@@ -395,40 +395,41 @@ a:hover { opacity: 0.8; }
   margin: 0 0 1.5rem;
 }
 
-/* Bio — clean tags + tight hyphen separators */
+/* Bio — skills separated by pipes */
 .business-card .bio{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
   white-space: nowrap;
-  gap: 0;                 /* no extra spacing from flex */
   margin: 1.2rem 0 1.4rem;
   font-size: 0.95rem;
 }
 
 .business-card .bio .hl{
-  display: inline-block;  /* keep it simple */
+  display: inline;
   padding: 0;
   background: none;
   border: 0;
   color: rgba(236, 239, 244, 0.92);
-  white-space: nowrap;
 }
 
+/* Pipe separator */
 .business-card .bio .hl:not(:first-child)::before{
-  content: "-";
-  display: inline-block;
-  margin: 0 0.4rem;       /* 👈 tighten here */
+  content: "|";
+  margin: 0 0.75rem;                 /* tighten spacing here */
   color: rgba(216, 222, 233, 0.55);
 }
 
 /* Safety: no hover effect */
 .business-card .bio .hl:hover{ background: transparent; }
 
+/* Mobile: allow wrap if needed */
+@media (max-width: 520px){
+  .business-card .bio{ flex-wrap: wrap; white-space: normal; }
+  .business-card .bio .hl:not(:first-child)::before{ margin: 0 0.55rem; }
+}
 
-/* one-line minimal tweak for small screens */
-@media (max-width: 520px){ .business-card .bio{ font-size: 0.9rem; } }
 
 
 
