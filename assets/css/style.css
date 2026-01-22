@@ -119,17 +119,17 @@ a:hover { opacity: 0.8; }
 ============================== */
 
 /* Container */
+/* ==============================
+   Dropdown — clean terminal panel
+============================== */
+
 .dropdown{
   position: relative;
   display: inline-flex;
   align-items: center;
-  --dd-width: 200px;  /* keeps bridge + menu width in sync */
+  --dd-gap: 8px;     /* gap between trigger and menu */
+  --dd-bridge: 10px; /* hover bridge height (>= gap) */
 }
-
-
-
-
-
 
 /* Treat hovering dropdown as hovering Projects (underline rules) */
 .dropdown:hover > a,
@@ -151,33 +151,30 @@ a:hover { opacity: 0.8; }
   padding: 4px 0;
 }
 
-/* Menu — terminal/editor panel (T1) */
+/* Menu — terminal/editor panel */
 .dropdown-content{
+  position: absolute;
+  left: 0;
+  top: calc(100% + var(--dd-gap));
+  z-index: 100;
+
   opacity: 0;
   visibility: hidden;
   transform: translateY(6px);
+  pointer-events: none;
   transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
 
-  position: absolute;
-  left: 0;
-  top: calc(100% + 8px);
-
-  /* flatter, more terminal */
-  background: rgba(46, 52, 64, 0.92);      /* Polar Night tint */
-  border: 1px solid rgba(76, 86, 106, 0.95);/* crisp edge */
-  border-radius: 4px;                       /* less rounded */
-  box-shadow: 0 6px 16px rgba(0,0,0,0.22);  /* subtle (not glowy) */
+  background: rgba(46, 52, 64, 0.92);
+  border: 1px solid rgba(76, 86, 106, 0.95);
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
   overflow: hidden;
-  z-index: 100;
 
   width: max-content;
   max-width: 320px;
   min-width: 100%;
   padding: 0;
-
-  pointer-events: none;
 }
-
 
 /* Hover bridge: preserves gap without killing clicks */
 .dropdown::after{
@@ -186,7 +183,7 @@ a:hover { opacity: 0.8; }
   left: 0;
   right: 0;
   top: 100%;
-  height: 10px;          /* must match the gap (8px) or slightly more */
+  height: var(--dd-bridge);
   background: transparent;
   pointer-events: none;
 }
@@ -196,40 +193,27 @@ a:hover { opacity: 0.8; }
   pointer-events: auto;
 }
 
-
-.dropdown:hover .dropdown-content,
-.dropdown:focus-within .dropdown-content{
-  pointer-events: auto;
-}
-
-
-
+/* Open state (single block: no duplicates) */
 .dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content{
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
+/* Active row styling */
 .dropdown-content a.active,
 .dropdown-content a[aria-current="page"]{
   background: rgba(67, 76, 94, 0.92);
   color: rgba(236, 239, 244, 0.99);
 }
 
-
-.dropdown-content a.active::before,
-.dropdown-content a[aria-current="page"]::before{
-  opacity: 1; /* keep the accent stripe visible */
-}
-
-
 /* Rows — compact, crisp separators, no “card gaps” */
 .dropdown-content a{
   position: relative;
   display: block;
-
-  padding: 10px 10px 10px 12px; /* tighter, less right space */
+  padding: 10px 10px 10px 12px;
   margin: 0;
 
   color: rgba(236, 239, 244, 0.88);
@@ -246,34 +230,34 @@ a:hover { opacity: 0.8; }
   --stripe: rgba(136, 192, 208, 0.95);
 }
 
-
+/* Accent stripe */
 .dropdown-content a::before{
-  content: none;
+  content: "";
   position: absolute;
   left: 0;
-  top: 2px;            /* inset so it doesn't hit rounded corners */
-  bottom: 2px;         /* inset so it doesn't hit rounded corners */
-  width: 0px;
+  top: 2px;
+  bottom: 2px;
+  width: 3px;
   background: var(--stripe);
   opacity: 0;
   transition: opacity 140ms ease;
   pointer-events: none;
-  border-radius: 1px;  /* tiny smoothing on the stripe itself */
+  border-radius: 1px;
 }
 
-
+/* separators */
 .dropdown-content a + a{
   border-top: 1px solid rgba(76, 86, 106, 0.85);
 }
 
-
+/* hover */
 .dropdown-content a:hover{
   background: rgba(67, 76, 94, 0.88);
   color: rgba(236, 239, 244, 0.98);
 }
-
-
-.dropdown-content a:hover::before{
+.dropdown-content a:hover::before,
+.dropdown-content a.active::before,
+.dropdown-content a[aria-current="page"]::before{
   opacity: 1;
 }
 
@@ -283,15 +267,14 @@ a:hover { opacity: 0.8; }
   font-style: italic;
   cursor: not-allowed;
 }
-
 .dropdown-content a.disabled::before{
-  opacity: 0; /* never show stripe */
+  opacity: 0;
 }
-
 .dropdown-content a.disabled:hover{
   background: transparent;
   color: rgba(216, 222, 233, 0.48);
 }
+
 
 
 /* Caret: always down, brighter when menu is open (color-only change) */
@@ -561,13 +544,7 @@ button.icon-link:focus-visible{
   transition: opacity 160ms ease, transform 160ms ease;
 }
 
-/* caret (border + fill) matched to tooltip border/bg */
-.copy-tooltip::before{
-  border-top-color: rgba(76, 86, 106, 0.90);
-}
-.copy-tooltip::after{
-  border-top-color: rgba(46, 52, 64, 0.92);
-}
+
 
 
 .copy-tooltip.visible{
