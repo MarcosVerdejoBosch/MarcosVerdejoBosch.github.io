@@ -340,20 +340,17 @@ a:hover { opacity: 0.8; }
 .business-card{
   background: var(--bg-card);
   border: 1px solid rgba(76, 86, 106, 0.75);
-
-  /* match dropdown radius */
   border-radius: 4px;
   overflow: hidden;
 
-  /* tighter vertical padding = less empty bottom space */
-  padding: clamp(1.6rem, 3vw, 2.05rem) clamp(1.4rem, 3vw, 1.9rem);
+  /* VS Code-like: tighter vertical rhythm */
+  padding: clamp(1.2rem, 2.2vw, 1.6rem) clamp(1.3rem, 2.4vw, 1.7rem);
 
   width: 100%;
   max-width: 520px;
   text-align: center;
 
-  box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
 }
 
 
@@ -367,13 +364,13 @@ a:hover { opacity: 0.8; }
   filter: none;
 }
 
-.business-card .role {
+.business-card .role{
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--fg);
   display: block;
-  margin-bottom: 1.05rem;
+  margin: 0.35rem 0 0.9rem; /* tighter */
 }
 
 .card-divider {
@@ -390,7 +387,8 @@ a:hover { opacity: 0.8; }
   align-items: center;
   flex-wrap: nowrap;
   white-space: nowrap;
-  margin: 1.2rem 0 1.4rem;
+
+  margin: 0.9rem 0 1.1rem; /* tighter */
   font-size: 0.95rem;
 }
 
@@ -433,18 +431,14 @@ a:hover { opacity: 0.8; }
 
 /* Social Links (force row) */
 .business-card .card-links {
-  margin-top: 0.75rem;
-  padding-top: 1.0rem;
-  border-top: 1px solid rgba(76, 86, 106, 0.35); /* softer */
+  margin-top: 0.6rem;                 /* tighter */
+  padding-top: 0.85rem;               /* tighter */
+  border-top: 1px solid rgba(76, 86, 106, 0.35);
   display: flex;
-  flex-direction: row;     /* important */
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1.25rem;
-}
-
-/* Ensure icons never stack due to inherited styles */
-.business-card .card-links{
+  gap: 1.1rem;                         /* slightly tighter */
   color: rgba(236, 239, 244, 0.88);
 }
 
