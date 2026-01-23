@@ -330,14 +330,11 @@ a:hover { opacity: 0.8; }
 -------------------------------------------------------------- */
 /* --- Layout alignment: keep card + footer centered to the same column as navbar --- */
 .home-wrapper{
-  flex: 1;                       /* fills remaining height so footer stays at bottom */
-  width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;                /* horizontal centering */
-  padding: 2.5rem 1.2rem;        /* match navbar horizontal padding */
+  flex: 1;
+  padding: 2.5rem 0;    /* container handles horizontal padding */
   display: flex;
-  justify-content: center;       /* vertical positioning (kept, up to us) */
-  align-items: center;           /* horizontal centering of the card inside */
+  justify-content: center;
+  align-items: center;
 }
 
 .business-card{
