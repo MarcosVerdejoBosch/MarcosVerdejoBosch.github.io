@@ -320,8 +320,8 @@ a:hover { opacity: 0.8; }
 /* Open state: same size, just more noticeable color */
 .dropdown:hover .caret,
 .dropdown:focus-within .caret{
-  color: rgba(136, 192, 208, 0.95); /* stronger accent */
-  filter: brightness(1.15); /* subtle boost, not glow */
+  color: var(--accent); 
+  filter: brightness(1.2); /* subtle boost, not glow */
 }
 
 .dropdown:hover .caret::before,
