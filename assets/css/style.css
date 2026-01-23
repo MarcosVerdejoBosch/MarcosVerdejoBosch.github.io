@@ -40,6 +40,12 @@ html, body {
   min-height: 100vh;
 }
 
+html{
+  scrollbar-gutter: stable; /* modern browsers */
+  overflow-y: scroll;       /* fallback: always show gutter */
+}
+
+
 a {
   color: var(--accent);
   text-decoration: none;
