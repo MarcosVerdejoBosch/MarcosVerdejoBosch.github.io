@@ -577,33 +577,18 @@ button.icon-link:focus-visible{
 
 
 
-/* Tooltip — anchored above the email icon */
+/* Tooltip: closer + editor-like textbox feel + more vertical padding */
 .copy-tooltip{
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 4px);   /* was 8px */
-  padding: 8px 14px;          /* more room around the word */
-  border-radius: 4px;     
-  transform: translate(-50%, 4px);
+  bottom: calc(100% + 2px);     /* closer to the icon (was 4px/8px) */
+  padding: 10px 14px;           /* more vertical breathing room */
 
-  z-index: 5;
+  background: rgba(46, 52, 64, 0.96);
+  border: 1px solid rgba(136, 192, 208, 0.35); /* subtle accent like an input focus */
+  border-radius: 6px;
 
-  background: rgba(46, 52, 64, 0.92);
-  border: 1px solid rgba(76, 86, 106, 0.90);
-  color: rgba(236, 239, 244, 0.96);
-
-  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
-
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-
-  opacity: 0;
-  pointer-events: none;
-  white-space: nowrap;
-  transition: opacity 160ms ease, transform 160ms ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
 }
+
 
 .copy-tooltip.visible{
   opacity: 1;
