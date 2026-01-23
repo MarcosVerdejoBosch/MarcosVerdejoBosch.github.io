@@ -378,7 +378,7 @@ body.home .business-card{
   transform: translateY(-18px);
 
   /* VS Code-like: tighter vertical rhythm */
-  padding: clamp(1.2rem, 2.2vw, 1.6rem) clamp(1.3rem, 2.4vw, 1.7rem);
+  padding: 1.25rem 1.6rem; /* was larger via clamp */
 
   width: 100%;
   max-width: 520px;
@@ -422,7 +422,7 @@ body.home .business-card{
   flex-wrap: nowrap;
   white-space: nowrap;
 
-  margin: 0.9rem 0 1.1rem; /* tighter */
+  margin: 0.75rem 0 0.9rem;
   font-size: 0.95rem;
 }
 
@@ -465,8 +465,8 @@ body.home .business-card{
 
 /* Social Links (force row) */
 .business-card .card-links{
-  margin-top: 0.6rem;
-  padding-top: 0.85rem;
+  margin-top: 0.35rem;
+  padding-top: 0.7rem;
   border-top: 1px solid rgba(76, 86, 106, 0.35);
 
   display: flex;
