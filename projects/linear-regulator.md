@@ -5,7 +5,7 @@ permalink: /projects/linear-regulator/
 ---
 
 <div class="case-study">
-<h1>Discrete Linear Regulator</h1>
+<h1>Linear Regulator</h1>
 <p class="caption">ENGINEERING REPORT &amp; ANALYSIS</p>
 
 <div class="figure">
