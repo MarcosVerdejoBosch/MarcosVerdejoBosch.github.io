@@ -699,20 +699,53 @@ button.icon-link:focus-visible{
 }
 
 
-/* Projects: panel cards */
+/* ==============================
+   Projects — panel cards
+============================== */
+
 .project-card{
-  background: var(--bg-card);
-  border: 1px solid rgba(76, 86, 106, 0.75);
+  background: rgba(46, 52, 64, 0.35); /* subtle panel, close to editor */
+  border: 1px solid rgba(76, 86, 106, 0.85);
   border-radius: 6px;
-  padding: 1.2rem 1.4rem;
-  margin: 1.2rem 0;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.18); /* subtle, same family as home */
+  padding: 1.2rem 1.35rem;
+  margin: 1.15rem 0;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.14);
 }
 
-.project-card h2,
 .project-card h3{
-  margin-top: 0;
+  margin: 0 0 0.55rem 0;
+  letter-spacing: 0.02em;
 }
+
+.project-card p{
+  margin: 0 0 0.85rem 0;
+  color: rgba(236, 239, 244, 0.92);
+}
+
+/* Specs line: quiet, terminal-ish */
+.project-card .specs{
+  color: rgba(216, 222, 233, 0.70);
+  font-size: 0.92rem;
+  margin: 0 0 0.55rem 0;
+}
+
+/* CTA: crisp, minimal */
+.project-card .btn-report{
+  display: inline-block;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.project-card .btn-report:hover{
+  opacity: 1;
+  border-bottom-color: rgba(136, 192, 208, 0.65);
+}
+
 
 
 /* --------------------------------------------------------------
