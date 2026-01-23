@@ -563,19 +563,26 @@ button.icon-link:focus-visible{
 
 
 
-/* Tooltip — match dropdown panel (clean, Nord, no extra flair) */
+/* Tooltip — anchored above the email icon */
 .copy-tooltip{
-  background: rgba(46, 52, 64, 0.92);      /* same as dropdown */
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);   /* sits above the icon */
+  transform: translate(-50%, 4px);
+
+  z-index: 5;
+
+  background: rgba(46, 52, 64, 0.92);
   border: 1px solid rgba(76, 86, 106, 0.90);
   color: rgba(236, 239, 244, 0.96);
 
-  border-radius: 4px;                      /* match card/dropdown */
-  box-shadow: 0 6px 16px rgba(0,0,0,0.22); /* match dropdown */
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
 
   padding: 6px 10px;
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.05em;                  /* slightly calmer */
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 
   opacity: 0;
@@ -584,13 +591,11 @@ button.icon-link:focus-visible{
   transition: opacity 160ms ease, transform 160ms ease;
 }
 
-
-
-
 .copy-tooltip.visible{
   opacity: 1;
   transform: translate(-50%, 0);
 }
+
 
 
 /* --------------------------------------------------------------
