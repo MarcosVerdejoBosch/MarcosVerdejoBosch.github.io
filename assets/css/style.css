@@ -579,19 +579,15 @@ button.icon-link:focus-visible{
 
 /* Tooltip: closer + editor-like textbox feel + more vertical padding */
 .copy-tooltip{
-  bottom: calc(100% + 2px);     /* closer to the icon (was 4px/8px) */
-  padding: 10px 14px;           /* more vertical breathing room */
-
-  background: rgba(46, 52, 64, 0.96);
-  border: 1px solid rgba(136, 192, 208, 0.35); /* subtle accent like an input focus */
-  border-radius: 6px;
-
-  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 2px);
+  transform: translate(-50%, 4px);
 }
 
 
+
 .copy-tooltip.visible{
-  opacity: 1;
   transform: translate(-50%, 0);
 }
 
