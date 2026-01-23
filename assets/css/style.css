@@ -362,10 +362,12 @@ body.home .home-wrapper{
   flex: 1; /* now it can actually take the remaining height */
 }
 
-/* remove the optical hack once the layout is correctly centered */
+/* Home card should use the same column width as the site container */
 body.home .business-card{
-  transform: none;
+  max-width: none;                 /* remove the 520px cap */
+  width: min(100%, var(--container-max));
 }
+
 
 
 .business-card{
