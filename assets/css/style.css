@@ -351,6 +351,23 @@ a:hover { opacity: 0.8; }
   align-items: center;
 }
 
+/* Home: let the page content fill remaining height so centering is real (no translate hacks) */
+body.home main.content > .container{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body.home .home-wrapper{
+  flex: 1; /* now it can actually take the remaining height */
+}
+
+/* remove the optical hack once the layout is correctly centered */
+body.home .business-card{
+  transform: none;
+}
+
+
 .business-card{
   background: var(--bg-card);
   border: 1px solid rgba(76, 86, 106, 0.75);
