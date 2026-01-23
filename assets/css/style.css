@@ -577,17 +577,34 @@ button.icon-link:focus-visible{
 
 
 
-/* Tooltip: closer + editor-like textbox feel + more vertical padding */
+/* Tooltip floats (does NOT affect icon layout) */
 .copy-tooltip{
   position: absolute;
   left: 50%;
   bottom: calc(100% + 2px);
-  transform: translate(-50%, 4px);
+  transform: translate(-50%, 6px);
+  display: block;
+
+  background: rgba(46, 52, 64, 0.96);
+  border: 1px solid rgba(76, 86, 106, 0.90);
+  color: rgba(236, 239, 244, 0.96);
+  border-radius: 6px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+
+  padding: 10px 14px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 160ms ease, transform 160ms ease;
 }
 
-
-
 .copy-tooltip.visible{
+  opacity: 1;
   transform: translate(-50%, 0);
 }
 
