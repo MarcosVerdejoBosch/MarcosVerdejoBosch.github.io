@@ -533,6 +533,7 @@ button.icon-link:focus-visible{
 }
 
 
+
 /* Make the mail icon match the apparent size of GitHub/LinkedIn */
 .js-copy-email .icon{
   transform: scale(1.15);
