@@ -19,7 +19,7 @@
 <body class="{{ page.class }}">
 
   <nav class="navbar">
-    <div class="nav-container">
+    <div class="nav-container container">
       <a class="nav-title" href="{{ "/" | relative_url }}">MVB</a>
 
       <div class="nav-links">
@@ -51,8 +51,11 @@
   </main>
 
   <footer class="footer">
+  <div class="container">
     Marcos Verdejo Bosch &copy; <span id="year"></span>
+  </div>
   </footer>
+
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
