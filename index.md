@@ -37,9 +37,10 @@ class: home
 
       <button type="button" class="icon-link js-copy-email" title="Copy Email" aria-label="Copy email address" data-email="marcosverdejo@gmail.com">
         <svg class="icon icon-mail" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-          <path d="M3 7l9 6 9-6"></path>
+          <path d="M4 6h16v12H4z"></path>
+          <path d="M4 7l8 6 8-6"></path>
         </svg>
+
 
         <span class="copy-tooltip" aria-live="polite"></span>
       </button>
