@@ -444,17 +444,24 @@ a:hover { opacity: 0.8; }
 }
 
 /* Social Links (force row) */
-.business-card .card-links {
-  margin-top: 0.6rem;                 /* tighter */
-  padding-top: 0.85rem;               /* tighter */
+.business-card .card-links{
+  margin-top: 0.6rem;
+  padding-top: 0.85rem;
   border-top: 1px solid rgba(76, 86, 106, 0.35);
+
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 1.1rem;                         /* slightly tighter */
-  color: rgba(236, 239, 244, 0.88);
+
+  gap: 0;                 /* we’ll control spacing precisely */
 }
+
+.business-card .card-links > *{
+  flex: 0 0 44px;         /* equal “slot” per icon */
+  display: grid;
+  place-items: center;
+}
+
 
 .icon-link{
   position: relative;
