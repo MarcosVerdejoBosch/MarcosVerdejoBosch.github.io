@@ -480,6 +480,18 @@ body.home .business-card{
   place-items: center;
 }
 
+/* Hard-center icons (kills baseline/line-height quirks between <a> and <button>) */
+.business-card .card-links .icon-link{
+  display: grid;
+  place-items: center;
+  line-height: 0;
+}
+
+/* Mail glyph optical alignment */
+.business-card .card-links .js-copy-email .icon{
+  transform: translateY(2px);
+}
+
 
 
 .icon-link{
