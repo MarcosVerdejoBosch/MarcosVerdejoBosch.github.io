@@ -521,8 +521,17 @@ button.icon-link:focus-visible{
 .icon-link .icon,
 .icon-link .icon *{
   fill: currentColor !important;
-  stroke: none !important;
 }
+
+.js-copy-email .icon,
+.js-copy-email .icon *{
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 
 /* Make the mail icon match the apparent size of GitHub/LinkedIn */
 .js-copy-email .icon{
