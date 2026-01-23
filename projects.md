@@ -4,8 +4,6 @@ title: Projects
 permalink: /projects/
 ---
 
-hardware • embedded • analog
-
 <div class="project-card">
   <h3>Discrete Linear Regulator</h3>
   <p>A fully discrete 5V/3.3V power supply featuring active foldback current limiting and low-noise architecture.</p>
