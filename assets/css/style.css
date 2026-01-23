@@ -629,11 +629,13 @@ button.icon-link:focus-visible{
 /* --------------------------------------------------------------
    Case Study
 -------------------------------------------------------------- */
-.case-study {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 1.5rem 1.2rem 2.5rem;
+/* Case Study — align to the same container spine as Projects */
+.case-study{
+  max-width: none;
+  margin: 0;
+  padding: 1.5rem 0 2.5rem; /* no horizontal padding (container handles it) */
 }
+
 
 
 .case-study h1 {
