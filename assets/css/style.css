@@ -453,14 +453,15 @@ a:hover { opacity: 0.8; }
   justify-content: center;
   align-items: center;
 
-  gap: 0;                 /* we’ll control spacing precisely */
+  gap: 0; /* spacing handled by equal slots */
 }
 
 .business-card .card-links > *{
-  flex: 0 0 44px;         /* equal “slot” per icon */
+  flex: 0 0 56px;   /* was 44px — more breathing room */
   display: grid;
   place-items: center;
 }
+
 
 
 .icon-link{
