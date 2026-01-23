@@ -12,32 +12,24 @@ permalink: /projects/linear-regulator/
   <model-viewer
     src="{{ "/assets/img/projects/linear-regulator/regulador.glb" | relative_url }}"
     alt="3D PCB Model"
-
     camera-controls
     auto-rotate
     rotation-per-second="15deg"
-
-    /* Lighting & quality */
     exposure="1.25"
     shadow-intensity="1.4"
     shadow-softness="0.6"
     environment-image="neutral"
     tone-mapping="aces"
-
-    /* Rendering */
     interpolation-decay="200"
     min-camera-orbit="auto 30deg 90%"
     max-camera-orbit="auto 80deg 160%"
     camera-orbit="45deg 60deg 120%"
-
     style="width: 100%; height: 100%;"
-  >
-  </model-viewer>
+  ></model-viewer>
 
-  <div class="caption">
-    Interactive 3D View
-  </div>
+  <div class="caption">Interactive 3D View</div>
 </div>
+
 
 <h2 id="overview">Overview</h2>
 <p>
