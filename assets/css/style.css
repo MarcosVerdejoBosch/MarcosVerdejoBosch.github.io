@@ -524,14 +524,6 @@ button.icon-link:focus-visible{
   fill: currentColor !important;
 }
 
-.js-copy-email .icon,
-.js-copy-email .icon *{
-  fill: none !important;
-  stroke: currentColor !important;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
 
 
 
