@@ -40,6 +40,15 @@ html, body {
   min-height: 100vh;
 }
 
+main.content{
+  flex: 1;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+}
+
 html{
   scrollbar-gutter: stable; /* modern browsers */
   overflow-y: scroll;       /* fallback: always show gutter */
@@ -544,11 +553,14 @@ button.icon-link:focus-visible{
 /* --------------------------------------------------------------
    Footer
 -------------------------------------------------------------- */
+/* Discreet footer */
 .footer{
-  width: 100%;
-  padding: 2rem 0;      /* container handles horizontal padding */
+  padding: 1.2rem 0;
   text-align: center;
+  color: rgba(216, 222, 233, 0.65);
+  font-size: 0.85rem;
 }
+
 
 
 
