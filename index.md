@@ -60,27 +60,30 @@ class: home
 
   let timer;
 
-  const showTooltip = (message) => {
+  const flash = (message, ms = 1500, withAccent = false) => {
     if (!tooltip) return;
+
+    clearTimeout(timer);
+
     tooltip.textContent = message;
     tooltip.classList.add("visible");
-    clearTimeout(timer);
+
+    if (withAccent) btn.classList.add("email-copied");
+
     timer = setTimeout(() => {
       tooltip.classList.remove("visible");
       tooltip.textContent = "";
-    }, 1500);
-  };
+      btn.classList.remove("email-copied");
+    }, ms);
+};
 
-  const onSuccess = () => {
-    btn.classList.add("email-copied");
-    showTooltip("Copied!");
-    setTimeout(() => btn.classList.remove("email-copied"), 2000);
-  };
+const onSuccess = () => flash("COPIED!", 1500, true);
 
-  const onFail = (err) => {
-    console.error("Clipboard copy failed:", err);
-    showTooltip("Failed");
-  };
+const onFail = (err) => {
+  console.error("Clipboard copy failed:", err);
+  flash("FAILED", 1500, false);
+};
+
 
   btn.addEventListener("click", async () => {
     if (navigator.clipboard && window.isSecureContext) {
