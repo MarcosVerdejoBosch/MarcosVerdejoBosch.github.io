@@ -355,6 +355,7 @@ a:hover { opacity: 0.8; }
   border: 1px solid rgba(76, 86, 106, 0.75);
   border-radius: 4px;
   overflow: hidden;
+  transform: translateY(-18px);
 
   /* VS Code-like: tighter vertical rhythm */
   padding: clamp(1.2rem, 2.2vw, 1.6rem) clamp(1.3rem, 2.4vw, 1.7rem);
