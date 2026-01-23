@@ -5,7 +5,7 @@ permalink: /projects/
 ---
 
 <div class="project-card">
-  <h3>Discrete Linear Regulator</h3>
+  <h3>Linear Regulator</h3>
   <p>A fully discrete 5V/3.3V, 1.5A linear supply for prototyping/bench rails, designed from scratch to learn loop compensation and real-world analog tradeoffs. Uses a TIP42 PNP pass element (low dropout), TL431 reference, and a CA3096 matched-transistor discrete error amplifier, with short-circuit current limiting and reverse-polarity protection (validated in LTspice; PCB in progress).</p>
   <div class="specs">KiCad · LTspice · Analog Design</div>
   <a href="/projects/linear-regulator/" class="btn-report">OPEN PROJECT PAGE →</a>
