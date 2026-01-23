@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Selected Works
+title: Projects
 permalink: /projects/
 ---
 
-## Hardware & Firmware
+hardware • embedded • analog
 
 <div class="project-card">
   <h3>Discrete Linear Regulator</h3>
