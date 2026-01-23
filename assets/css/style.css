@@ -434,11 +434,10 @@ body.home .business-card{
   color: rgba(236, 239, 244, 0.92);
 }
 
-/* Pipe separator */
 .business-card .bio .hl:not(:first-child)::before{
-  content: "|";
-  margin: 0 0.75rem;                 /* tighten spacing here */
-  color: rgba(216, 222, 233, 0.55);
+  content: "•";
+  margin: 0 0.65rem;                 /* slightly tighter than pipes */
+  color: rgba(216, 222, 233, 0.45);  /* subtle */
 }
 
 /* Safety: no hover effect */
