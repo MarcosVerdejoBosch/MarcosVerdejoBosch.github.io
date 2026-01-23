@@ -4,7 +4,7 @@ title: Home
 class: home
 ---
 
-<div class="home-wrapper container">
+<div class="home-wrapper">
   <div class="business-card">
 
     <h1>Marcos Verdejo Bosch</h1>
