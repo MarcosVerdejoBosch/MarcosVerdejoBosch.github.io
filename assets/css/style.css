@@ -364,9 +364,9 @@ body.home .home-wrapper{
 
 /* Home card should use the same column width as the site container */
 body.home .business-card{
-  max-width: none;                 /* remove the 520px cap */
-  width: min(100%, var(--container-max));
+  width: min(100%, 640px); /* try 600–680px */
 }
+
 
 
 
