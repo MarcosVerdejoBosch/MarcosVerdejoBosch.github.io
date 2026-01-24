@@ -16,17 +16,13 @@ permalink: /projects/linear-regulator/
     auto-rotate
     rotation-per-second="15deg"
     exposure="1.25"
-    shadow-intensity="1.4"
-    shadow-softness="0.6"
+    shadow-intensity="0"
     environment-image="neutral"
     tone-mapping="aces"
     interpolation-decay="200"
-    min-camera-orbit="auto 30deg 90%"
-    max-camera-orbit="auto 80deg 160%"
     camera-orbit="45deg 60deg 120%"
     style="width: 100%; height: 100%;"
   ></model-viewer>
-
   <div class="caption">Interactive 3D View</div>
 </div>
 
