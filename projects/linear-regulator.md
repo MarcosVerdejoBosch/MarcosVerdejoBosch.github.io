@@ -13,10 +13,8 @@ permalink: /projects/linear-regulator/
     src="{{ "/assets/img/projects/linear-regulator/regulador.min.glb" | relative_url }}"
     alt="3D PCB Model"
     camera-controls
-    auto-rotate
     interaction-prompt="none"
     minimum-render-scale="1"
-    rotation-per-second="15deg"
     exposure="1.25"
     shadow-intensity="0"
     environment-image="neutral"
