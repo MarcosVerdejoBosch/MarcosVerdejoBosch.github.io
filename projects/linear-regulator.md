@@ -10,7 +10,7 @@ permalink: /projects/linear-regulator/
 
 <div class="figure">
   <model-viewer
-    src="{{ "/assets/img/projects/linear-regulator/regulador.glb" | relative_url }}"
+    src="{{ "/assets/img/projects/linear-regulator/regulador.min.glb" | relative_url }}"
     alt="3D PCB Model"
     camera-controls
     auto-rotate
