@@ -14,6 +14,8 @@ permalink: /projects/linear-regulator/
     alt="3D PCB Model"
     camera-controls
     auto-rotate
+    interaction-prompt="none"
+    minimum-render-scale="1"
     rotation-per-second="15deg"
     exposure="1.25"
     shadow-intensity="0"
