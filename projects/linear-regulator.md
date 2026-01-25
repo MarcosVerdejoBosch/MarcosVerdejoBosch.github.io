@@ -22,7 +22,7 @@ permalink: /projects/linear-regulator/
     environment-image="neutral"
     tone-mapping="aces"
     interpolation-decay="200"
-    camera-orbit="45deg 60deg 120%"
+    camera-orbit="45deg 60deg 85%"
   ></model-viewer>
   <div class="caption">Interactive 3D View</div>
 </div>
