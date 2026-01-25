@@ -23,9 +23,7 @@ permalink: /projects/linear-regulator/
     tone-mapping="aces"
     interpolation-decay="200"
     camera-orbit="45deg 60deg 120%"
-    style="width: 100%; height: 100%;"
-    transform: translate3d(0,0,0);
-    will-change: transform;
+    style="display:block;width:100%;height:clamp(320px,55vh,520px);transform:translate3d(0,0,0);will-change:transform;"
   ></model-viewer>
   <div class="caption">Interactive 3D View</div>
 </div>
