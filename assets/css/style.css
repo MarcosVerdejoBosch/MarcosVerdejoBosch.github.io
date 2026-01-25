@@ -762,11 +762,15 @@ button.icon-link:focus-visible{
   contain: layout paint size; /* isolates rendering work */
 }
 
-.figure--model{ padding: 0; }
+.figure--model{ 
+   padding: 0; 
+   height: clamp(320px, 55vh, 520px);
+}
 
 .figure--model model-viewer{
   border: 1px solid var(--line);
   background: var(--bg-card);
+  height: 100%; 
 }
 
 
