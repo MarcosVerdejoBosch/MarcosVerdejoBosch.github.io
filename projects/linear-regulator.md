@@ -14,7 +14,9 @@ permalink: /projects/linear-regulator/
     alt="3D PCB Model"
     camera-controls
     interaction-prompt="none"
+    interaction-prompt-threshold="0"
     minimum-render-scale="1"
+    maximum-render-scale="2"
     exposure="1.25"
     shadow-intensity="0"
     environment-image="neutral"
@@ -22,8 +24,6 @@ permalink: /projects/linear-regulator/
     interpolation-decay="200"
     camera-orbit="45deg 60deg 120%"
     style="width: 100%; height: 100%;"
-    minimum-render-scale="1"
-    maximum-render-scale="2"
   ></model-viewer>
   <div class="caption">Interactive 3D View</div>
 </div>
