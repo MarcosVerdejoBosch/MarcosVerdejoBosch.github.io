@@ -24,6 +24,8 @@ permalink: /projects/linear-regulator/
     interpolation-decay="200"
     camera-orbit="45deg 60deg 120%"
     style="width: 100%; height: 100%;"
+    transform: translate3d(0,0,0);
+    will-change: transform;
   ></model-viewer>
   <div class="caption">Interactive 3D View</div>
 </div>
