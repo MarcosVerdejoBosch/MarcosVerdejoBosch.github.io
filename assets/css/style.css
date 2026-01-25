@@ -748,6 +748,21 @@ button.icon-link:focus-visible{
 }
 
 
+/* --------------------------------------------------------------
+   3D viewer
+-------------------------------------------------------------- */
+
+/* 3D viewer: stable size + smoother drag on desktop */
+.figure model-viewer{
+  display: block;
+  width: 100%;
+  height: clamp(320px, 55vh, 520px);
+  transform: translate3d(0,0,0);
+  will-change: transform;
+  contain: layout paint size; /* isolates rendering work */
+}
+
+
 
 /* --------------------------------------------------------------
    404 Page
