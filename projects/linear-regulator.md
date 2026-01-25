@@ -15,8 +15,8 @@ permalink: /projects/linear-regulator/
     camera-controls
     interaction-prompt="none"
     interaction-prompt-threshold="0"
-    minimum-render-scale="1"
-    maximum-render-scale="2"
+    minimum-render-scale="1.5"
+    maximum-render-scale="1.5"
     exposure="1.25"
     shadow-intensity="0"
     environment-image="neutral"
