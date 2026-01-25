@@ -762,6 +762,14 @@ button.icon-link:focus-visible{
   contain: layout paint size; /* isolates rendering work */
 }
 
+.figure--model{ padding: 0; }
+
+.figure--model model-viewer{
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+}
+
+
 
 
 /* --------------------------------------------------------------
