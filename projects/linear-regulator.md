@@ -8,7 +8,7 @@ permalink: /projects/linear-regulator/
 <h1>Linear Regulator</h1>
 <p class="caption">ENGINEERING REPORT &amp; ANALYSIS</p>
 
-<div class="figure">
+<div class="figure figure--model">
   <model-viewer
     src="{{ "/assets/img/projects/linear-regulator/regulador.min.glb" | relative_url }}"
     alt="3D PCB Model"
