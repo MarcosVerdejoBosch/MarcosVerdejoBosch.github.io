@@ -483,6 +483,18 @@ body.home .business-card{
     margin: 0;
   }
 
+  .business-card .skills{
+    display: inline-block;
+    text-align: left;
+    margin: 0 auto;
+    padding: 0;
+    list-style-position: inside;
+  }
+
+  .business-card .skills li{
+    list-style-type: disc;
+  }
+
   .navbar .nav-container{
     flex-wrap: wrap;
     row-gap: 0.4rem;
