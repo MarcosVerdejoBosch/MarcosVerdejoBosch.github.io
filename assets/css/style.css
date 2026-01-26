@@ -443,6 +443,10 @@ body.home .business-card{
 /* Safety: no hover effect */
 .business-card .bio .hl:hover{ background: transparent; }
 
+
+/* --------------------------------------------------------------
+   Media
+-------------------------------------------------------------- */
 /* Mobile: allow wrap if needed */
 @media (max-width: 520px){
   :root{ --container-max: 100%; } /* let container use full phone width */
@@ -495,21 +499,25 @@ body.home .business-card{
     list-style-type: disc;
   }
 
-  .navbar .nav-container{
-    flex-wrap: wrap;
-    row-gap: 0.4rem;
+
+  .site-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .navbar .nav-title{
-    flex: 1 0 100%;
-    text-align: center;
+  .site-nav .brand{
+    margin-right: 1rem;
   }
 
-  .navbar .nav-links{
-    width: 100%;
-    justify-content: center;
+  .site-nav .nav-links{
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.25rem;
   }
 }
+
 
 
 
