@@ -445,8 +445,16 @@ body.home .business-card{
 
 /* Mobile: allow wrap if needed */
 @media (max-width: 520px){
-  .business-card .bio{ flex-wrap: wrap; white-space: normal; }
-  .business-card .bio .hl:not(:first-child)::before{ margin: 0 0.55rem; }
+  :root{ --container-max: 100%; } /* let container use full phone width */
+
+  .container{
+    padding-inline: 1rem; /* consistent gutter for nav/content/footer */
+  }
+
+  .business-card{
+    width: 100%;
+  }
+  
 /* Mobile-only: bullets + aligned skills */
   .home .business-card .bio{
     display: grid;
@@ -473,7 +481,22 @@ body.home .business-card{
   .home .business-card .bio .hl:not(:first-child)::before{
     content: "";
     margin: 0;
-  } 
+  }
+
+  .navbar .nav-container{
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+  }
+
+  .navbar .nav-title{
+    flex: 1 0 100%;
+    text-align: center;
+  }
+
+  .navbar .nav-links{
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 
