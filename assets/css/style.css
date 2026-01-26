@@ -449,28 +449,26 @@ body.home .business-card{
 -------------------------------------------------------------- */
 /* Mobile: allow wrap if needed */
 @media (max-width: 520px){
-  :root{ --container-max: 100%; } /* let container use full phone width */
+  :root{ --container-max: 100%; }
 
   .container{
-    padding-inline: 1rem; /* consistent gutter for nav/content/footer */
+    padding-inline: 1rem;
   }
 
   .business-card{
     width: 100%;
   }
-  
-/* Mobile-only: bullets + aligned skills */
+
+  /* ---------- Home: bio + skills (force consistent bullets) ---------- */
   .home .business-card .bio{
     display: grid;
-    justify-content: start;
     row-gap: .35rem;
     white-space: normal;
   }
 
   .home .business-card .bio .hl{
-    display: block;
-    padding-left: 1.1em;
     position: relative;
+    padding-left: 1.1em;
   }
 
   .home .business-card .bio .hl::before{
@@ -481,40 +479,54 @@ body.home .business-card{
     color: var(--muted);
   }
 
-  /* Disable your desktop separators on mobile */
-  .home .business-card .bio .hl:not(:first-child)::before{
-    content: "";
-    margin: 0;
-  }
-
-  .business-card .skills{
-    display: inline-block;
-    text-align: left;
-    margin: 0 auto;
+  /* Skills: centered block, left-aligned text, bullets on every line */
+  .home .business-card .skills{
+    width: fit-content;
+    margin: .4rem auto 0;
     padding: 0;
-    list-style-position: inside;
+    list-style: none; /* we’ll draw bullets ourselves */
+    display: grid;
+    row-gap: .35rem;
   }
 
-  .business-card .skills li{
-    list-style-type: disc;
+  .home .business-card .skills li{
+    position: relative;
+    padding-left: 1.1em;
   }
 
+  .home .business-card .skills li::before{
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--muted);
+  }
 
-  .site-nav{
+  /* ---------- Mobile navbar: brand left, links right, no cropping ---------- */
+  .navbar .nav-container{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: .75rem;
+    flex-wrap: nowrap;
   }
 
-  .site-nav .brand{
-    margin-right: 1rem;
+  .navbar .nav-title{
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
-  .site-nav .nav-links{
-    margin-left: auto;
+  .navbar .nav-links{
+    flex: 1 1 auto;
     display: flex;
     justify-content: flex-end;
-    gap: 1.25rem;
+    gap: .9rem;
+    flex-wrap: wrap;     /* if tight, it wraps instead of cropping */
+    min-width: 0;
+  }
+
+  .navbar .nav-links a{
+    white-space: nowrap;
   }
 }
 
