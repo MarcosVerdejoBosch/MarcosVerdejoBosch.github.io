@@ -77,7 +77,7 @@ class: home
     }, ms);
 };
 
-const onSuccess = () => flash("COPIED!", 1500, true);
+const onSuccess = () => flash("COPIED", 1500, true);
 
 const onFail = (err) => {
   console.error("Clipboard copy failed:", err);
