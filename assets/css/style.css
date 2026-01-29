@@ -506,26 +506,31 @@ body.home .business-card{
 
   /* ---------- Mobile navbar: brand left, links right, no cropping ---------- */
   .navbar .nav-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: .75rem;
-    flex-wrap: nowrap;
-  }
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: .75rem;
+     flex-wrap: wrap;              /* allow wrapping instead of cropping */
+   }
 
-  .navbar .nav-title{
-    flex: 0 0 auto;
-    white-space: nowrap;
-  }
+   .navbar .nav-title{
+     flex: 0 0 auto;
+     white-space: nowrap;
+   }
 
-  .navbar .nav-links{
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: flex-end;
-    gap: .9rem;
-    flex-wrap: wrap;     /* if tight, it wraps instead of cropping */
-    min-width: 0;
-  }
+   .navbar .nav-links{
+     flex: 1 1 auto;
+     display: flex;
+     justify-content: flex-end;
+     gap: .9rem;
+     flex-wrap: wrap;
+     min-width: 0;
+   }
+
+   /* when wrapping happens, let links take the full row */
+   .navbar .nav-links{
+     width: 100%;
+   }
 
   .navbar .nav-links a{
     white-space: nowrap;
