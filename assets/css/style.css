@@ -855,38 +855,33 @@ button.icon-link:focus-visible{
 
 @media (max-width: 600px) {
   .business-card h1 { font-size: 1.4rem; }
-   
-.business-card .bio{
+
+  .business-card .bio{
     flex-wrap: wrap;
     white-space: normal;
     overflow: visible;
     row-gap: 0.6rem;
-}
- 
-.dropdown-content {
+  }
+
+  .dropdown-content {
     left: auto;
     right: 0;
     top: 100%;
     margin-left: 0;
     margin-top: 10px;
-}
+  }
+} /* <-- IMPORTANT: close 600px block */
 
-/* --------------------------------------------------------------
-   Media
--------------------------------------------------------------- */
+
 /* Mobile: allow wrap if needed */
 @media (max-width: 520px){
   :root{ --container-max: 100%; }
 
-  .container{
-    padding-inline: 1rem;
-  }
+  .container{ padding-inline: 1rem; }
 
-  .business-card{
-    width: 100%;
-  }
+  .business-card{ width: 100%; }
 
-  /* ---------- Home: bio + skills (force consistent bullets) ---------- */
+  /* Home: bio + skills (force consistent bullets) */
   .home .business-card .bio{
     display: grid;
     row-gap: .35rem;
@@ -906,12 +901,11 @@ button.icon-link:focus-visible{
     color: var(--muted);
   }
 
-  /* Skills: centered block, left-aligned text, bullets on every line */
   .home .business-card .skills{
     width: fit-content;
     margin: .4rem auto 0;
     padding: 0;
-    list-style: none; /* we’ll draw bullets ourselves */
+    list-style: none;
     display: grid;
     row-gap: .35rem;
   }
@@ -931,37 +925,31 @@ button.icon-link:focus-visible{
     color: var(--muted);
   }
 
-  /* ---------- Mobile navbar: brand left, links right, no cropping ---------- */
+  /* Mobile navbar: no cropping */
   .navbar .nav-container{
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     gap: .75rem;
-     flex-wrap: wrap;              /* allow wrapping instead of cropping */
-   }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    flex-wrap: wrap;
+  }
 
-   .navbar .nav-title{
-     flex: 0 0 auto;
-     white-space: nowrap;
-   }
-
-   .navbar .nav-links{
-     flex: 1 1 auto;
-     display: flex;
-     justify-content: flex-end;
-     gap: .9rem;
-     flex-wrap: wrap;
-     min-width: 0;
-   }
-
-   /* when wrapping happens, let links take the full row */
-   .navbar .nav-links{
-     width: 100%;
-   }
-
-  .navbar .nav-links a{
+  .navbar .nav-title{
+    flex: 0 0 auto;
     white-space: nowrap;
   }
+
+  .navbar .nav-links{
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: .9rem;
+    flex-wrap: wrap;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .navbar .nav-links a{ white-space: nowrap; }
 }
 
    
