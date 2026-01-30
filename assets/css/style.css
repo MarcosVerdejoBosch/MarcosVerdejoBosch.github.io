@@ -131,10 +131,12 @@ a:hover { opacity: 0.8; }
 /* Container */
 /* Shared alignment spine (nav + page + footer) */
 .container{
+  box-sizing: border-box;
   width: min(100%, var(--container-max));
   margin-inline: auto;
   padding-inline: 1rem; /* same horizontal rhythm */
 }
+
 
 /* ==============================
    Dropdown — clean terminal panel
