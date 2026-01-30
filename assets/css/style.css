@@ -879,7 +879,8 @@ button.icon-link:focus-visible{
   .dropdown > a {
     line-height: 1.2;
   }
-   
+
+  .navbar .nav-links { min-width: 0; }
 } /* <-- IMPORTANT: close 600px block */
 
 
