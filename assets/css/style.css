@@ -485,10 +485,6 @@ body.home .business-card{
   line-height: 0;
 }
 
-/* Mail glyph optical alignment */
-.business-card .card-links .js-copy-email .icon{
-  transform: translateY(2px);
-}
 
 
 
