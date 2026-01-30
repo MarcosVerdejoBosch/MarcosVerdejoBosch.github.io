@@ -880,7 +880,10 @@ button.icon-link:focus-visible{
     line-height: 1.2;
   }
 
-  .navbar .nav-links { min-width: 0; }
+  .navbar .nav-links { 
+     min-width: 0;
+     justify-content: center;
+  }
 } /* <-- IMPORTANT: close 600px block */
 
 
