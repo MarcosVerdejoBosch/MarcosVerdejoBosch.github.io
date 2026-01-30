@@ -856,6 +856,8 @@ button.icon-link:focus-visible{
 @media (max-width: 600px) {
 
   .navbar{ height: auto; overflow: visible; }
+
+  .navbar .nav-container{ flex-wrap: wrap; }
    
   .business-card h1 { font-size: 1.4rem; }
 
