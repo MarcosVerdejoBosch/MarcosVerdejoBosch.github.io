@@ -23,7 +23,6 @@ permalink: /projects/linear-regulator/
     tone-mapping="aces"
     interpolation-decay="200"
     camera-orbit="0deg 0deg 85%"
-    camera-target="auto auto auto"
   ></model-viewer>
   <div class="caption">Interactive 3D View</div>
 </div>
