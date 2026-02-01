@@ -879,6 +879,12 @@ button.icon-link:focus-visible{
     color: var(--muted);
   }
 
+  .home .business-card .skills li{
+    display: flex;
+    align-items: baseline;
+    gap: .6rem;
+  }
+
   .dropdown-content {
     left: auto;
     right: 0;
