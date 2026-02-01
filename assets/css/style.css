@@ -940,6 +940,8 @@ button.icon-link:focus-visible{
   .home .business-card .skills li::before{
     content: "•";
     color: var(--muted);
+    width: 1.1em;
+    text-align: center;
     flex: 0 0 auto;
   }
 
