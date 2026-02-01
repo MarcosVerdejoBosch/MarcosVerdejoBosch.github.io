@@ -866,11 +866,18 @@ button.icon-link:focus-visible{
     white-space: normal;
   }
 
+  /* disable the desktop “inline separator bullet” rule on mobile */
+  .business-card .bio .hl:not(:first-child)::before{
+    content: none;
+    margin: 0;
+  }
+
   .business-card .bio .hl{
     position: relative;
     padding-left: 1.1em;
   }
 
+  /* aligned bullet column */
   .business-card .bio .hl::before{
     content: "•";
     position: absolute;
@@ -879,11 +886,8 @@ button.icon-link:focus-visible{
     color: var(--muted);
   }
 
-  .home .business-card .skills li{
-    display: flex;
-    align-items: baseline;
-    gap: .6rem;
-  }
+/* (remove the .skills li rule — Home has no .skills list) */
+
 
   .dropdown-content {
     left: auto;
