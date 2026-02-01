@@ -882,7 +882,7 @@ button.icon-link:focus-visible{
 
   .navbar .nav-links { 
      min-width: 0;
-     justify-content: center;
+     justify-content: flex-start; /* was center */
   }
 
   .navbar .nav-title{
