@@ -884,6 +884,12 @@ button.icon-link:focus-visible{
      min-width: 0;
      justify-content: center;
   }
+
+  .navbar .nav-title{
+    display: inline-block;
+    line-height: 1;
+    padding: 4px 0;
+  }
 } /* <-- IMPORTANT: close 600px block */
 
 
