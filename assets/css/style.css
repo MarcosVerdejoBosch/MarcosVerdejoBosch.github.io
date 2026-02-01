@@ -988,7 +988,7 @@ button.icon-link:focus-visible{
   .navbar .nav-links{
     flex: 1 1 auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: .9rem;
     flex-wrap: wrap;
     min-width: 0;
