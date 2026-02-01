@@ -872,21 +872,24 @@ button.icon-link:focus-visible{
     margin: 0;
   }
 
+  /* 2-column layout: bullet | text (guaranteed alignment) */
   .business-card .bio .hl{
-    position: relative;
-    padding-left: 1.1em;
+    display: grid;
+    grid-template-columns: 1.1em 1fr;
+    column-gap: .6rem;
+    align-items: baseline;
+    padding-left: 0;
   }
 
-  /* aligned bullet column */
   .business-card .bio .hl::before{
     content: "•";
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: static;
     color: var(--muted);
+    text-align: center;
   }
 
-/* (remove the .skills li rule — Home has no .skills list) */
+
+ /* (remove the .skills li rule — Home has no .skills list) */
 
 
   .dropdown-content {
