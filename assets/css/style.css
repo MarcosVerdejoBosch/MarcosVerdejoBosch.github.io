@@ -861,10 +861,22 @@ button.icon-link:focus-visible{
   .business-card h1 { font-size: 1.4rem; }
 
   .business-card .bio{
-    flex-wrap: wrap;
+    display: grid;
+    row-gap: .35rem;
     white-space: normal;
-    overflow: visible;
-    row-gap: 0.6rem;
+  }
+
+  .business-card .bio .hl{
+    position: relative;
+    padding-left: 1.1em;
+  }
+
+  .business-card .bio .hl::before{
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--muted);
   }
 
   .dropdown-content {
