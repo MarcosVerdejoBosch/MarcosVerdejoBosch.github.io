@@ -1008,6 +1008,8 @@ button.icon-link:focus-visible{
   .navbar .nav-title{
     flex: 0 0 auto;
     white-space: nowrap;
+    line-height: 1.2;
+    padding: 4px 0;
   }
 
   .navbar .nav-links{
