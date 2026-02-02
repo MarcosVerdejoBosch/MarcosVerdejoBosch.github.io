@@ -869,6 +869,7 @@ button.icon-link:focus-visible{
     white-space: normal;
     width: 100%;
     padding-left: 1.2rem;
+    justify-items: start;
   }
 
   /* disable the desktop “inline separator bullet” rule on mobile */
