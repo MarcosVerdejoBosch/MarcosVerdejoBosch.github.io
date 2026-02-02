@@ -887,6 +887,7 @@ button.icon-link:focus-visible{
     align-items: baseline;
     padding-left: 0;
     text-align: left;
+    width: 100%;
   }
 
   .business-card .bio .hl::before{
@@ -936,25 +937,39 @@ button.icon-link:focus-visible{
 
   .business-card{ width: 100%; }
 
-  /* Home: bio + skills (force consistent bullets) */
+  /* Home: bio — same bullet|text grid as 600px */
   .home .business-card .bio{
     display: grid;
     row-gap: .35rem;
     white-space: normal;
+    width: 100%;
+    padding-left: 1.2rem;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .home .business-card .bio .hl:not(:first-child)::before{
+    content: none;
+    margin: 0;
   }
 
   .home .business-card .bio .hl{
-    position: relative;
-    padding-left: 1.1em;
+    display: grid;
+    grid-template-columns: 1.1em 1fr;
+    column-gap: .6rem;
+    align-items: baseline;
+    padding-left: 0;
+    text-align: left;
+    width: 100%;
   }
 
   .home .business-card .bio .hl::before{
     content: "•";
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: static;
     color: var(--muted);
+    text-align: center;
   }
+
 
   .home .business-card .skills{
     width: fit-content;
