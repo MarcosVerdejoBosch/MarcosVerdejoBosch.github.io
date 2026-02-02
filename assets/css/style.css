@@ -886,6 +886,7 @@ button.icon-link:focus-visible{
     column-gap: .6rem;
     align-items: baseline;
     padding-left: 0;
+    text-align: left;
   }
 
   .business-card .bio .hl::before{
