@@ -870,6 +870,7 @@ button.icon-link:focus-visible{
     width: 100%;
     padding-left: 1.2rem;
     justify-items: start;
+    text-align: left;
   }
 
   /* disable the desktop “inline separator bullet” rule on mobile */
