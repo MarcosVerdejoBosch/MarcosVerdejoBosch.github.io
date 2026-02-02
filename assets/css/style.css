@@ -920,8 +920,8 @@ button.icon-link:focus-visible{
 
   .navbar .nav-title{
     display: inline-block;
-    line-height: 1;
-    padding: 4px 0;
+    line-height: 1.2;   /* match nav links */
+    padding: 4px 0;     /* match nav links */
   }
 } /* <-- IMPORTANT: close 600px block */
 
