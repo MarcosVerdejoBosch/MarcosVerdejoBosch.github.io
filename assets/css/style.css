@@ -867,6 +867,8 @@ button.icon-link:focus-visible{
     display: grid;
     row-gap: .35rem;
     white-space: normal;
+    width: 100%;
+    padding-left: 1.2rem;
   }
 
   /* disable the desktop “inline separator bullet” rule on mobile */
