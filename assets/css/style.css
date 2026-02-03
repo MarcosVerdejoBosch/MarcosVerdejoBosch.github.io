@@ -440,7 +440,7 @@ body.home .business-card{
 .business-card .bio .hl:not(:first-child)::before{
   content: "•";
   margin: 0 0.65rem;                 /* slightly tighter than pipes */
-  color: rgba(216, 222, 233, 0.45);  /* subtle */
+  color: var(--accent); /* was rgba(...) */
 }
 
 /* Safety: no hover effect */
@@ -889,7 +889,7 @@ button.icon-link:focus-visible{
   .business-card .bio .hl::before{
     content: "•";
     position: static;
-    color: var(--muted);
+    color: var(--accent); /* was var(--muted) */
     text-align: center;
   }
 
@@ -963,7 +963,7 @@ button.icon-link:focus-visible{
   .home .business-card .bio .hl::before{
     content: "•";
     position: static;
-    color: var(--muted);
+    color: var(--accent); /* was var(--muted) */
     text-align: center;
   }
 
