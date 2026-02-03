@@ -873,11 +873,6 @@ button.icon-link:focus-visible{
     text-align: left;
   }
 
-  /* disable the desktop “inline separator bullet” rule on mobile */
-  .business-card .bio .hl:not(:first-child)::before{
-    content: "•";
-    margin: 0;
-  }
 
   /* 2-column layout: bullet | text (guaranteed alignment) */
   .business-card .bio .hl{
