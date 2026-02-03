@@ -875,7 +875,7 @@ button.icon-link:focus-visible{
 
   /* disable the desktop “inline separator bullet” rule on mobile */
   .business-card .bio .hl:not(:first-child)::before{
-    content: none;
+    content: "•";
     margin: 0;
   }
 
@@ -949,7 +949,7 @@ button.icon-link:focus-visible{
   }
 
   .home .business-card .bio .hl:not(:first-child)::before{
-    content: none;
+    content: "•";
     margin: 0;
   }
 
