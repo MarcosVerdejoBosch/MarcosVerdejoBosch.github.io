@@ -1,4 +1,4 @@
-/* ==============================================================
+600px/* ==============================================================
    MVB — Portfolio Theme (Nord Final Refinement)
    ============================================================== */
 
@@ -870,6 +870,7 @@ button.icon-link:focus-visible{
     width: 100%;
     padding-left: 0.6rem;
     justify-items: start;
+    justify-content: start; 
     text-align: left;
   }
 
@@ -940,6 +941,7 @@ button.icon-link:focus-visible{
     width: 100%;
     padding-left: 0.6rem;
     justify-items: start;
+    justify-content: start; 
     text-align: left;
   }
 
