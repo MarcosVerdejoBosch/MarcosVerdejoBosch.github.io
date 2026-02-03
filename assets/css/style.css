@@ -939,7 +939,7 @@ button.icon-link:focus-visible{
     row-gap: .35rem;
     white-space: normal;
     width: 100%;
-    padding-left: 0.6rem;
+    padding-left: 0.35rem;
     justify-items: start;
     justify-content: start; 
     text-align: left;
