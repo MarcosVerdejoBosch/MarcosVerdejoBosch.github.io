@@ -390,7 +390,7 @@ body.home .business-card{
   padding: 1.25rem 1.6rem; /* was larger via clamp */
 
   width: 100%;
-  max-width: 520px;
+  max-width: 640px; /* was 520px */
   text-align: center;
 
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
