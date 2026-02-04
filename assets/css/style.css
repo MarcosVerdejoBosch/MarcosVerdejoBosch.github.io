@@ -112,12 +112,17 @@ a:hover { opacity: 0.8; }
 }
 
 
+@keyframes nav-dim-in{
+  from { opacity: 1; }
+  to   { opacity: 0.75; }
+}
 
 /* Hover on INACTIVE link = dim + neutral underline */
 .nav-links a:hover,
 .nav-links a:focus-visible{
   opacity: 0.75;
   border-bottom-color: var(--line);
+  animation: nav-dim-in 180ms ease;
 }
 
 /* Hover on ACTIVE link = dim + dim accent underline */
