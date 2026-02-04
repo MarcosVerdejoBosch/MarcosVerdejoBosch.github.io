@@ -943,6 +943,7 @@ button.icon-link:focus-visible{
     justify-items: start;
     justify-content: start; 
     text-align: left;
+    margin-inline: auto; /* centers the fit-content grid */
   }
 
   .home .business-card .bio .hl:not(:first-child)::before{
