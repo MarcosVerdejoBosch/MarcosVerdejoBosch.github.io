@@ -938,8 +938,8 @@ button.icon-link:focus-visible{
     display: grid;
     row-gap: .35rem;
     white-space: normal;
-    width: 100%;
-    padding-left: 0.35rem;
+    width: fit-content;  /* was 100% */
+    padding-left: 0;     /* was 0.6rem */
     justify-items: start;
     justify-content: start; 
     text-align: left;
@@ -957,7 +957,7 @@ button.icon-link:focus-visible{
     align-items: baseline;
     padding-left: 0;
     text-align: left;
-    width: 100%;
+    width: auto;         /* was 100% */
   }
 
   .home .business-card .bio .hl::before{
