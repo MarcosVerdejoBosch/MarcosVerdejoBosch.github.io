@@ -436,7 +436,7 @@ body.home .business-card{
   flex-wrap: nowrap;
   white-space: nowrap;
 
-  margin: 0.75rem 0 0.9rem;
+  margin: 0.6rem 0 1.1rem; /* tighter above, a bit more breathing room below */
   font-size: 0.95rem;
 }
 
@@ -520,13 +520,17 @@ body.home .business-card{
 }
 
 
-.icon-link:hover {
-  color: var(--accent);
-  transform: translateY(-2px);
-  background: transparent;
-  border: none;
-  opacity: 1;
+/* Hover effects only on real hover devices (prevents sticky blue on touch) */
+@media (hover: hover) and (pointer: fine){
+  .icon-link:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+    background: transparent;
+    border: none;
+    opacity: 1;
+  }
 }
+
 
 /* Email icon button should look identical to the <a> icon links */
 button.icon-link{
