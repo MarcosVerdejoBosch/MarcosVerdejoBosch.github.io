@@ -878,8 +878,9 @@ button.icon-link:focus-visible{
     display: grid;
     row-gap: .35rem;
     white-space: normal;
-    width: 100%;
-    padding-left: 0.6rem;
+    width: fit-content;
+    margin-inline: auto;
+    padding-left: 0; /* remove the forced left offset */
     justify-items: start;
     justify-content: start; 
     text-align: left;
@@ -894,7 +895,7 @@ button.icon-link:focus-visible{
     align-items: baseline;
     padding-left: 0;
     text-align: left;
-    width: 100%;
+    width: auto; /* avoid full-width rows pushing left */
   }
 
   .business-card .bio .hl::before{
@@ -949,13 +950,14 @@ button.icon-link:focus-visible{
     display: grid;
     row-gap: .35rem;
     white-space: normal;
-    width: fit-content;  /* was 100% */
-    padding-left: 0;     /* was 0.6rem */
+    width: fit-content;
+    margin-inline: auto;
+    padding-left: 0;
     justify-items: start;
     justify-content: start; 
     text-align: left;
-    margin-inline: auto; /* centers the fit-content grid */
   }
+
 
   .home .business-card .bio .hl:not(:first-child)::before{
     content: "•";
