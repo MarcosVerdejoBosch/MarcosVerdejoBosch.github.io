@@ -589,6 +589,12 @@ button.icon-link:focus-visible{
   transform: translateY(1px);
 }
 
+/* Optical centering: LinkedIn glyph */
+a[aria-label="LinkedIn"] .icon{
+  transform: translateX(0.5px);
+}
+
+
 
 
 .email-copied { color: var(--accent) !important; }
