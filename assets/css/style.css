@@ -875,6 +875,17 @@ button.icon-link:focus-visible{
   color: var(--accent);
 }
 
+
+
+/* Tablet: prevent Projects dropdown from clipping off-screen */
+@media (max-width: 900px){
+  .dropdown-content{
+    left: auto;
+    right: 0;
+  }
+}
+
+
 @media (max-width: 600px) {
 
   .navbar{ height: auto; overflow: visible; }
