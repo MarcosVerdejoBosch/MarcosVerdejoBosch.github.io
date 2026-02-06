@@ -903,8 +903,10 @@ a[aria-label="LinkedIn"] .icon{
   }
 
   .icon-link:active{
-    opacity: 0.75;
+    opacity: 1; /* keep constant to avoid SVG jitter */
+    color: rgba(236, 239, 244, 0.75); /* dim-on-tap via color */
   }
+
 
   .icon-link:visited,
   .icon-link:focus,
