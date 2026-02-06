@@ -891,18 +891,21 @@ a[aria-label="LinkedIn"] .icon{
 /* Mobile: keep social icons perfectly still + ensure tap dim always reverts */
 @media (hover: none) and (pointer: coarse){
   .icon-link{
-    transform: none !important;          /* no movement */
+    transform: none !important;
     transition: color 0.2s ease, opacity 0.2s ease;
-    opacity: 1;                          /* baseline */
+    opacity: 1;
     filter: none;
   }
 
-  /* dim only while finger is down */
+  /* some mobile browsers still apply :hover after tap */
+  .icon-link:hover{
+    transform: none !important;
+  }
+
   .icon-link:active{
     opacity: 0.75;
   }
 
-  /* after navigation/back, never stay dim */
   .icon-link:visited,
   .icon-link:focus,
   .icon-link:focus-visible{
@@ -911,6 +914,7 @@ a[aria-label="LinkedIn"] .icon{
     filter: none;
   }
 }
+
 
 
 
