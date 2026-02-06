@@ -895,6 +895,7 @@ a[aria-label="LinkedIn"] .icon{
     transition: color 0.2s ease, opacity 0.2s ease;
     opacity: 1;
     filter: none;
+    outline: 2px solid red; /* DEBUG: confirm this rule is actually matching */ 
   }
 
   /* some mobile browsers still apply :hover after tap */
