@@ -645,6 +645,12 @@ a[aria-label="LinkedIn"] .icon{
   font-size: 0.85rem;
 }
 
+/* Footer container: enforce same horizontal spine */
+.footer .container{
+  text-align: center;
+  padding-inline: 1rem;
+}
+
 
 
 
