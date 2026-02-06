@@ -11,9 +11,9 @@ class: home
     <span class="role">Electronic Engineer</span>
 
     <div class="bio">
-      <span class="hl hl--lead">hardware design</span>
-      <span class="hl">embedded systems</span>
-      <span class="hl">analog circuits</span>
+      <span class="hl hl--lead">Hardware Design</span>
+      <span class="hl">Embedded Systems</span>
+      <span class="hl">Analog Circuits</span>
     </div>
 
 
