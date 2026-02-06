@@ -514,10 +514,18 @@ body.home .business-card{
   transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
-/* prevent visited links from changing icon color */
 .icon-link:visited{
   color: inherit;
+  opacity: 1;
+  filter: none;
 }
+
+.icon-link:active{
+  color: inherit;
+  opacity: 1;
+  filter: none;
+}
+
 
 
 /* Hover effects only on real hover devices (prevents sticky blue on touch) */
