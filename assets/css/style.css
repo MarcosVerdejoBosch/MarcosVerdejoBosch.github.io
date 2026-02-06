@@ -876,6 +876,24 @@ button.icon-link:focus-visible{
 }
 
 
+/* Mobile: keep social icons perfectly still */
+@media (hover: none) and (pointer: coarse){
+  .icon-link{
+    transform: none !important;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+}
+
+
+
+
+
+
+
+
+/* --------------------------------------------------------------
+   Media
+-------------------------------------------------------------- */
 
 /* Tablet: prevent Projects dropdown from clipping off-screen */
 @media (max-width: 900px){
