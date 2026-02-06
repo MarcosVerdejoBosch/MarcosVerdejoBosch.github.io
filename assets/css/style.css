@@ -895,13 +895,7 @@ button.icon-link:focus-visible{
    Media
 -------------------------------------------------------------- */
 
-/* Tablet: prevent Projects dropdown from clipping off-screen */
-@media (max-width: 900px){
-  .dropdown-content{
-    left: auto;
-    right: 0;
-  }
-}
+
 
 
 @media (max-width: 600px) {
@@ -1075,6 +1069,15 @@ button.icon-link:focus-visible{
   }
 
   .navbar .nav-links a{ white-space: nowrap; }
+}
+
+/* Tablet: prevent Projects dropdown from clipping off-screen */
+@media (max-width: 900px){
+  .dropdown-content{
+    left: auto;
+    right: 0;
+    max-width: calc(100vw - 2rem); 
+  }
 }
 
    
