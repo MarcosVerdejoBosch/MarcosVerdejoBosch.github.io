@@ -882,13 +882,30 @@ a[aria-label="LinkedIn"] .icon{
 }
 
 
-/* Mobile: keep social icons perfectly still */
+/* Mobile: keep social icons perfectly still + ensure tap dim always reverts */
 @media (hover: none) and (pointer: coarse){
   .icon-link{
-    transform: none !important;
+    transform: none !important;          /* no movement */
     transition: color 0.2s ease, opacity 0.2s ease;
+    opacity: 1;                          /* baseline */
+    filter: none;
+  }
+
+  /* dim only while finger is down */
+  .icon-link:active{
+    opacity: 0.75;
+  }
+
+  /* after navigation/back, never stay dim */
+  .icon-link:visited,
+  .icon-link:focus,
+  .icon-link:focus-visible{
+    opacity: 1;
+    color: inherit;
+    filter: none;
   }
 }
+
 
 
 
