@@ -891,7 +891,7 @@ a[aria-label="LinkedIn"] .icon{
 /* Mobile: keep social icons perfectly still + ensure tap dim always reverts */
 @media (hover: none) and (pointer: coarse){
   .icon-link{
-    transform: none !important;
+   transform: translateZ(0) !important;
     transition: color 0.2s ease, opacity 0.2s ease;
     opacity: 1;
     filter: none;
