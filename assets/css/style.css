@@ -83,7 +83,8 @@ a:hover { opacity: 0.8; }
 
   /* keep navbar content aligned with the site container spine */
   box-sizing: border-box;
-  width: min(100%, var(--container-max));
+  width: 100%;
+  max-width: var(--container-max); 
   margin-inline: auto;
   padding-inline: 1rem;
 }
