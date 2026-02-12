@@ -74,22 +74,16 @@ a:hover { opacity: 0.8; }
   background-color: var(--bg-nav);
   border-bottom: 1px solid var(--line);
   padding: 0.8rem 0;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw); 
-  box-shadow: 0 0 0 100vmax var(--bg-nav);
-  clip-path: inset(0 -100vmax); 
 }
 
-.nav-container {
+.nav-container{
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  /* keep navbar content aligned with the site container spine */
   box-sizing: border-box;
   width: 100%;
-  max-width: var(--container-max); 
+  max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: 1rem;
 }
