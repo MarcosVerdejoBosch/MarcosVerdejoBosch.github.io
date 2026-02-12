@@ -976,6 +976,11 @@ a[aria-label="LinkedIn"] .icon{
     text-align: center;
   }
 
+  .business-card .bio .hl:not(:first-child)::before{
+    margin: 0;           /* cancel desktop separator spacing */
+    color: var(--accent);/* keep consistent if it ever applies */
+  }
+
 
  /* (remove the .skills li rule — Home has no .skills list) */
 
