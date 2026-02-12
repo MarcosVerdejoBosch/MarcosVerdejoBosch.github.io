@@ -90,6 +90,13 @@ a:hover { opacity: 0.8; }
   padding-inline: 1rem;
 }
 
+/* Linux scrollbar-gutter case: if navbar wrapper uses .container, don't constrain its background */
+.navbar.container{
+  max-width: none;
+  width: 100%;
+  margin-inline: 0;
+}
+
 .nav-title {
   font-weight: 700;
   color: var(--fg);
