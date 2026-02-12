@@ -74,6 +74,9 @@ a:hover { opacity: 0.8; }
   background-color: var(--bg-nav);
   border-bottom: 1px solid var(--line);
   padding: 0.8rem 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw); 
 }
 
 .nav-container {
