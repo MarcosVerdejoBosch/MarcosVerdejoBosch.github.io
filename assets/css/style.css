@@ -77,8 +77,6 @@ a:hover { opacity: 0.8; }
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw); 
-  box-shadow: 0 0 0 100vmax var(--bg-nav);
-  clip-path: inset(0 -100vmax); 
 }
 
 .nav-container {
