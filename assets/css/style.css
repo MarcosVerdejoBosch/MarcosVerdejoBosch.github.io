@@ -61,13 +61,16 @@ html{
     var(--bg-nav) calc(0.8rem * 2 + (1.2rem * 1.6) + 1px),
     var(--bg-page) calc(0.8rem * 2 + (1.2rem * 1.6) + 1px),
     var(--bg-page) 100%
-  ); 
-  scrollbar-color: rgba(76, 86, 106, 0.85) transparent; /* Firefox: thumb | track */ 
+  );
+
+  /* Firefox: thumb | track (no more “black” track) */
+  scrollbar-color: rgba(76, 86, 106, 0.85) var(--bg-nav);
 }
 
+/* Ensure the canvas background comes from html (so the gradient is visible) */
 body{ background: transparent; }
 
-/* Chromium/WebKit: style the ROOT scroller scrollbar so the track is transparent */
+/* Chromium/WebKit: force an explicit track color (transparent can fall back to OS black) */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar{
   width: 12px;
@@ -75,16 +78,16 @@ body::-webkit-scrollbar{
 
 html::-webkit-scrollbar-track,
 body::-webkit-scrollbar-track{
-  background: transparent;
+  background-color: var(--bg-nav);
 }
 
 html::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb{
   background: rgba(76, 86, 106, 0.85);
   border-radius: 10px;
-  border: 3px solid transparent;
-  background-clip: padding-box;
+  border: 3px solid var(--bg-nav); /* keeps thumb inset + consistent */
 }
+
 
 
 a {
