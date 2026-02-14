@@ -65,27 +65,24 @@ html{
   scrollbar-color: rgba(76, 86, 106, 0.85) transparent; /* Firefox: thumb | track */ 
 }
 
-/* Nord scrollbar (Chromium/WebKit) — make the gutter/track match the page/nav */
-::-webkit-scrollbar{
+/* Chromium/WebKit: style the ROOT scroller scrollbar so the track is transparent */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar{
   width: 12px;
 }
 
-::-webkit-scrollbar-track{
-  background: linear-gradient(
-    to bottom,
-    var(--bg-nav) 0,
-    var(--bg-nav) calc(0.8rem * 2 + (1.2rem * 1.6) + 1px),
-    var(--bg-page) calc(0.8rem * 2 + (1.2rem * 1.6) + 1px),
-    var(--bg-page) 100%
-  );
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track{
+  background: transparent;
 }
 
-::-webkit-scrollbar-thumb{
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb{
   background: rgba(76, 86, 106, 0.85);
   border-radius: 10px;
-  border: 3px solid var(--bg-page); /* keeps thumb visually “floating” */
+  border: 3px solid transparent;
+  background-clip: padding-box;
 }
-
 
 
 a {
@@ -1157,9 +1154,3 @@ a[aria-label="LinkedIn"] .icon{
     max-width: calc(100vw - 2rem); 
   }
 }
-
-/* DEBUG: hide scrollbars to confirm the right strip is the scrollbar column */
-html{ scrollbar-width: none; }          /* Firefox */
-::-webkit-scrollbar{ width: 0; height: 0; }  /* Chromium/WebKit */
-
-   
