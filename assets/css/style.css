@@ -1159,3 +1159,22 @@ a[aria-label="LinkedIn"] .icon{
     max-width: calc(100vw - 2rem); 
   }
 }
+
+
+/* uggjghhgvhghj */
+/* DEBUG: does the browser actually accept custom scrollbar styling? */
+html{ scrollbar-color: #88c0d0 #bf616a !important; } /* Firefox: thumb | track */
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar{ width: 18px !important; }
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track{ background: #bf616a !important; } /* RED track */
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb{
+  background: #88c0d0 !important;      /* CYAN thumb */
+  border: 3px solid #2e3440 !important;
+  border-radius: 10px !important;
+}
+
