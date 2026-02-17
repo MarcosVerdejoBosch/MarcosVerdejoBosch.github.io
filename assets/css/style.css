@@ -1152,3 +1152,25 @@ a[aria-label="LinkedIn"] .icon{
     max-width: calc(100vw - 2rem); 
   }
 }
+
+/* Nord scrollbar (blends the “gap” into the page background) */
+html{
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--line) var(--bg-page); /* thumb | track */
+}
+
+html::-webkit-scrollbar{
+  width: 12px; /* Chromium */
+}
+
+html::-webkit-scrollbar-track{
+  background: var(--bg-page);
+}
+
+html::-webkit-scrollbar-thumb{
+  background: var(--line);
+  border-radius: 10px;
+  border: 3px solid var(--bg-page);
+  background-clip: padding-box;
+}
+
