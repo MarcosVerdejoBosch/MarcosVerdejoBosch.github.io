@@ -52,10 +52,20 @@ body{
 }
 
 html{
-  overflow-y: scroll;              /* keeps layout stable without gutter logic */ 
+  /* scrollbar-gutter: stable; */  /* keep disabled */
+  overflow-y: scroll;
   overflow-x: clip;
-  background: var(--bg-page);      /* keep it simple for now */
+
+  /* Paint a nav-colored band behind the navbar, then page color below */
+  background: linear-gradient(
+    to bottom,
+    var(--bg-nav) 0,
+    var(--bg-nav) 64px,
+    var(--bg-page) 64px,
+    var(--bg-page) 100%
+  );
 }
+
 
 /* Ensure the canvas background comes from html (so the gradient is visible) */
 body{ background: transparent; }
