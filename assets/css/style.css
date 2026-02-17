@@ -228,7 +228,7 @@ a:hover { opacity: 0.8; }
   pointer-events: none;
   transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
 
-  background: rgba(46, 52, 64, 0.92);
+  background: var(--bg-nav);
   border: 1px solid rgba(76, 86, 106, 0.95);
   border-radius: 4px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.22);
