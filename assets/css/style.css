@@ -52,10 +52,10 @@ body{
 }
 
 html{
-  /* scrollbar-gutter: stable; */  /* keep disabled */
-  overflow-y: auto;             /* stable width across pages */
+  /* scrollbar-gutter: stable; */ /* keep disabled */
+  overflow-y: scroll;            /* stability > purity */
   overflow-x: clip;
-  background: var(--bg-page);     /* back to solid */
+  background: var(--bg-page);
 }
 
 
