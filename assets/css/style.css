@@ -7,7 +7,7 @@
   --font-mono: "Source Code Pro", ui-monospace, monospace;
 
   /* Nord Palette */
-  --bg-page: #343b4a;  /* Polar Night 1 (slightly deeper, closer to nav) */
+  --bg-page: #2e3440;  /* Polar Night 1 (slightly deeper, closer to nav) */
   --bg-card: #3e4658;  /* subtle step above page (less “banding”) */
   --bg-nav:  #2e3440;  /* Polar Night 0 */
  
