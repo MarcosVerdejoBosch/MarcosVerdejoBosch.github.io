@@ -4,3 +4,8 @@ assets/img/projects/linear-regulator/_gltfpack_tmp/
 
 .tools/
 
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+Gemfile.lock
