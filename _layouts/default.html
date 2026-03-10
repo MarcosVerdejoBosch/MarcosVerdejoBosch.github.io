@@ -3,67 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light">
 
   <title>{{ page.title }} | {{ site.title }}</title>
-
   <meta name="description" content="{{ page.description | default: site.description | default: site.title }}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 
 <body class="{{ page.class }}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <nav class="navbar">
-    <div class="nav-container">
-      <a class="nav-title" href="{{ "/" | relative_url }}">MVB</a>
-
-      <div class="nav-links">
-        <a href="{{ "/" | relative_url }}" class="{% if page.url == "/" %}active{% endif %}">Home</a>
-        
-        <div class="dropdown">
-          <a href="{{ "/projects" | relative_url }}" class="{% if page.url contains '/projects' %}active{% endif %}">
-            Projects <span class="caret" aria-hidden="true"></span>
-          </a>
-          <div class="dropdown-content">
-            <a
-            href="{{ "/projects/linear-regulator/" | relative_url }}"
-            class="{% if page.url contains '/projects/linear-regulator/' %}active{% endif %}"
-            {% if page.url contains '/projects/linear-regulator/' %}aria-current="page"{% endif %}
-          >
-            Linear Regulator
-          </a>
-
-          <a href="#" class="disabled">IoT Sensor (Soon)</a>
+  <div class="site-shell">
+    <header class="site-header">
+      <nav class="navbar" aria-label="Primary">
+        <div class="nav-container">
+          <a class="nav-title" href="{{ "/" | relative_url }}" aria-label="Marcos Verdejo Bosch">MVB</a>
+          <div class="nav-links" role="list">
+            <a href="{{ "/" | relative_url }}" class="{% if page.url == "/" %}active{% endif %}">Home</a>
+            <a href="{{ "/projects" | relative_url }}" class="{% if page.url contains '/projects' %}active{% endif %}">Projects</a>
+          </div>
         </div>
+      </nav>
+    </header>
 
+    <main class="content" id="main-content">
+      <div class="container{% if page.class %} container--{{ page.class }}{% endif %}">
+        {{ content }}
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <span>Marcos Verdejo Bosch</span>
+          <span>&copy; <span id="year"></span></span>
         </div>
       </div>
-    </div>
-  </nav>
-
-  <main class="content">
-    <div class="container">
-      {{ content }}
-    </div>
-  </main>
-
-
-  <footer class="footer">
-  <div class="container">
-    Marcos Verdejo Bosch &copy; <span id="year"></span>
+    </footer>
   </div>
-  </footer>
-
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
+
