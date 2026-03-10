@@ -14,26 +14,28 @@ permalink: /projects/linear-regulator/
           <p class="caption">ENGINEERING REPORT &amp; ANALYSIS</p>
         </div>
 
-        <div class="figure figure--model">
-          <model-viewer
-            src="{{ "/assets/img/projects/linear-regulator/regulador.min.glb" | relative_url }}"
-            alt="3D PCB Model"
-            camera-controls
-            interaction-prompt="none"
-            interaction-prompt-threshold="0"
-            minimum-render-scale="1.5"
-            maximum-render-scale="1.5"
-            exposure="1.25"
-            shadow-intensity="0"
-            environment-image="neutral"
-            tone-mapping="aces"
-            interpolation-decay="200"
-            camera-orbit="0deg 0deg 85%"
-          ></model-viewer>
-          <div class="caption">Interactive 3D View</div>
+        <div class="figure-module">
+          <p class="figure-module__title">PCB 3D Viewer</p>
+          <div class="figure figure--model">
+            <model-viewer
+              src="{{ "/assets/img/projects/linear-regulator/regulador.min.glb" | relative_url }}"
+              alt="3D PCB Model"
+              camera-controls
+              interaction-prompt="none"
+              interaction-prompt-threshold="0"
+              minimum-render-scale="1.5"
+              maximum-render-scale="1.5"
+              exposure="1.25"
+              shadow-intensity="0"
+              environment-image="neutral"
+              tone-mapping="aces"
+              interpolation-decay="200"
+              camera-orbit="0deg 0deg 85%"
+            ></model-viewer>
+          </div>
         </div>
-      </div>
 
+      </div>
       <div class="case-study__content">
         <h2 id="overview">Overview</h2>
         <p>
@@ -144,44 +146,53 @@ permalink: /projects/linear-regulator/
       return;
     }
 
-    const linkMap = new Map(links.map((link) => [link.getAttribute('href').slice(1), link]));
-
-    const setActive = (id) => {
+    const activate = (id) => {
       links.forEach((link) => {
         link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
       });
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+    const syncActiveSection = () => {
+      const threshold = 146;
+      const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 6;
 
-        if (visible) {
-          setActive(visible.target.id);
-        }
+      if (nearBottom) {
+        activate(headings.at(-1).id);
+        return;
+      }
+
+      const current = headings
+        .filter((heading) => heading.getBoundingClientRect().top <= threshold)
+        .at(-1) || headings[0];
+
+      activate(current.id);
+    };
+
+    const observer = new IntersectionObserver(
+      () => {
+        syncActiveSection();
       },
       {
-        rootMargin: '-18% 0px -66% 0px',
-        threshold: [0, 1],
+        rootMargin: '-14% 0px -76% 0px',
+        threshold: [0, 0.2, 0.45, 0.7, 1],
       }
     );
 
     headings.forEach((heading) => observer.observe(heading));
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        const id = link.getAttribute('href').slice(1);
+        activate(id);
+      });
+    });
 
-    const fallbackActive = () => {
-      const current = headings
-        .filter((heading) => heading.getBoundingClientRect().top <= 160)
-        .at(-1) || headings[0];
-
-      if (current) {
-        setActive(current.id);
-      }
-    };
-
-    fallbackActive();
-    window.addEventListener('scroll', fallbackActive, { passive: true });
+    syncActiveSection();
+    window.addEventListener('scroll', syncActiveSection, { passive: true });
+    window.addEventListener('hashchange', syncActiveSection);
   })();
 </script>
+
+
+
+
 
