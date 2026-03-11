@@ -118,12 +118,18 @@ ol {
   padding-inline: clamp(1rem, 2.8vw, 1.75rem);
 }
 
-.navbar {
+.site-header {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 32;
+}
+
+.navbar {
+  position: relative;
+  top: auto;
+  z-index: auto;
   border-bottom: 1px solid rgba(74, 93, 108, 0.78);
-  background: rgba(14, 20, 26, 0.96);
+  background: rgba(14, 20, 26, 0.98);
 }
 
 .nav-container {
@@ -132,6 +138,7 @@ ol {
   justify-content: space-between;
   min-height: 4.25rem;
   gap: 1.25rem;
+  flex-wrap: nowrap;
 }
 
 .nav-title,
@@ -144,14 +151,14 @@ ol {
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding-bottom: 0.28rem;
-  font-family: var(--font-mono);
-  font-size: 0.86rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  padding-bottom: 0.24rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   line-height: 1;
-  text-transform: uppercase;
   color: var(--fg);
+  transition: color 120ms linear;
 }
 
 .nav-title::after {
@@ -161,29 +168,38 @@ ol {
   right: 0;
   bottom: 0;
   height: 1px;
-  background: var(--accent-soft);
+  background: var(--accent-line);
   opacity: 0;
   transition: opacity 120ms linear;
 }
 
+.nav-title:hover,
+.nav-title:focus-visible {
+  color: var(--text-body);
+}
+
 .nav-title:hover::after,
 .nav-title:focus-visible::after {
-  opacity: 0.58;
+  opacity: 0.52;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 1.25rem;
+  margin-left: auto;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
 }
 
 .nav-links a {
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding-bottom: 0.28rem;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  padding-bottom: 0.24rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
   line-height: 1;
   text-transform: uppercase;
   color: var(--muted);
@@ -210,7 +226,7 @@ ol {
 
 .nav-links a:hover::after,
 .nav-links a:focus-visible::after {
-  opacity: 0.58;
+  opacity: 0.52;
 }
 
 .nav-links a.active::after {
@@ -218,19 +234,25 @@ ol {
 }
 
 .footer {
-  border-top: 1px solid var(--chrome-line);
   margin-top: 3rem;
 }
 
 .footer-inner {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: nowrap;
   padding: 1rem 0 1.5rem;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.footer-inner span:last-child {
+  margin-left: auto;
+  white-space: nowrap;
 }
 
 .home-sheet {
@@ -253,8 +275,6 @@ ol {
   align-items: stretch;
   min-height: clamp(28.5rem, calc(100vh - 13.75rem), 38rem);
   padding: clamp(1.7rem, 3vw, 2.4rem) 0;
-  border-top: 1px solid rgba(74, 93, 108, 0.82);
-  border-bottom: 1px solid rgba(47, 59, 70, 0.92);
 }
 
 .home-identity {
@@ -266,11 +286,26 @@ ol {
 
 .home-identity h1 {
   margin: 0;
-  max-width: 8ch;
+  display: grid;
+  justify-items: start;
+  width: max-content;
+  max-width: none;
   font-size: clamp(3.4rem, 7.2vw, 6rem);
   line-height: 0.91;
   font-weight: 700;
   letter-spacing: -0.03em;
+}
+
+.home-identity h1 span {
+  display: block;
+}
+
+.home-identity h1 span:nth-child(2) {
+  margin-left: 0;
+}
+
+.home-identity h1 span:nth-child(3) {
+  margin-left: 0;
 }
 
 .home-role {
@@ -323,7 +358,7 @@ ol {
 }
 
 .home-cta {
-  margin-top: auto;
+  margin-top: 2.7rem;
   padding-top: 1.05rem;
   border-top: 1px solid var(--chrome-line);
 }
@@ -490,14 +525,14 @@ ol {
 
 .case-study__index-title {
   display: inline-block;
-  margin: 0 0 0.8rem;
-  padding-bottom: 0.45rem;
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.38rem;
   border-bottom: 1px solid rgba(74, 93, 108, 0.18);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-body);
+  color: var(--muted);
 }
 
 .case-study__index-list {
@@ -563,6 +598,11 @@ ol {
   color: var(--muted);
 }
 
+.case-study__heading .caption {
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+}
+
 .figure-module {
   display: grid;
   gap: 0.55rem;
@@ -572,9 +612,9 @@ ol {
   margin: 0;
   font-family: var(--font-mono);
   font-size: 0.74rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-body);
+  color: var(--muted);
 }
 
 .figure {
@@ -683,9 +723,7 @@ ol {
   }
 
   .case-study__index {
-    position: static;
-    padding: 1.2rem 0 0;
-    border-top: 1px solid var(--line);
+    display: none;
   }
 
   .case-study__index::before {
@@ -701,11 +739,12 @@ ol {
   }
 
   .home-identity h1 {
+    width: max-content;
     max-width: none;
   }
 
   .home-rail {
-    width: min(100%, 31rem);
+    width: min(100%, 34rem);
     min-height: auto;
     justify-self: start;
     padding: 1.3rem 0 0;
@@ -728,15 +767,9 @@ ol {
 
 @media (max-width: 640px) {
   .nav-container {
-    align-items: flex-start;
-    flex-direction: column;
+    gap: 0.9rem;
     padding-top: 0.9rem;
     padding-bottom: 0.9rem;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .nav-links {
@@ -763,20 +796,17 @@ ol {
     flex-direction: column;
   }
 }
+@media (max-width: 360px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .footer-inner span:last-child {
+    margin-left: 0;
+  }
+}
 
 
 

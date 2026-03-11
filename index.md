@@ -4,11 +4,10 @@ title: Home
 class: home
 ---
 <section class="home-sheet" aria-labelledby="home-title">
-  <p class="home-kicker">About Me</p>
 
   <div class="home-masthead">
     <div class="home-identity">
-      <h1 id="home-title">Marcos Verdejo Bosch</h1>
+      <h1 id="home-title"><span>Marcos</span><span>Verdejo</span><span>Bosch</span></h1>
       <p class="home-role">Electronic engineer working across hardware design, embedded systems, and analog development.</p>
     </div>
 
@@ -30,4 +29,6 @@ class: home
     </div>
   </div>
 </section>
+
+
 

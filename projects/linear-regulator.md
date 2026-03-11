@@ -120,7 +120,7 @@ permalink: /projects/linear-regulator/
     </div>
 
     <aside class="case-study__index" aria-label="Section index">
-      <p class="case-study__index-title">On This Page</p>
+      <p class="case-study__index-title">Contents</p>
       <nav>
         <ul class="case-study__index-list">
           <li><a href="#overview">Overview</a></li>
@@ -191,6 +191,7 @@ permalink: /projects/linear-regulator/
     window.addEventListener('hashchange', syncActiveSection);
   })();
 </script>
+
 
 
 
