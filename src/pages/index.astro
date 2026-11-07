@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { navigation, site } from '../data/site';
+
+const introduction = 'I like building things I can use: circuits, software, and audio tools.';
+const currentWork = 'I work on Google Cloud infrastructure.';
+const bio = `${introduction} ${currentWork}`;
+---
+
+<BaseLayout variant="home" description={bio}>
+  <section class="home-intro" aria-labelledby="intro-title">
+    <h1 id="intro-title">{site.name}</h1>
+    <p class="home-role">{site.role}</p>
+    <p class="home-bio"><span>{introduction}</span> <span>{currentWork}</span></p>
+
+    <nav class="home-links" aria-label="Portfolio navigation">
+      <ul>
+        {navigation.map(({ label, href }) => <li><a href={href}>{label}</a></li>)}
+      </ul>
+    </nav>
+  </section>
+</BaseLayout>
+
+<style>
+  .home-intro {
+    max-width: calc(var(--shell) + var(--gutter) * 2);
+    margin-inline: auto;
+    padding: clamp(4.75rem, 9vw, 5rem) var(--gutter);
+    padding-block-end: clamp(2.75rem, 7vw, 4.5rem);
+  }
+
+  h1 {
+    font-size: clamp(2.15rem, 6vw, 3.4rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -.052em;
+    text-wrap: balance;
+  }
+
+  .home-links a {
+    font-family: var(--mono);
+    font-variant-ligatures: none;
+  }
+
+  .home-role {
+    margin-top: clamp(.75rem, 2vw, 1.05rem);
+    color: var(--muted);
+    font-size: clamp(1rem, 2.1vw, 1.125rem);
+  }
+
+  .home-bio {
+    margin-top: clamp(1.6rem, 4vw, 2.1rem);
+    max-width: 27rem;
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+    line-height: 1.7;
+    text-wrap: balance;
+  }
+
+  .home-bio span {
+    display: block;
+  }
+
+  .home-links {
+    margin-top: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .home-links ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem clamp(1.6rem, 3.45vw, 1.9rem);
+    list-style: none;
+    padding: 0;
+    font-size: clamp(.95rem, 2.1vw, 1.125rem);
+  }
+
+  .home-links a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    text-decoration: underline var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: .32em;
+  }
+
+  .home-links a:hover {
+    text-decoration-color: color-mix(in srgb, var(--accent), currentColor 35%);
+  }
+</style>

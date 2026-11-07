@@ -1,0 +1,8 @@
+---
+import Arrow from './Arrow.astro';
+import { site } from '../data/site';
+---
+<footer class="site-footer shell">
+  <span>© {new Date().getFullYear()} {site.name}</span>
+  <a href={site.github} target="_blank" rel="noopener noreferrer">GitHub <Arrow /></a>
+</footer>

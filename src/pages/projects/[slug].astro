@@ -1,0 +1,45 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModelViewer from '../../components/ModelViewer.astro';
+import Arrow from '../../components/Arrow.astro';
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', entry => !entry.data.draft);
+  return projects.map(project => ({ params: { slug: project.id }, props: { project } }));
+}
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
+const { data } = project;
+const { Content, headings } = await render(project);
+---
+<BaseLayout title={data.title} description={data.summary}>
+  <article class="shell project-page">
+    <a class="back-link" href="/projects/"><span aria-hidden="true">←</span> All projects</a>
+    <header class="project-heading"><p class="eyebrow">{data.discipline}<span class="eyebrow-divider">/</span>Case study {String(data.order).padStart(2, '0')}</p><h1>{data.title}<span class="accent-period">.</span></h1><div class="project-heading__bottom"><p>{data.summary}</p><span class="status"><span aria-hidden="true"></span>{data.status}</span></div></header>
+    <dl class="report-facts">{data.facts.map(fact => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}<div><dt>Tools</dt><dd>{data.tags.join(' · ')}</dd></div></dl>
+    {data.model && data.cover ? <ModelViewer model={data.model} poster={data.cover} alt={data.coverAlt ?? data.title} /> : data.cover && <Image class="report-cover" src={data.cover} alt={data.coverAlt ?? data.title} width={1088} format="webp" />}
+    <div class="report-layout">
+      <aside class="report-index" aria-label="On this page"><p class="section-label">On this page</p><nav><ol>{headings.filter(heading => heading.depth === 2).map(heading => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav><a class="report-index__back" href="/projects/">All projects <Arrow direction="right" /></a></aside>
+      <div class="prose"><Content /></div>
+    </div>
+    <div class="report-end"><p class="section-label">Keep exploring</p><a href="/projects/">Back to projects <Arrow /></a></div>
+  </article>
+</BaseLayout>
+<script>
+  const indexLinks = [...document.querySelectorAll<HTMLAnchorElement>('.report-index nav a')];
+  const sections = [...document.querySelectorAll<HTMLElement>('.prose h2[id]')];
+  let scheduled = false;
+  const updateIndex = () => {
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+    const current = atBottom ? sections.at(-1) : sections.filter(section => section.getBoundingClientRect().top <= 150).at(-1) ?? sections[0];
+    for (const link of indexLinks) {
+      if (link.hash === `#${current?.id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+    scheduled = false;
+  };
+  window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateIndex); } }, { passive: true });
+  window.addEventListener('hashchange', updateIndex);
+  updateIndex();
+</script>

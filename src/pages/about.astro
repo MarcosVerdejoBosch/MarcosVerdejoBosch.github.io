@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Contact from '../components/Contact.astro';
+import { disciplines } from '../data/site';
+---
+<BaseLayout title="About">
+  <div class="shell">
+    <section class="page-intro about-intro" aria-labelledby="about-title">
+      <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> Profile</p>
+      <h1 id="about-title">A little about me<span class="accent-period">.</span></h1>
+    </section>
+
+    <section class="about-detail">
+      <p class="section-label">Marcos Verdejo Bosch<br /><span>Electronic Engineer</span></p>
+      <div class="about-detail__copy">
+        <p class="lead">I’m an electronic engineer. What I enjoy most is designing and building something I can use myself.</p>
+        <p>I currently work on Google Cloud infrastructure. Outside work, I design circuits and write software, including tools for analyzing and visualizing sound.</p>
+      </div>
+    </section>
+
+    <section class="discipline-section section-space" aria-labelledby="focus-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Work &amp; personal projects</p>
+          <h2 id="focus-title">What I work on.</h2>
+        </div>
+      </div>
+      <div class="discipline-grid">
+        {disciplines.map(item => (
+          <article>
+            <span class="mono">{item.number} /</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+            <span class="discipline-tools">{item.tools}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <Contact />
+  </div>
+</BaseLayout>

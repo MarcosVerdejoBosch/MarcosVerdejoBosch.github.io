@@ -1,0 +1,18 @@
+---
+import Arrow from './Arrow.astro';
+import { site } from '../data/site';
+---
+<section class="contact-section" id="contact" aria-labelledby="contact-title">
+  <div class="section-label"><span class="signal-dot" aria-hidden="true"></span> Get in touch</div>
+  <div class="contact-grid">
+    <h2 id="contact-title">Let’s talk.</h2>
+    <div class="contact-details">
+      <p>Have a project in mind, a technical question, or something interesting to share? I’d like to hear about it.</p>
+      <a class="email-link" href={`mailto:${site.email}`}>{site.email} <Arrow /></a>
+      <div class="social-links">
+        <a href={site.github} target="_blank" rel="noopener noreferrer">GitHub <Arrow /></a>
+        <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <Arrow /></a>
+      </div>
+    </div>
+  </div>
+</section>

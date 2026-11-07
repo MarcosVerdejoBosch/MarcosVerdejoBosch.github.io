@@ -1,0 +1,59 @@
+---
+import '@fontsource-variable/inter';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import '@fontsource/commit-mono/latin-400.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import themeScript from '../scripts/theme.js?raw';
+import { site } from '../data/site';
+import { getImage } from 'astro:assets';
+import socialCard from '../assets/social-card.png';
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  variant?: 'standard' | 'home';
+}
+const { title, description = site.description, noindex = false, variant = 'standard' } = Astro.props;
+const isHome = variant === 'home';
+const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.role}`;
+const canonicalPath = Astro.url.pathname.replace(/\/$/, '') === '/404' ? '/404.html' : Astro.url.pathname;
+const canonical = new URL(canonicalPath, Astro.site);
+const socialImage = await getImage({ src: socialCard, format: 'png', width: 1200, height: 630 });
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#181818" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline set:html={themeScript} />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin="anonymous" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={new URL(socialImage.src, Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} — ${site.role}. Personal portfolio.`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class:list={{ 'home-page': isHome }}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {isHome ? <div class="home-toolbar shell"><ThemeToggle /></div> : <Header />}
+    <main id="main-content" tabindex="-1"><slot /></main>
+    {!isHome && <Footer />}
+  </body>
+</html>

@@ -9,3 +9,11 @@ _site/
 .jekyll-metadata
 .sass-cache/
 Gemfile.lock
+
+# Astro / Node
+node_modules/
+dist/
+.astro/
+public/models/
+public/licenses/
+*.log

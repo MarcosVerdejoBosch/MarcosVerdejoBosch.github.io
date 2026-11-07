@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#181818"/>
+  <path d="M70 70h1060M70 560h1060" stroke="#50454a"/>
+  <circle cx="82" cy="125" r="5" fill="#ab5267"/>
+  <text x="102" y="131" font-family="CommitMono,Commit Mono,monospace" font-size="17" fill="#bbbbba">HARDWARE · EMBEDDED · ANALOG</text>
+  <text x="70" y="290" font-family="Inter,sans-serif" font-size="100" font-weight="500" letter-spacing="-5" fill="#eeeeed">Marcos</text>
+  <text x="70" y="400" font-family="Inter,sans-serif" font-size="100" font-weight="500" letter-spacing="-5" fill="#eeeeed">Verdejo Bosch</text>
+  <text x="74" y="494" font-family="Inter,sans-serif" font-size="25" fill="#bbbbba">Electronic Engineer</text>
+</svg>
