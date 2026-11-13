@@ -2,14 +2,13 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import Contact from '../../components/Contact.astro';
 const projects = (await getCollection('projects', entry => !entry.data.draft)).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title="Projects" description="A closer look at my engineering projects: hardware, analog circuits, PCB design, and the decisions behind them.">
-  <div class="shell">
-    <section class="page-intro" aria-labelledby="page-title"><p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> Project index</p><h1 id="page-title">Work in detail<span class="accent-period">.</span></h1><div class="intro-bottom"><p>A look inside the things I’m building.<br />The ideas, decisions, and work in progress.</p><span class="mono">{String(projects.length).padStart(2, '0')} documented {projects.length === 1 ? 'project' : 'projects'}</span></div></section>
-    <section class="project-index" aria-labelledby="projects-title"><h2 class="sr-only" id="projects-title">Engineering projects</h2>{projects.map((project, index) => <ProjectCard project={project} number={String(index + 1).padStart(2, '0')} />)}</section>
-    <p class="index-note"><span class="signal-dot" aria-hidden="true"></span> This collection grows as projects and their documentation take shape.</p>
-    <Contact />
+  <div class="page-flow page-flow--projects">
+    <h1 class="page-title" id="page-title">Projects</h1>
+    <div class="project-list">
+      {projects.map(project => <ProjectCard project={project} />)}
+    </div>
   </div>
 </BaseLayout>

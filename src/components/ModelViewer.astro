@@ -1,46 +1,50 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import Arrow from './Arrow.astro';
 interface Props { model: string; poster: ImageMetadata; alt: string; }
 const { model, poster, alt } = Astro.props;
 ---
-<section class="model-section" aria-labelledby="model-title">
-  <div class="model-heading"><h2 id="model-title">A closer look at the board.</h2><span class="mono">Interactive / 3D</span></div>
-  <div class="model-stage" data-model-viewer data-src={model}>
+<figure class="model-figure" data-model-viewer data-src={model}>
+  <div class="model-stage">
     <Image
       class="model-poster"
       src={poster}
       alt={alt}
-      width={1088}
-      widths={[320, 480, 640, 800, 1088]}
-      sizes="(max-width: 360px) calc(100vw - 80px), (max-width: 760px) 280px, (max-width: 1000px) 380px, 570px"
+      width={1280}
+      widths={[320, 480, 640, 800, 1088, 1280]}
+      sizes="(max-width: 370px) calc(100vw - 48px), (max-width: 810px) 87vw, 704px"
       format="webp"
-      loading="lazy"
+      loading="eager"
+      fetchpriority="high"
     />
-    <div class="model-launch" hidden>
-      <button class="button button--primary" type="button" data-load-model>Explore in 3D <Arrow /></button>
-      <span>Loads a 19 MB model · rotate, zoom, inspect</span>
-    </div>
     <div class="model-toolbar" hidden>
       <span>Drag to rotate · scroll to zoom</span>
       <button type="button" data-reset-model>Reset view <span aria-hidden="true">↺</span></button>
     </div>
-    <p class="model-message" data-model-message role="status" aria-live="polite"></p>
   </div>
-  <p class="figure-caption">KiCad design render. The model shows the CAD design and component placement.</p>
-  <noscript><p class="model-fallback">The interactive viewer needs JavaScript. You can <a href={model} download>download the PCB model</a> to inspect it locally.</p></noscript>
-</section>
+  <figcaption>
+    <div class="model-caption">
+      <span>KiCad render</span>
+      <div class="model-launch" hidden>
+        <button class="text-link model-trigger" type="button" data-load-model aria-describedby="model-size">Explore in 3D</button>
+        <span id="model-size">19 MB</span>
+      </div>
+    </div>
+    <p class="model-message" data-model-message role="status" aria-live="polite"></p>
+    <noscript><p class="model-fallback">The interactive viewer needs JavaScript. You can <a href={model} download>download the PCB model</a> to inspect it locally.</p></noscript>
+  </figcaption>
+</figure>
 <script>
   import type { ModelViewerElement } from '@google/model-viewer';
 
-  for (const stage of document.querySelectorAll<HTMLElement>('[data-model-viewer]')) {
-    const button = stage.querySelector<HTMLButtonElement>('[data-load-model]');
-    const message = stage.querySelector<HTMLElement>('[data-model-message]');
-    const toolbar = stage.querySelector<HTMLElement>('.model-toolbar');
-    const launch = stage.querySelector<HTMLElement>('.model-launch');
-    const reset = stage.querySelector<HTMLButtonElement>('[data-reset-model]');
-    if (!button || !message || !toolbar || !launch) continue;
+  for (const figure of document.querySelectorAll<HTMLElement>('[data-model-viewer]')) {
+    const stage = figure.querySelector<HTMLElement>('.model-stage');
+    const button = figure.querySelector<HTMLButtonElement>('[data-load-model]');
+    const message = figure.querySelector<HTMLElement>('[data-model-message]');
+    const toolbar = figure.querySelector<HTMLElement>('.model-toolbar');
+    const launch = figure.querySelector<HTMLElement>('.model-launch');
+    const reset = figure.querySelector<HTMLButtonElement>('[data-reset-model]');
+    if (!stage || !button || !message || !toolbar || !launch) continue;
     launch.hidden = false;
     reset?.addEventListener('click', () => {
       const viewer = stage.querySelector<ModelViewerElement>('model-viewer');
@@ -71,6 +75,7 @@ const { model, poster, alt } = Astro.props;
           stage.classList.add('is-loaded');
           stage.setAttribute('aria-busy', 'false');
           toolbar.hidden = false;
+          launch.hidden = true;
           message.textContent = '3D model ready. Use the mouse, touch, or arrow keys to rotate.';
           viewer.focus();
         }, { once: true });
@@ -79,11 +84,12 @@ const { model, poster, alt } = Astro.props;
           stage.classList.remove('is-loaded');
           stage.setAttribute('aria-busy', 'false');
           toolbar.hidden = true;
+          launch.hidden = false;
           button.disabled = false;
           button.textContent = 'Try loading 3D again';
           message.textContent = 'The 3D model could not be loaded. The PCB image is still available.';
         }, { once: true });
-        viewer.setAttribute('src', stage.dataset.src ?? '');
+        viewer.setAttribute('src', figure.dataset.src ?? '');
         stage.append(viewer);
       } catch {
         stage.setAttribute('aria-busy', 'false');

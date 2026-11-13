@@ -1,13 +1,16 @@
 ---
 title: Linear Regulator
-summary: A discrete power-supply design exploring feedback, protection, and the path from circuit simulation to PCB layout.
+summary: I’m designing a discrete power supply for prototyping and bench rails.
 discipline: Hardware / Analog
 status: In development
 tags: [KiCad, LTspice, Analog design]
 order: 1
 featured: true
-cover: ../../../assets/img/projects/linear-regulator/Regulador-3d.png
-coverAlt: Top-down KiCad render of the linear regulator PCB, showing its components, test points, and input and output connections.
+thumbnail:
+  image: ../../../assets/img/projects/linear-regulator/Regulador-perspectiva.png
+  alt: Oblique CAD render of the linear regulator PCB showing the input and output connectors and the height of the components.
+cover: ../../../assets/img/projects/linear-regulator/Regulador-perspectiva.png
+coverAlt: KiCad render of the linear regulator PCB viewed at an angle, with raised components and input and output connectors.
 model: /models/linear-regulator.glb
 facts:
   - label: Output targets

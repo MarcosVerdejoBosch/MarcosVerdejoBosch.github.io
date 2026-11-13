@@ -78,6 +78,12 @@ for (const route of routes) {
   }
 }
 
+const legacyContact = await readFile(await fileFor('/contact/'), 'utf8');
+assert.match(legacyContact, /http-equiv="refresh" content="0;url=\/#contact"/, 'Legacy contact URL must redirect to the home footer');
+for (const route of ['/', '/about/']) {
+  assert(attributes(documents.get(route), 'id').includes('contact'), `Missing contact anchor: ${route}#contact`);
+}
+
 const home = documents.get('/');
 assert(!home.includes('data-model-viewer') && !home.includes('/models/'), 'Home page must not load the 3D model');
 const report = documents.get('/projects/linear-regulator/');

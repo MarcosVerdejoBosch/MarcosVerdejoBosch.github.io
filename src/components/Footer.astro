@@ -1,8 +1,25 @@
 ---
-import Arrow from './Arrow.astro';
+import Envelope from '../assets/icons/envelope.svg';
+import GitHub from '../assets/icons/github.svg';
+import LinkedIn from '../assets/icons/linkedin.svg';
 import { site } from '../data/site';
 ---
-<footer class="site-footer shell">
-  <span>© {new Date().getFullYear()} {site.name}</span>
-  <a href={site.github} target="_blank" rel="noopener noreferrer">GitHub <Arrow /></a>
+<footer class="site-footer shell" id="contact">
+  <ul class="site-footer__links" role="list" aria-label="Contact">
+    <li>
+      <a href={`mailto:${site.email}`} aria-label="Mail" title="Mail">
+        <Envelope aria-hidden="true" focusable="false" />
+      </a>
+    </li>
+    <li>
+      <a href={site.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+        <GitHub aria-hidden="true" focusable="false" />
+      </a>
+    </li>
+    <li>
+      <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+        <LinkedIn aria-hidden="true" focusable="false" />
+      </a>
+    </li>
+  </ul>
 </footer>

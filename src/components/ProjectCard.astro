@@ -2,24 +2,50 @@
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Arrow from './Arrow.astro';
-interface Props { project: CollectionEntry<'projects'>; number?: string; showImage?: boolean; }
-const { project, number = '01', showImage = true } = Astro.props;
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
 const { data } = project;
+const href = `/projects/${project.id}/`;
+const titleId = `project-${project.id}-title`;
+const actionId = `project-${project.id}-action`;
+const showFacts = data.featured && data.facts.length > 0;
+const cardImage = data.thumbnail?.image ?? data.cover;
 ---
-<article class:list={['project-feature', { 'project-feature--text': !showImage }]}>
-  {showImage && <a class="project-feature__visual" href={`/projects/${project.id}/`} aria-label={`Explore ${data.title}`}>
-    {data.cover && <Image src={data.cover} alt={data.coverAlt ?? data.title} widths={[480, 800, 1088]} sizes="(max-width: 760px) 90vw, 50vw" format="webp" loading="lazy" />}
-    <span class="visual-index">{number} / {data.title}</span>
-    <span class="visual-open"><Arrow /></span>
-  </a>}
-  <div class="project-feature__body">
-    <div class="project-meta"><span>Project / {number}</span><span class="status"><span aria-hidden="true"></span>{data.status}</span></div>
-    <h3><a href={`/projects/${project.id}/`}>{data.title}</a></h3>
-    <p class="project-summary">{data.summary}</p>
-    <dl class="project-facts">
-      {data.facts.map((fact) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
-    </dl>
-    <ul class="tags" aria-label="Project tools">{data.tags.map(tag => <li>{tag}</li>)}</ul>
-    <a class="text-link" href={`/projects/${project.id}/`}>Explore the project <Arrow /></a>
-  </div>
+<article>
+  <a
+    class:list={['project-feature', { 'project-feature--text': !cardImage }]}
+    href={href}
+    aria-labelledby={`${titleId} ${actionId}`}
+  >
+    <div class="project-feature__body">
+      <p class="project-meta">{data.discipline} <span class="project-status">{data.status}</span></p>
+      <h2 id={titleId}>{data.title}</h2>
+      <p class="project-summary">{data.summary}</p>
+      {showFacts ? (
+        <dl class="project-feature__facts">
+          {data.facts.map(({ label, value }) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : (
+        data.tags.length > 0 && <p class="project-tools">{data.tags.join(' · ')}</p>
+      )}
+      <span class="text-link" id={actionId}>Read the case study <Arrow direction="right" /></span>
+    </div>
+    {cardImage && (
+      <Image
+        class="project-feature__visual"
+        src={cardImage}
+        alt={data.thumbnail?.alt ?? data.coverAlt ?? data.title}
+        widths={[320, 480, 800, 1088]}
+        sizes="(max-width: 760px) 87vw, (max-width: 1280px) 46vw, 600px"
+        format="webp"
+        loading={data.featured ? 'eager' : 'lazy'}
+        fetchpriority={data.featured ? 'high' : undefined}
+      />
+    )}
+  </a>
 </article>

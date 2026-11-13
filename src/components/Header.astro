@@ -1,23 +1,20 @@
 ---
-import { navigation, site } from '../data/site';
+import { navigation } from '../data/site';
 import ThemeToggle from './ThemeToggle.astro';
 const path = Astro.url.pathname;
+const activePath = path.startsWith('/projects/') ? '/projects/' : path;
+const currentKind = path === activePath ? 'page' : 'location';
+const links = [{ label: 'Home', href: '/' }, ...navigation];
 ---
-<header class="site-header shell">
-  <a class="identity" href="/" aria-label={`${site.name}, home`}>
-    <span class="identity__mark" aria-hidden="true">MVB</span>
-    <span class="identity__text">{site.name}<span>{site.role}</span></span>
-  </a>
-  <div class="header-actions">
-    <nav aria-label="Main navigation">
-      {navigation.map(({ label, href }) => (
-        <a
-          href={href}
-          class:list={{ 'is-active': !href.includes('#') && path.startsWith(href) }}
-          aria-current={path === href ? 'page' : undefined}
-        >{label}</a>
+<header class="site-header">
+  <nav aria-label="Main navigation">
+    <ul role="list">
+      {links.map(({ label, href }) => (
+        <li>
+          <a href={href} aria-current={href === activePath ? currentKind : undefined}>{label}</a>
+        </li>
       ))}
-    </nav>
-    <ThemeToggle />
-  </div>
+    </ul>
+  </nav>
+  <ThemeToggle />
 </header>
