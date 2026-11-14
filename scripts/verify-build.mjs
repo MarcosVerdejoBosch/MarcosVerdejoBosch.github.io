@@ -96,14 +96,24 @@ assert.match(attributes(poster, 'srcset')[0] ?? '', /320w/, 'Poster must include
 assert(attributes(poster, 'sizes').length === 1, 'Poster must declare its rendered size');
 assert.match(report, /class="model-launch"[^>]*\bhidden/, '3D activation must stay hidden without JavaScript');
 
+const sitemap = await readFile(await fileFor('/sitemap-0.xml'), 'utf8');
+assert(!sitemap.includes(`${origin}/contact/`), 'The contact redirect must stay out of the sitemap');
+
 for (const legacy of ['Gemfile', '_config.yml', 'index.md', 'regulador.glb']) {
   await assert.rejects(stat(join(dist, legacy)), `Legacy source leaked into build: ${legacy}`);
 }
 await assert.rejects(stat(join(dist, 'projects/iot-sensor-node/index.html')), 'Draft project route must not be generated');
 
+const sourceAssets = join(root, 'assets/img/projects/linear-regulator');
+const model = await readFile(await fileFor('/models/linear-regulator.glb'));
+assert.equal(model.toString('ascii', 0, 4), 'glTF', 'Published model must be a GLB');
+const modelMetadata = JSON.parse(model.toString('utf8', 20, 20 + model.readUInt32LE(12)));
+assert(modelMetadata.extensionsRequired?.includes('EXT_meshopt_compression'), 'The published model must use Meshopt');
+const originalModel = await stat(join(sourceAssets, 'regulador.min.glb'));
+assert(model.length < originalModel.size, 'The published model must be smaller than its source');
 const hash = async file => createHash('sha256').update(await readFile(file)).digest('hex');
-assert.equal(await hash(join(root, 'assets/img/projects/linear-regulator/regulador.min.glb')), await hash(join(dist, 'models/linear-regulator.glb')), 'Published model differs from the original');
-assert.equal(await hash(join(root, 'assets/img/projects/linear-regulator/Regulador-3d.png')), 'afe858b75d9ff9ef918cb147252fe25eb46034b4b770c1a9d00fbbffa08f0bb5', 'Original PCB image changed');
+assert.equal(await hash(join(sourceAssets, 'Regulador-3d.png')), 'afe858b75d9ff9ef918cb147252fe25eb46034b4b770c1a9d00fbbffa08f0bb5', 'Original PCB image changed');
+console.log(`PCB model size: ${model.length.toLocaleString('en')} bytes (${Math.round(100 * (1 - model.length / originalModel.size))}% smaller than the source).`);
 
 const socialTag = home.match(/<meta[^>]*property="og:image"[^>]*>/)?.[0];
 assert(socialTag, 'Missing social image');

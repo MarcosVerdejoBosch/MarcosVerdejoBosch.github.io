@@ -1,0 +1,50 @@
+.section-title { font-size: clamp(1.75rem, 2.7vw, 2.125rem); letter-spacing: -.04em; }
+
+.about-intro {
+  max-inline-size: 40rem;
+  margin-block-start: clamp(18px, 2vw, 26px);
+  font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+  letter-spacing: -.028em;
+  line-height: 1.48;
+  text-wrap: pretty;
+}
+.about-work__statement {
+  max-inline-size: 62rem;
+  margin-block-start: clamp(20px, 2.5vw, 32px);
+  font-size: clamp(1.625rem, 3.45vw, 2.875rem);
+  font-weight: 550;
+  line-height: 1.16;
+  letter-spacing: -.043em;
+  text-wrap: balance;
+}
+.about-work__statement span { color: var(--accent-text); }
+.about-work__notes {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 20px clamp(24px, 4vw, 52px);
+  margin-block-start: clamp(20px, 2.6vw, 36px);
+  color: var(--muted);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.55;
+}
+.about-work__tools { margin-block-start: 6px; font-size: clamp(.875rem, 1.4vw, 1.125rem); }
+.about-work__job h3 {
+  color: var(--foreground);
+  font-size: inherit;
+  font-weight: 550;
+  line-height: 1.4;
+  letter-spacing: -.02em;
+}
+.about-work__job p {
+  margin-block-start: 4px;
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  text-wrap: pretty;
+}
+.about-work > .text-link {
+  margin-block-start: 20px;
+  font-size: clamp(.9375rem, 1.5vw, 1.1875rem);
+}
+
+@media (max-width: 760px) {
+  .about-work__notes { grid-template-columns: minmax(0, 1fr); }
+}

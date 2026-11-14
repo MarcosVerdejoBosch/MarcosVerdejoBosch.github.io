@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import '../../styles/projects.css';
 const projects = (await getCollection('projects', entry => !entry.data.draft)).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title="Projects" description="A closer look at my engineering projects: hardware, analog circuits, PCB design, and the decisions behind them.">

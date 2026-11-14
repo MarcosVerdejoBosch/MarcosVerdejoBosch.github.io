@@ -6,12 +6,11 @@ status: In development
 tags: [KiCad, LTspice, Analog design]
 order: 1
 featured: true
-thumbnail:
-  image: ../../../assets/img/projects/linear-regulator/Regulador-perspectiva.png
-  alt: Oblique CAD render of the linear regulator PCB showing the input and output connectors and the height of the components.
 cover: ../../../assets/img/projects/linear-regulator/Regulador-perspectiva.png
 coverAlt: KiCad render of the linear regulator PCB viewed at an angle, with raised components and input and output connectors.
-model: /models/linear-regulator.glb
+model:
+  path: /models/linear-regulator.glb
+  alt: Interactive 3D model of the linear regulator PCB
 facts:
   - label: Output targets
     value: 5 V / 3.3 V

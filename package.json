@@ -24,6 +24,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "meshoptimizer": "0.25.0",
     "typescript": "6.0.3"
   }
 }

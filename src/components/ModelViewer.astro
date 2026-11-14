@@ -1,10 +1,19 @@
 ---
+import { stat } from 'node:fs/promises';
 import { Image } from 'astro:assets';
+import { publicDir } from 'astro:config/server';
 import type { ImageMetadata } from 'astro';
-interface Props { model: string; poster: ImageMetadata; alt: string; }
+import '../styles/model-viewer.css';
+interface Props {
+  model: { path: string; alt: string };
+  poster: ImageMetadata;
+  alt: string;
+}
 const { model, poster, alt } = Astro.props;
+const { size } = await stat(new URL(model.path.slice(1), publicDir));
+const sizeLabel = `${Math.round(size / 1_000_000)} MB`;
 ---
-<figure class="model-figure" data-model-viewer data-src={model}>
+<figure class="model-figure" data-model-viewer data-src={model.path} data-alt={model.alt}>
   <div class="model-stage">
     <Image
       class="model-poster"
@@ -27,15 +36,18 @@ const { model, poster, alt } = Astro.props;
       <span>KiCad render</span>
       <div class="model-launch" hidden>
         <button class="text-link model-trigger" type="button" data-load-model aria-describedby="model-size">Explore in 3D</button>
-        <span id="model-size">19 MB</span>
+        <span id="model-size">{sizeLabel}</span>
       </div>
     </div>
     <p class="model-message" data-model-message role="status" aria-live="polite"></p>
-    <noscript><p class="model-fallback">The interactive viewer needs JavaScript. You can <a href={model} download>download the PCB model</a> to inspect it locally.</p></noscript>
+    <noscript><p class="model-fallback">The interactive viewer needs JavaScript. You can <a href={model.path} download>download the PCB model</a> to inspect it locally.</p></noscript>
   </figcaption>
 </figure>
 <script>
   import type { ModelViewerElement } from '@google/model-viewer';
+  import decoderUrl from 'meshoptimizer/meshopt_decoder.js?url';
+
+  const defaultOrbit = '0deg 0deg 100%';
 
   for (const figure of document.querySelectorAll<HTMLElement>('[data-model-viewer]')) {
     const stage = figure.querySelector<HTMLElement>('.model-stage');
@@ -44,15 +56,28 @@ const { model, poster, alt } = Astro.props;
     const toolbar = figure.querySelector<HTMLElement>('.model-toolbar');
     const launch = figure.querySelector<HTMLElement>('.model-launch');
     const reset = figure.querySelector<HTMLButtonElement>('[data-reset-model]');
-    if (!stage || !button || !message || !toolbar || !launch) continue;
+    const { src, alt } = figure.dataset;
+    if (!src || !alt || !stage || !button || !message || !toolbar || !launch) continue;
+    let retries = 0;
     launch.hidden = false;
     reset?.addEventListener('click', () => {
       const viewer = stage.querySelector<ModelViewerElement>('model-viewer');
       if (!viewer) return;
-      viewer.cameraOrbit = '0deg 0deg 100%';
+      viewer.cameraOrbit = defaultOrbit;
       viewer.cameraTarget = 'auto auto auto';
       viewer.jumpCameraToGoal();
     });
+
+    const showError = (text: string) => {
+      retries++;
+      stage.classList.remove('is-loaded');
+      stage.setAttribute('aria-busy', 'false');
+      toolbar.hidden = true;
+      launch.hidden = false;
+      button.disabled = false;
+      button.textContent = 'Try loading 3D again';
+      message.textContent = text;
+    };
 
     button.addEventListener('click', async () => {
       button.disabled = true;
@@ -60,14 +85,16 @@ const { model, poster, alt } = Astro.props;
       button.textContent = 'Loading viewer…';
       message.textContent = 'Loading the interactive PCB model.';
       try {
-        await import('@google/model-viewer');
-        await customElements.whenDefined('model-viewer');
+        const { ModelViewerElement } = await import('@google/model-viewer');
+        // A failed load can stay cached in the viewer. Use a fresh URL when retrying.
+        const retryQuery = retries ? `?retry=${retries}` : '';
+        ModelViewerElement.meshoptDecoderLocation = `${decoderUrl}${retryQuery}`;
         const viewer = document.createElement('model-viewer') as ModelViewerElement;
-        viewer.setAttribute('alt', 'Interactive 3D model of the linear regulator PCB');
+        viewer.alt = alt;
         viewer.setAttribute('camera-controls', '');
         viewer.setAttribute('touch-action', 'pan-y');
         viewer.setAttribute('interaction-prompt', 'none');
-        viewer.setAttribute('camera-orbit', '0deg 0deg 100%');
+        viewer.cameraOrbit = defaultOrbit;
         viewer.setAttribute('shadow-intensity', '0');
         viewer.setAttribute('exposure', '1.1');
         viewer.setAttribute('tabindex', '0');
@@ -81,21 +108,12 @@ const { model, poster, alt } = Astro.props;
         }, { once: true });
         viewer.addEventListener('error', () => {
           viewer.remove();
-          stage.classList.remove('is-loaded');
-          stage.setAttribute('aria-busy', 'false');
-          toolbar.hidden = true;
-          launch.hidden = false;
-          button.disabled = false;
-          button.textContent = 'Try loading 3D again';
-          message.textContent = 'The 3D model could not be loaded. The PCB image is still available.';
+          showError('The 3D model could not be loaded. The PCB image is still available.');
         }, { once: true });
-        viewer.setAttribute('src', figure.dataset.src ?? '');
+        viewer.src = `${src}${retryQuery}`;
         stage.append(viewer);
       } catch {
-        stage.setAttribute('aria-busy', 'false');
-        button.disabled = false;
-        button.textContent = 'Try loading 3D again';
-        message.textContent = 'The viewer could not start. Please try again.';
+        showError('The viewer could not start. Please try again.');
       }
     });
   }

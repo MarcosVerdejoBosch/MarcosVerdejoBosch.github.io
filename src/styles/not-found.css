@@ -1,0 +1,14 @@
+.eyebrow { font-family: var(--mono); font-size: 12px; line-height: 1.6; letter-spacing: .045em; text-transform: uppercase; color: var(--accent-text); }
+.accent-period { color: var(--accent-text); }
+
+.button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 20px; padding: 12px 20px; border: 1px solid transparent; border-radius: 2px; font-size: 14px; font-weight: 400; cursor: pointer; transition: background .2s; }
+.button--primary { background: var(--foreground); color: var(--background); }
+.button--primary:hover { background: var(--accent-text); }
+.button svg { width: 16px; height: 16px; }
+
+.not-found h1 { max-inline-size: 15ch; margin-block: 26px; font-size: clamp(38px, 6vw, 76px); text-wrap: balance; }
+.not-found > p:not(.eyebrow) { color: var(--muted); font-size: 14px; margin-bottom: 30px; }
+
+@media (max-width: 760px) {
+  .eyebrow { font-size: 11px; }
+}

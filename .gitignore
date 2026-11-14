@@ -4,6 +4,7 @@ assets/img/projects/linear-regulator/_gltfpack_tmp/
 
 .tools/
 
+# Local artifacts from the retired Jekyll site
 _site/
 .jekyll-cache/
 .jekyll-metadata

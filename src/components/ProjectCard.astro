@@ -17,7 +17,7 @@ const cardImage = data.thumbnail?.image ?? data.cover;
     href={href}
     aria-labelledby={`${titleId} ${actionId}`}
   >
-    <div class="project-feature__body">
+    <div>
       <p class="project-meta">{data.discipline} <span class="project-status">{data.status}</span></p>
       <h2 id={titleId}>{data.title}</h2>
       <p class="project-summary">{data.summary}</p>

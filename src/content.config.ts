@@ -16,7 +16,7 @@ const projects = defineCollection({
     cover: image().optional(),
     coverAlt: z.string().optional(),
     thumbnail: z.object({ image: image(), alt: z.string() }).optional(),
-    model: z.string().optional(),
+    model: z.object({ path: z.string().startsWith('/models/'), alt: z.string().min(1) }).optional(),
     facts: z.array(z.object({ label: z.string(), value: z.string() })),
   }),
 });
