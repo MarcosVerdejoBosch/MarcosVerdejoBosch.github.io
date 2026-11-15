@@ -14,6 +14,8 @@ const { project } = Astro.props;
 const { data } = project;
 const [highlight] = data.facts;
 const { Content, headings } = await render(project);
+const sections = headings.filter(heading => heading.depth === 2);
+const showIndex = sections.length > 1;
 ---
 <BaseLayout title={data.title} description={data.summary}>
   <article class="project-detail">
@@ -37,36 +39,50 @@ const { Content, headings } = await render(project);
         }
       </div>
     )}
-    <div class="report-layout">
-      <aside class="report-index">
-        <nav aria-labelledby="report-index-title">
-          <p class="report-index__title" id="report-index-title">On this page</p>
-          <ol>
-            {headings.filter(heading => heading.depth === 2).map(heading => (
-              <li><a href={`#${heading.slug}`}>{heading.text}</a></li>
-            ))}
-          </ol>
-        </nav>
-      </aside>
+    <div class:list={['report-layout', { 'report-layout--short': !showIndex }]}>
+      {showIndex && (
+        <aside class="report-index">
+          <details class="report-index__sections" open>
+            <summary class="report-index__title" id="report-index-title">On this page</summary>
+            <nav aria-labelledby="report-index-title">
+              <ol>
+                {sections.map(heading => (
+                  <li><a href={`#${heading.slug}`}>{heading.text}</a></li>
+                ))}
+              </ol>
+            </nav>
+          </details>
+        </aside>
+      )}
       <div class="prose"><Content /></div>
     </div>
     <div class="report-end"><a class="back-link" href="/projects/"><span aria-hidden="true">←</span> All projects</a></div>
   </article>
 </BaseLayout>
 <script>
-  const indexLinks = [...document.querySelectorAll<HTMLAnchorElement>('.report-index nav a')];
   const sections = [...document.querySelectorAll<HTMLElement>('.prose h2[id]')];
-  let scheduled = false;
-  const updateIndex = () => {
-    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
-    const current = atBottom ? sections.at(-1) : sections.filter(section => section.getBoundingClientRect().top <= 150).at(-1) ?? sections[0];
-    for (const link of indexLinks) {
-      if (link.hash === `#${current?.id}`) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    }
-    scheduled = false;
-  };
-  window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateIndex); } }, { passive: true });
-  window.addEventListener('hashchange', updateIndex);
-  updateIndex();
+  for (const section of sections) section.tabIndex = -1;
+
+  const reportSections = document.querySelector<HTMLDetailsElement>('.report-index__sections');
+  if (reportSections) {
+    const narrowIndex = window.matchMedia('(max-width: 760px)');
+    const syncIndex = () => { reportSections.open = !narrowIndex.matches; };
+    syncIndex();
+    narrowIndex.addEventListener('change', syncIndex);
+
+    const indexLinks = [...reportSections.querySelectorAll<HTMLAnchorElement>('nav a')];
+    let scheduled = false;
+    const updateIndex = () => {
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+      const current = atBottom ? sections.at(-1) : sections.filter(section => section.getBoundingClientRect().top <= 150).at(-1) ?? sections[0];
+      for (const link of indexLinks) {
+        if (link.hash === `#${current?.id}`) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
+      scheduled = false;
+    };
+    window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateIndex); } }, { passive: true });
+    window.addEventListener('hashchange', updateIndex);
+    updateIndex();
+  }
 </script>

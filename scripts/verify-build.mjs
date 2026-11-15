@@ -89,7 +89,7 @@ assert(!home.includes('data-model-viewer') && !home.includes('/models/'), 'Home 
 const report = documents.get('/projects/linear-regulator/');
 assert.match(report, /data-load-model/, 'Missing explicit viewer activation');
 assert(!/<model-viewer[\s>]/.test(report), '3D viewer must be created only after activation');
-assert.match(report, /not yet documented/, 'Design status must remain clear');
+assert.match(report, /LTspice simulation.*Bench measurements pending/, 'Simulation and bench status must remain distinct');
 const poster = [...report.matchAll(/<img\b[^>]*>/g)].map(match => match[0]).find(tag => attributes(tag, 'class')[0]?.split(' ').includes('model-poster'));
 assert(poster, 'Missing static PCB poster');
 assert.match(attributes(poster, 'srcset')[0] ?? '', /320w/, 'Poster must include a mobile image candidate');

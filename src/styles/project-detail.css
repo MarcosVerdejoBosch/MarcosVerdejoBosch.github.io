@@ -1,3 +1,5 @@
+/* Jumps in the project index should move focus and scroll together. */
+html:has(.project-detail) { scroll-behavior: auto; }
 .back-link { display: inline-flex; min-block-size: 44px; align-items: center; gap: 8px; font-size: .875rem; font-weight: 500; color: var(--accent-text); }
 .back-link:hover { text-decoration: underline 1px; text-underline-offset: .32em; }
 .back-link > span { font-size: 1.125rem; }
@@ -15,8 +17,13 @@
 .report-cover { inline-size: 100%; block-size: auto; }
 
 .report-layout { display: grid; grid-template-columns: 220px minmax(0, 680px); justify-content: space-between; gap: 64px; padding-block: 70px 90px; }
+.report-layout--short { display: block; max-inline-size: 36rem; margin-inline: auto; padding-block: clamp(36px, 4vw, 54px) 48px; }
+.report-layout--short .prose h2 { margin-block: 0 14px; }
+.project-anchor, .project-anchor span { scroll-margin-top: 40px; }
 .report-index { position: sticky; top: 35px; align-self: start; }
-.report-index__title { font-weight: 550; }
+.report-index__title { min-block-size: 44px; padding-block: 8px; cursor: pointer; font-weight: 550; }
+.report-index__title::marker { color: var(--accent-text); }
+.report-index__title:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 4px; }
 .report-index ol { list-style: none; padding: 0; margin-top: 12px; border-left: 1px solid var(--border); }
 .report-index li a { display: block; min-height: 44px; padding: 10px 18px; font-size: 13px; color: var(--muted); border-left: 2px solid transparent; margin-left: -1px; }
 .report-index li a:hover { color: var(--foreground); }
@@ -30,6 +37,9 @@
 .prose li + li { margin-top: 10px; }
 .prose li::marker { color: var(--accent); }
 .prose strong { color: var(--foreground); font-weight: 550; }
+.case-figure { margin: 24px 0 0; }
+.case-figure img { display: block; inline-size: 100%; block-size: auto; }
+.case-figure figcaption { margin-block-start: 12px; font-size: .875rem; line-height: 1.6; }
 .prose table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; margin-top: 28px; }
 .prose th { font-family: var(--mono); text-transform: uppercase; letter-spacing: .04em; font-size: 11px; font-weight: 400; color: var(--foreground); }
 .prose th, .prose td { padding: 14px 14px 14px 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
@@ -42,8 +52,8 @@
 
 @media (max-width: 760px) {
   .report-layout { display: block; padding-block: 38px 50px; }
-  .report-index { position: static; padding-bottom: 30px; margin-bottom: 35px; border-bottom: 1px solid var(--border); }
-  .report-index ol { display: flex; flex-wrap: wrap; gap: 6px 18px; border-left: 0; margin-top: 15px; }
+  .report-index { position: static; padding-block-end: 10px; margin-block-end: 24px; border-block-end: 1px solid var(--border); }
+  .report-index ol { display: flex; flex-wrap: wrap; gap: 6px 18px; border-left: 0; margin-top: 4px; }
   .report-index li a { display: inline-flex; align-items: center; padding: 4px 0; border-left: 0; border-bottom: 1px solid transparent; font-size: 13px; margin: 0; }
   .report-index li a[aria-current] { background: none; border-bottom-color: var(--accent); }
   .prose h2 { margin-top: 38px; font-size: 27px; }

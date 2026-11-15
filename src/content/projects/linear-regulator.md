@@ -1,6 +1,6 @@
 ---
 title: Linear Regulator
-summary: I’m designing a discrete power supply for prototyping and bench rails.
+summary: A discrete power supply I built for my bench.
 discipline: Hardware / Analog
 status: In development
 tags: [KiCad, LTspice, Analog design]
@@ -12,48 +12,26 @@ model:
   path: /models/linear-regulator.glb
   alt: Interactive 3D model of the linear regulator PCB
 facts:
-  - label: Output targets
+  - label: Output modes
     value: 5 V / 3.3 V
   - label: Focus
     value: Feedback & protection
   - label: Current stage
-    value: Design & PCB layout
+    value: Assembled prototype
 ---
 
-## The project
+<div id="the-project" class="project-anchor" aria-hidden="true">
+  <span id="design-questions"></span>
+  <span id="from-circuit-to-board"></span>
+</div>
 
-A linear power supply for prototyping and bench rails, designed to explore the behavior of a discrete regulator. The work brings together analog circuit design, feedback, protection, and the practical decisions involved in a PCB layout.
+## Load-release test
 
-The intended outputs are 5 V and 3.3 V. These are design targets; measured output performance is not yet documented here.
+In LTspice, the 3.3 V output peaked at **3.66 V** when the load dropped from 1 A to 0.1 A. It settled within ±1% in about **15 µs**.
 
-## Design questions
+<figure class="case-figure">
 
-The useful part of this project is the reasoning between the schematic and the board:
+![Simulated load current drops from 1 A to 0.1 A as the output voltage spikes, dips below 3.3 V, then settles.](../../../assets/img/projects/linear-regulator/load-release-3v3.svg)
 
-- **Feedback:** how the regulation loop behaves as the input voltage and load change.
-- **Protection:** how the circuit should respond to an overload or short circuit.
-- **Thermals:** how power dissipation affects component selection and layout.
-- **Measurement:** how test points and return paths make the circuit easier to inspect.
-
-## From circuit to board
-
-KiCad and LTspice support the design process. The PCB render and interactive model show the CAD design, including component placement, connections, and test points.
-
-The model is a design artifact. It does not establish that the board has been manufactured, assembled, or tested.
-
-## Validation plan
-
-The next documentation milestone is a set of measurements with recorded input voltage, load, ambient temperature, and instrumentation:
-
-| Check | What to record |
-| --- | --- |
-| Output accuracy | Output voltage across the intended load range |
-| Load and line regulation | Voltage change as the load and input change |
-| Ripple | Output ripple with a short oscilloscope ground connection |
-| Transient response | Voltage excursion and recovery after a load step |
-| Thermal behavior | Temperature rise of the power components |
-| Protection | Current and temperature during overload conditions |
-
-## Project status
-
-This case study is in development. The published material currently documents the PCB design. Schematics, a reviewed component list, and measurement results will be added as the documentation is completed.
+<figcaption id="project-status"><span id="validation-plan" aria-hidden="true"></span>LTspice simulation (SIM-06). Bench measurements pending.</figcaption>
+</figure>

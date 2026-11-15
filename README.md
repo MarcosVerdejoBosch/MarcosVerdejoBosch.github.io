@@ -68,4 +68,4 @@ The canonical URL is `https://marcosverdejobosch.github.io`. Update `site` in `a
 
 The old Jekyll site is available in [Git history at 594eb51](https://github.com/MarcosVerdejoBosch/MarcosVerdejoBosch.github.io/tree/594eb518cc62450f919e4411dc1b61dfbb72d292). Astro builds from `src/` and `public/`.
 
-The old regulator pages contain conflicting circuit descriptions. The new case study describes the supplied CAD assets and design goals, with electrical measurements pending. Specific component/topology claims should be restored only after reviewing the actual schematic.
+The regulator page pairs the PCB model with one simulated load-release trace. The [plot](assets/img/projects/linear-regulator/load-release-3v3.svg) uses the archived SIM-06 3.3 V samples from the 2026-09-24 revalidation; its metadata records the source CSV hash. The technical report, full waveforms and circuit files live in the regulator project.
